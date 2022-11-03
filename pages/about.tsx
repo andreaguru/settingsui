@@ -4,11 +4,9 @@ import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Link from "../components/Link"
-import ProTip from "../components/ProTip"
 import Copyright from "../components/Copyright"
 
 export default function About() {
-  console.log("okok")
 
   return (
     <Container maxWidth="lg">
@@ -29,7 +27,6 @@ export default function About() {
             Go to the home page
           </Button>
         </Box>
-        <ProTip />
         <Copyright />
       </Box>
     </Container>
