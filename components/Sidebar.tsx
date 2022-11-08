@@ -1,9 +1,13 @@
-import {useState} from "react"
+import {useState, useContext} from "react"
+
+// we use the Context that are provided in index.tsx
+import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext"
+
+// import MUI Components
 import Toolbar from "@mui/material/Toolbar"
 import IconButton from "@mui/material/IconButton"
 import ChevronLeft from "@mui/icons-material/ChevronLeft"
 import ChevronRight from "@mui/icons-material/ChevronRight"
-import Divider from "@mui/material/Divider"
 import List from "@mui/material/List"
 import FormControl from "@mui/material/FormControl"
 import InputLabel from "@mui/material/InputLabel"
@@ -13,11 +17,10 @@ import MenuItem from "@mui/material/MenuItem"
 import Checkbox from "@mui/material/Checkbox"
 import ListItemText from "@mui/material/ListItemText"
 import Chip from "@mui/material/Chip"
-import {secondaryListItems} from "./ListItems"
-import {styled} from "@mui/material/styles"
+import styled from "@mui/material/styles/styled"
 import MuiDrawer from "@mui/material/Drawer"
-import {useContext} from "react"
-import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext"
+
+// import Interfaces to check data type in Typescript
 import {ReducerActionType} from "../types/interfaces";
 
 const appBarHeight: number = 64
@@ -33,7 +36,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})
             duration: theme.transitions.duration.enteringScreen,
         }),
         boxSizing: "border-box",
-        marginTop: appBarHeight,
+        paddingTop: appBarHeight,
         ...(!open && {
             overflowX: "hidden",
             transition: theme.transitions.create("width", {
@@ -99,9 +102,9 @@ function Sidebar() {
             >
                 <IconButton onClick={toggleDrawer}>{open ? <ChevronLeft/> : <ChevronRight/>}</IconButton>
             </Toolbar>
-            <Divider/>
+
             <List component="nav">
-                <FormControl sx={{m: 1, width: 300}}>
+                <FormControl sx={{m: 1, width: "80%"}}>
                     <InputLabel id="demo-multiple-checkbox-label">ClientID / Name</InputLabel>
                     {clientsList.length > 0 && (
                         <Select
@@ -119,7 +122,7 @@ function Sidebar() {
                             {clientsList.map((client: any, index: number) => (
                                 <MenuItem key={index} value={client}>
                                     <Checkbox checked={handleCheckbox(client.id)}/>
-                                    <ListItemText primary={client.id}/>
+                                    <ListItemText primary={client.name}/>
                                 </MenuItem>
                             ))}
                         </Select>
@@ -128,12 +131,9 @@ function Sidebar() {
 
                 {filteredClientsList.map((client: any, key: any) => (
                     <div key={key}>
-                        <Chip label={client.id} onDelete={handleDelete(client.id)}/>
+                        <Chip label={client.name} onDelete={handleDelete(client.id)}/>
                     </div>
                 ))}
-
-                <Divider sx={{my: 1}}/>
-                {secondaryListItems}
             </List>
         </Drawer>
     )

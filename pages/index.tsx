@@ -1,19 +1,26 @@
 import {useEffect, useReducer, useState} from "react"
 import {createTheme, ThemeProvider} from "@mui/material/styles"
 import CssBaseline from "@mui/material/CssBaseline"
+
+// import MUI Components
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import List from "@mui/material/List"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import Grid from "@mui/material/Grid"
+
+// we create a Context for each type of data information, in order to use them everywhere in the app
+import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext"
+
 import logo from "../public/eddi-logo.jpg"
 import Image from "next/image"
-import MainContent from "../components/MainContent"
-import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext"
 import {AppBar} from "../components/AppBar"
+import {getIntegratedClientList} from "../api/DashboardAPI"
 import Sidebar from "../components/Sidebar"
-import {getClientsList} from "../api/DashboardAPI";
+import MainContent from "../components/MainContent"
+
+// import Interfaces to check data type in Typescript
 import {FilteredClientsInterface, ReducerActionType} from "../types/interfaces";
 
 type ReducerAction = {
@@ -51,7 +58,7 @@ export default function Home() {
     const [state, dispatch] = useReducer(filteredClientsReducer, []);
 
     useEffect(() => {
-        const data = getClientsList()
+        const data = getIntegratedClientList()
         data.then((data) => {
             if (data) {
                 setClients(data)

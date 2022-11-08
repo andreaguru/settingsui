@@ -11,21 +11,16 @@ function MainContent() {
     return (
         <>
             {shownClients.map((client: any, index: number) => (
-                <Card key={index} sx={{minWidth: 275}}>
+                <Card key={index}>
                     <CardContent>
                         <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
-                            Word of the Day
+                            test
                         </Typography>
                         <Typography variant="h5" component="div">
-                            be
-                        </Typography>
-                        <Typography sx={{mb: 1.5}} color="text.secondary">
-                            adjective
+                            {client.name}
                         </Typography>
                         <Typography variant="body2">
-                            well meaning and kindly.
-                            <br/>
-                            {'"a benevolent smile"'}
+                            test body2 style
                         </Typography>
                     </CardContent>
                 </Card>
