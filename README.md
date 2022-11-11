@@ -28,3 +28,5 @@ In dem Projekt Root muss man dieses Befehl aufrufen, um die Datenbank zu starten
 ```sh
 json-server db.json --port 3004 --middlewares file.js
 ```
+
+Jetzt läuft die Datenbank auf http://localhost:3004/
