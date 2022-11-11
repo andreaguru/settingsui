@@ -44,12 +44,12 @@ const mdTheme = createTheme({
 
 function filteredClientsReducer(state: any, action: ReducerAction): FilteredClientsInterface {
     switch (action.type) {
-        case ReducerActionType.ADD_CLIENT:
-            return action.payload
-        case ReducerActionType.DELETE_CLIENT:
-            return state.filter((chip: any) => chip.id !== action.payload)
-        default:
-            throw new Error();
+    case ReducerActionType.ADD_CLIENT:
+        return action.payload
+    case ReducerActionType.DELETE_CLIENT:
+        return state.filter((chip: any) => chip.id !== action.payload)
+    default:
+        throw new Error();
     }
 }
 
@@ -91,14 +91,14 @@ export default function Home() {
                                 </Toolbar>
                             </AppBar>
                             <Sidebar/>
-                            <Box
-                                component="main"
-                                sx={{
-                                    backgroundColor: (theme) => (theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]),
-                                    flexGrow: 1,
-                                    height: "100vh",
-                                    overflow: "auto",
-                                }}
+                            <Box component="main" sx={{
+                                backgroundColor: (theme) => (
+                                    theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]
+                                ),
+                                flexGrow: 1,
+                                height: "100vh",
+                                overflow: "auto",
+                            }}
                             >
                                 <Toolbar/>
                                 <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
