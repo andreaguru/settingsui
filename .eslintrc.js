@@ -8,8 +8,9 @@ module.exports = {
         "node": true
     },
     extends: [
-        "next/core-web-vitals"
-    ],
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "next/core-web-vitals"],
     rules: {
         "@typescript-eslint/no-var-requires": 0,
         "max-len": [2, {"code": 120}],
