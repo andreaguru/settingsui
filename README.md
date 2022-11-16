@@ -12,11 +12,12 @@
 npm install
 ```
 
-2) Database starten und App starten:
 
-```sh
-npm run dev
-```
+## Develop
+You always can start the web application in two different ways:
+ - ```npm run dev``` dev mode with hot refresh und mocked database
+ - ```npm run start:production``` production mode using the web packed artifacts (ensure the app was built with ```npm run build``` before)
+
 
 ## Datenbank auf lokal starten
 
