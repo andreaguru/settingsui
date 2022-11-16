@@ -1,30 +1,30 @@
-import {useState, useContext} from "react"
+import {useState, useContext} from "react";
 
 // we use the Context that are provided in index.tsx
-import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext"
+import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext";
 
 // import MUI Components
-import Toolbar from "@mui/material/Toolbar"
-import IconButton from "@mui/material/IconButton"
-import ChevronLeft from "@mui/icons-material/ChevronLeft"
-import ChevronRight from "@mui/icons-material/ChevronRight"
-import List from "@mui/material/List"
-import FormControl from "@mui/material/FormControl"
-import InputLabel from "@mui/material/InputLabel"
-import Select, {SelectChangeEvent} from "@mui/material/Select"
-import OutlinedInput from "@mui/material/OutlinedInput"
-import MenuItem from "@mui/material/MenuItem"
-import Checkbox from "@mui/material/Checkbox"
-import ListItemText from "@mui/material/ListItemText"
-import Chip from "@mui/material/Chip"
-import styled from "@mui/material/styles/styled"
-import MuiDrawer from "@mui/material/Drawer"
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
+import List from "@mui/material/List";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select, {SelectChangeEvent} from "@mui/material/Select";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import MenuItem from "@mui/material/MenuItem";
+import Checkbox from "@mui/material/Checkbox";
+import ListItemText from "@mui/material/ListItemText";
+import Chip from "@mui/material/Chip";
+import styled from "@mui/material/styles/styled";
+import MuiDrawer from "@mui/material/Drawer";
 
 // import Interfaces to check data type in Typescript
-import {ReducerActionType} from "../types/interfaces";
+import {ClientsInterface, ReducerActionType} from "../types/query.types";
 
-const appBarHeight: number = 64
-const drawerWidth: number = 240
+const appBarHeight = 64;
+const drawerWidth = 240;
 
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
@@ -49,10 +49,10 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})
             },
         }),
     },
-}))
+}));
 
-const ITEM_HEIGHT = 48
-const ITEM_PADDING_TOP = 8
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
 const MenuProps = {
     PaperProps: {
         style: {
@@ -60,35 +60,39 @@ const MenuProps = {
             width: 250,
         },
     },
-}
+};
 
+/**
+ *
+ * @constructor
+ */
 function Sidebar() {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
-        setOpen(!open)
-    }
+        setOpen(!open);
+    };
 
-    const clientsList = useContext(ClientsContext)
-    const filteredClientsList = useContext(FilteredClientsContext)
-    const dispatchFilteredClientsList = useContext(FilteredClientsDispatchContext)
+    const clientsList = useContext(ClientsContext);
+    const filteredClientsList = useContext(FilteredClientsContext);
+    const dispatchFilteredClientsList = useContext(FilteredClientsDispatchContext);
 
     const handleChange = (event: SelectChangeEvent<typeof filteredClientsList>) => {
         const {
             target: {value},
-        } = event
+        } = event;
 
         if (typeof value === "object" && filteredClientsList) {
-            dispatchFilteredClientsList({type: ReducerActionType.ADD_CLIENT, payload: value})
+            dispatchFilteredClientsList({type: ReducerActionType.ADD_CLIENT, payload: value});
         }
-    }
+    };
 
-    const handleDelete = (chipToDelete: number) => () => {
-        dispatchFilteredClientsList({type: ReducerActionType.DELETE_CLIENT, payload: chipToDelete})
-    }
+    const handleDelete = (customerToDelete: number) => () => {
+        dispatchFilteredClientsList({type: ReducerActionType.DELETE_CLIENT, payload: customerToDelete});
+    };
 
     const handleCheckbox = (clientId: number) => {
-        return filteredClientsList.some((filteredClient: any) => filteredClient.id === clientId)
-    }
+        return filteredClientsList.some((filteredClient: ClientsInterface) => filteredClient.id === clientId);
+    };
 
     return (
         <Drawer variant="permanent" open={open}>
@@ -115,11 +119,11 @@ function Sidebar() {
                             onChange={handleChange}
                             input={<OutlinedInput label="Tag"/>}
                             renderValue={() => {
-                                return false
+                                return false;
                             }}
                             MenuProps={MenuProps}
                         >
-                            {clientsList.map((client: any, index: number) => (
+                            {clientsList.map((client:any, index: number) => (
                                 <MenuItem key={index} value={client}>
                                     <Checkbox checked={handleCheckbox(client.id)}/>
                                     <ListItemText primary={client.name}/>
@@ -129,14 +133,14 @@ function Sidebar() {
                     )}
                 </FormControl>
 
-                {filteredClientsList.map((client: any, key: any) => (
+                {filteredClientsList.map((client: ClientsInterface, key: number) => (
                     <div key={key}>
                         <Chip label={client.name} onDelete={handleDelete(client.id)}/>
                     </div>
                 ))}
             </List>
         </Drawer>
-    )
+    );
 }
 
-export default Sidebar
+export default Sidebar;

@@ -12,7 +12,7 @@
 npm install
 ```
 
-2) App starten (achtung, die Datenbank muss vorher gestartet werden. Siehe dei Anwaisungen unten):
+2) Database starten und App starten:
 
 ```sh
 npm run dev
@@ -21,12 +21,10 @@ npm run dev
 ## Datenbank auf lokal starten
 
 Um die API auf Lokal zu mocken, wird json-server benutzt: https://github.com/typicode/json-server
-Der Ordner kann man von Google Drive herunterladen (json-db.rar): https://drive.google.com/drive/
-
-In dem Projekt Root muss man dieses Befehl aufrufen, um die Datenbank zu starten:
+Wenn man npm run dev ruft, wird zuerst dieses Befehl aufgeruft:
 
 ```sh
 json-server db.json --port 3004 --middlewares file.js
 ```
 
-Jetzt läuft die Datenbank auf http://localhost:3004/
+Die Datenbank läuft auf port 3004

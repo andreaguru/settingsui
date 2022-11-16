@@ -1,31 +1,31 @@
-import {useEffect, useReducer, useState} from "react"
-import {createTheme, ThemeProvider} from "@mui/material/styles"
-import CssBaseline from "@mui/material/CssBaseline"
+import {useEffect, useReducer, useState} from "react";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 // import MUI Components
-import Box from "@mui/material/Box"
-import Toolbar from "@mui/material/Toolbar"
-import List from "@mui/material/List"
-import Typography from "@mui/material/Typography"
-import Container from "@mui/material/Container"
-import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 
 // we create a Context for each type of data information, in order to use them everywhere in the app
-import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext"
+import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext";
 
-import logo from "../public/eddi-logo.jpg"
-import Image from "next/image"
-import {AppBar} from "../components/AppBar"
-import {getIntegratedClientList} from "../api/DashboardAPI"
-import Sidebar from "../components/Sidebar"
-import MainContent from "../components/MainContent"
+import logo from "../public/eddi-logo.jpg";
+import Image from "next/image";
+import Sidebar from "../components/Sidebar";
+import MainContent from "../components/MainContent";
 
 // import Interfaces to check data type in Typescript
-import {FilteredClientsInterface, ReducerActionType} from "../types/interfaces";
+import {ClientsInterface, ReducerActionType} from "../types/query.types";
+import MuiAppBar from "@mui/material/AppBar";
+import {getIntegratedClientList} from "../api/DashboardAPI";
 
 type ReducerAction = {
     type: ReducerActionType;
-    payload?: any;
+    payload: ClientsInterface[] | number;
 };
 
 const mdTheme = createTheme({
@@ -40,34 +40,44 @@ const mdTheme = createTheme({
             },
         },
     },
-})
+});
 
-function filteredClientsReducer(state: any, action: ReducerAction): FilteredClientsInterface {
+/**
+ *
+ * @param {ClientsInterface[]} state
+ * @param {ReducerAction} action
+ * @return {boolean} true
+ */
+function filteredClientsReducer(state: ClientsInterface[], action: ReducerAction): ClientsInterface[] {
     switch (action.type) {
     case ReducerActionType.ADD_CLIENT:
-        return action.payload
+        return (typeof action.payload !== "number") ? action.payload : [];
     case ReducerActionType.DELETE_CLIENT:
-        return state.filter((chip: any) => chip.id !== action.payload)
+        return state.filter((client: ClientsInterface) => client.id !== action.payload);
     default:
         throw new Error();
     }
 }
 
-export default function Home() {
-    const [clients, setClients] = useState<[]>([])
+/**
+ *
+ * @constructor
+ */
+function Home() {
+    const [clients, setClients] = useState<[]>([]);
     const [state, dispatch] = useReducer(filteredClientsReducer, []);
 
     useEffect(() => {
-        const data = getIntegratedClientList()
+        const data = getIntegratedClientList();
         data.then((data) => {
             if (data) {
-                setClients(data)
+                setClients(data);
             }
         })
             .catch((error) => {
-                console.log(error)
-            })
-    }, [])
+                console.log(error);
+            });
+    }, []);
 
     return (
         <ClientsContext.Provider value={clients}>
@@ -76,7 +86,9 @@ export default function Home() {
                     <ThemeProvider theme={mdTheme}>
                         <Box sx={{display: "flex"}}>
                             <CssBaseline/>
-                            <AppBar position="absolute">
+                            <MuiAppBar position="absolute" sx={{
+                                zIndex: mdTheme.zIndex.drawer + 1,
+                            }}>
                                 <Toolbar
                                     sx={{
                                         pr: "249px", // keep right padding when drawer closed
@@ -89,7 +101,7 @@ export default function Home() {
                                         Dashboard
                                     </Typography>
                                 </Toolbar>
-                            </AppBar>
+                            </MuiAppBar>
                             <Sidebar/>
                             <Box component="main" sx={{
                                 backgroundColor: (theme) => (
@@ -114,5 +126,7 @@ export default function Home() {
                 </FilteredClientsDispatchContext.Provider>
             </FilteredClientsContext.Provider>
         </ClientsContext.Provider>
-    )
+    );
 }
+
+export default Home;

@@ -1,0 +1,6226 @@
+{
+  "clients": [
+    {
+        "id": 241,
+        "advert": {
+            "adMarkerHeight": 0,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "1"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "string"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": true
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 0,
+                "newsletterName": "string",
+                "options": "string"
+            },
+            "glomex": {
+                "activated": true,
+                "integrationId": "string"
+            }
+        },
+        "seoStoryTicker": {
+            "activated": true
+        },
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 0
+        },
+        "googleTagManager": {
+            "activated": true,
+            "gtmContainerId": "string"
+        },
+        "name": "BlickPunkt Nienburg",
+        "alias": "blickpunkt-nienburg-de",
+        "identifier": "https://www.blickpunkt-nienburg.de",
+        "googleNewsName": "BlickPunkt Nienburg",
+        "artworkDirectory": "blickpunkt-nienburg-de"
+    },
+    {
+        "id": 252,
+        "advert": {
+            "adMarkerHeight": 0,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "1"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "string"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": true
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 0,
+                "newsletterName": "string",
+                "options": "string"
+            },
+            "glomex": {
+                "activated": true,
+                "integrationId": "string"
+            }
+        },
+        "seoStoryTicker": {
+            "activated": true
+        },
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 0
+        },
+        "googleTagManager": {
+            "activated": true,
+            "gtmContainerId": "string"
+        },
+        "name": "webnachrichten.de",
+        "alias": "webnachrichten-de",
+        "identifier": "https://www.webnachrichten.de",
+        "googleNewsName": "webnachrichten.de",
+        "artworkDirectory": "webnachrichten-de"
+    },
+    {
+        "id": 290,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.meine-anzeigenzeitung.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-meineanzeigenzeitung"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 73446245,
+                "newsletterName": "daily",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "meine-anzeigenzeitung.de",
+        "alias": "meine-anzeigenzeitung",
+        "identifier": "https://www.meine-anzeigenzeitung.de",
+        "artworkDirectory": "meine-anzeigenzeitung"
+    },
+    {
+        "id": 315,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/wetterauer-zeitung.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-wetterauer-zeitung"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 56785862,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Wetterauer Zeitung",
+        "alias": "wetterauer-zeitung",
+        "identifier": "https://www.wetterauer-zeitung.de",
+        "googleNewsName": "Wetterauer Zeitung",
+        "artworkDirectory": "wetterauer-zeitung"
+    },
+    {
+        "id": 249,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/rga.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-rga"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 54010717,
+                "newsletterName": "",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 8
+        },
+        "googleTagManager": null,
+        "name": "Remscheider General-Anzeiger",
+        "alias": "rga",
+        "identifier": "https://www.rga.de",
+        "googleNewsName": "Remscheider General-Anzeiger",
+        "artworkDirectory": "rga"
+    },
+    {
+        "id": 256,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.come-on.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-come-on"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 42175718,
+                "newsletterName": "daily",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "come-on.de",
+        "alias": "come-on-de",
+        "identifier": "https://www.come-on.de",
+        "googleNewsName": "Meinerzhagener Zeitung",
+        "artworkDirectory": "come-on-de"
+    },
+    {
+        "id": 263,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.fehmarn24.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-fehmarn24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": null,
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Fehmarnsches Tageblatt",
+        "alias": "fehmarn24-de",
+        "identifier": "https://www.fehmarn24.de",
+        "googleNewsName": "fehmarn24",
+        "artworkDirectory": "fehmarn24-de"
+    },
+    {
+        "id": 262,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.werra-rundschau.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-werra-rundschau"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 51950110,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Werra-Rundschau",
+        "alias": "werra-rundschau-de",
+        "identifier": "https://www.werra-rundschau.de",
+        "googleNewsName": "werra-rundschau.de",
+        "artworkDirectory": "werra-rundschau-de"
+    },
+    {
+        "id": 267,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-rosenheim24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "rosenheim24.de",
+        "alias": "rosenheim24-de",
+        "identifier": "https://www.rosenheim24.de",
+        "googleNewsName": "rosenheim24.de",
+        "artworkDirectory": "rosenheim24"
+    },
+    {
+        "id": 298,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.sauerlandkurier.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-sauerlandkurier"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "SauerlandKurier",
+        "alias": "sauerlandkurier",
+        "identifier": "https://www.sauerlandkurier.de",
+        "googleNewsName": "SauerlandKurier",
+        "artworkDirectory": "sauerlandkurier"
+    },
+    {
+        "id": 316,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.fnp.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-fnp"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 30384816,
+                "newsletterName": "Daily",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": {
+            "activated": false
+        },
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Frankfurter Neue Presse",
+        "alias": "fnp",
+        "identifier": "https://www.fnp.de",
+        "googleNewsName": "Frankfurter Neue Presse",
+        "artworkDirectory": "fnp"
+    },
+    {
+        "id": 238,
+        "advert": {
+            "adMarkerHeight": 0,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "1"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "string"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": true
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 0,
+                "newsletterName": "string",
+                "options": "string"
+            },
+            "glomex": {
+                "activated": true,
+                "integrationId": "string"
+            }
+        },
+        "seoStoryTicker": {
+            "activated": true
+        },
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 0
+        },
+        "googleTagManager": {
+            "activated": true,
+            "gtmContainerId": "string"
+        },
+        "name": "Heidelberg24",
+        "alias": "heidelberg24",
+        "identifier": "https://www.heidelberg24.de",
+        "googleNewsName": "HEIDELBERG24",
+        "artworkDirectory": "heidelberg24"
+    },
+    {
+        "id": 253,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.tz.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": null
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Wiesn",
+        "alias": "wiesn",
+        "identifier": "https://www.wiesn.bayern",
+        "googleNewsName": "wiesn.bayern",
+        "artworkDirectory": "wiesn"
+    },
+    {
+        "id": 236,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.kurierverlag.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-kurierverlag"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 17300766,
+                "newsletterName": "daily",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "KURIER VERLAG",
+        "alias": "kurierverlag-de",
+        "identifier": "https://www.kurierverlag.de",
+        "googleNewsName": "kurierverlag.de",
+        "artworkDirectory": "kurierverlag-de"
+    },
+    {
+        "id": 255,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.wa.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-wa"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 79158573,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "wa.de",
+        "alias": "wa-de",
+        "identifier": "https://www.wa.de",
+        "googleNewsName": "Westfälischer Anzeiger",
+        "artworkDirectory": "wa-de"
+    },
+    {
+        "id": 269,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-da-imnetz"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "DA-imNetz.de",
+        "alias": "da-imnetz-de",
+        "identifier": "https://www.da-imnetz.de",
+        "googleNewsName": "DA-imNetz.de",
+        "artworkDirectory": "da-imnetz-de"
+    },
+    {
+        "id": 273,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.oktoberfest-live.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-oktoberfest-live"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "oktoberfest.bayern",
+        "alias": "oktoberfest-live-de",
+        "identifier": "https://www.oktoberfest.bayern",
+        "artworkDirectory": "oktoberfest-live-de"
+    },
+    {
+        "id": 307,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.lokalo24.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-lokalo24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "lokalo24.de",
+        "alias": "lokalo24",
+        "identifier": "https://www.lokalo24.de",
+        "artworkDirectory": "lokalo24"
+    },
+    {
+        "id": 248,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/solinger-tageblatt.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-solinger-tageblatt"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 79972148,
+                "newsletterName": "",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 8
+        },
+        "googleTagManager": null,
+        "name": "Solinger Tageblatt",
+        "alias": "solinger-tageblatt",
+        "identifier": "https://www.solinger-tageblatt.de",
+        "googleNewsName": "solinger-tageblatt.de",
+        "artworkDirectory": "solinger-tageblatt"
+    },
+    {
+        "id": 223,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.kreiszeitung.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-kreiszeitung"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 63808517,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "kreiszeitung.de",
+        "alias": "kreiszeitung-de",
+        "identifier": "https://www.kreiszeitung.de",
+        "googleNewsName": "kreiszeitung.de",
+        "artworkDirectory": "kreiszeitung"
+    },
+    {
+        "id": 257,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.soester-anzeiger.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-soester-anzeiger"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 69065416,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Soester Anzeiger",
+        "alias": "soester-anzeiger-de",
+        "identifier": "https://www.soester-anzeiger.de",
+        "googleNewsName": "Soester Anzeiger",
+        "artworkDirectory": "soester-anzeiger-de"
+    },
+    {
+        "id": 284,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-chiemgau24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "chiemgau24.de",
+        "alias": "chiemgau24-de",
+        "identifier": "https://www.chiemgau24.de",
+        "googleNewsName": "chiemgau24.de",
+        "artworkDirectory": "chiemgau24"
+    },
+    {
+        "id": 301,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.in-muenchen.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 93620598,
+                "newsletterName": "",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "InMagazin",
+        "alias": "inmagazin",
+        "identifier": "https://www.in-muenchen.de",
+        "artworkDirectory": "inmagazin"
+    },
+    {
+        "id": 247,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.hna.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-hna"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 11109761,
+                "newsletterName": "Daily",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "HNA",
+        "alias": "hna-de",
+        "identifier": "https://www.hna.de",
+        "googleNewsName": "HNA.de",
+        "artworkDirectory": "hna-de"
+    },
+    {
+        "id": 258,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.op-online.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-op-online"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 50774702,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": {
+            "activated": false
+        },
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "op-online.de",
+        "alias": "op-online-de",
+        "identifier": "https://www.op-online.de",
+        "googleNewsName": "op-online.de",
+        "artworkDirectory": "op-online-de"
+    },
+    {
+        "id": 260,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.az-online.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-az-online"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 54848843,
+                "newsletterName": "daily",
+                "options": ""
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "az-online.de",
+        "alias": "az-online-de",
+        "identifier": "https://www.az-online.de",
+        "googleNewsName": "Allgemeine Zeitung Uelzen",
+        "artworkDirectory": "az-online-de"
+    },
+    {
+        "id": 282,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-innsalzach24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "innsalzach24.de",
+        "alias": "innsalzach24-de",
+        "identifier": "https://www.innsalzach24.de",
+        "googleNewsName": "innsalzach24.de",
+        "artworkDirectory": "innsalzach24"
+    },
+    {
+        "id": 288,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-wasserburg24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "wasserburg24.de",
+        "alias": "wasserburg24-de",
+        "identifier": "https://www.wasserburg24.de",
+        "googleNewsName": "Wasserburg24",
+        "artworkDirectory": "wasserburg24"
+    },
+    {
+        "id": 314,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/giessener-allgemeine.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-giessener-allgemeine"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 46097683,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": {
+            "activated": false
+        },
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Gießener Allgemeine",
+        "alias": "giessener-allgemeine",
+        "identifier": "https://www.giessener-allgemeine.de",
+        "googleNewsName": "Gießener Allgemeine",
+        "artworkDirectory": "giessener-allgemeine"
+    },
+    {
+        "id": 264,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.leinetal24.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-leinetal24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": null,
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "leinetal24",
+        "alias": "leinetal24-de",
+        "identifier": "https://www.leinetal24.de",
+        "googleNewsName": "leinetal24.de",
+        "artworkDirectory": "leinetal24-de"
+    },
+    {
+        "id": 268,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.merkur.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-merkur-online"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 80085,
+                "newsletterName": "Test Newsletter Client",
+                "options": ""
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Merkur.de",
+        "alias": "merkur-de",
+        "identifier": "https://www.merkur.de",
+        "googleNewsName": "Merkur.de",
+        "artworkDirectory": "merkur-de"
+    },
+    {
+        "id": 274,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-herbstfest-rosenheim"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Herbstfest Rosenheim",
+        "alias": "herbstfest-rosenheim-de",
+        "identifier": "https://www.herbstfest-rosenheim.de",
+        "googleNewsName": "herbstfest-rosenheim.de",
+        "artworkDirectory": "herbstfest-rosenheim-de"
+    },
+    {
+        "id": 300,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-streiflichter"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Streiflichter",
+        "alias": "streiflichter",
+        "identifier": "https://www.streiflichter.com",
+        "googleNewsName": "Streiflichter",
+        "artworkDirectory": "streiflichter"
+    },
+    {
+        "id": 237,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.mannheim24.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-mannheim24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 18076594,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Mannheim24",
+        "alias": "mannheim24",
+        "identifier": "https://www.mannheim24.de",
+        "googleNewsName": "MANNHEIM24",
+        "artworkDirectory": "mannheim24"
+    },
+    {
+        "id": 261,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.extratipp.com"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-extratipp"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "extratipp.com",
+        "alias": "extratipp-com",
+        "identifier": "https://www.extratipp.com",
+        "googleNewsName": "extratipp.com",
+        "artworkDirectory": "extratipp-com"
+    },
+    {
+        "id": 278,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-merkurcup"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Merkur CUP",
+        "alias": "merkurcup-de",
+        "identifier": "https://www.merkurcup.de",
+        "googleNewsName": "merkurcup.de",
+        "artworkDirectory": "merkurcup-de"
+    },
+    {
+        "id": 286,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-bgland24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "BGland24.de",
+        "alias": "bgland24-de",
+        "identifier": "https://www.bgland24.de",
+        "googleNewsName": "bgland24.de",
+        "artworkDirectory": "bgland24"
+    },
+    {
+        "id": 287,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/mangfall24.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-mangfall24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 8
+        },
+        "googleTagManager": {
+            "activated": true,
+            "gtmContainerId": "GTM-BZZQNQF"
+        },
+        "name": "mangfall24.de",
+        "alias": "mangfall24-de",
+        "identifier": "https://www.mangfall24.de",
+        "googleNewsName": "Mangfall24",
+        "artworkDirectory": "mangfall24"
+    },
+    {
+        "id": 302,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.echo24.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "echo24-de"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 81985965,
+                "newsletterName": "daily",
+                "options": ""
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "echo24.de",
+        "alias": "echo24",
+        "identifier": "https://www.echo24.de",
+        "googleNewsName": "echo24.de",
+        "artworkDirectory": "echo24"
+    },
+    {
+        "id": 309,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-TODO"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Setup Template",
+        "alias": "setup-template",
+        "identifier": "https://beta.setup-template.id-setup.de",
+        "googleNewsName": "TODO",
+        "artworkDirectory": "setup-template"
+    },
+    {
+        "id": 240,
+        "advert": {
+            "adMarkerHeight": 0,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "1"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "string"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": true
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 0,
+                "newsletterName": "string",
+                "options": "string"
+            },
+            "glomex": {
+                "activated": true,
+                "integrationId": "string"
+            }
+        },
+        "seoStoryTicker": {
+            "activated": true
+        },
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 0
+        },
+        "googleTagManager": {
+            "activated": true,
+            "gtmContainerId": "string"
+        },
+        "name": "Das Gelbe Blatt",
+        "alias": "dasgelbeblatt-de",
+        "identifier": "https://www.dasgelbeblatt.de",
+        "googleNewsName": "dasgelbeblatt.de",
+        "artworkDirectory": "dasgelbeblatt-de"
+    },
+    {
+        "id": 250,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.brokser-heiratsmarkt.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-brokser-heiratsmarkt"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Brokser Heiratsmarkt",
+        "alias": "brokser-heiratsmarkt-de",
+        "identifier": "https://www.brokser-heiratsmarkt.de",
+        "googleNewsName": "kreiszeitung.de",
+        "artworkDirectory": "brokser-heiratsmarkt-de"
+    },
+    {
+        "id": 254,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.hallo-muenchen.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-hallo-muenchen"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 91851725,
+                "newsletterName": "daily",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Hallo München",
+        "alias": "hallo-muenchen-de",
+        "identifier": "https://www.hallo-muenchen.de",
+        "googleNewsName": "hallo-muenchen.de",
+        "artworkDirectory": "hallo-muenchen-de"
+    },
+    {
+        "id": 259,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.hersfelder-zeitung.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-hersfelder-zeitung"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 21604065,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Hersfelder Zeitung",
+        "alias": "hersfelder-zeitung-de",
+        "identifier": "https://www.hersfelder-zeitung.de",
+        "googleNewsName": "Hersfelder Zeitung",
+        "artworkDirectory": "hersfelder-zeitung-de"
+    },
+    {
+        "id": 270,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.wlz.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-wlz"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 53786017,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Waldeckische Landeszeitung",
+        "alias": "wlz",
+        "identifier": "https://www.wlz-online.de",
+        "googleNewsName": "Waldeckische Landeszeitung",
+        "artworkDirectory": "wlz"
+    },
+    {
+        "id": 271,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.ludwigshafen24.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-ludwigshafen24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 45295796,
+                "newsletterName": "daily",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Ludwigshafen24",
+        "alias": "ludwigshafen24",
+        "identifier": "https://www.ludwigshafen24.de",
+        "googleNewsName": "Ludwigshafen24",
+        "artworkDirectory": "ludwigshafen24"
+    },
+    {
+        "id": 276,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.volksfest-freising.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-volksfest-freising"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Volksfest Freising",
+        "alias": "volksfest-freising-de",
+        "identifier": "https://www.volksfest-freising.de",
+        "googleNewsName": "volksfest-freising.de",
+        "artworkDirectory": "volksfest-freising-de"
+    },
+    {
+        "id": 99,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Zentralredaktion",
+        "alias": "zentralredaktion",
+        "identifier": "https://zentralredaktion.merkur-online.de"
+    },
+    {
+        "id": 239,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.kreisbote.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-kreisbote"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 13317998,
+                "newsletterName": "Frankfurt",
+                "options": "{\"type\":\"popup\", \"capping\":\"impressions\", \"display_event\":\"exit_intent\", \"enforce_consent\":false, \"capping_param\":\"5\"}"
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Kreisbote",
+        "alias": "kreisbote-de",
+        "identifier": "https://www.kreisbote.de",
+        "googleNewsName": "Kreisbote",
+        "artworkDirectory": "kreisbote-de"
+    },
+    {
+        "id": 275,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-ovb-online"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "OVB online",
+        "alias": "ovb-online-de",
+        "identifier": "https://www.ovb-online.de",
+        "googleNewsName": "Oberbayerisches Volksblatt",
+        "artworkDirectory": "ovb-online"
+    },
+    {
+        "id": 297,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.merkur.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "news.bayern",
+        "alias": "news-bayern",
+        "identifier": "https://www.news.bayern",
+        "googleNewsName": "news.bayern",
+        "artworkDirectory": "news-bayern"
+    },
+    {
+        "id": 304,
+        "advert": null,
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Ippen Digital",
+        "alias": "ippen-digital",
+        "identifier": "https://www.ippen-digital.de",
+        "googleNewsName": "ippen-digital.de",
+        "artworkDirectory": "ippen-digital"
+    },
+    {
+        "id": 305,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-kreiszeitung"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "DeichStube",
+        "alias": "werder",
+        "identifier": "https://www.deichstube.de",
+        "googleNewsName": "Die DeichStube",
+        "artworkDirectory": "werder"
+    },
+    {
+        "id": 310,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "LocalXXL",
+        "alias": "localxxl",
+        "identifier": "https://www.localxxl.com",
+        "artworkDirectory": "localxxl"
+    },
+    {
+        "id": 322,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176,21747296490/ruhr24.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": null
+        },
+        "googleTagManager": null,
+        "name": "RUHR24",
+        "alias": "ruhr24",
+        "identifier": "https://www.ruhr24.de",
+        "googleNewsName": "ruhr24.de",
+        "artworkDirectory": "ruhr24"
+    },
+    {
+        "id": 320,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/ingame.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "ingame",
+        "alias": "ingame",
+        "identifier": "https://www.ingame.de",
+        "googleNewsName": "ingame.de",
+        "artworkDirectory": "ingame"
+    },
+    {
+        "id": 333,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/gmuender-tagespost.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-gmuender-tagespost"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 8
+        },
+        "googleTagManager": null,
+        "name": "Gmünder Tagespost",
+        "alias": "gmuender-tagespost",
+        "identifier": "https://www.gmuender-tagespost.de",
+        "googleNewsName": "gmuender-tagespost.de",
+        "artworkDirectory": "gmuender-tagespost"
+    },
+    {
+        "id": 323,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "WOPO24",
+        "alias": "wopo24",
+        "identifier": "https://beta.wopo24.id-setup.de",
+        "googleNewsName": "TODO",
+        "artworkDirectory": "wopo24"
+    },
+    {
+        "id": 326,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.fuldaerzeitung.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": {
+            "activated": false
+        },
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Fuldaer Zeitung",
+        "alias": "fuldaerzeitung",
+        "identifier": "https://www.fuldaerzeitung.de",
+        "googleNewsName": "fuldaerzeitung",
+        "artworkDirectory": "fuldaerzeitung"
+    },
+    {
+        "id": 319,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-24vest"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "24vest.de",
+        "alias": "24vest",
+        "identifier": "https://www.24vest.de",
+        "googleNewsName": "24VEST",
+        "artworkDirectory": "24vest"
+    },
+    {
+        "id": 324,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/hanauer.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 94116519,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": {
+            "activated": false
+        },
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Hanauer Anzeiger",
+        "alias": "hanauer-anzeiger",
+        "identifier": "https://www.hanauer.de",
+        "googleNewsName": "Hanauer Anzeiger",
+        "artworkDirectory": "hanauer-anzeiger"
+    },
+    {
+        "id": 338,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/24royal.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 21000410,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "24royal.de",
+        "alias": "24royal",
+        "identifier": "https://www.24royal.de",
+        "googleNewsName": "24royal.de",
+        "artworkDirectory": "24royal"
+    },
+    {
+        "id": 328,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/24hamburg.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-24hamburg"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "24Hamburg",
+        "alias": "24hamburg",
+        "identifier": "https://www.24hamburg.de",
+        "googleNewsName": "24hamburg",
+        "artworkDirectory": "24hamburg"
+    },
+    {
+        "id": 336,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/24rhein.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 94017361,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "24RHEIN",
+        "alias": "24rhein",
+        "identifier": "https://www.24rhein.de",
+        "googleNewsName": "24RHEIN",
+        "artworkDirectory": "24rhein"
+    },
+    {
+        "id": 327,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/bw24.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-bw24"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 17578982,
+                "newsletterName": "daily",
+                "options": ""
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "BW24",
+        "alias": "bw24",
+        "identifier": "https://www.bw24.de",
+        "googleNewsName": "BW24",
+        "artworkDirectory": "bw24"
+    },
+    {
+        "id": 329,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/24auto.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-24auto"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_4_3"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 49548775,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "24auto.de",
+        "alias": "24auto",
+        "identifier": "https://www.24auto.de",
+        "googleNewsName": "24auto.de",
+        "artworkDirectory": "24auto"
+    },
+    {
+        "id": 325,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/costanachrichten.com"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-costanachrichten"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": null,
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Costa Nachrichten",
+        "alias": "costanachrichten",
+        "identifier": "https://www.costanachrichten.com",
+        "googleNewsName": "Costa Nachrichten",
+        "artworkDirectory": "costanachrichten"
+    },
+    {
+        "id": 337,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/buzzfeed.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-buzzfeed"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 85990233,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 8
+        },
+        "googleTagManager": null,
+        "name": "BuzzFeed",
+        "alias": "buzzfeed",
+        "identifier": "https://www.buzzfeed.de",
+        "googleNewsName": "BuzzFeed.de",
+        "artworkDirectory": "buzzfeed"
+    },
+    {
+        "id": 318,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-frankfurter-wochenblatt"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Frankfurter Wochenblatt",
+        "alias": "frankfurter-wochenblatt",
+        "identifier": "https://www.frankfurter-wochenblatt.de",
+        "googleNewsName": "Frankfurter Wochenblatt",
+        "artworkDirectory": "frankfurter-wochenblatt"
+    },
+    {
+        "id": 330,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/24vita.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-24vita"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 66392945,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "24vita.de",
+        "alias": "24vita",
+        "identifier": "https://www.24vita.de",
+        "googleNewsName": "24vita.de",
+        "artworkDirectory": "24vita"
+    },
+    {
+        "id": 321,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Hytiva News",
+        "alias": "hytivanews",
+        "identifier": "https://hytiva-news.com",
+        "googleNewsName": "TODO",
+        "artworkDirectory": "hytivanews"
+    },
+    {
+        "id": 317,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.fr.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "fr-online"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 74413722,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": {
+            "activated": false
+        },
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Frankfurter Rundschau",
+        "alias": "fr",
+        "identifier": "https://www.fr.de",
+        "googleNewsName": "Frankfurter Rundschau",
+        "artworkDirectory": "fr"
+    },
+    {
+        "id": 331,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/24garten.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 50306202,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "24garten.de",
+        "alias": "24garten",
+        "identifier": "https://www.24garten.de",
+        "googleNewsName": "24garten.de",
+        "artworkDirectory": "24garten"
+    },
+    {
+        "id": 332,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/schwaebische-post.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-schwaebische-post"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 8
+        },
+        "googleTagManager": null,
+        "name": "Schwäbische Post",
+        "alias": "schwaebische-post",
+        "identifier": "https://www.schwaebische-post.de",
+        "googleNewsName": "schwaebische-post.de",
+        "artworkDirectory": "schwaebische-post"
+    },
+    {
+        "id": 334,
+        "advert": null,
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "niederbayern24.de",
+        "alias": "niederbayern24",
+        "identifier": "https://beta.niederbayern24.id-setup.de",
+        "googleNewsName": "TODO",
+        "artworkDirectory": "niederbayern24"
+    },
+    {
+        "id": 335,
+        "advert": null,
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "ippen.media",
+        "alias": "ippen-media",
+        "identifier": "https://www.ippen.media",
+        "googleNewsName": "TODO",
+        "artworkDirectory": "ippen-media"
+    },
+    {
+        "id": 339,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/buzzfeed.at"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-buzzfeed-at"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "BuzzFeed.at",
+        "alias": "buzzfeed-at",
+        "identifier": "https://www.buzzfeed.at",
+        "googleNewsName": "BuzzFeed.at",
+        "artworkDirectory": "buzzfeed"
+    },
+    {
+        "id": 340,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/torgranate.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": {
+            "disqus": null
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 78261695,
+                "newsletterName": "",
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Torgranate",
+        "alias": "torgranate",
+        "identifier": "https://www.torgranate.de",
+        "googleNewsName": "Torgranate",
+        "artworkDirectory": "torgranate"
+    },
+    {
+        "id": 342,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/giessener-anzeiger.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Gießener Anzeiger",
+        "alias": "giessener-anzeiger",
+        "identifier": "https://www.giessener-anzeiger.de",
+        "googleNewsName": "Gießener Anzeiger",
+        "artworkDirectory": "giessener-anzeiger"
+    },
+    {
+        "id": 344,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/usinger-anzeiger.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Usinger Anzeiger",
+        "alias": "usinger-anzeiger",
+        "identifier": "https://www.usinger-anzeiger.de",
+        "googleNewsName": "Usinger Anzeiger",
+        "artworkDirectory": "usinger-anzeiger"
+    },
+    {
+        "id": 343,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/kreis-anzeiger.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": false
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 93474086,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Kreis-Anzeiger",
+        "alias": "kreis-anzeiger",
+        "identifier": "https://www.kreis-anzeiger.de",
+        "googleNewsName": "Kreis-Anzeiger",
+        "artworkDirectory": "kreis-anzeiger"
+    },
+    {
+        "id": 345,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/landtiere.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": {
+                "activated": true,
+                "campaignId": 41451274,
+                "newsletterName": "daily",
+                "options": ""
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Landtiere.de",
+        "alias": "landtiere",
+        "identifier": "https://www.landtiere.de",
+        "googleNewsName": "Landtiere.de",
+        "artworkDirectory": "landtiere"
+    },
+    {
+        "id": 346,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.dasgelbeblatt.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-dasgelbeblatt"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": null,
+            "cxo": null,
+            "newsletter": null,
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Serienjunkies.de",
+        "alias": "serienjunkies",
+        "identifier": "https://beta.serienjunkies.id-setup.de",
+        "googleNewsName": "TODO",
+        "artworkDirectory": "serienjunkies"
+    },
+    {
+        "id": 347,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/einfach-tasty.de"
+            }
+        },
+        "amp": {
+            "activated": true
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": null,
+        "image": {
+            "defaultContentImageRatio": "DEFAULT"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 24516690,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": null,
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "Einfach Tasty",
+        "alias": "einfach-tasty",
+        "identifier": "https://www.einfach-tasty.de",
+        "googleNewsName": "Einfach Tasty",
+        "artworkDirectory": "einfach-tasty"
+    },
+    {
+        "id": 219,
+        "advert": {
+            "adMarkerHeight": 20,
+            "adDefendActivated": true,
+            "traffective": {
+                "dfpAdUrl": "/307308315,5176/idan.tz.de"
+            }
+        },
+        "amp": {
+            "activated": false
+        },
+        "author": {
+            "showAuthorLinks": true
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "id-tz"
+            }
+        },
+        "image": {
+            "defaultContentImageRatio": "RATIO_5_9_RETAIN"
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": true
+            },
+            "cxo": {
+                "activated": false
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 63625160,
+                "newsletterName": null,
+                "options": null
+            },
+            "glomex": null
+        },
+        "seoStoryTicker": {
+            "activated": true
+        },
+        "paywall": null,
+        "googleTagManager": null,
+        "name": "tz",
+        "alias": "tz",
+        "identifier": "https://www.tz.de",
+        "googleNewsName": "tz.de",
+        "artworkDirectory": "tz"
+    }
+],
+  "categories": [
+    {
+      "id": 1138018,
+      "clientId": 268,
+      "categoryName": "München",
+      "widgets": {
+        "inArticleReco": {
+          "activated": true
+        },
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129174,
+      "clientId": 219,
+      "categoryName": "München",
+      "widgets": {
+        "inArticleReco": {
+          "activated": true
+        },
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 40691578,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160796,
+      "clientId": 268,
+      "categoryName": "Nürnberg & Franken",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 60340354,
+          "newsletterName": "nuernberg",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162735,
+      "clientId": 337,
+      "categoryName": "WEST Test",
+      "widgets": {
+        "inArticleReco": {
+          "activated": true
+        },
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129198,
+      "clientId": 219,
+      "categoryName": "Region",
+      "widgets": {
+        "inArticleReco": {
+          "activated": true
+        },
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 40691578,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162154,
+      "clientId": 337,
+      "categoryName": "Recherchen",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1161993,
+      "clientId": 268,
+      "categoryName": "WEST",
+      "widgets": {
+        "inArticleReco": {
+          "activated": true
+        },
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1138310,
+      "clientId": 268,
+      "categoryName": "Wintersport",
+      "widgets": {
+        "inArticleReco": {
+          "activated": true
+        },
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1166351,
+      "clientId": 219,
+      "categoryName": "WEST",
+      "widgets": {
+        "inArticleReco": {
+          "activated": true
+        },
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162782,
+      "clientId": 268,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": {
+        "activated": true
+      },
+      "googleTagManager": null
+    },
+    {
+      "id": 1132089,
+      "clientId": 237,
+      "categoryName": "Waldhof Mannheim",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 48602829,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1161037,
+      "clientId": 261,
+      "categoryName": "DSDS",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160296,
+      "clientId": 261,
+      "categoryName": "Schlager",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1161035,
+      "clientId": 261,
+      "categoryName": "Bauer sucht Frau",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1135504,
+      "clientId": 255,
+      "categoryName": "Politik",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 47293067,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129211,
+      "clientId": 219,
+      "categoryName": "1860 München",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 87696874,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129212,
+      "clientId": 219,
+      "categoryName": "FC Bayern",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 45123086,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129187,
+      "clientId": 219,
+      "categoryName": "Auto",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 91231955,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129204,
+      "clientId": 219,
+      "categoryName": "Formel 1",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 78679046,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129200,
+      "clientId": 219,
+      "categoryName": "Stadt",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 40691578,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1131051,
+      "clientId": 219,
+      "categoryName": "Kommunalwahl",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 57226124,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129215,
+      "clientId": 219,
+      "categoryName": "Landtagswahl",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 57226124,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129214,
+      "clientId": 219,
+      "categoryName": "Bundestagswahl",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 57226124,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137834,
+      "clientId": 268,
+      "categoryName": "Bad Tölz",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 17392228,
+          "newsletterName": "bad-toelz",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137692,
+      "clientId": 268,
+      "categoryName": "Bayern",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 75332546,
+          "newsletterName": "bayern",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1165481,
+      "clientId": 268,
+      "categoryName": "Augsburg & Schwaben",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 75332546,
+          "newsletterName": "bayern",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160799,
+      "clientId": 268,
+      "categoryName": "Ingolstadt",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 75332546,
+          "newsletterName": "bayern",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160800,
+      "clientId": 268,
+      "categoryName": "Passau & Niederbayern",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 75332546,
+          "newsletterName": "bayern",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137850,
+      "clientId": 268,
+      "categoryName": "Dachau",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 89944291,
+          "newsletterName": "Dachau",
+          "options": "{\"type\":\"popup\", \"capping\":\"impressions\", \"display_event\":\"exit_intent\", \"enforce_consent\":false, \"capping_param\":\"5\"}"
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137687,
+      "clientId": 268,
+      "categoryName": "Welt",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 77134042,
+          "newsletterName": "daily",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1138179,
+      "clientId": 268,
+      "categoryName": "Sport",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 77134042,
+          "newsletterName": "daily",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137686,
+      "clientId": 268,
+      "categoryName": "Kultur",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 77134042,
+          "newsletterName": "daily",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137685,
+      "clientId": 268,
+      "categoryName": "Boulevard",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 55919153,
+          "newsletterName": "Promi",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137870,
+      "clientId": 268,
+      "categoryName": "Ebersberg",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 12260150,
+          "newsletterName": "ebersberg",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137883,
+      "clientId": 268,
+      "categoryName": "Erding",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 84758608,
+          "newsletterName": "erding",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137902,
+      "clientId": 268,
+      "categoryName": "Freising",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 44490802,
+          "newsletterName": "freising",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137931,
+      "clientId": 268,
+      "categoryName": "Fürstenfeldbruck",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 11806108,
+          "newsletterName": "fuerstenfeldbruck",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137945,
+      "clientId": 268,
+      "categoryName": "Garmisch-Partenkirchen",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 33576181,
+          "newsletterName": "garmisch-partenkirchen",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137730,
+      "clientId": 268,
+      "categoryName": "Gesundheit",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 62006523,
+          "newsletterName": "gesundheit",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137987,
+      "clientId": 268,
+      "categoryName": "Holzkirchen",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 32893147,
+          "newsletterName": "holzkirchen",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137728,
+      "clientId": 268,
+      "categoryName": "Karriere",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 63015919,
+          "newsletterName": "karriere",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137995,
+      "clientId": 268,
+      "categoryName": "Miesbach",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 51484776,
+          "newsletterName": "miesbach",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1143780,
+      "clientId": 268,
+      "categoryName": "München Landkreis",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 62737835,
+          "newsletterName": "muenchen",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160798,
+      "clientId": 268,
+      "categoryName": "Regensburg & Oberpfalz",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 94781387,
+          "newsletterName": "regensburg",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137732,
+      "clientId": 268,
+      "categoryName": "Genuss",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 88929368,
+          "newsletterName": "rezepte",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1138062,
+      "clientId": 268,
+      "categoryName": "Schongau",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 38585462,
+          "newsletterName": "schongau",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1138077,
+      "clientId": 268,
+      "categoryName": "Starnberg",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 85899192,
+          "newsletterName": "starnberg",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1138092,
+      "clientId": 268,
+      "categoryName": "Tegernsee",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 31785691,
+          "newsletterName": "tegernsee",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1157974,
+      "clientId": 268,
+      "categoryName": "Verbraucher",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 62947130,
+          "newsletterName": "verbraucher",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1138101,
+      "clientId": 268,
+      "categoryName": "Weilheim",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 72813400,
+          "newsletterName": "weilheim",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137690,
+      "clientId": 268,
+      "categoryName": "Wirtschaft",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 59554702,
+          "newsletterName": "wirtschaft",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1138115,
+      "clientId": 268,
+      "categoryName": "Würmtal",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 57908799,
+          "newsletterName": "wuermtal",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137958,
+      "clientId": 268,
+      "categoryName": "Geretsried-Wolfratshausen",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 43574753,
+          "newsletterName": "wolfratshausen",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129181,
+      "clientId": 219,
+      "categoryName": "TV",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": {
+          "activated": false,
+          "campaignId": 0,
+          "newsletterName": "string",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": {
+        "activated": true
+      },
+      "googleTagManager": null
+    },
+    {
+      "id": 1166611,
+      "clientId": 219,
+      "categoryName": "Dschungelcamp",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 73393850,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1166125,
+      "clientId": 219,
+      "categoryName": "The Masked Singer",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 34030507,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1131907,
+      "clientId": 223,
+      "categoryName": "Kreis Rotenburg",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 52321272,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1131350,
+      "clientId": 223,
+      "categoryName": "Landkreis Oldenburg",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 15186751,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1131352,
+      "clientId": 223,
+      "categoryName": "Landkreis Verden",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 27097200,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1131351,
+      "clientId": 223,
+      "categoryName": "Landkreis Rotenburg",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 49284885,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1131349,
+      "clientId": 223,
+      "categoryName": "Landkreis Nienburg",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 29119704,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1131347,
+      "clientId": 223,
+      "categoryName": "Landkreis Diepholz",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 30849844,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1131625,
+      "clientId": 223,
+      "categoryName": "Politik",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 80505477,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160199,
+      "clientId": 326,
+      "categoryName": "Politik & Wirtschaft",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 34633844,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1166404,
+      "clientId": 326,
+      "categoryName": "Genuss",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 64447564,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1159636,
+      "clientId": 326,
+      "categoryName": "Fulda",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 64317962,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1159638,
+      "clientId": 326,
+      "categoryName": "Hünfelder Land",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 64317962,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1159637,
+      "clientId": 326,
+      "categoryName": "Kinzigtal",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 64317962,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1159641,
+      "clientId": 326,
+      "categoryName": "Vogelsberg",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 64317962,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1161407,
+      "clientId": 330,
+      "categoryName": "Test Seite",
+      "widgets": {
+        "inArticleReco": {
+          "activated": true
+        },
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 66392945,
+          "newsletterName": "test",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": {
+        "activated": false
+      },
+      "googleTagManager": null
+    },
+    {
+      "id": 1137691,
+      "clientId": 268,
+      "categoryName": "Politik",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 91212315,
+          "newsletterName": "politik",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": {
+        "activated": false
+      },
+      "googleTagManager": null
+    },
+    {
+      "id": 1158824,
+      "clientId": 317,
+      "categoryName": "Zusammenleben",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 28246555,
+          "newsletterName": "Zukunft",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1158050,
+      "clientId": 317,
+      "categoryName": "Zukunft",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 28246555,
+          "newsletterName": "Zukunft",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1155294,
+      "clientId": 316,
+      "categoryName": "Frankfurt",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": false,
+          "campaignId": 65062056,
+          "newsletterName": "frankfurt",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1133616,
+      "clientId": 247,
+      "categoryName": "documenta",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 96494094,
+          "newsletterName": "Documenta",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137727,
+      "clientId": 268,
+      "categoryName": "Wohnen",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": {
+          "activated": true
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 68710705,
+          "newsletterName": "wohnen",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1155730,
+      "clientId": 317,
+      "categoryName": "Frankfurt",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 13317998,
+          "newsletterName": "Frankfurt",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129176,
+      "clientId": 219,
+      "categoryName": "Politik",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 13317998,
+          "newsletterName": "Frankfurt",
+          "options": "{\"type\":\"popup\", \"capping\":\"impressions\", \"display_event\":\"time_delay\", \"enforce_consent\":false, \"event_param\":5000, \"capping_param\":100}"
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162932,
+      "clientId": 255,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162198,
+      "clientId": 317,
+      "categoryName": "Advertorials",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": {
+        "activated": false
+      },
+      "googleTagManager": null
+    },
+    {
+      "id": 1162922,
+      "clientId": 317,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162916,
+      "clientId": 247,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 44931442,
+          "newsletterName": null,
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1158399,
+      "clientId": 219,
+      "categoryName": "Games",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 83298460,
+          "newsletterName": "gaming",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162918,
+      "clientId": 223,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1163761,
+      "clientId": 256,
+      "categoryName": "Autoren",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162948,
+      "clientId": 256,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162919,
+      "clientId": 327,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1163057,
+      "clientId": 238,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1163056,
+      "clientId": 237,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1163055,
+      "clientId": 271,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162925,
+      "clientId": 258,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 27990777,
+          "newsletterName": "produktempfehlung",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162931,
+      "clientId": 260,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162927,
+      "clientId": 259,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162917,
+      "clientId": 262,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162921,
+      "clientId": 316,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162920,
+      "clientId": 328,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162928,
+      "clientId": 270,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162933,
+      "clientId": 314,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162934,
+      "clientId": 315,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162950,
+      "clientId": 264,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1166108,
+      "clientId": 268,
+      "categoryName": "Deutschland",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 55811140,
+          "newsletterName": "test",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1137737,
+      "clientId": 268,
+      "categoryName": "Reise",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 52771218,
+          "newsletterName": "reise",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1138198,
+      "clientId": 268,
+      "categoryName": "FC Bayern",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 77195101,
+          "newsletterName": "fcbayern",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1134681,
+      "clientId": 252,
+      "categoryName": "Kino und TV",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 70640419,
+          "newsletterName": "tv",
+          "options": "{\"type\":\"popup\", \"capping\":\"impressions\", \"display_event\":\"exit_intent\", \"enforce_consent\":false, \"capping_param\":\"5\"}"
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1163169,
+      "clientId": 302,
+      "categoryName": "Produktempfehlung",
+      "widgets": {
+        "inArticleReco": {
+          "activated": false
+        },
+        "cxo": null,
+        "newsletter": null,
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1155269,
+      "clientId": 317,
+      "categoryName": "Wirtschaft",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 90205391,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1157231,
+      "clientId": 317,
+      "categoryName": "Frax",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 90205391,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1157230,
+      "clientId": 317,
+      "categoryName": "Gastwirtschaft",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 90205391,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1158023,
+      "clientId": 317,
+      "categoryName": "Verbraucher",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 90205391,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1156335,
+      "clientId": 317,
+      "categoryName": "Geld",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 20210487,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1133383,
+      "clientId": 249,
+      "categoryName": "Lokalsport",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 90125390,
+          "newsletterName": "",
+          "options": null
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1133604,
+      "clientId": 247,
+      "categoryName": "Kassel Huskies",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 37852861,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1133606,
+      "clientId": 247,
+      "categoryName": "KSV Hessen Kassel",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 99184204,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1133605,
+      "clientId": 247,
+      "categoryName": "MT Melsungen",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 51824223,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1133577,
+      "clientId": 247,
+      "categoryName": "Sport",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 12971369,
+          "newsletterName": "",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1129180,
+      "clientId": 219,
+      "categoryName": "Stars",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": {
+          "activated": false
+        },
+        "newsletter": {
+          "activated": true,
+          "campaignId": 56753900,
+          "newsletterName": "Promi",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": {
+        "activated": true
+      },
+      "googleTagManager": null
+    },
+    {
+      "id": 1166101,
+      "clientId": 337,
+      "categoryName": "News",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": null,
+        "glomex": {
+          "activated": true,
+          "integrationId": "40599v1wl70ce5jg"
+        }
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160086,
+      "clientId": 327,
+      "categoryName": "Stuttgart",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 73184894,
+          "newsletterName": "Stuttgart",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160089,
+      "clientId": 327,
+      "categoryName": "Baden-Württemberg",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 55680492,
+          "newsletterName": "Baden-Württemberg",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160090,
+      "clientId": 327,
+      "categoryName": "VfB Stuttgart",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 29635672,
+          "newsletterName": "VfB",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1167150,
+      "clientId": 327,
+      "categoryName": "Auto",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 67174600,
+          "newsletterName": "Auto",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1160104,
+      "clientId": 327,
+      "categoryName": "Verbraucher",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 32559492,
+          "newsletterName": "Verbraucher",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1133612,
+      "clientId": 247,
+      "categoryName": "Leute",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 44759371,
+          "newsletterName": "Promi",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1155267,
+      "clientId": 317,
+      "categoryName": "Leute",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": {
+          "activated": true,
+          "campaignId": 11063923,
+          "newsletterName": "promi",
+          "options": ""
+        },
+        "glomex": null
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162668,
+      "clientId": 336,
+      "categoryName": "Köln",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": null,
+        "glomex": {
+          "activated": true,
+          "integrationId": "40599v1wl9igo56x"
+        }
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    },
+    {
+      "id": 1162669,
+      "clientId": 336,
+      "categoryName": "Rheinland & NRW",
+      "widgets": {
+        "inArticleReco": null,
+        "cxo": null,
+        "newsletter": null,
+        "glomex": {
+          "activated": true,
+          "integrationId": "40599v1wl9igo56x"
+        }
+      },
+      "seoStoryTicker": null,
+      "googleTagManager": null
+    }
+  ],
+  "tags": [
+  {
+    "tagId": 365118,
+    "clientId": 219,
+    "tagName": "Raumfahrt",
+    "widgets": {
+      "inArticleReco": {
+        "activated": true
+      },
+      "cxo": {
+        "activated": true
+      },
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 1520498,
+    "clientId": 268,
+    "tagName": "Rente",
+    "widgets": {
+      "inArticleReco": {
+        "activated": true
+      },
+      "cxo": {
+        "activated": true
+      },
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 119248,
+    "clientId": 239,
+    "tagName": "1. Weltkrieg",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 164091,
+    "clientId": 268,
+    "tagName": "Coronavirus",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 28528,
+    "clientId": 268,
+    "tagName": "China",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 1521463,
+    "clientId": 268,
+    "tagName": "Hartz IV",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 1518087,
+    "clientId": 328,
+    "tagName": "Blaulicht Hamburg",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 1489711,
+    "clientId": 328,
+    "tagName": "Blaulicht",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 1520105,
+    "clientId": 317,
+    "tagName": "US-Politik",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 36006,
+    "clientId": 317,
+    "tagName": "Joe Biden",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 29611,
+    "clientId": 317,
+    "tagName": "Ukraine",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 87897,
+    "clientId": 317,
+    "tagName": "Astronomie",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 365118,
+    "clientId": 317,
+    "tagName": "Raumfahrt",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 87897,
+    "clientId": 247,
+    "tagName": "Astronomie",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 365118,
+    "clientId": 247,
+    "tagName": "Raumfahrt",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 1521553,
+    "clientId": 247,
+    "tagName": "Mensch Kassel",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 1520498,
+    "clientId": 317,
+    "tagName": "Rente",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 26715,
+    "clientId": 317,
+    "tagName": "Deutsche Rentenversicherung",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 1524698,
+    "clientId": 268,
+    "tagName": "China-Newsletter",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 160072,
+    "clientId": 219,
+    "tagName": "Schlager",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 145383,
+    "clientId": 268,
+    "tagName": "Queen Elizabeth II.",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 145383,
+    "clientId": 219,
+    "tagName": "Queen Elizabeth II.",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 145383,
+    "clientId": 317,
+    "tagName": "Queen Elizabeth II.",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  },
+  {
+    "tagId": 145383,
+    "clientId": 247,
+    "tagName": "Queen Elizabeth II.",
+    "widgets": {
+      "inArticleReco": null,
+      "cxo": null,
+      "newsletter": null,
+      "glomex": null
+    },
+    "googleTagManager": null,
+    "glomex": null
+  }
+  ],
+  "features": [
+    {
+      "id": 1,
+      "identifier": "amp",
+      "name": "AMP",
+      "activated": true
+    },
+    {
+      "id": 2,
+      "identifier": "showAuthorLinks",
+      "name": "Link zur Autorenseite",
+      "activated": true
+    },
+    {
+      "id": 3,
+      "identifier": "advert",
+      "name": "Advert",
+      "activated": true
+    },
+    {
+      "id": 4,
+      "identifier": "disqus",
+      "name": "Disqus",
+      "activated": true
+    },
+    {
+      "id": 5,
+      "identifier": "defaultContentImageRatio",
+      "name": "Bildformat",
+      "activated": true
+    },
+    {
+      "id": 6,
+      "identifier": "inArticleReco",
+      "name": "In Article Reco",
+      "activated": true
+    },
+    {
+      "id": 7,
+      "identifier": "cxo",
+      "name": "CXO",
+      "activated": true
+    },
+    {
+      "id": 8,
+      "identifier": "newsletter",
+      "name": "Newsletter",
+      "activated": true
+    },
+    {
+      "id": 9,
+      "identifier": "glomex",
+      "name": "Glomex Contextual Player",
+      "activated": true
+    },
+    {
+      "id": 10,
+      "identifier": "seoStoryTicker",
+      "name": "SeoStoryTicker",
+      "activated": true
+    },
+    {
+      "id": 11,
+      "identifier": "paywall",
+      "name": "Paywall",
+      "activated": true
+    },
+    {
+      "id": 12,
+      "identifier": "googleTagManager",
+      "name": "Google Tag Manager",
+      "activated": true
+    },
+    {
+      "id": 13,
+      "identifier": "seoStoryTicker",
+      "name": "SeoStoryTicker",
+       "activated": true
+    },
+    {
+      "id": 14,
+      "identifier": "pna",
+      "name": "Personal News Assistant",
+      "activated": true
+    }
+  ]
+}

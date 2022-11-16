@@ -1,16 +1,21 @@
-import {Card, CardContent, Typography} from "@mui/material"
-import {useContext} from "react"
-import {ClientsContext, FilteredClientsContext} from "../context/AppContext"
+import {Card, CardContent, Typography} from "@mui/material";
+import {useContext} from "react";
+import {ClientsContext, FilteredClientsContext} from "../context/AppContext";
+import {ClientsInterface} from "../types/query.types";
 
+/**
+ *
+ * @constructor
+ */
 function MainContent() {
-    const clientsList = useContext(ClientsContext)
-    const filteredClientsList = useContext(FilteredClientsContext)
+    const clientsList = useContext(ClientsContext);
+    const filteredClientsList = useContext(FilteredClientsContext);
 
-    const shownClients = filteredClientsList.length ? filteredClientsList : clientsList
+    const shownClients = filteredClientsList.length ? filteredClientsList : clientsList;
 
     return (
         <>
-            {shownClients.map((client: any, index: number) => (
+            {shownClients.map((client: ClientsInterface, index: number) => (
                 <Card key={index}>
                     <CardContent>
                         <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
@@ -26,7 +31,7 @@ function MainContent() {
                 </Card>
             ))}
         </>
-    )
+    );
 }
 
-export default MainContent
+export default MainContent;
