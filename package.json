@@ -7,7 +7,7 @@
     "server": "cd json-db && json-server --watch db.json --port 3004 --middlewares file.js",
     "dev": "concurrently \"npm run server\" \"next dev\"",
     "build": "next build",
-    "start": "next start",
+    "start:production": "NODE_ENV=production next start",
     "lint": "next lint",
     "lint:fix": "next lint . --ext .ts --fix",
     "test": "jest",
