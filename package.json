@@ -8,7 +8,6 @@
     "start:dev": "concurrently \"npm run server\" \"next dev\"",
     "start:production": "NODE_ENV=production next start",
     "build": "next build",
-    "start:production": "NODE_ENV=production next start",
     "eslint": "next lint",
     "eslint:fix": "next lint . --ext .ts --fix",
     "test": "jest",

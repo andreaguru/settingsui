@@ -55,7 +55,7 @@ function filteredClientsReducer(filteredClient: ClientsInterface[], action: Redu
  * @constructor
  */
 function Home({clientList}:any) {
-    const [clients, setClients] = useState<[]>(clientList);
+    const [clients] = useState<[]>(clientList);
     const [filteredClient, dispatchFilteredClients] = useReducer(filteredClientsReducer, []);
 
     /* useEffect(() => {
