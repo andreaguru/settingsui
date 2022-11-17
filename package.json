@@ -4,8 +4,8 @@
   "description": "Dashboard to manage settings API based on NextJs",
   "private": true,
   "scripts": {
-    "server": "cd json-db && json-server --watch db.json --port 3004 --middlewares file.js",
-    "dev": "concurrently \"npm run server\" \"next dev\"",
+    "server": "cd json-db && json-server db.json --port 3004 --middlewares file.js",
+    "dev": "concurrently \"npm run server\" \"next build\"",
     "start:dev": "next start",
     "start:production": "NODE_ENV=production next start",
     "build": "next build",
