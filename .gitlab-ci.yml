@@ -19,19 +19,18 @@ include:
 
 # Adjust only "PROVIDER_IMAGE_TAG" to your needs. This will set the tag of the docker image to be deployed. This docker image tag cannot be updated once the branch is deployed!
 variables:
-  PROVIDER_IMAGE_TAG: main
-  UI_IMAGE_TAG: $CI_COMMIT_BRANCH
+  STG_DEPLOY_BRANCH: "main"
   DEPLOYMENT_REPO: git@gitlab.id-repository.de:west/deployments.git
   DEPLOYMENT: settings-ui
   DEPLOY_BRANCH_STG: "false" # "branch deployment that is overwriting branch is not required"
   REPO: ippendigital
   IMAGE_NAME: settings-ui
   FLUX_FORWARD_NAMESPACE: west
-  NODE_VERSION: 16
+  NODE_VERSION: 19
   CYPRESS_VERSION: node16.5.0-chrome94-ff93
   NPM_INSTALL: "true"
   CSS_LINT: "false"
-  ES_LINT: "false"
+  ES_LINT: "true"
   BUILD: "false"
   AUDIT: "false"
   UNIT_TEST: "false"
