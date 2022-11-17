@@ -20,6 +20,7 @@ include:
 # Adjust only "PROVIDER_IMAGE_TAG" to your needs. This will set the tag of the docker image to be deployed. This docker image tag cannot be updated once the branch is deployed!
 variables:
   STG_DEPLOY_BRANCH: "main"
+  SETTINGS_IMAGE_TAG: $CI_COMMIT_BRANCH
   DEPLOYMENT_REPO: git@gitlab.id-repository.de:west/deployments.git
   DEPLOYMENT: settings-ui
   DEPLOY_BRANCH_STG: "false" # "branch deployment that is overwriting branch is not required"
