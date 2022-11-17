@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "server": "cd json-db && json-server --watch db.json --port 3004 --middlewares file.js",
-    "dev": "concurrently \"npm run server\" \"next dev\"",
+    "start:dev": "concurrently \"npm run server\" \"next dev\"",
+    "start:production": "NODE_ENV=production next start",
     "build": "next build",
     "start:production": "NODE_ENV=production next start",
     "lint": "next lint",
