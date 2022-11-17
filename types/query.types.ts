@@ -3,6 +3,11 @@ export enum ReducerActionType {
     DELETE_CLIENT = "DELETE_CLIENT"
 }
 
+export interface ReducerAction {
+    type: ReducerActionType;
+    payload: ClientsInterface[] | number;
+}
+
 export interface Traffective {
     dfpAdUrl: string;
 }

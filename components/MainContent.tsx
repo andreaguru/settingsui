@@ -1,16 +1,16 @@
 import {Card, CardContent, Typography} from "@mui/material";
-import {useContext} from "react";
-import {ClientsContext, FilteredClientsContext} from "../context/AppContext";
 import {ClientsInterface} from "../types/query.types";
+
+interface MainContentProps {
+   clientsList: ClientsInterface[];
+   filteredClientsList: ClientsInterface[];
+}
 
 /**
  *
  * @constructor
  */
-function MainContent() {
-    const clientsList = useContext(ClientsContext);
-    const filteredClientsList = useContext(FilteredClientsContext);
-
+function MainContent({clientsList, filteredClientsList}: MainContentProps) {
     const shownClients = filteredClientsList.length ? filteredClientsList : clientsList;
 
     return (

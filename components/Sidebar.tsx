@@ -1,7 +1,4 @@
-import {useState, useContext} from "react";
-
-// we use the Context that are provided in index.tsx
-import {ClientsContext, FilteredClientsContext, FilteredClientsDispatchContext} from "../context/AppContext";
+import {Dispatch, useState} from "react";
 
 // import MUI Components
 import Toolbar from "@mui/material/Toolbar";
@@ -21,7 +18,13 @@ import styled from "@mui/material/styles/styled";
 import MuiDrawer from "@mui/material/Drawer";
 
 // import Interfaces to check data type in Typescript
-import {ClientsInterface, ReducerActionType} from "../types/query.types";
+import {ClientsInterface, ReducerAction, ReducerActionType} from "../types/query.types";
+
+interface SidebarProps {
+   clientsList: ClientsInterface[];
+   filteredClientsList: ClientsInterface[];
+   dispatchFilteredClientsList: Dispatch<ReducerAction>;
+}
 
 const appBarHeight = 64;
 const drawerWidth = 240;
@@ -66,20 +69,14 @@ const MenuProps = {
  *
  * @constructor
  */
-function Sidebar() {
+function Sidebar({clientsList, filteredClientsList, dispatchFilteredClientsList}: SidebarProps) {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
     };
 
-    const clientsList = useContext(ClientsContext);
-    const filteredClientsList = useContext(FilteredClientsContext);
-    const dispatchFilteredClientsList = useContext(FilteredClientsDispatchContext);
-
     const handleChange = (event: SelectChangeEvent<typeof filteredClientsList>) => {
-        const {
-            target: {value},
-        } = event;
+        const value = event.target.value;
 
         if (typeof value === "object" && filteredClientsList) {
             dispatchFilteredClientsList({type: ReducerActionType.ADD_CLIENT, payload: value});
@@ -123,7 +120,15 @@ function Sidebar() {
                             }}
                             MenuProps={MenuProps}
                         >
-                            {clientsList.map((client:any, index: number) => (
+                            {clientsList.map((client:ClientsInterface, index: number) => (
+                            /* the value prop of MenuItem component does not accept an object as value,
+                            since it inherites the type from LiHTMLAttributes.
+                            According to the users, the best solution would be to set client type as any,
+                            or disable typescript for this line.
+                            In our case I suggest to use the second option, so that we do not get a warning.
+                            https://github.com/mui/material-ui/issues/14286 */
+                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-ignore
                                 <MenuItem key={index} value={client}>
                                     <Checkbox checked={handleCheckbox(client.id)}/>
                                     <ListItemText primary={client.name}/>

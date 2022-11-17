@@ -8,8 +8,8 @@
     "dev": "concurrently \"npm run server\" \"next dev\"",
     "build": "next build",
     "start:production": "NODE_ENV=production next start",
-    "lint": "next lint",
-    "lint:fix": "next lint . --ext .ts --fix",
+    "eslint": "next lint",
+    "eslint:fix": "next lint . --ext .ts --fix",
     "test": "jest",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
