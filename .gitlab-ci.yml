@@ -41,15 +41,3 @@ variables:
 # from nodejs
 docker:
   extends: .build-and-push-docker
-
-# build sidecar container with mocking data
-json-server:
-  stage: docker
-  image: docker
-  variables:
-    IMAGE_NAME: settings-ui-mock
-  script:
-    - echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-    - docker build json-db -t $IMAGE_NAME
-    - docker tag $IMAGE_NAME $REPO/$IMAGE_NAME:$CI_COMMIT_REF_NAME
-    - docker push $REPO/$IMAGE_NAME:$CI_COMMIT_REF_NAME
