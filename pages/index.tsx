@@ -1,4 +1,4 @@
-import {useEffect, useReducer, useState} from "react";
+import {useReducer, useState} from "react";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -18,7 +18,6 @@ import MainContent from "../components/MainContent";
 // import Interfaces to check data type in Typescript
 import {ClientsInterface, ReducerAction, ReducerActionType} from "../types/query.types";
 import MuiAppBar from "@mui/material/AppBar";
-import {getIntegratedClientList} from "../api/DashboardAPI";
 
 const mdTheme = createTheme({
     components: {
@@ -55,11 +54,11 @@ function filteredClientsReducer(filteredClient: ClientsInterface[], action: Redu
  *
  * @constructor
  */
-function Home() {
-    const [clients, setClients] = useState<[]>([]);
+function Home({clientList}:any) {
+    const [clients, setClients] = useState<[]>(clientList);
     const [filteredClient, dispatchFilteredClients] = useReducer(filteredClientsReducer, []);
 
-    useEffect(() => {
+    /* useEffect(() => {
         const data = getIntegratedClientList();
         data.then((data) => {
             if (data) {
@@ -69,7 +68,7 @@ function Home() {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, []);*/
 
     return (
         <ThemeProvider theme={mdTheme}>
@@ -112,6 +111,27 @@ function Home() {
             </Box>
         </ThemeProvider>
     );
+}
+
+// This function gets called at build time
+/**
+ *
+ * @constructor
+ */
+export async function getStaticProps() {
+    const response = await fetch("http://localhost:3004/clients");
+    // return two arrays with the data from the two fetch requests
+    const clientsPromise = await response.json();
+    // filter the result in order to show only clients that have a name
+    const clientList = clientsPromise.filter((client: ClientsInterface) => client.name);
+
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time
+    return {
+        props: {
+            clientList,
+        },
+    };
 }
 
 export default Home;
