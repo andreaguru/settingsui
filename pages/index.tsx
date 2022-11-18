@@ -10,14 +10,18 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
-import logo from "../public/eddi-logo.jpg";
+import logo from "../assets/eddi-logo.jpg";
 import Image from "next/image";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
 
 // import Interfaces to check data type in Typescript
-import {ClientsInterface, ReducerAction, ReducerActionType} from "../types/query.types";
+import {ClientsInterface, ReducerAction, ReducerActionType} from "../types/settings.types";
 import MuiAppBar from "@mui/material/AppBar";
+
+interface HomeProps {
+   clientList: ClientsInterface[];
+}
 
 const mdTheme = createTheme({
     components: {
@@ -54,28 +58,16 @@ function filteredClientsReducer(filteredClient: ClientsInterface[], action: Redu
  *
  * @constructor
  */
-function Home({clientList}:any) {
-    const [clients] = useState<[]>(clientList);
+function Home({clientList}:HomeProps) {
+    const [clients] = useState<ClientsInterface[]>(clientList);
     const [filteredClient, dispatchFilteredClients] = useReducer(filteredClientsReducer, []);
-
-    /* useEffect(() => {
-        const data = getIntegratedClientList();
-        data.then((data) => {
-            if (data) {
-                setClients(data);
-            }
-        })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);*/
 
     return (
         <ThemeProvider theme={mdTheme}>
             <Box sx={{display: "flex"}}>
                 <CssBaseline/>
                 <MuiAppBar position="absolute" sx={{
-                    zIndex: mdTheme.zIndex.drawer + 1,
+                    zIndex: (theme) => (theme.zIndex.drawer + 1),
                 }}>
                     <Toolbar>
                         <List component="nav">
@@ -119,19 +111,23 @@ function Home({clientList}:any) {
  * @constructor
  */
 export async function getStaticProps() {
-    const response = await fetch("http://localhost:3004/clients");
-    // return two arrays with the data from the two fetch requests
-    const clientsPromise = await response.json();
-    // filter the result in order to show only clients that have a name
-    const clientList = clientsPromise.filter((client: ClientsInterface) => client.name);
+    try {
+        const response = await fetch("http://localhost:3004/clients");
+        // return two arrays with the data from the two fetch requests
+        const clientsPromise = await response.json();
+        // filter the result in order to show only clients that have a name
+        const clientList = clientsPromise.filter((client: ClientsInterface) => client.name);
 
-    // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time
-    return {
-        props: {
-            clientList,
-        },
-    };
+        /* By returning { props: { clientList } }, the Home component
+        will receive `clientList` as a prop at build time */
+        return {
+            props: {
+                clientList,
+            },
+        };
+    } catch (error) {
+        return {notFound: true};
+    }
 }
 
 export default Home;

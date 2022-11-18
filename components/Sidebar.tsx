@@ -18,7 +18,7 @@ import styled from "@mui/material/styles/styled";
 import MuiDrawer from "@mui/material/Drawer";
 
 // import Interfaces to check data type in Typescript
-import {ClientsInterface, ReducerAction, ReducerActionType} from "../types/query.types";
+import {ClientsInterface, ReducerAction, ReducerActionType} from "../types/settings.types";
 
 interface SidebarProps {
    clientsList: ClientsInterface[];
@@ -26,20 +26,17 @@ interface SidebarProps {
    dispatchFilteredClientsList: Dispatch<ReducerAction>;
 }
 
-const appBarHeight = 64;
-const drawerWidth = 240;
-
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
         position: "relative",
         whiteSpace: "nowrap",
-        width: drawerWidth,
+        width: 240,
+        paddingTop: 60,
         transition: theme.transitions.create("width", {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
         }),
         boxSizing: "border-box",
-        paddingTop: appBarHeight,
         ...(!open && {
             overflowX: "hidden",
             transition: theme.transitions.create("width", {
@@ -54,6 +51,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})
     },
 }));
 
+// Properties of the menu items in the Select component
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -115,18 +113,17 @@ function Sidebar({clientsList, filteredClientsList, dispatchFilteredClientsList}
                             value={filteredClientsList}
                             onChange={handleChange}
                             input={<OutlinedInput label="Tag"/>}
-                            renderValue={() => {
-                                return false;
-                            }}
+                            renderValue={() => false}
                             MenuProps={MenuProps}
                         >
                             {clientsList.map((client:ClientsInterface, index: number) => (
-                            /* the value prop of MenuItem component does not accept an object as value,
-                            since it inherites the type from LiHTMLAttributes.
-                            According to the users, the best solution would be to set client type as any,
-                            or disable typescript for this line.
-                            In our case I suggest to use the second option, so that we do not get a warning.
-                            https://github.com/mui/material-ui/issues/14286 */
+                                /* the value prop of MenuItem component does not accept an object as value,
+                                since it inherits the type from the Interface LiHTMLAttributes.
+                                According to the community, the best solution would be to set client type as any,
+                                or disable typescript for this line.
+                                In our case we are using the second option, in order to not getting a warning in ESLint.
+                                https://github.com/mui/material-ui/issues/14286 */
+
                                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                 // @ts-ignore
                                 <MenuItem key={index} value={client}>

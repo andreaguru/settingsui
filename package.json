@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "server": "cd json-db && json-server db.json --port 3004 --middlewares file.js",
-    "dev": "concurrently \"npm run server\" \"next build\"",
+    "dev": "concurrently \"npm run server\" \"next dev\"",
     "start:dev": "next start",
     "start:production": "NODE_ENV=production next start",
     "build": "next build",

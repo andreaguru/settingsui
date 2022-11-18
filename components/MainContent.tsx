@@ -1,5 +1,5 @@
 import {Card, CardContent, Typography} from "@mui/material";
-import {ClientsInterface} from "../types/query.types";
+import {ClientsInterface} from "../types/settings.types";
 
 interface MainContentProps {
    clientsList: ClientsInterface[];
@@ -18,7 +18,7 @@ function MainContent({clientsList, filteredClientsList}: MainContentProps) {
             {shownClients.map((client: ClientsInterface, index: number) => (
                 <Card key={index}>
                     <CardContent>
-                        <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
+                        <Typography color="text.secondary" gutterBottom>
                             test
                         </Typography>
                         <Typography variant="h5" component="div">
