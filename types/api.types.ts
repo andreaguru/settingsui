@@ -49,8 +49,8 @@ export interface Cxo {
 export interface Newsletter {
     activated: boolean;
     campaignId: number;
-    newsletterName: string;
-    options: string;
+    newsletterName: string | null;
+    options: string | null;
 }
 
 export interface Glomex {
@@ -59,10 +59,10 @@ export interface Glomex {
 }
 
 export interface Widgets {
-    inArticleReco: InArticleReco;
-    cxo: Cxo;
+    inArticleReco: InArticleReco | null;
+    cxo: Cxo | null;
     newsletter: Newsletter;
-    glomex: Glomex;
+    glomex: Glomex | null;
 }
 
 export interface SeoStoryTicker {
@@ -88,7 +88,7 @@ export interface ClientsInterface {
     image: Image;
     name: string;
     widgets: Widgets;
-    seoStoryTicker: SeoStoryTicker;
-    paywall: Paywall;
-    googleTagManager: GoogleTagManager;
+    seoStoryTicker: SeoStoryTicker | null;
+    paywall: Paywall | null;
+    googleTagManager: GoogleTagManager | null;
 }

@@ -7,7 +7,7 @@ beforeEach(() => {
     fetchMock.mockResponse(() => Promise.resolve("Success"));
 });
 
-test("renders the home page", () => {
-    render(<Home/>);
+test("renders the home page with all the static elements", () => {
+    render(<Home clientList={[]}/>);
     expect(screen.getByRole("img")).toBeInTheDocument();
 });

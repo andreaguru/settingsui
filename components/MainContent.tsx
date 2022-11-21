@@ -1,10 +1,6 @@
 import {Card, CardContent, Typography} from "@mui/material";
-import {ClientsInterface} from "../types/settings.types";
-
-interface MainContentProps {
-   clientsList: ClientsInterface[];
-   filteredClientsList: ClientsInterface[];
-}
+import {ClientsInterface} from "../types/api.types";
+import {MainContentProps} from "../types/componentProps.types";
 
 /**
  *

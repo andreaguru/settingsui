@@ -1,4 +1,4 @@
-import {Dispatch, useState} from "react";
+import {useState} from "react";
 
 // import MUI Components
 import Toolbar from "@mui/material/Toolbar";
@@ -16,15 +16,9 @@ import ListItemText from "@mui/material/ListItemText";
 import Chip from "@mui/material/Chip";
 import styled from "@mui/material/styles/styled";
 import MuiDrawer from "@mui/material/Drawer";
-
 // import Interfaces to check data type in Typescript
-import {ClientsInterface, ReducerAction, ReducerActionType} from "../types/settings.types";
-
-interface SidebarProps {
-   clientsList: ClientsInterface[];
-   filteredClientsList: ClientsInterface[];
-   dispatchFilteredClientsList: Dispatch<ReducerAction>;
-}
+import {ClientsInterface, ReducerActionType} from "../types/api.types";
+import {SidebarProps} from "../types/componentProps.types";
 
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
@@ -109,6 +103,7 @@ function Sidebar({clientsList, filteredClientsList, dispatchFilteredClientsList}
                         <Select
                             labelId="demo-multiple-checkbox-label"
                             id="demo-multiple-checkbox"
+                            data-testid="ciccio"
                             multiple
                             value={filteredClientsList}
                             onChange={handleChange}
@@ -126,8 +121,8 @@ function Sidebar({clientsList, filteredClientsList, dispatchFilteredClientsList}
 
                                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                 // @ts-ignore
-                                <MenuItem key={index} value={client}>
-                                    <Checkbox checked={handleCheckbox(client.id)}/>
+                                <MenuItem id="cicciobello" key={index} value={client}>
+                                    <Checkbox data-testid={`${client.id}`} checked={handleCheckbox(client.id)}/>
                                     <ListItemText primary={client.name}/>
                                 </MenuItem>
                             ))}

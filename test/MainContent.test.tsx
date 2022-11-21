@@ -1,7 +1,7 @@
-import {fireEvent, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import fetchMock from "jest-fetch-mock";
-import Sidebar from "../components/Sidebar";
+import MainContent from "../components/MainContent";
 
 const mockedClientList = [
     {
@@ -257,96 +257,93 @@ const mockedClientList = [
     },
 ];
 
+const mockedFilteredList = [
+    {
+        "id": 241,
+        "advert": {
+            "adMarkerHeight": 0,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "1",
+            },
+        },
+        "amp": {
+            "activated": true,
+        },
+        "author": {
+            "showAuthorLinks": false,
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "string",
+            },
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT",
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false,
+            },
+            "cxo": {
+                "activated": true,
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 0,
+                "newsletterName": "string",
+                "options": "string",
+            },
+            "glomex": {
+                "activated": true,
+                "integrationId": "string",
+            },
+        },
+        "seoStoryTicker": {
+            "activated": true,
+        },
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 0,
+        },
+        "googleTagManager": {
+            "activated": true,
+            "gtmContainerId": "string",
+        },
+        "name": "BlickPunkt Nienburg",
+        "alias": "blickpunkt-nienburg-de",
+        "identifier": "https://www.blickpunkt-nienburg.de",
+        "googleNewsName": "BlickPunkt Nienburg",
+        "artworkDirectory": "blickpunkt-nienburg-de",
+    },
+];
+
 beforeEach(() => {
     fetchMock.mockResponse(() => Promise.resolve("Success"));
 });
 
-test("checkbox components are not rendered at page load", () => {
-    render(<Sidebar
-        clientsList={mockedClientList}
-        filteredClientsList={[]}
-        dispatchFilteredClientsList={() => null} />);
+test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
+    render(<MainContent
+        clientsList={[]}
+        filteredClientsList={[]} />);
 
-    expect(screen.queryByTestId(241)).toBeFalsy();
+    expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
 
-test("checkbox components are rendered after select change", () => {
-    render(<Sidebar
+test("component shows clientList if it is passed in the props", () => {
+    render(<MainContent
         clientsList={mockedClientList}
-        filteredClientsList={[]}
-        dispatchFilteredClientsList={() => null} />);
+        filteredClientsList={[]} />);
 
-    fireEvent.mouseDown(screen.getByLabelText("ClientID / Name"));
-    expect(screen.queryByTestId(241)).toBeInTheDocument();
+    expect(screen.queryByText("Wetterauer Zeitung")).toBeInTheDocument();
 });
 
-test("checkbox are checked when their values are present in filteredClientsList", () => {
-    const mockedFilteredList = [
-        {
-            "id": 241,
-            "advert": {
-                "adMarkerHeight": 0,
-                "adDefendActivated": false,
-                "traffective": {
-                    "dfpAdUrl": "1",
-                },
-            },
-            "amp": {
-                "activated": true,
-            },
-            "author": {
-                "showAuthorLinks": false,
-            },
-            "comment": {
-                "disqus": {
-                    "shortname": "string",
-                },
-            },
-            "image": {
-                "defaultContentImageRatio": "DEFAULT",
-            },
-            "widgets": {
-                "inArticleReco": {
-                    "activated": false,
-                },
-                "cxo": {
-                    "activated": true,
-                },
-                "newsletter": {
-                    "activated": true,
-                    "campaignId": 0,
-                    "newsletterName": "string",
-                    "options": "string",
-                },
-                "glomex": {
-                    "activated": true,
-                    "integrationId": "string",
-                },
-            },
-            "seoStoryTicker": {
-                "activated": true,
-            },
-            "paywall": {
-                "activated": true,
-                "storyElementsBeforePaywall": 0,
-            },
-            "googleTagManager": {
-                "activated": true,
-                "gtmContainerId": "string",
-            },
-            "name": "BlickPunkt Nienburg",
-            "alias": "blickpunkt-nienburg-de",
-            "identifier": "https://www.blickpunkt-nienburg.de",
-            "googleNewsName": "BlickPunkt Nienburg",
-            "artworkDirectory": "blickpunkt-nienburg-de",
-        },
-    ];
-
-    render(<Sidebar
+test("component shows filteredClientList instead of clientList if the first is not empty", () => {
+    render(<MainContent
         clientsList={mockedClientList}
-        filteredClientsList={mockedFilteredList}
-        dispatchFilteredClientsList={() => null} />);
+        filteredClientsList={mockedFilteredList} />);
 
-    fireEvent.mouseDown(screen.getByLabelText("ClientID / Name"));
-    expect(screen.queryByTestId(241)).toHaveClass("Mui-checked");
+    // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
+    expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
+
