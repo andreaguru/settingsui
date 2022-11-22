@@ -1,6 +1,5 @@
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import fetchMock from "jest-fetch-mock";
 import MainContent from "../components/MainContent";
 
 const mockedClientList = [
@@ -317,10 +316,6 @@ const mockedFilteredList = [
         "artworkDirectory": "blickpunkt-nienburg-de",
     },
 ];
-
-beforeEach(() => {
-    fetchMock.mockResponse(() => Promise.resolve("Success"));
-});
 
 test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
     render(<MainContent

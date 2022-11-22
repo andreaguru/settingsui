@@ -103,7 +103,6 @@ function Sidebar({clientsList, filteredClientsList, dispatchFilteredClientsList}
                         <Select
                             labelId="demo-multiple-checkbox-label"
                             id="demo-multiple-checkbox"
-                            data-testid="ciccio"
                             multiple
                             value={filteredClientsList}
                             onChange={handleChange}
@@ -121,7 +120,7 @@ function Sidebar({clientsList, filteredClientsList, dispatchFilteredClientsList}
 
                                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                 // @ts-ignore
-                                <MenuItem id="cicciobello" key={index} value={client}>
+                                <MenuItem key={index} value={client}>
                                     <Checkbox data-testid={`${client.id}`} checked={handleCheckbox(client.id)}/>
                                     <ListItemText primary={client.name}/>
                                 </MenuItem>

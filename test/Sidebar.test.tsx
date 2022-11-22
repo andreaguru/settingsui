@@ -1,6 +1,5 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import fetchMock from "jest-fetch-mock";
 import Sidebar from "../components/Sidebar";
 
 const mockedClientList = [
@@ -256,10 +255,6 @@ const mockedClientList = [
         "artworkDirectory": "rga",
     },
 ];
-
-beforeEach(() => {
-    fetchMock.mockResponse(() => Promise.resolve("Success"));
-});
 
 test("checkbox components are not rendered at page load", () => {
     render(<Sidebar
