@@ -1,6 +1,6 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Sidebar from "../components/Sidebar";
+import MultiSelect, {getIdAndNameFromList, handleCheckbox} from "../components/MultiSelect";
 
 const mockedClientList = [
     {
@@ -256,92 +256,162 @@ const mockedClientList = [
     },
 ];
 
+const mockedFilteredList = [
+    {
+        "id": 241,
+        "advert": {
+            "adMarkerHeight": 0,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "1",
+            },
+        },
+        "amp": {
+            "activated": true,
+        },
+        "author": {
+            "showAuthorLinks": false,
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "string",
+            },
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT",
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false,
+            },
+            "cxo": {
+                "activated": true,
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 0,
+                "newsletterName": "string",
+                "options": "string",
+            },
+            "glomex": {
+                "activated": true,
+                "integrationId": "string",
+            },
+        },
+        "seoStoryTicker": {
+            "activated": true,
+        },
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 0,
+        },
+        "googleTagManager": {
+            "activated": true,
+            "gtmContainerId": "string",
+        },
+        "name": "BlickPunkt Nienburg",
+        "alias": "blickpunkt-nienburg-de",
+        "identifier": "https://www.blickpunkt-nienburg.de",
+        "googleNewsName": "BlickPunkt Nienburg",
+        "artworkDirectory": "blickpunkt-nienburg-de",
+    },
+];
+
 test("checkbox components are not rendered at page load", () => {
-    render(<Sidebar
-        clientsList={mockedClientList}
-        filteredClientsList={[]}
-        dispatchFilteredClientsList={() => null} />);
+    render(<MultiSelect
+        clients={mockedClientList}
+        filteredClients={[]}
+        dispatchFilteredClients={() => null} />);
 
     expect(screen.queryByTestId(241)).toBeFalsy();
 });
 
 test("checkbox components are rendered after select change", () => {
-    render(<Sidebar
-        clientsList={mockedClientList}
-        filteredClientsList={[]}
-        dispatchFilteredClientsList={() => null} />);
+    render(<MultiSelect
+        clients={mockedClientList}
+        filteredClients={[]}
+        dispatchFilteredClients={() => null} />);
 
     fireEvent.mouseDown(screen.getByLabelText("ClientID / Name"));
     expect(screen.queryByTestId(241)).toBeInTheDocument();
 });
 
-test("checkbox are checked when their values are present in filteredClientsList", () => {
-    const mockedFilteredList = [
-        {
-            "id": 241,
-            "advert": {
-                "adMarkerHeight": 0,
-                "adDefendActivated": false,
-                "traffective": {
-                    "dfpAdUrl": "1",
-                },
-            },
-            "amp": {
-                "activated": true,
-            },
-            "author": {
-                "showAuthorLinks": false,
-            },
-            "comment": {
-                "disqus": {
-                    "shortname": "string",
-                },
-            },
-            "image": {
-                "defaultContentImageRatio": "DEFAULT",
-            },
-            "widgets": {
-                "inArticleReco": {
-                    "activated": false,
-                },
-                "cxo": {
-                    "activated": true,
-                },
-                "newsletter": {
-                    "activated": true,
-                    "campaignId": 0,
-                    "newsletterName": "string",
-                    "options": "string",
-                },
-                "glomex": {
-                    "activated": true,
-                    "integrationId": "string",
-                },
-            },
-            "seoStoryTicker": {
-                "activated": true,
-            },
-            "paywall": {
-                "activated": true,
-                "storyElementsBeforePaywall": 0,
-            },
-            "googleTagManager": {
-                "activated": true,
-                "gtmContainerId": "string",
-            },
-            "name": "BlickPunkt Nienburg",
-            "alias": "blickpunkt-nienburg-de",
-            "identifier": "https://www.blickpunkt-nienburg.de",
-            "googleNewsName": "BlickPunkt Nienburg",
-            "artworkDirectory": "blickpunkt-nienburg-de",
-        },
-    ];
-
-    render(<Sidebar
-        clientsList={mockedClientList}
-        filteredClientsList={mockedFilteredList}
-        dispatchFilteredClientsList={() => null} />);
+test("checkbox are checked when their values are present in filteredClients", () => {
+    render(<MultiSelect
+        clients={mockedClientList}
+        filteredClients={mockedFilteredList}
+        dispatchFilteredClients={() => null} />);
 
     fireEvent.mouseDown(screen.getByLabelText("ClientID / Name"));
     expect(screen.queryByTestId(241)).toHaveClass("Mui-checked");
 });
+
+/* Unit Tests */
+
+test("handleCheckbox - returns true if the value is present in the filtered list", () => {
+    expect(handleCheckbox(241, mockedFilteredList)).toBe(true);
+});
+
+test("getIdAndNameFromList - returns a stringified object with onle id and name as properties", () => {
+    const client = {
+        "id": 241,
+        "advert": {
+            "adMarkerHeight": 0,
+            "adDefendActivated": false,
+            "traffective": {
+                "dfpAdUrl": "1",
+            },
+        },
+        "amp": {
+            "activated": true,
+        },
+        "author": {
+            "showAuthorLinks": false,
+        },
+        "comment": {
+            "disqus": {
+                "shortname": "string",
+            },
+        },
+        "image": {
+            "defaultContentImageRatio": "DEFAULT",
+        },
+        "widgets": {
+            "inArticleReco": {
+                "activated": false,
+            },
+            "cxo": {
+                "activated": true,
+            },
+            "newsletter": {
+                "activated": true,
+                "campaignId": 0,
+                "newsletterName": "string",
+                "options": "string",
+            },
+            "glomex": {
+                "activated": true,
+                "integrationId": "string",
+            },
+        },
+        "seoStoryTicker": {
+            "activated": true,
+        },
+        "paywall": {
+            "activated": true,
+            "storyElementsBeforePaywall": 0,
+        },
+        "googleTagManager": {
+            "activated": true,
+            "gtmContainerId": "string",
+        },
+        "name": "BlickPunkt Nienburg",
+        "alias": "blickpunkt-nienburg-de",
+        "identifier": "https://www.blickpunkt-nienburg.de",
+        "googleNewsName": "BlickPunkt Nienburg",
+        "artworkDirectory": "blickpunkt-nienburg-de",
+    };
+    const expectedValue = "{\"id\":241,\"name\":\"BlickPunkt Nienburg\"}";
+    expect(getIdAndNameFromList(client)).toBe(expectedValue);
+});
+

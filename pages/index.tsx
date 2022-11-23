@@ -36,16 +36,19 @@ const mdTheme = createTheme({
 
 /**
  *
- * @param {ClientsInterface[]} filteredClient
+ * @param {ClientsInterface[]} filteredClients
  * @param {ReducerAction} action
  * @return {boolean} true
  */
-function filteredClientsReducer(filteredClient: ClientsInterface[], action: ReducerAction): ClientsInterface[] {
+function filteredClientsReducer(filteredClients: ClientsInterface[], action: ReducerAction): ClientsInterface[] {
+    let newState;
     switch (action.type) {
     case ReducerActionType.ADD_CLIENT:
-        return (typeof action.payload !== "number") ? action.payload : [];
+        newState = [...filteredClients];
+        newState.push(action.payload);
+        return newState;
     case ReducerActionType.DELETE_CLIENT:
-        return filteredClient.filter((client: ClientsInterface) => client.id !== action.payload);
+        return filteredClients.filter((client: ClientsInterface) => client.id !== action.payload.id);
     default:
         throw new Error();
     }
@@ -57,7 +60,7 @@ function filteredClientsReducer(filteredClient: ClientsInterface[], action: Redu
  */
 function Home() {
     const [clients, setClients] = useState<[]>([]);
-    const [filteredClient, dispatchFilteredClients] = useReducer(filteredClientsReducer, []);
+    const [filteredClients, dispatchFilteredClients] = useReducer(filteredClientsReducer, []);
 
     useEffect(() => {
         const data = getIntegratedClientList();
@@ -88,9 +91,9 @@ function Home() {
                     </Toolbar>
                 </MuiAppBar>
                 <Sidebar
-                    clientsList={clients}
-                    filteredClientsList={filteredClient}
-                    dispatchFilteredClientsList={dispatchFilteredClients} />
+                    clients={clients}
+                    filteredClients={filteredClients}
+                    dispatchFilteredClients={dispatchFilteredClients} />
                 <Box component="main" sx={{
                     backgroundColor: (theme) => (
                         theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]
@@ -104,7 +107,7 @@ function Home() {
                     <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={12} lg={12}>
-                                <MainContent clientsList={clients} filteredClientsList={filteredClient} />
+                                <MainContent clientsList={clients} filteredClientsList={filteredClients} />
                             </Grid>
                         </Grid>
                     </Container>

@@ -5,7 +5,7 @@ export enum ReducerActionType {
 
 export interface ReducerAction {
     type: ReducerActionType;
-    payload: ClientsInterface[] | number;
+    payload: ClientsInterface;
 }
 
 export interface Traffective {

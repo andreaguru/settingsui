@@ -7,7 +7,7 @@ export interface MainContentProps {
 }
 
 export interface SidebarProps {
-   clientsList: ClientsInterface[];
-   filteredClientsList: ClientsInterface[];
-   dispatchFilteredClientsList: Dispatch<ReducerAction>;
+   clients: ClientsInterface[];
+   filteredClients: ClientsInterface[];
+   dispatchFilteredClients: Dispatch<ReducerAction>;
 }

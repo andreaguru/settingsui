@@ -16,3 +16,4 @@ export async function getIntegratedClientList() {
         throw Error("Promise failed");
     }
 }
+

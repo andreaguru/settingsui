@@ -1,13 +1,16 @@
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Home from "../pages/index";
-import {enableFetchMocks} from "jest-fetch-mock";
+import * as apiMethods from "../api/DashboardAPI";
 
-beforeEach(() => {
-    enableFetchMocks();
+jest.mock("../api/DashboardAPI");
+
+beforeAll(async () => {
+    const promise = Promise.resolve();
+    jest.spyOn(apiMethods, "getIntegratedClientList").mockReturnValue(promise);
 });
 
-test("renders the home page with all the static elements", async () => {
+test("renders the home page with all the static elements", () => {
     render(<Home/>);
-    expect(await screen.getByRole("img")).toBeInTheDocument();
+    expect(screen.getByRole("img")).toBeInTheDocument();
 });
