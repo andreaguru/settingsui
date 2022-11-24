@@ -352,7 +352,7 @@ test("handleCheckbox - returns true if the value is present in the filtered list
     expect(handleCheckbox(241, mockedFilteredList)).toBe(true);
 });
 
-test("getIdAndNameFromList - returns a stringified object with onle id and name as properties", () => {
+test("getIdAndNameFromList - returns a stringified object with only id and name as properties", () => {
     const client = {
         "id": 241,
         "advert": {
