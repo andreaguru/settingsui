@@ -3,8 +3,13 @@ export enum ReducerActionType {
     DELETE_CLIENT = "DELETE_CLIENT"
 }
 
-export interface ReducerAction {
-    type: ReducerActionType;
+export type ReducerActions =
+| {
+    type: ReducerActionType.ADD_CLIENT;
+    payload: ClientsInterface[];
+}
+| {
+    type: ReducerActionType.DELETE_CLIENT;
     payload: ClientsInterface;
 }
 

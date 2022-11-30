@@ -9,7 +9,6 @@ import ListItemText from "@mui/material/ListItemText";
 import Chip from "@mui/material/Chip";
 import List from "@mui/material/List";
 import {SidebarProps} from "../types/componentProps.types";
-import {ReactNode} from "react";
 
 // Properties of the menu items in the Select component
 const ITEM_HEIGHT = 48;
@@ -29,7 +28,7 @@ const handleCheckbox = (clientId: number, filteredClientsList:ClientsInterface[]
 
 const getIdAndNameFromList = (client: ClientsInterface) => {
     const {id, name} = client;
-    return JSON.stringify({id, name});
+    return {id, name};
 };
 
 /**
@@ -37,11 +36,12 @@ const getIdAndNameFromList = (client: ClientsInterface) => {
  * @constructor
  */
 function MultiSelect({clients, filteredClients, dispatchFilteredClients}: SidebarProps) {
-    const handleChange = (event: SelectChangeEvent<typeof filteredClients>, child:ReactNode) => {
+    const handleChange = (event: SelectChangeEvent<typeof filteredClients>) => {
+        const value = event.target.value;
         // check if the selectd element is a React Node element and if contains a value inside its props
-        if (child !== null && typeof child == "object" && "props" in child) {
-            const parsedClientValue = JSON.parse(child.props.value);
-            dispatchFilteredClients({type: ReducerActionType.ADD_CLIENT, payload: parsedClientValue});
+        if (value !== null && typeof value == "object") {
+            // const parsedClientValue = JSON.parse(child.props.value);
+            dispatchFilteredClients({type: ReducerActionType.ADD_CLIENT, payload: value});
         }
     };
 
@@ -65,7 +65,14 @@ function MultiSelect({clients, filteredClients, dispatchFilteredClients}: Sideba
                         MenuProps={MenuProps}
                     >
                         {clients.map((client: ClientsInterface, index: number) => (
-                            <MenuItem key={index} value={getIdAndNameFromList(client)}>
+                            /* MenuItem Component does not accept an object as value type.
+                            The problem is still open, there is no official solution yet in MUI.
+                            The type comes from interface LiHTMLAttributes in node_modules/@types/react/index.d.ts
+                            There are a few workarounds for that, the most popular is currently ts-ignore:
+                            https://github.com/mui/material-ui/issues/14286 */
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-ignore
+                            <MenuItem key={index} value={client}>
                                 <Checkbox data-testid={`${client.id}`}
                                     checked={handleCheckbox(client.id, filteredClients)}/>
                                 <ListItemText primary={`${client.name} (${client.id})`}/>

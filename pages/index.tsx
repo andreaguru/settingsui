@@ -16,7 +16,7 @@ import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
 
 // import Interfaces to check data type in Typescript
-import {ClientsInterface, ReducerAction, ReducerActionType} from "../types/api.types";
+import {ClientsInterface, ReducerActions, ReducerActionType} from "../types/api.types";
 import MuiAppBar from "@mui/material/AppBar";
 import {getIntegratedClientList} from "../api/DashboardAPI";
 
@@ -37,16 +37,13 @@ const mdTheme = createTheme({
 /**
  *
  * @param {ClientsInterface[]} filteredClients
- * @param {ReducerAction} action
+ * @param {ReducerActions} action
  * @return {boolean} true
  */
-function filteredClientsReducer(filteredClients: ClientsInterface[], action: ReducerAction): ClientsInterface[] {
-    let newState;
+function filteredClientsReducer(filteredClients: ClientsInterface[], action: ReducerActions): ClientsInterface[] {
     switch (action.type) {
     case ReducerActionType.ADD_CLIENT:
-        newState = [...filteredClients];
-        newState.push(action.payload);
-        return newState;
+        return action.payload;
     case ReducerActionType.DELETE_CLIENT:
         return filteredClients.filter((client: ClientsInterface) => client.id !== action.payload.id);
     default:
