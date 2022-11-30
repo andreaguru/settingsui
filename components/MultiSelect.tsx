@@ -26,11 +26,6 @@ const handleCheckbox = (clientId: number, filteredClientsList:ClientsInterface[]
     return filteredClientsList.some((filteredClient: ClientsInterface) => filteredClient.id === clientId);
 };
 
-const getIdAndNameFromList = (client: ClientsInterface) => {
-    const {id, name} = client;
-    return {id, name};
-};
-
 /**
  *
  * @constructor
@@ -99,6 +94,5 @@ export default MultiSelect;
 /* start-test-block */
 export {
     handleCheckbox,
-    getIdAndNameFromList,
 };
 /* end-test-block */

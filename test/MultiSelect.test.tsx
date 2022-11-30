@@ -1,6 +1,6 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MultiSelect, {getIdAndNameFromList, handleCheckbox} from "../components/MultiSelect";
+import MultiSelect, {handleCheckbox} from "../components/MultiSelect";
 
 const mockedClientList = [
     {
@@ -351,67 +351,3 @@ test("checkbox are checked when their values are present in filteredClients", ()
 test("handleCheckbox - returns true if the value is present in the filtered list", () => {
     expect(handleCheckbox(241, mockedFilteredList)).toBe(true);
 });
-
-test("getIdAndNameFromList - returns a stringified object with only id and name as properties", () => {
-    const client = {
-        "id": 241,
-        "advert": {
-            "adMarkerHeight": 0,
-            "adDefendActivated": false,
-            "traffective": {
-                "dfpAdUrl": "1",
-            },
-        },
-        "amp": {
-            "activated": true,
-        },
-        "author": {
-            "showAuthorLinks": false,
-        },
-        "comment": {
-            "disqus": {
-                "shortname": "string",
-            },
-        },
-        "image": {
-            "defaultContentImageRatio": "DEFAULT",
-        },
-        "widgets": {
-            "inArticleReco": {
-                "activated": false,
-            },
-            "cxo": {
-                "activated": true,
-            },
-            "newsletter": {
-                "activated": true,
-                "campaignId": 0,
-                "newsletterName": "string",
-                "options": "string",
-            },
-            "glomex": {
-                "activated": true,
-                "integrationId": "string",
-            },
-        },
-        "seoStoryTicker": {
-            "activated": true,
-        },
-        "paywall": {
-            "activated": true,
-            "storyElementsBeforePaywall": 0,
-        },
-        "googleTagManager": {
-            "activated": true,
-            "gtmContainerId": "string",
-        },
-        "name": "BlickPunkt Nienburg",
-        "alias": "blickpunkt-nienburg-de",
-        "identifier": "https://www.blickpunkt-nienburg.de",
-        "googleNewsName": "BlickPunkt Nienburg",
-        "artworkDirectory": "blickpunkt-nienburg-de",
-    };
-    const expectedValue = "{\"id\":241,\"name\":\"BlickPunkt Nienburg\"}";
-    expect(getIdAndNameFromList(client)).toBe(expectedValue);
-});
-
