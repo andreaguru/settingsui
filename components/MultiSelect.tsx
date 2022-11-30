@@ -67,6 +67,9 @@ function MultiSelect({clients, filteredClients, dispatchFilteredClients}: Sideba
                         {clients.map((client: ClientsInterface, index: number) => (
                             /* MenuItem Component does not accept an object as value type.
                             The problem is still open, there is no official solution yet in MUI.
+                            The example hier: https://mui.com/material-ui/react-select/#multiple-select
+                            shows a case where the value is an array of strings, which is allowed in Typescript.
+                            In our case we have an array ob objects (client id and name), which is not allowed.
                             The type comes from interface LiHTMLAttributes in node_modules/@types/react/index.d.ts
                             There are a few workarounds for that, the most popular is currently ts-ignore:
                             https://github.com/mui/material-ui/issues/14286 */
