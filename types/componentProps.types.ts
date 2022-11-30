@@ -10,4 +10,12 @@ export interface SidebarProps {
    clients: ClientsInterface[];
    filteredClients: ClientsInterface[];
    dispatchFilteredClients: Dispatch<ReducerActions>;
+   showId?: boolean;
+}
+
+export interface MultiSelectProps {
+   values: ClientsInterface[];
+   filteredValues: ClientsInterface[];
+   dispatchFilteredValues: Dispatch<ReducerActions>;
+   showId?: boolean;
 }

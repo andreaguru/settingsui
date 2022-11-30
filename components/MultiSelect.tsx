@@ -8,7 +8,7 @@ import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
 import Chip from "@mui/material/Chip";
 import List from "@mui/material/List";
-import {SidebarProps} from "../types/componentProps.types";
+import {MultiSelectProps} from "../types/componentProps.types";
 
 // Properties of the menu items in the Select component
 const ITEM_HEIGHT = 48;
@@ -26,45 +26,40 @@ const handleCheckbox = (clientId: number, filteredClientsList:ClientsInterface[]
     return filteredClientsList.some((filteredClient: ClientsInterface) => filteredClient.id === clientId);
 };
 
-const getIdAndNameFromList = (client: ClientsInterface) => {
-    const {id, name} = client;
-    return {id, name};
-};
-
 /**
  *
  * @constructor
  */
-function MultiSelect({clients, filteredClients, dispatchFilteredClients}: SidebarProps) {
-    const handleChange = (event: SelectChangeEvent<typeof filteredClients>) => {
+function MultiSelect({values, filteredValues, dispatchFilteredValues, showId}: MultiSelectProps) {
+    const handleChange = (event: SelectChangeEvent<typeof filteredValues>) => {
         const value = event.target.value;
         // check if the selectd element is a React Node element and if contains a value inside its props
         if (value !== null && typeof value == "object") {
             // const parsedClientValue = JSON.parse(child.props.value);
-            dispatchFilteredClients({type: ReducerActionType.ADD_CLIENT, payload: value});
+            dispatchFilteredValues({type: ReducerActionType.ADD_VALUE, payload: value});
         }
     };
 
     const handleDelete = (customerToDelete: ClientsInterface) => () => {
-        dispatchFilteredClients({type: ReducerActionType.DELETE_CLIENT, payload: customerToDelete});
+        dispatchFilteredValues({type: ReducerActionType.DELETE_VALUE, payload: customerToDelete});
     };
 
     return (
         <List component="nav">
             <FormControl sx={{m: 1, width: "80%"}}>
                 <InputLabel id="demo-multiple-checkbox-label">ClientID / Name</InputLabel>
-                {clients.length > 0 && (
+                {values.length > 0 && (
                     <Select
                         labelId="demo-multiple-checkbox-label"
                         id="demo-multiple-checkbox"
                         multiple
-                        value={filteredClients}
+                        value={filteredValues}
                         onChange={handleChange}
                         input={<OutlinedInput label="Tag"/>}
                         renderValue={() => false}
                         MenuProps={MenuProps}
                     >
-                        {clients.map((client: ClientsInterface, index: number) => (
+                        {values.map((value: ClientsInterface, index: number) => (
                             /* MenuItem Component does not accept an object as value type.
                             The problem is still open, there is no official solution yet in MUI.
                             The example hier: https://mui.com/material-ui/react-select/#multiple-select
@@ -75,17 +70,17 @@ function MultiSelect({clients, filteredClients, dispatchFilteredClients}: Sideba
                             https://github.com/mui/material-ui/issues/14286 */
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                             // @ts-ignore
-                            <MenuItem key={index} value={client}>
-                                <Checkbox data-testid={`${client.id}`}
-                                    checked={handleCheckbox(client.id, filteredClients)}/>
-                                <ListItemText primary={`${client.name} (${client.id})`}/>
+                            <MenuItem key={index} value={value}>
+                                <Checkbox data-testid={`${value.id}`}
+                                    checked={handleCheckbox(value.id, filteredValues)}/>
+                                <ListItemText primary={value.name + (showId ? ` (${value.id})` : "")}/>
                             </MenuItem>
                         ))}
                     </Select>
                 )}
             </FormControl>
 
-            {filteredClients.map((client: ClientsInterface, key: number) => (
+            {filteredValues.map((client: ClientsInterface, key: number) => (
                 <div key={key}>
                     <Chip label={`${client.name} (${client.id})`} onDelete={handleDelete(client)}/>
                 </div>
@@ -99,6 +94,5 @@ export default MultiSelect;
 /* start-test-block */
 export {
     handleCheckbox,
-    getIdAndNameFromList,
 };
 /* end-test-block */

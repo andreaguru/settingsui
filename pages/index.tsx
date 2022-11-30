@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
-import logo from "../assets/eddi-logo.jpg";
+import logo from "../assets/edid-logo.jpg";
 import Image from "next/image";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
@@ -42,9 +42,11 @@ const mdTheme = createTheme({
  */
 function filteredClientsReducer(filteredClients: ClientsInterface[], action: ReducerActions): ClientsInterface[] {
     switch (action.type) {
-    case ReducerActionType.ADD_CLIENT:
+    case ReducerActionType.ADD_VALUE:
         return action.payload;
-    case ReducerActionType.DELETE_CLIENT:
+    case ReducerActionType.DELETE_VALUE:
+        return filteredClients.filter((client: ClientsInterface) => client.id !== action.payload.id);
+    case ReducerActionType.FILTER_PRO_FEATURE:
         return filteredClients.filter((client: ClientsInterface) => client.id !== action.payload.id);
     default:
         throw new Error();
@@ -73,7 +75,7 @@ function Home() {
 
     return (
         <ThemeProvider theme={mdTheme}>
-            <Box sx={{display: "flex"}}>
+            <Box sx={{display: "flex", paddingTop: "73px"}}>
                 <CssBaseline/>
                 <MuiAppBar position="absolute" sx={{
                     zIndex: (theme) => (theme.zIndex.drawer + 1),

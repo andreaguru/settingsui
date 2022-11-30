@@ -17,3 +17,18 @@ export async function getIntegratedClientList() {
     }
 }
 
+/**
+ *
+ * @constructor
+ */
+export async function getFeaturesList() {
+    try {
+        const response = await fetch("http://localhost:3004/features");
+
+        // return features list
+        return await response.json();
+    } catch {
+        throw Error("Promise failed");
+    }
+}
+
