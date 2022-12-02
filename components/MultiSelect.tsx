@@ -2,7 +2,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import {ClientsInterface, ReducerActionType} from "../types/api.types";
+import {Clients, FeaturesList, ReducerActionType} from "../types/api.types";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
@@ -22,32 +22,31 @@ const MenuProps = {
     },
 };
 
-const handleCheckbox = (clientId: number, filteredClientsList:ClientsInterface[]) => {
-    return filteredClientsList.some((filteredClient: ClientsInterface) => filteredClient.id === clientId);
+const handleCheckbox = (clientId: number, filteredClientsList:(Clients|FeaturesList)[]) => {
+    return filteredClientsList.some((filteredClient: Clients|FeaturesList) => filteredClient.id === clientId);
 };
 
 /**
  *
  * @constructor
  */
-function MultiSelect({values, filteredValues, dispatchFilteredValues, showId}: MultiSelectProps) {
+function MultiSelect({values, placeholder, filteredValues, dispatchFilteredValues, showId}: MultiSelectProps) {
     const handleChange = (event: SelectChangeEvent<typeof filteredValues>) => {
         const value = event.target.value;
         // check if the selectd element is a React Node element and if contains a value inside its props
         if (value !== null && typeof value == "object") {
-            // const parsedClientValue = JSON.parse(child.props.value);
             dispatchFilteredValues({type: ReducerActionType.ADD_VALUE, payload: value});
         }
     };
 
-    const handleDelete = (customerToDelete: ClientsInterface) => () => {
+    const handleDelete = (customerToDelete: Clients|FeaturesList) => () => {
         dispatchFilteredValues({type: ReducerActionType.DELETE_VALUE, payload: customerToDelete});
     };
 
     return (
         <List component="nav">
             <FormControl sx={{m: 1, width: "80%"}}>
-                <InputLabel id="demo-multiple-checkbox-label">ClientID / Name</InputLabel>
+                <InputLabel id="demo-multiple-checkbox-label">{placeholder}</InputLabel>
                 {values.length > 0 && (
                     <Select
                         labelId="demo-multiple-checkbox-label"
@@ -59,10 +58,10 @@ function MultiSelect({values, filteredValues, dispatchFilteredValues, showId}: M
                         renderValue={() => false}
                         MenuProps={MenuProps}
                     >
-                        {values.map((value: ClientsInterface, index: number) => (
+                        {values.map((value: Clients|FeaturesList, index: number) => (
                             /* MenuItem Component does not accept an object as value type.
                             The problem is still open, there is no official solution yet in MUI.
-                            The example hier: https://mui.com/material-ui/react-select/#multiple-select
+                            The example here: https://mui.com/material-ui/react-select/#multiple-select
                             shows a case where the value is an array of strings, which is allowed in Typescript.
                             In our case we have an array ob objects (client id and name), which is not allowed.
                             The type comes from interface LiHTMLAttributes in node_modules/@types/react/index.d.ts
@@ -80,9 +79,9 @@ function MultiSelect({values, filteredValues, dispatchFilteredValues, showId}: M
                 )}
             </FormControl>
 
-            {filteredValues.map((client: ClientsInterface, key: number) => (
+            {filteredValues.map((value: Clients|FeaturesList, key: number) => (
                 <div key={key}>
-                    <Chip label={`${client.name} (${client.id})`} onDelete={handleDelete(client)}/>
+                    <Chip label={value.name + (showId ? ` (${value.id})` : "")} onDelete={handleDelete(value)}/>
                 </div>
             ))}
         </List>

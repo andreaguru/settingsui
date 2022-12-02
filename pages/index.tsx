@@ -16,7 +16,12 @@ import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
 
 // import Interfaces to check data type in Typescript
-import {ClientsInterface, ReducerActions, ReducerActionType} from "../types/api.types";
+import {
+    Clients,
+    FeaturesList,
+    Actions,
+    ReducerActionType,
+} from "../types/api.types";
 import MuiAppBar from "@mui/material/AppBar";
 import {getIntegratedClientList} from "../api/DashboardAPI";
 
@@ -36,20 +41,35 @@ const mdTheme = createTheme({
 
 /**
  *
- * @param {ClientsInterface[]} filteredClients
- * @param {ReducerActions} action
+ * @param {Clients[]} filteredClients
+ * @param {Actions} action
  * @return {boolean} true
  */
-function filteredClientsReducer(filteredClients: ClientsInterface[], action: ReducerActions): ClientsInterface[] {
+function filteredClientsReducer(filteredClients: Clients[], action: Actions) {
     switch (action.type) {
     case ReducerActionType.ADD_VALUE:
         return action.payload;
     case ReducerActionType.DELETE_VALUE:
-        return filteredClients.filter((client: ClientsInterface) => client.id !== action.payload.id);
-    case ReducerActionType.FILTER_PRO_FEATURE:
-        return filteredClients.filter((client: ClientsInterface) => client.id !== action.payload.id);
+        return filteredClients.filter((client: Clients) => client.id !== action.payload.id);
     default:
-        throw new Error();
+        return filteredClients;
+    }
+}
+
+/**
+ *
+ * @param {Clients[]} filteredFeatures
+ * @param {Actions} action
+ * @return {boolean} true
+ */
+function filteredFeaturesReducer(filteredFeatures: FeaturesList[], action: Actions) {
+    switch (action.type) {
+    case ReducerActionType.ADD_VALUE:
+        return action.payload;
+    case ReducerActionType.DELETE_VALUE:
+        return filteredFeatures.filter((feature: FeaturesList) => feature.id !== action.payload.id);
+    default:
+        return filteredFeatures;
     }
 }
 
@@ -60,6 +80,7 @@ function filteredClientsReducer(filteredClients: ClientsInterface[], action: Red
 function Home() {
     const [clients, setClients] = useState<[]>([]);
     const [filteredClients, dispatchFilteredClients] = useReducer(filteredClientsReducer, []);
+    const [filteredFeatures, dispatchFilteredFeatures] = useReducer(filteredFeaturesReducer, []);
 
     useEffect(() => {
         const data = getIntegratedClientList();
@@ -92,7 +113,10 @@ function Home() {
                 <Sidebar
                     clients={clients}
                     filteredClients={filteredClients}
-                    dispatchFilteredClients={dispatchFilteredClients} />
+                    dispatchFilteredClients={dispatchFilteredClients}
+                    filteredFeatures={filteredFeatures}
+                    dispatchFilteredFeatures={dispatchFilteredFeatures}
+                />
                 <Box component="main" sx={{
                     backgroundColor: (theme) => (
                         theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]
@@ -106,7 +130,10 @@ function Home() {
                     <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={12} lg={12}>
-                                <MainContent clientsList={clients} filteredClientsList={filteredClients} />
+                                <MainContent
+                                    clientsList={clients}
+                                    filteredClientsList={filteredClients}
+                                    filteredFeatures={filteredFeatures} />
                             </Grid>
                         </Grid>
                     </Container>

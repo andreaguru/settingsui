@@ -8,6 +8,7 @@ jest.mock("../api/DashboardAPI");
 beforeAll(async () => {
     const promise = Promise.resolve();
     jest.spyOn(apiMethods, "getIntegratedClientList").mockReturnValue(promise);
+    jest.spyOn(apiMethods, "getFeaturesList").mockReturnValue(promise);
 });
 
 test("renders the home page with all the static elements", () => {

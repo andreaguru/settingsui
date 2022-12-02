@@ -1,4 +1,4 @@
-import {ClientsInterface} from "../types/api.types";
+import {Clients} from "../types/api.types";
 /**
  *
  * @constructor
@@ -11,7 +11,7 @@ export async function getIntegratedClientList() {
         const clientsPromise = await response.json();
 
         // filter the result in order to show only clients that have a name
-        return clientsPromise.filter((client: ClientsInterface) => client.name);
+        return clientsPromise.filter((client: Clients) => client.name);
     } catch {
         throw Error("Promise failed");
     }

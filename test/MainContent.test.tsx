@@ -1,9 +1,9 @@
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MainContent from "../components/MainContent";
-import {ClientsInterface} from "../types/api.types";
+import {Clients} from "../types/api.types";
 
-const mockedClientList:ClientsInterface[] = [
+const mockedClientList:Clients[] = [
     {
         "id": 241,
         "name": "BlickPunkt Nienburg",
@@ -156,7 +156,7 @@ const mockedClientList:ClientsInterface[] = [
     },
 ];
 
-const mockedFilteredList:ClientsInterface[] = [
+const mockedFilteredList:Clients[] = [
     {
         "id": 241,
         "name": "BlickPunkt Nienburg",
@@ -192,7 +192,8 @@ const mockedFilteredList:ClientsInterface[] = [
 test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
     render(<MainContent
         clientsList={[]}
-        filteredClientsList={[]} />);
+        filteredClientsList={[]}
+        filteredFeatures={[]}/>);
 
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
@@ -200,7 +201,8 @@ test("component is empty if empty clientList and empty filteredClientList is pas
 test("component shows clientList if it is passed in the props", () => {
     render(<MainContent
         clientsList={mockedClientList}
-        filteredClientsList={[]} />);
+        filteredClientsList={[]}
+        filteredFeatures={[]}/>);
 
     expect(screen.queryByText("Wetterauer Zeitung")).toBeInTheDocument();
 });
@@ -208,7 +210,8 @@ test("component shows clientList if it is passed in the props", () => {
 test("component shows filteredClientList instead of clientList if the first is not empty", () => {
     render(<MainContent
         clientsList={mockedClientList}
-        filteredClientsList={mockedFilteredList} />);
+        filteredClientsList={mockedFilteredList}
+        filteredFeatures={[]}/>);
 
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();

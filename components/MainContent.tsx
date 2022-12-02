@@ -1,8 +1,10 @@
 import {Card, CardContent, Typography} from "@mui/material";
-import {ClientsInterface} from "../types/api.types";
+import {Clients, Feature} from "../types/api.types";
 import {MainContentProps} from "../types/componentProps.types";
 import Box from "@mui/material/Box";
 import CircleIcon from "@mui/icons-material/Circle";
+import Grow from "@mui/material/Grow";
+import Fade from "@mui/material/Fade";
 
 const showFeatureStatus = (status:boolean|null) => {
     switch (status) {
@@ -19,33 +21,40 @@ const showFeatureStatus = (status:boolean|null) => {
  *
  * @constructor
  */
-function MainContent({clientsList, filteredClientsList}: MainContentProps) {
+function MainContent({clientsList, filteredClientsList, filteredFeatures}: MainContentProps) {
     const shownClients = filteredClientsList.length ? filteredClientsList : clientsList;
+
+    const showSelectedFeatures = (featuresPerClient:Feature[]) => {
+        if (filteredFeatures.length > 0) {
+            return featuresPerClient.filter((feat:Feature) => filteredFeatures.some((el) => el.name === feat.name));
+        } else return featuresPerClient;
+    };
 
     return (
         <>
-            {shownClients.map((client: ClientsInterface, index: number) => (
-                <Card key={index}>
-                    <CardContent>
-                        {client.features.map((feature, index) => (
-                            <Box key={index} display="inline-block">
-                                <CircleIcon color={showFeatureStatus(feature.client)} />
-                                <CircleIcon color={showFeatureStatus(feature.category)} />
-                                <CircleIcon color={showFeatureStatus(feature.tag)} />
-                                <span>{feature.name}</span>
-                            </Box>
-                        ))}
-                        <Typography color="text.secondary" gutterBottom>
-                            test
-                        </Typography>
-                        <Typography variant="h5" component="div">
-                            {client.name}
-                        </Typography>
-                        <Typography variant="body2">
-                            test body2 style
-                        </Typography>
-                    </CardContent>
-                </Card>
+            {shownClients.map((client: Clients, index: number) => (
+                <Fade in key={index}>
+                    <Card>
+                        <CardContent>
+                            {client.features &&
+                            showSelectedFeatures(client.features).map((feature:Feature, index:number) => (
+                                <Grow in key={index}>
+                                    <Box display="inline-block" sx={{m: 2}}>
+                                        <CircleIcon color={showFeatureStatus(feature.client)} />
+                                        <CircleIcon color={showFeatureStatus(feature.category)} />
+                                        <CircleIcon color={showFeatureStatus(feature.tag)} />
+                                        <span>{feature.name}</span>
+                                    </Box>
+                                </Grow>
+                            ))}
+                            <Typography color="text.secondary" gutterBottom> </Typography>
+                            <Typography variant="h5" component="div">
+                                {client.name}
+                            </Typography>
+                            <Typography variant="body2"> </Typography>
+                        </CardContent>
+                    </Card>
+                </Fade>
             ))}
         </>
     );

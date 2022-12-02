@@ -1,22 +1,11 @@
 export enum ReducerActionType {
     ADD_VALUE = "ADD_VALUE",
     DELETE_VALUE = "DELETE_VALUE",
-    FILTER_PRO_FEATURE = "FILTER_PRO_FEATURE"
 }
 
-export type ReducerActions =
-| {
-    type: ReducerActionType.ADD_VALUE;
-    payload: ClientsInterface[];
-}
-| {
-    type: ReducerActionType.DELETE_VALUE;
-    payload: ClientsInterface;
-}
-| {
-    type: ReducerActionType.FILTER_PRO_FEATURE;
-    payload: ClientsInterface;
-}
+export type Actions =
+ | { type: ReducerActionType.ADD_VALUE, payload: Clients[] | FeaturesList[] }
+ | { type: ReducerActionType.DELETE_VALUE, payload: Clients | FeaturesList }
 
 export interface Traffective {
     dfpAdUrl: string;
@@ -96,10 +85,10 @@ export interface Feature {
     tag: boolean|null;
 }
 
-export interface ClientsInterface {
+export interface Clients {
     id: number;
     name: string;
-    features: Feature[];
+    features?: Feature[];
     advert?: Advert;
     amp?: Amp;
     author?: Author;
@@ -109,4 +98,9 @@ export interface ClientsInterface {
     seoStoryTicker?: SeoStoryTicker | null;
     paywall?: Paywall | null;
     googleTagManager?: GoogleTagManager | null;
+}
+
+export interface FeaturesList {
+    id: number;
+    name: string;
 }
