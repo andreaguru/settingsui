@@ -1,17 +1,11 @@
 export enum ReducerActionType {
     ADD_VALUE = "ADD_VALUE",
-    DELETE_VALUE = "DELETE_VALUE"
+    DELETE_VALUE = "DELETE_VALUE",
 }
 
-export type ReducerActions =
-| {
-    type: ReducerActionType.ADD_VALUE;
-    payload: ClientsInterface[];
-}
-| {
-    type: ReducerActionType.DELETE_VALUE;
-    payload: ClientsInterface;
-}
+export type Actions =
+ | { type: ReducerActionType.ADD_VALUE, payload: Clients[] }
+ | { type: ReducerActionType.DELETE_VALUE, payload: Clients }
 
 export interface Traffective {
     dfpAdUrl: string;
@@ -84,16 +78,25 @@ export interface GoogleTagManager {
     gtmContainerId: string;
 }
 
-export interface ClientsInterface {
-    id: number;
-    advert: Advert;
-    amp: Amp;
-    author: Author;
-    comment: Comment;
-    image: Image;
+export interface Feature {
     name: string;
-    widgets: Widgets;
-    seoStoryTicker: SeoStoryTicker | null;
-    paywall: Paywall | null;
-    googleTagManager: GoogleTagManager | null;
+    client: boolean;
+    category: boolean|null;
+    tag: boolean|null;
 }
+
+export interface Clients {
+    id: number;
+    name: string;
+    features?: Feature[];
+    advert?: Advert;
+    amp?: Amp;
+    author?: Author;
+    comment?: Comment;
+    image?: Image;
+    widgets?: Widgets;
+    seoStoryTicker?: SeoStoryTicker | null;
+    paywall?: Paywall | null;
+    googleTagManager?: GoogleTagManager | null;
+}
+
