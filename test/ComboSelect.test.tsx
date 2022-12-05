@@ -1,4 +1,4 @@
-import {fireEvent, render, screen} from "@testing-library/react";
+import {fireEvent, render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ComboSelect from "../components/ComboSelect";
 import {Clients} from "../types/api.types";
@@ -194,9 +194,19 @@ test("checkbox components are not rendered at page load", () => {
         values={mockedClientList}
         placeholder="Test"
         filteredValues={[]}
-        dispatchFilteredValues={() => null} />);
+        setFilteredValues={() => null} />);
 
     expect(screen.queryByTestId(241)).toBeFalsy();
+});
+
+test("placeholder is set and visible on rendered component", () => {
+    render(<ComboSelect
+        values={mockedClientList}
+        placeholder="Test"
+        filteredValues={[]}
+        setFilteredValues={() => null} />);
+
+    expect(screen.getByText("Test")).toBeInTheDocument();
 });
 
 test("checkbox components are rendered after select change", () => {
@@ -204,9 +214,14 @@ test("checkbox components are rendered after select change", () => {
         values={mockedClientList}
         placeholder="Test"
         filteredValues={[]}
-        dispatchFilteredValues={() => null} />);
+        setFilteredValues={() => null} />);
 
-    fireEvent.mouseDown(screen.getByLabelText("Test"));
+    // focus on autocomplete and type "abc" as sample text
+    const autocomplete = screen.getByTestId("combobox");
+    const input = within(autocomplete).getByRole("combobox");
+    autocomplete.focus();
+    fireEvent.change(input, {target: {value: "abc"}});
+
     expect(screen.queryByTestId(241)).toBeInTheDocument();
 });
 
@@ -215,9 +230,14 @@ test("checkbox are checked when their values are present in filteredClients", ()
         values={mockedClientList}
         placeholder="Test"
         filteredValues={mockedFilteredList}
-        dispatchFilteredValues={() => null} />);
+        setFilteredValues={() => null} />);
 
-    fireEvent.mouseDown(screen.getByLabelText("Test"));
+    // focus on autocomplete and type "abc" as sample text
+    const autocomplete = screen.getByTestId("combobox");
+    const input = within(autocomplete).getByRole("combobox");
+    autocomplete.focus();
+    fireEvent.change(input, {target: {value: "abc"}});
+
     expect(screen.queryByTestId(241)).toHaveClass("Mui-checked");
 });
 

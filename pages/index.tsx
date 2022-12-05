@@ -1,4 +1,4 @@
-import {useReducer, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -14,11 +14,10 @@ import logo from "../assets/eddi-logo.jpg";
 import Image from "next/image";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
-
-// import Interfaces to check data type in Typescript
-import {ClientsInterface, ReducerActions, ReducerActionType} from "../types/api.types";
 import MuiAppBar from "@mui/material/AppBar";
 import {getIntegratedClientList} from "../api/DashboardAPI";
+
+import {Clients} from "../types/api.types";
 
 const mdTheme = createTheme({
     components: {
@@ -36,28 +35,11 @@ const mdTheme = createTheme({
 
 /**
  *
- * @param {ClientsInterface[]} filteredClients
- * @param {ReducerActions} action
- * @return {boolean} true
- */
-function filteredClientsReducer(filteredClients: ClientsInterface[], action: ReducerActions): ClientsInterface[] {
-    switch (action.type) {
-    case ReducerActionType.ADD_VALUE:
-        return action.payload;
-    case ReducerActionType.DELETE_VALUE:
-        return filteredClients.filter((client: ClientsInterface) => client.id !== action.payload.id);
-    default:
-        throw new Error();
-    }
-}
-
-/**
- *
  * @constructor
  */
 function Home() {
     const [clients, setClients] = useState<[]>([]);
-    const [filteredClients, dispatchFilteredClients] = useReducer(filteredClientsReducer, []);
+    const [filteredClients, setFilteredClients] = useState<Clients[]>([]);
 
     useEffect(() => {
         const data = getIntegratedClientList();
@@ -90,7 +72,7 @@ function Home() {
                 <Sidebar
                     clients={clients}
                     filteredClients={filteredClients}
-                    dispatchFilteredClients={dispatchFilteredClients} />
+                    setFilteredClients={setFilteredClients} />
                 <Box component="main" sx={{
                     backgroundColor: (theme) => (
                         theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]
