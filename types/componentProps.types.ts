@@ -1,13 +1,22 @@
-import {ClientsInterface, ReducerActions} from "./api.types";
+import {Actions, Clients} from "./api.types";
 import {Dispatch} from "react";
 
 export interface MainContentProps {
-    clientsList: ClientsInterface[];
-    filteredClientsList: ClientsInterface[]
+    clientsList: Clients[]
+    filteredClientsList: Clients[]
 }
 
 export interface SidebarProps {
-   clients: ClientsInterface[];
-   filteredClients: ClientsInterface[];
-   dispatchFilteredClients: Dispatch<ReducerActions>;
+    clients: Clients[]
+    filteredClients: Clients[]
+    dispatchFilteredClients: Dispatch<Actions>
+    showDetailInfo?: boolean;
+}
+
+export interface MultiSelectProps {
+    values: Clients[]
+    placeholder: string
+    filteredValues: Clients[]
+    dispatchFilteredValues: Dispatch<Actions>
+    showDetailInfo?: boolean
 }

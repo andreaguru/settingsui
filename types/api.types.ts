@@ -1,15 +1,15 @@
 export enum ReducerActionType {
-    ADD_CLIENT = "ADD_CLIENT",
-    DELETE_CLIENT = "DELETE_CLIENT"
+    ADD_VALUE = "ADD_VALUE",
+    DELETE_VALUE = "DELETE_VALUE"
 }
 
 export type ReducerActions =
 | {
-    type: ReducerActionType.ADD_CLIENT;
+    type: ReducerActionType.ADD_VALUE;
     payload: ClientsInterface[];
 }
 | {
-    type: ReducerActionType.DELETE_CLIENT;
+    type: ReducerActionType.DELETE_VALUE;
     payload: ClientsInterface;
 }
 

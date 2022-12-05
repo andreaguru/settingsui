@@ -1,6 +1,6 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MultiSelect, {handleCheckbox} from "../components/MultiSelect";
+import ComboSelect from "../components/ComboSelect";
 
 const mockedClientList = [
     {
@@ -318,7 +318,7 @@ const mockedFilteredList = [
 ];
 
 test("checkbox components are not rendered at page load", () => {
-    render(<MultiSelect
+    render(<ComboSelect
         clients={mockedClientList}
         filteredClients={[]}
         dispatchFilteredClients={() => null} />);
@@ -327,7 +327,7 @@ test("checkbox components are not rendered at page load", () => {
 });
 
 test("checkbox components are rendered after select change", () => {
-    render(<MultiSelect
+    render(<ComboSelect
         clients={mockedClientList}
         filteredClients={[]}
         dispatchFilteredClients={() => null} />);
@@ -337,7 +337,7 @@ test("checkbox components are rendered after select change", () => {
 });
 
 test("checkbox are checked when their values are present in filteredClients", () => {
-    render(<MultiSelect
+    render(<ComboSelect
         clients={mockedClientList}
         filteredClients={mockedFilteredList}
         dispatchFilteredClients={() => null} />);
@@ -348,6 +348,3 @@ test("checkbox are checked when their values are present in filteredClients", ()
 
 /* Unit Tests */
 
-test("handleCheckbox - returns true if the value is present in the filtered list", () => {
-    expect(handleCheckbox(241, mockedFilteredList)).toBe(true);
-});

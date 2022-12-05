@@ -42,9 +42,9 @@ const mdTheme = createTheme({
  */
 function filteredClientsReducer(filteredClients: ClientsInterface[], action: ReducerActions): ClientsInterface[] {
     switch (action.type) {
-    case ReducerActionType.ADD_CLIENT:
+    case ReducerActionType.ADD_VALUE:
         return action.payload;
-    case ReducerActionType.DELETE_CLIENT:
+    case ReducerActionType.DELETE_VALUE:
         return filteredClients.filter((client: ClientsInterface) => client.id !== action.payload.id);
     default:
         throw new Error();

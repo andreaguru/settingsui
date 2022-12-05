@@ -7,17 +7,16 @@ import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
 import styled from "@mui/material/styles/styled";
 import MuiDrawer from "@mui/material/Drawer";
-import MultiSelect from "./MultiSelect";
 
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
+import ComboSelect from "./ComboSelect";
 
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
         position: "relative",
         whiteSpace: "nowrap",
         width: 300,
-        paddingTop: 60,
         transition: theme.transitions.create("width", {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
@@ -41,7 +40,11 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})
  *
  * @constructor
  */
-function Sidebar({clients, filteredClients, dispatchFilteredClients}: SidebarProps) {
+function Sidebar(
+    {clients,
+        filteredClients,
+        dispatchFilteredClients}: SidebarProps
+) {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -59,9 +62,12 @@ function Sidebar({clients, filteredClients, dispatchFilteredClients}: SidebarPro
             >
                 <IconButton onClick={toggleDrawer}>{open ? <ChevronLeft/> : <ChevronRight/>}</IconButton>
             </Toolbar>
-            <MultiSelect clients={clients}
-                filteredClients={filteredClients}
-                dispatchFilteredClients={dispatchFilteredClients} />
+
+            <ComboSelect values={clients}
+                placeholder="ClientID / Name"
+                filteredValues={filteredClients}
+                dispatchFilteredValues={dispatchFilteredClients}
+                showDetailInfo={true}/>
         </Drawer>
     );
 }
