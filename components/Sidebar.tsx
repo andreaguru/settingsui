@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 // import MUI Components
 import Toolbar from "@mui/material/Toolbar";
@@ -7,6 +7,7 @@ import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
 import styled from "@mui/material/styles/styled";
 import MuiDrawer from "@mui/material/Drawer";
+import {getFeaturesList} from "../api/DashboardAPI";
 
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";

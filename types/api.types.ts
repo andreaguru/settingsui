@@ -2,9 +2,6 @@ export enum ReducerActionType {
     UPDATE_VALUE = "UPDATE_VALUE"
 }
 
-export type Actions =
- { type: ReducerActionType.UPDATE_VALUE, payload: Clients[] }
-
 export interface Traffective {
     dfpAdUrl: string;
 }
@@ -85,16 +82,17 @@ export interface Feature {
 
 export interface Clients {
     id: number;
-    advert: Advert;
-    amp: Amp;
-    author: Author;
-    comment: Comment;
-    image: Image;
     name: string;
-    widgets: Widgets;
-    seoStoryTicker: SeoStoryTicker | null;
-    paywall: Paywall | null;
-    googleTagManager: GoogleTagManager | null;
+    features?: Feature[];
+    advert?: Advert;
+    amp?: Amp;
+    author?: Author;
+    comment?: Comment;
+    image?: Image;
+    widgets?: Widgets;
+    seoStoryTicker?: SeoStoryTicker | null;
+    paywall?: Paywall | null;
+    googleTagManager?: GoogleTagManager | null;
 }
 
 export interface FeaturesList {
