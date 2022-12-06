@@ -1,11 +1,9 @@
 export enum ReducerActionType {
-    ADD_VALUE = "ADD_VALUE",
-    DELETE_VALUE = "DELETE_VALUE",
+    UPDATE_VALUE = "UPDATE_VALUE"
 }
 
 export type Actions =
- | { type: ReducerActionType.ADD_VALUE, payload: Clients[] | FeaturesList[] }
- | { type: ReducerActionType.DELETE_VALUE, payload: Clients | FeaturesList }
+ { type: ReducerActionType.UPDATE_VALUE, payload: Clients[] }
 
 export interface Traffective {
     dfpAdUrl: string;
@@ -87,17 +85,16 @@ export interface Feature {
 
 export interface Clients {
     id: number;
+    advert: Advert;
+    amp: Amp;
+    author: Author;
+    comment: Comment;
+    image: Image;
     name: string;
-    features?: Feature[];
-    advert?: Advert;
-    amp?: Amp;
-    author?: Author;
-    comment?: Comment;
-    image?: Image;
-    widgets?: Widgets;
-    seoStoryTicker?: SeoStoryTicker | null;
-    paywall?: Paywall | null;
-    googleTagManager?: GoogleTagManager | null;
+    widgets: Widgets;
+    seoStoryTicker: SeoStoryTicker | null;
+    paywall: Paywall | null;
+    googleTagManager: GoogleTagManager | null;
 }
 
 export interface FeaturesList {

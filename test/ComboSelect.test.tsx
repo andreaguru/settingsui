@@ -1,6 +1,6 @@
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MainContent from "../components/MainContent";
+import ComboSelect from "../components/ComboSelect";
 import {Clients} from "../types/api.types";
 
 const mockedClientList:Clients[] = [
@@ -189,30 +189,57 @@ const mockedFilteredList:Clients[] = [
     },
 ];
 
-test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
-    render(<MainContent
-        clientsList={[]}
-        filteredClientsList={[]}
-        filteredFeatures={[]}/>);
+test("checkbox components are not rendered at page load", () => {
+    render(<ComboSelect
+        values={mockedClientList}
+        placeholder="Test"
+        filteredValues={[]}
+        setFilteredValues={() => null} />);
 
-    expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
+    expect(screen.queryByTestId(241)).toBeFalsy();
 });
 
-test("component shows clientList if it is passed in the props", () => {
-    render(<MainContent
-        clientsList={mockedClientList}
-        filteredClientsList={[]}
-        filteredFeatures={[]}/>);
+test("placeholder is set and visible on rendered component", () => {
+    render(<ComboSelect
+        values={mockedClientList}
+        placeholder="Test"
+        filteredValues={[]}
+        setFilteredValues={() => null} />);
 
-    expect(screen.queryByText("Wetterauer Zeitung")).toBeInTheDocument();
+    expect(screen.getByText("Test")).toBeInTheDocument();
 });
 
-test("component shows filteredClientList instead of clientList if the first is not empty", () => {
-    render(<MainContent
-        clientsList={mockedClientList}
-        filteredClientsList={mockedFilteredList}
-        filteredFeatures={[]}/>);
+test("checkbox components are rendered after select change", () => {
+    render(<ComboSelect
+        values={mockedClientList}
+        placeholder="Test"
+        filteredValues={[]}
+        setFilteredValues={() => null} />);
 
-    // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
-    expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
+    // focus on autocomplete and type "abc" as sample text
+    const autocomplete = screen.getByTestId("combobox");
+    const input = within(autocomplete).getByRole("combobox");
+    autocomplete.focus();
+    fireEvent.change(input, {target: {value: "abc"}});
+
+    expect(screen.queryByTestId(241)).toBeInTheDocument();
 });
+
+test("checkbox are checked when their values are present in filteredClients", () => {
+    render(<ComboSelect
+        values={mockedClientList}
+        placeholder="Test"
+        filteredValues={mockedFilteredList}
+        setFilteredValues={() => null} />);
+
+    // focus on autocomplete and type "abc" as sample text
+    const autocomplete = screen.getByTestId("combobox");
+    const input = within(autocomplete).getByRole("combobox");
+    autocomplete.focus();
+    fireEvent.change(input, {target: {value: "abc"}});
+
+    expect(screen.queryByTestId(241)).toHaveClass("Mui-checked");
+});
+
+/* Unit Tests */
+

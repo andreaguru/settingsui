@@ -1,5 +1,5 @@
-import {Actions, Clients, FeaturesList} from "./api.types";
-import {Dispatch} from "react";
+import {Clients, FeaturesList} from "./api.types";
+import {Dispatch, SetStateAction} from "react";
 
 export interface MainContentProps {
     clientsList: Clients[]
@@ -10,16 +10,16 @@ export interface MainContentProps {
 export interface SidebarProps {
     clients: Clients[]
     filteredClients: Clients[]
-    dispatchFilteredClients: Dispatch<Actions>
+    setFilteredClients: Dispatch<SetStateAction<Clients[]>>
     filteredFeatures: FeaturesList[]
-    dispatchFilteredFeatures: Dispatch<Actions>
-    showId?: boolean;
+    setFilteredFeatures: Dispatch<SetStateAction<FeaturesList[]>>
+    showDetailInfo?: boolean
 }
 
 export interface MultiSelectProps {
     values: Clients[] | FeaturesList[]
     placeholder: string
     filteredValues: Clients[] | FeaturesList[]
-    dispatchFilteredValues: Dispatch<Actions>
-    showId?: boolean
+    setFilteredValues: Dispatch<SetStateAction<Clients[]|FeaturesList[]>>
+    showDetailInfo?: boolean
 }

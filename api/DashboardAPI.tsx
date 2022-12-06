@@ -31,4 +31,3 @@ export async function getFeaturesList() {
         throw Error("Promise failed");
     }
 }
-

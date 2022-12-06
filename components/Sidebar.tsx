@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 // import MUI Components
 import Toolbar from "@mui/material/Toolbar";
@@ -7,11 +7,10 @@ import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
 import styled from "@mui/material/styles/styled";
 import MuiDrawer from "@mui/material/Drawer";
-import MultiSelect from "./MultiSelect";
 
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
-import {getFeaturesList} from "../api/DashboardAPI";
+import ComboSelect from "./ComboSelect";
 
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
@@ -44,9 +43,9 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})
 function Sidebar(
     {clients,
         filteredClients,
-        dispatchFilteredClients,
+        setFilteredClients,
         filteredFeatures,
-        dispatchFilteredFeatures}: SidebarProps
+        setFilteredFeatures}: SidebarProps
 ) {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
@@ -81,16 +80,17 @@ function Sidebar(
                 <IconButton onClick={toggleDrawer}>{open ? <ChevronLeft/> : <ChevronRight/>}</IconButton>
             </Toolbar>
 
-            <MultiSelect values={clients}
+            <ComboSelect values={clients}
                 placeholder="ClientID / Name"
                 filteredValues={filteredClients}
-                dispatchFilteredValues={dispatchFilteredClients}
-                showId={true}/>
+                setFilteredValues={setFilteredClients}
+                showDetailInfo={true}/>
 
-            <MultiSelect values={features}
+            <ComboSelect values={features}
                 placeholder="Features"
                 filteredValues={filteredFeatures}
-                dispatchFilteredValues={dispatchFilteredFeatures} />
+                setFilteredValues={setFilteredFeatures}
+                showDetailInfo={true}/>
         </Drawer>
     );
 }

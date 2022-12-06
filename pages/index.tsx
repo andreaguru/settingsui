@@ -1,4 +1,4 @@
-import {useReducer, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -14,16 +14,10 @@ import logo from "../assets/edid-logo.jpg";
 import Image from "next/image";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
-
-// import Interfaces to check data type in Typescript
-import {
-    Clients,
-    FeaturesList,
-    Actions,
-    ReducerActionType,
-} from "../types/api.types";
 import MuiAppBar from "@mui/material/AppBar";
 import {getIntegratedClientList} from "../api/DashboardAPI";
+
+import {Clients, FeaturesList} from "../types/api.types";
 
 const mdTheme = createTheme({
     components: {
@@ -41,46 +35,12 @@ const mdTheme = createTheme({
 
 /**
  *
- * @param {Clients[]} filteredClients
- * @param {Actions} action
- * @return {boolean} true
- */
-function filteredClientsReducer(filteredClients: Clients[], action: Actions) {
-    switch (action.type) {
-    case ReducerActionType.ADD_VALUE:
-        return action.payload;
-    case ReducerActionType.DELETE_VALUE:
-        return filteredClients.filter((client: Clients) => client.id !== action.payload.id);
-    default:
-        return filteredClients;
-    }
-}
-
-/**
- *
- * @param {Clients[]} filteredFeatures
- * @param {Actions} action
- * @return {boolean} true
- */
-function filteredFeaturesReducer(filteredFeatures: FeaturesList[], action: Actions) {
-    switch (action.type) {
-    case ReducerActionType.ADD_VALUE:
-        return action.payload;
-    case ReducerActionType.DELETE_VALUE:
-        return filteredFeatures.filter((feature: FeaturesList) => feature.id !== action.payload.id);
-    default:
-        return filteredFeatures;
-    }
-}
-
-/**
- *
  * @constructor
  */
 function Home() {
     const [clients, setClients] = useState<[]>([]);
-    const [filteredClients, dispatchFilteredClients] = useReducer(filteredClientsReducer, []);
-    const [filteredFeatures, dispatchFilteredFeatures] = useReducer(filteredFeaturesReducer, []);
+    const [filteredClients, setFilteredClients] = useState<Clients[]>([]);
+    const [filteredFeatures, setFilteredFeatures] = useState<FeaturesList[]>([]);
 
     useEffect(() => {
         const data = getIntegratedClientList();
@@ -96,7 +56,7 @@ function Home() {
 
     return (
         <ThemeProvider theme={mdTheme}>
-            <Box sx={{display: "flex", paddingTop: "73px"}}>
+            <Box sx={{display: "flex"}}>
                 <CssBaseline/>
                 <MuiAppBar position="absolute" sx={{
                     zIndex: (theme) => (theme.zIndex.drawer + 1),
@@ -113,10 +73,9 @@ function Home() {
                 <Sidebar
                     clients={clients}
                     filteredClients={filteredClients}
-                    dispatchFilteredClients={dispatchFilteredClients}
+                    setFilteredClients={setFilteredClients}
                     filteredFeatures={filteredFeatures}
-                    dispatchFilteredFeatures={dispatchFilteredFeatures}
-                />
+                    setFilteredFeatures={setFilteredFeatures}/>
                 <Box component="main" sx={{
                     backgroundColor: (theme) => (
                         theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]
