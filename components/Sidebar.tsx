@@ -10,7 +10,7 @@ import MuiDrawer from "@mui/material/Drawer";
 
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
-import ComboSelect from "./ComboSelect";
+import IDComboSelect from "./IDComboSelect";
 
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
@@ -63,7 +63,7 @@ function Sidebar(
                 <IconButton onClick={toggleDrawer}>{open ? <ChevronLeft/> : <ChevronRight/>}</IconButton>
             </Toolbar>
 
-            <ComboSelect values={clients}
+            <IDComboSelect values={clients}
                 placeholder="ClientID / Name"
                 filteredValues={filteredClients}
                 setFilteredValues={setFilteredClients}

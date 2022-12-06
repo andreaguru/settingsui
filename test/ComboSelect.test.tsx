@@ -1,6 +1,6 @@
 import {fireEvent, render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import ComboSelect from "../components/ComboSelect";
+import IDComboSelect from "../components/IDComboSelect";
 import {Clients} from "../types/api.types";
 
 const mockedClientList:Clients[] = [
@@ -190,7 +190,7 @@ const mockedFilteredList:Clients[] = [
 ];
 
 test("checkbox components are not rendered at page load", () => {
-    render(<ComboSelect
+    render(<IDComboSelect
         values={mockedClientList}
         placeholder="Test"
         filteredValues={[]}
@@ -200,7 +200,7 @@ test("checkbox components are not rendered at page load", () => {
 });
 
 test("placeholder is set and visible on rendered component", () => {
-    render(<ComboSelect
+    render(<IDComboSelect
         values={mockedClientList}
         placeholder="Test"
         filteredValues={[]}
@@ -210,7 +210,7 @@ test("placeholder is set and visible on rendered component", () => {
 });
 
 test("checkbox components are rendered after select change", () => {
-    render(<ComboSelect
+    render(<IDComboSelect
         values={mockedClientList}
         placeholder="Test"
         filteredValues={[]}
@@ -226,7 +226,7 @@ test("checkbox components are rendered after select change", () => {
 });
 
 test("checkbox are checked when their values are present in filteredClients", () => {
-    render(<ComboSelect
+    render(<IDComboSelect
         values={mockedClientList}
         placeholder="Test"
         filteredValues={mockedFilteredList}
