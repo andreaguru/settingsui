@@ -13,7 +13,7 @@ export interface SidebarProps {
     showDetailInfo?: boolean;
 }
 
-export interface MultiSelectProps {
+export interface IDComboSelectProps {
     values: Clients[]
     placeholder: string
     filteredValues: Clients[]
