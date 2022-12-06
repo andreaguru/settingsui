@@ -11,7 +11,7 @@ import {getFeaturesList} from "../api/DashboardAPI";
 
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
-import ComboSelect from "./ComboSelect";
+import IDComboSelect from "./IDComboSelect";
 
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
@@ -81,17 +81,18 @@ function Sidebar(
                 <IconButton onClick={toggleDrawer}>{open ? <ChevronLeft/> : <ChevronRight/>}</IconButton>
             </Toolbar>
 
-            <ComboSelect values={clients}
+            <IDComboSelect values={clients}
                 placeholder="ClientID / Name"
                 filteredValues={filteredClients}
                 setFilteredValues={setFilteredClients}
                 showDetailInfo={true}/>
 
-            <ComboSelect values={features}
+            <IDComboSelect values={features}
                 placeholder="Features"
                 filteredValues={filteredFeatures}
                 setFilteredValues={setFilteredFeatures}
                 showDetailInfo={true}/>
+
         </Drawer>
     );
 }

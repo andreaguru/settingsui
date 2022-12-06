@@ -7,13 +7,13 @@
             {
                "name": "traffective",
                "client": true,
-               "category": false,
+               "category": null,
                "tag": null
             },
             {
                "name": "inArticleReco",
                "client": true,
-               "category": false,
+               "category": true,
                "tag": null
             },
             {

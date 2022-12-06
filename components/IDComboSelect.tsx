@@ -12,7 +12,7 @@ import {SyntheticEvent} from "react";
  *
  * @constructor
  */
-function ComboSelect({values, placeholder, filteredValues, setFilteredValues, showDetailInfo}: MultiSelectProps) {
+function IDComboSelect({values, placeholder, filteredValues, setFilteredValues, showDetailInfo}: MultiSelectProps) {
     const handleChange = (event: SyntheticEvent, value:Clients[]) => {
         // check if the selected element is a React Node element and if contains a value inside its props
         setFilteredValues(value);
@@ -52,4 +52,4 @@ function ComboSelect({values, placeholder, filteredValues, setFilteredValues, sh
     );
 }
 
-export default ComboSelect;
+export default IDComboSelect;
