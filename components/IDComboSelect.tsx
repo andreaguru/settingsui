@@ -4,7 +4,7 @@ import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import List from "@mui/material/List";
-import {MultiSelectProps} from "../types/componentProps.types";
+import {IDComboSelectProps} from "../types/componentProps.types";
 import Typography from "@mui/material/Typography";
 import {SyntheticEvent} from "react";
 
@@ -12,7 +12,7 @@ import {SyntheticEvent} from "react";
  *
  * @constructor
  */
-function IDComboSelect({values, placeholder, filteredValues, setFilteredValues, showDetailInfo}: MultiSelectProps) {
+function IDComboSelect({values, placeholder, filteredValues, setFilteredValues, showDetailInfo}: IDComboSelectProps) {
     const handleChange = (event: SyntheticEvent, value:Clients[]) => {
         // check if the selected element is a React Node element and if contains a value inside its props
         setFilteredValues(value);

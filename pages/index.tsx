@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -41,6 +41,23 @@ function Home() {
     const [clients, setClients] = useState<[]>([]);
     const [filteredClients, setFilteredClients] = useState<Clients[]>([]);
     const [filteredFeatures, setFilteredFeatures] = useState<FeaturesList[]>([]);
+    const [featureStatus, setFeatureStatus] = useState<boolean|null>(null);
+
+    const handleFeatureStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
+        let status = featureStatus;
+        switch ((event.target as HTMLInputElement).value) {
+        case "true":
+            status = true;
+            break;
+        case "false":
+            status = false;
+            break;
+        case "":
+            status = null;
+            break;
+        }
+        setFeatureStatus(status);
+    };
 
     useEffect(() => {
         const data = getIntegratedClientList();
@@ -56,7 +73,7 @@ function Home() {
 
     return (
         <ThemeProvider theme={mdTheme}>
-            <Box sx={{display: "flex"}}>
+            <Box sx={{display: "flex", paddingTop: 8}}>
                 <CssBaseline/>
                 <MuiAppBar position="absolute" sx={{
                     zIndex: (theme) => (theme.zIndex.drawer + 1),
@@ -75,7 +92,8 @@ function Home() {
                     filteredClients={filteredClients}
                     setFilteredClients={setFilteredClients}
                     filteredFeatures={filteredFeatures}
-                    setFilteredFeatures={setFilteredFeatures}/>
+                    setFilteredFeatures={setFilteredFeatures}
+                    handleFeatureStatusChange={handleFeatureStatusChange}/>
                 <Box component="main" sx={{
                     backgroundColor: (theme) => (
                         theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]
@@ -92,7 +110,8 @@ function Home() {
                                 <MainContent
                                     clientsList={clients}
                                     filteredClientsList={filteredClients}
-                                    filteredFeatures={filteredFeatures} />
+                                    filteredFeatures={filteredFeatures}
+                                    featureStatus={featureStatus}/>
                             </Grid>
                         </Grid>
                     </Container>

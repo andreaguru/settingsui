@@ -12,6 +12,7 @@ import {getFeaturesList} from "../api/DashboardAPI";
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
 import IDComboSelect from "./IDComboSelect";
+import IDRadioGroup from "./IDRadioGroup";
 
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
@@ -46,7 +47,8 @@ function Sidebar(
         filteredClients,
         setFilteredClients,
         filteredFeatures,
-        setFilteredFeatures}: SidebarProps
+        setFilteredFeatures,
+        handleFeatureStatusChange}: SidebarProps
 ) {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
@@ -92,6 +94,8 @@ function Sidebar(
                 filteredValues={filteredFeatures}
                 setFilteredValues={setFilteredFeatures}
                 showDetailInfo={true}/>
+
+            <IDRadioGroup handleFeatureStatusChange={handleFeatureStatusChange} />
 
         </Drawer>
     );

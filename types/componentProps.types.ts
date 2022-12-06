@@ -1,10 +1,11 @@
 import {Clients, FeaturesList} from "./api.types";
-import {Dispatch, SetStateAction} from "react";
+import {ChangeEvent, Dispatch, SetStateAction} from "react";
 
 export interface MainContentProps {
     clientsList: Clients[]
     filteredClientsList: Clients[]
     filteredFeatures: FeaturesList[]
+    featureStatus: boolean|null
 }
 
 export interface SidebarProps {
@@ -13,13 +14,17 @@ export interface SidebarProps {
     setFilteredClients: Dispatch<SetStateAction<Clients[]>>
     filteredFeatures: FeaturesList[]
     setFilteredFeatures: Dispatch<SetStateAction<FeaturesList[]>>
-    showDetailInfo?: boolean
+    handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export interface MultiSelectProps {
+export interface IDComboSelectProps {
     values: Clients[] | FeaturesList[]
     placeholder: string
     filteredValues: Clients[] | FeaturesList[]
     setFilteredValues: Dispatch<SetStateAction<Clients[]|FeaturesList[]>>
     showDetailInfo?: boolean
+}
+
+export interface IDRadioGroupProps {
+    handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
 }

@@ -21,13 +21,33 @@ const showFeatureStatus = (status:boolean|null) => {
  *
  * @constructor
  */
-function MainContent({clientsList, filteredClientsList, filteredFeatures}: MainContentProps) {
+function MainContent({clientsList, filteredClientsList, filteredFeatures, featureStatus}: MainContentProps) {
     const shownClients = filteredClientsList.length ? filteredClientsList : clientsList;
 
-    const showSelectedFeatures = (featuresPerClient:Feature[]) => {
-        if (filteredFeatures.length > 0) {
-            return featuresPerClient.filter((feat:Feature) => filteredFeatures.some((el) => el.name === feat.name));
+    /**
+     *
+     * @param {Feature[]} featuresPerClient
+     * @return {Feature[]}
+     */
+    function showFeaturesPerStatus(featuresPerClient:Feature[]) {
+        if (featuresPerClient !== null) {
+            return featuresPerClient.filter(
+                (feat:Feature) => {
+                    return featureStatus ? !Object.values(feat).includes(false) : Object.values(feat).includes(false);
+                }
+            );
         } else return featuresPerClient;
+    }
+
+    const showSelectedFeatures = (featuresPerClient:Feature[]) => {
+        // check features status
+        const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient);
+
+        if (filteredFeatures.length > 0) {
+            return (
+                featuresFilteredPerStatus.filter((feat:Feature) => filteredFeatures.some((el) => el.name === feat.name))
+            );
+        } else return featuresFilteredPerStatus;
     };
 
     return (

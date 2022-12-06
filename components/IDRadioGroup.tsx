@@ -1,24 +1,17 @@
 import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
-import {ChangeEvent, useState} from "react";
+import {IDRadioGroupProps} from "../types/componentProps.types";
 /**
  *
  * @constructor
  */
-function IDRadioGroup() {
-    const [featureStatus, setFeatureStatus] = useState("active");
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFeatureStatus((event.target as HTMLInputElement).value);
-    };
-
+function IDRadioGroup({handleFeatureStatusChange}:IDRadioGroupProps) {
     return (
         <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            value={featureStatus}
-            onChange={handleChange}
+            onChange={handleFeatureStatusChange}
             name="radio-buttons-group">
-            <FormControlLabel value="active" control={<Radio />} label="Aktiv" />
-            <FormControlLabel value="inactive" control={<Radio />} label="Inaktiv" />
+            <FormControlLabel value={true} control={<Radio />} label="Aktiv" />
+            <FormControlLabel value={false} control={<Radio />} label="Inaktiv" />
         </RadioGroup>
     );
 }

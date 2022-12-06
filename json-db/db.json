@@ -14,7 +14,7 @@
                "name": "inArticleReco",
                "client": true,
                "category": true,
-               "tag": null
+               "tag": true
             },
             {
                "name": "cleverPush",
