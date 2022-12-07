@@ -6,17 +6,6 @@ import CircleIcon from "@mui/icons-material/Circle";
 import Grow from "@mui/material/Grow";
 import Fade from "@mui/material/Fade";
 
-const showFeatureStatus = (status:boolean|null) => {
-    switch (status) {
-    case true:
-        return "success";
-    case false:
-        return "error";
-    case null:
-        return "disabled";
-    }
-};
-
 /**
  *
  * @constructor
@@ -30,13 +19,27 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, featur
      * @return {Feature[]}
      */
     function showFeaturesPerStatus(featuresPerClient:Feature[]) {
-        if (featuresPerClient !== null) {
+        switch (featureStatus) {
+        case "ACTIVE":
             return featuresPerClient.filter(
                 (feat:Feature) => {
-                    return featureStatus ? !Object.values(feat).includes(false) : Object.values(feat).includes(false);
+                    return Object.values(feat).includes("ENABLED") ||
+                       Object.values(feat).includes("ENABLED_AND_DISABLED");
                 }
             );
-        } else return featuresPerClient;
+        case "INACTIVE":
+            return featuresPerClient.filter(
+                (feat:Feature) => {
+                    return (Object.values(feat).includes("DISABLED") ||
+                        Object.values(feat).includes("ENABLED_AND_DISABLED") ||
+                        Object.values(feat).every((value) => value === "NONE"));
+                }
+            );
+        case "":
+            return featuresPerClient;
+        default:
+            return featuresPerClient;
+        }
     }
 
     const showSelectedFeatures = (featuresPerClient:Feature[]) => {
@@ -48,6 +51,21 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, featur
                 featuresFilteredPerStatus.filter((feat:Feature) => filteredFeatures.some((el) => el.name === feat.name))
             );
         } else return featuresFilteredPerStatus;
+    };
+
+    const showFeatureStatus = (status:string) => {
+        switch (status) {
+        case "ENABLED":
+            return "success";
+        case "DISABLED":
+            return "error";
+        case "ENABLED_AND_DISABLED":
+            if (featureStatus === "ACTIVE") {
+                return "success";
+            } else return "error";
+        case "NONE":
+            return "disabled";
+        }
     };
 
     return (

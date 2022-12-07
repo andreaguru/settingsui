@@ -6,27 +6,27 @@
         "features": [
             {
                "name": "traffective",
-               "client": true,
-               "category": null,
-               "tag": null
+               "client": "ENABLED",
+               "category": "NONE",
+               "tag": "ENABLED"
             },
             {
                "name": "inArticleReco",
-               "client": true,
-               "category": true,
-               "tag": true
+               "client": "DISABLED",
+               "category": "ENABLED",
+               "tag": "ENABLED"
             },
             {
                "name": "cleverPush",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "ENABLED_AND_DISABLED",
+               "tag": "NONE"
             },
             {
                "name": "paywall",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "DISABLED",
+               "tag": "ENABLED"
             }
         ]
     },
@@ -36,27 +36,27 @@
         "features": [
             {
                "name": "traffective",
-               "client": true,
-               "category": null,
-               "tag": true
+               "client": "ENABLED",
+               "category": "NONE",
+               "tag": "ENABLED"
             },
             {
                "name": "inArticleReco",
-               "client": true,
-               "category": true,
-               "tag": false
+               "client": "DISABLED",
+               "category": "ENABLED",
+               "tag": "ENABLED"
             },
             {
                "name": "cleverPush",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "ENABLED_AND_DISABLED",
+               "tag": "NONE"
             },
             {
                "name": "paywall",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "DISABLED",
+               "tag": "ENABLED"
             }
         ]
     },
@@ -66,27 +66,27 @@
         "features": [
             {
                "name": "traffective",
-               "client": true,
-               "category": false,
-               "tag": true
+               "client": "DISABLED",
+               "category": "NONE",
+               "tag": "ENABLED"
             },
             {
                "name": "inArticleReco",
-               "client": true,
-               "category": true,
-               "tag": null
+               "client": "DISABLED",
+               "category": "ENABLED",
+               "tag": "ENABLED"
             },
             {
                "name": "cleverPush",
-               "client": true,
-               "category": false,
-               "tag": true
+               "client": "ENABLED",
+               "category": "NONE",
+               "tag": "NONE"
             },
             {
                "name": "paywall",
-               "client": true,
-               "category": true,
-               "tag": true
+               "client": "ENABLED",
+               "category": "ENABLED_AND_DISABLED",
+               "tag": "ENABLED"
             }
         ]
     },
@@ -96,27 +96,27 @@
         "features": [
             {
                "name": "traffective",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "NONE",
+               "tag": "ENABLED"
             },
             {
                "name": "inArticleReco",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "DISABLED",
+               "category": "ENABLED",
+               "tag": "ENABLED"
             },
             {
                "name": "cleverPush",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "ENABLED_AND_DISABLED",
+               "tag": "NONE"
             },
             {
                "name": "paywall",
-               "client": true,
-               "category": true,
-               "tag": true
+               "client": "ENABLED",
+               "category": "DISABLED",
+               "tag": "ENABLED"
             }
         ]
     },
@@ -126,27 +126,27 @@
         "features": [
             {
                "name": "traffective",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "NONE",
+               "tag": "ENABLED"
             },
             {
                "name": "inArticleReco",
-               "client": true,
-               "category": false,
-               "tag": false
+               "client": "DISABLED",
+               "category": "DISABLED",
+               "tag": "NONE"
             },
             {
                "name": "cleverPush",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "ENABLED_AND_DISABLED",
+               "tag": "NONE"
             },
             {
                "name": "paywall",
-               "client": true,
-               "category": true,
-               "tag": true
+               "client": "ENABLED",
+               "category": "DISABLED",
+               "tag": "ENABLED"
             }
         ]
     },
@@ -156,27 +156,27 @@
         "features": [
             {
                "name": "traffective",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "NONE",
+               "tag": "ENABLED"
             },
             {
                "name": "inArticleReco",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "DISABLED",
+               "category": "ENABLED",
+               "tag": "ENABLED"
             },
             {
                "name": "cleverPush",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED",
+               "category": "ENABLED_AND_DISABLED",
+               "tag": "NONE"
             },
             {
                "name": "paywall",
-               "client": true,
-               "category": false,
-               "tag": null
+               "client": "ENABLED_AND_DISABLED",
+               "category": "DISABLED",
+               "tag": "NONE"
             }
         ]
     }

@@ -75,9 +75,9 @@ export interface GoogleTagManager {
 
 export interface Feature {
     name: string;
-    client: boolean;
-    category: boolean|null;
-    tag: boolean|null;
+    client: string;
+    category: string;
+    tag: string;
 }
 
 export interface Clients {

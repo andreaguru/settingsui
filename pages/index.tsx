@@ -41,22 +41,10 @@ function Home() {
     const [clients, setClients] = useState<[]>([]);
     const [filteredClients, setFilteredClients] = useState<Clients[]>([]);
     const [filteredFeatures, setFilteredFeatures] = useState<FeaturesList[]>([]);
-    const [featureStatus, setFeatureStatus] = useState<boolean|null>(null);
+    const [featureStatus, setFeatureStatus] = useState<string>("NONE");
 
     const handleFeatureStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
-        let status = featureStatus;
-        switch ((event.target as HTMLInputElement).value) {
-        case "true":
-            status = true;
-            break;
-        case "false":
-            status = false;
-            break;
-        case "":
-            status = null;
-            break;
-        }
-        setFeatureStatus(status);
+        setFeatureStatus((event.target as HTMLInputElement).value);
     };
 
     useEffect(() => {

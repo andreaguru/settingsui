@@ -10,8 +10,9 @@ function IDRadioGroup({handleFeatureStatusChange}:IDRadioGroupProps) {
             aria-labelledby="demo-radio-buttons-group-label"
             onChange={handleFeatureStatusChange}
             name="radio-buttons-group">
-            <FormControlLabel value={true} control={<Radio />} label="Aktiv" />
-            <FormControlLabel value={false} control={<Radio />} label="Inaktiv" />
+            <FormControlLabel value="" control={<Radio />} label="Keine Auswahl" />
+            <FormControlLabel value="ACTIVE" control={<Radio />} label="Aktiv" />
+            <FormControlLabel value="INACTIVE" control={<Radio />} label="Inaktiv" />
         </RadioGroup>
     );
 }

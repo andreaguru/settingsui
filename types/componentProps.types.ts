@@ -5,7 +5,7 @@ export interface MainContentProps {
     clientsList: Clients[]
     filteredClientsList: Clients[]
     filteredFeatures: FeaturesList[]
-    featureStatus: boolean|null
+    featureStatus: string
 }
 
 export interface SidebarProps {

@@ -30,6 +30,7 @@ function IDComboSelect({values, placeholder, filteredValues, setFilteredValues, 
                         value={filteredValues}
                         onChange={handleChange}
                         data-testid="combobox"
+                        disableCloseOnSelect
                         isOptionEqualToValue={(option, value) => option.name === value.name}
                         getOptionLabel={(option) => option.name}
                         renderOption={(props, option, {selected}) => (
