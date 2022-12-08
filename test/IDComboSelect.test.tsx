@@ -242,4 +242,3 @@ test("checkbox are checked when their values are present in filteredClients", ()
 });
 
 /* Unit Tests */
-

@@ -55,7 +55,7 @@ function Home() {
 
     return (
         <ThemeProvider theme={mdTheme}>
-            <Box sx={{display: "flex"}}>
+            <Box sx={{display: "flex", pt: 10}}>
                 <CssBaseline/>
                 <MuiAppBar position="absolute" sx={{
                     zIndex: (theme) => (theme.zIndex.drawer + 1),
@@ -73,6 +73,7 @@ function Home() {
                     clients={clients}
                     filteredClients={filteredClients}
                     setFilteredClients={setFilteredClients} />
+
                 <Box component="main" sx={{
                     backgroundColor: (theme) => (
                         theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]
@@ -82,7 +83,6 @@ function Home() {
                     overflow: "auto",
                 }}
                 >
-
                     <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={12} lg={12}>
