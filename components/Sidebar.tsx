@@ -41,9 +41,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})
  * @constructor
  */
 function Sidebar(
-    {clients,
-        filteredClients,
-        setFilteredClients}: SidebarProps
+    {clients, setFilteredClients}: SidebarProps
 ) {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
@@ -65,7 +63,6 @@ function Sidebar(
 
             <IDComboSelect values={clients}
                 placeholder="ClientID / Name"
-                filteredValues={filteredClients}
                 setFilteredValues={setFilteredClients}
                 showDetailInfo={true}/>
         </Drawer>

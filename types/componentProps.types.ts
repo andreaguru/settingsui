@@ -16,7 +16,6 @@ export interface SidebarProps {
 export interface IDComboSelectProps {
     values: Clients[]
     placeholder: string
-    filteredValues: Clients[]
     setFilteredValues: Dispatch<SetStateAction<Clients[]>>
     showDetailInfo?: boolean
 }

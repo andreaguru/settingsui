@@ -10,27 +10,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -40,27 +40,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": null,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": true,
-                "tag": false,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -70,27 +70,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": true,
-                "tag": null,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": true,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -100,27 +100,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": true,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -130,27 +130,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": false,
-                "tag": false,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": true,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -163,27 +163,27 @@ const mockedFilteredList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -192,7 +192,8 @@ const mockedFilteredList:Clients[] = [
 test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
     render(<MainContent
         clientsList={[]}
-        filteredClientsList={[]}/>);
+        filteredClientsList={[]}
+    />);
 
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
@@ -200,7 +201,8 @@ test("component is empty if empty clientList and empty filteredClientList is pas
 test("component shows clientList if it is passed in the props", () => {
     render(<MainContent
         clientsList={mockedClientList}
-        filteredClientsList={[]}/>);
+        filteredClientsList={[]}
+    />);
 
     expect(screen.queryByText("Wetterauer Zeitung")).toBeInTheDocument();
 });
@@ -208,7 +210,8 @@ test("component shows clientList if it is passed in the props", () => {
 test("component shows filteredClientList instead of clientList if the first is not empty", () => {
     render(<MainContent
         clientsList={mockedClientList}
-        filteredClientsList={mockedFilteredList}/>);
+        filteredClientsList={mockedFilteredList}
+    />);
 
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
