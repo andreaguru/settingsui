@@ -1,11 +1,14 @@
 import {Clients} from "../types/api.types";
+
+const apiEndpoint = process.env.SETTINGS_API_ENDPOINT || "";
+
 /**
  *
  * @constructor
  */
 export async function getIntegratedClientList() {
     try {
-        const response = await fetch("http://localhost:3004/clients");
+        const response = await fetch(apiEndpoint);
 
         // return two arrays with the data from the two fetch requests
         const clientsPromise = await response.json();
