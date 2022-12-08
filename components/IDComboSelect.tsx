@@ -12,7 +12,7 @@ import {SyntheticEvent} from "react";
  *
  * @constructor
  */
-function IDComboSelect({values, placeholder, filteredValues, setFilteredValues, showDetailInfo}: IDComboSelectProps) {
+function IDComboSelect({values, placeholder, setFilteredValues, showDetailInfo}: IDComboSelectProps) {
     const handleChange = (event: SyntheticEvent, value:Clients[]) => {
         // check if the selected element is a React Node element and if contains a value inside its props
         setFilteredValues(value);
@@ -27,10 +27,9 @@ function IDComboSelect({values, placeholder, filteredValues, setFilteredValues, 
                         multiple
                         id="checkboxes-tags-demo"
                         options={values}
-                        value={filteredValues}
                         onChange={handleChange}
                         data-testid="combobox"
-                        disableCloseOnSelect={true}
+                        disableCloseOnSelect={false}
                         isOptionEqualToValue={(option, value) => option.name === value.name}
                         getOptionLabel={(option) => option.name}
                         renderOption={(props, option, {selected}) => (

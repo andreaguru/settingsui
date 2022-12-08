@@ -213,4 +213,3 @@ test("component shows filteredClientList instead of clientList if the first is n
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
-
