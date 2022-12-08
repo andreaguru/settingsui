@@ -10,7 +10,7 @@
     "start:production": "NODE_ENV=production next start",
     "build": "next build",
     "eslint": "next lint",
-    "eslint:fix": "next lint . --ext .ts --fix",
+    "eslint:fix": "next lint . --ext .tsx --fix",
     "test": "jest",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
