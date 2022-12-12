@@ -1,9 +1,6 @@
 import {Clients} from "../types/api.types";
 
 const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
-const apiEndpoint2 = process.env.NEXT_PUBLIC_TESTO || "";
-const apiEndpoint4 = process.env.NEXT_PUBLIC_TEST || "";
-const apiEndpoint5 = "NEXT_PUBLIC_TEST";
 
 /**
  *
