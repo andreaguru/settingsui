@@ -22,4 +22,7 @@ module.exports = {
 
     return config
   },
+  env: {
+    SETTINGS_API_ENDPOINT: process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT,
+  },
 };

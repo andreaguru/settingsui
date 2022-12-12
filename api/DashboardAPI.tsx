@@ -1,6 +1,6 @@
 import {Clients} from "../types/api.types";
 
-const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
+const apiEndpoint = process.env.SETTINGS_API_ENDPOINT || "";
 
 /**
  *
