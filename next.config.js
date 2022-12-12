@@ -1,5 +1,17 @@
 /** @type {import('next').NextConfig} */
+require('dotenv-flow').config({
+  node_env: process.env.APP_ENV || process.env.NODE_ENV || 'development'
+});
+
+const env = {}
+Object.keys(process.env).forEach((key) => {
+  if (key.startsWith('NEXT_PUBLIC_')) {
+    env[key] = process.env[key]
+  }
+})
+
 module.exports = {
+  env,
   reactStrictMode: true,
   output: 'standalone',
     webpack: (config) => {
@@ -21,8 +33,5 @@ module.exports = {
     })
 
     return config
-  },
-  env: {
-    SETTINGS_API_ENDPOINT: process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT,
   },
 };
