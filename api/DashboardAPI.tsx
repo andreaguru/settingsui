@@ -1,6 +1,10 @@
 import {Clients} from "../types/api.types";
 
-const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
+import getConfig from "next/config";
+// Only holds serverRuntimeConfig and publicRuntimeConfig
+const {publicRuntimeConfig} = getConfig();
+
+const apiEndpoint = publicRuntimeConfig.apiEnv || publicRuntimeConfig.apiTest || "";
 
 /**
  *

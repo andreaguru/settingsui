@@ -6,9 +6,9 @@
   "scripts": {
     "server": "cd json-db && json-server db.json --port 3004 --middlewares file.js",
     "dev": "concurrently \"npm run server\" \"next dev\"",
-    "start:dev": "APP_ENV=$APP_ENV next start",
-    "start:production": "APP_ENV=${APP_ENV} next start",
-    "build": "APP_ENV=${APP_ENV} next build",
+    "start:dev": "next start",
+    "start:production": "next start",
+    "build": "next build",
     "eslint": "next lint",
     "eslint:fix": "next lint . --ext .ts --fix",
     "test": "jest",

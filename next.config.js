@@ -11,8 +11,11 @@ Object.keys(process.env).forEach((key) => {
 })
 
 module.exports = {
-  env,
   reactStrictMode: true,
+  publicRuntimeConfig: {
+    apiEnv: process.env.APP_ENV,
+    apiTest: "testapi"
+  },
   output: 'standalone',
     webpack: (config) => {
     config.module.rules.push({
