@@ -194,7 +194,7 @@ test("component is empty if empty clientList and empty filteredClientList is pas
         clientsList={[]}
         filteredClientsList={[]}
         filteredFeatures={[]}
-        featureStatus={null}/>);
+        featureStatus={""}/>);
 
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
@@ -204,7 +204,7 @@ test("component shows clientList if it is passed in the props", () => {
         clientsList={mockedClientList}
         filteredClientsList={[]}
         filteredFeatures={[]}
-        featureStatus={null}/>);
+        featureStatus={""}/>);
 
     expect(screen.queryByText("Wetterauer Zeitung")).toBeInTheDocument();
 });
@@ -214,7 +214,7 @@ test("component shows filteredClientList instead of clientList if the first is n
         clientsList={mockedClientList}
         filteredClientsList={mockedFilteredList}
         filteredFeatures={[]}
-        featureStatus={null}/>);
+        featureStatus={""}/>);
 
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
