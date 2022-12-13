@@ -13,7 +13,7 @@ Object.keys(process.env).forEach((key) => {
 module.exports = {
   reactStrictMode: true,
   publicRuntimeConfig: {
-    apiEnv: process.env.APP_ENV,
+    apiEnv: process.env.APP_ENV || || process.env.NODE_ENV,
     apiTest: "testapi"
   },
   output: 'standalone',
