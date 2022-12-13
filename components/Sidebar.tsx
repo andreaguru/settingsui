@@ -37,6 +37,8 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})
 }));
 
 /**
+ * Sidebar component. The two properties clients and setFilteredClients are just passed to IDComboSelect,
+ * please refer to IdComboSelect component.
  *
  * @constructor
  */

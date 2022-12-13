@@ -1,6 +1,10 @@
 import {Clients} from "./api.types";
 import {Dispatch, SetStateAction} from "react";
 
+/*
+Interfaces for the Components
+*/
+
 export interface MainContentProps {
     clientsList: Clients[]
     filteredClientsList: Clients[]

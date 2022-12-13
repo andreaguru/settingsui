@@ -1,12 +1,10 @@
 import {Clients} from "../types/api.types";
 
-import getConfig from "next/config";
-// Only holds serverRuntimeConfig and publicRuntimeConfig
-const {publicRuntimeConfig} = getConfig();
-
-const apiEndpoint = publicRuntimeConfig.apiEnv || publicRuntimeConfig.apiTest || "";
+// get the endpoint from the environment variable
+const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
 
 /**
+ * Get the complete list of the clients.
  *
  * @constructor
  */
