@@ -34,6 +34,9 @@ const mdTheme = createTheme({
 });
 
 /**
+ * The Home Page. This is currently the only page of the project.
+ * Here are set the states that are used throughout the all App.
+ * In useEffect are retrieved the infos that are needed when the App is loaded.
  *
  * @constructor
  */

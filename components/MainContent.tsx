@@ -7,6 +7,9 @@ import Grow from "@mui/material/Grow";
 import Fade from "@mui/material/Fade";
 
 /**
+ * MainContent component. It accepts 2 parameters:
+ * clientsList: the complete list of the clients
+ * filteredClientsList: the filtered list of the clients. This value is set through setFilteredClients, in index.js
  *
  * @constructor
  */

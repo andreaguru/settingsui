@@ -9,6 +9,11 @@ import Typography from "@mui/material/Typography";
 import {SyntheticEvent} from "react";
 
 /**
+ * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 4 properties:
+ * values: the list of options that have to be shown
+ * placeholder: the title at the top of the Component
+ * setFilteredValues: the setter Method used to update the values
+ * showDetailInfo: used to show extra infos (in brackets) after each option
  *
  * @constructor
  */

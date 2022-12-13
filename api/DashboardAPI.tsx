@@ -1,8 +1,10 @@
 import {Clients} from "../types/api.types";
 
-const apiEndpoint = process.env.SETTINGS_API_ENDPOINT || "";
+// get the endpoint from the environment variable
+const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
 
 /**
+ * Get the complete list of the clients.
  *
  * @constructor
  */

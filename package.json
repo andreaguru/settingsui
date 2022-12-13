@@ -7,7 +7,7 @@
     "server": "cd json-db && json-server db.json --port 3004 --middlewares file.js",
     "dev": "concurrently \"npm run server\" \"next dev\"",
     "start:dev": "next start",
-    "start:production": "NODE_ENV=production next start",
+    "start:production": "next start",
     "build": "next build",
     "eslint": "next lint",
     "eslint:fix": "next lint . --ext .tsx --fix",
@@ -17,9 +17,11 @@
   "dependencies": {
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.12",
+    "dotenv-flow": "^3.2.0",
     "next": "^12.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sharp": "^0.31.2",
     "webpack-strip-code": "^1.0.3"
   },
   "devDependencies": {
@@ -29,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "concurrently": "^5.2.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.26.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-next": "^13.0.1",

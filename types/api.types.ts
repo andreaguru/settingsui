@@ -1,3 +1,7 @@
+/*
+Interfaces for the APIs Data
+*/
+
 export interface Image {
     defaultContentImageRatio: string;
 }

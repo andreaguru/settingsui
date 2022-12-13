@@ -10,27 +10,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -40,27 +40,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": null,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": true,
-                "tag": false,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -70,27 +70,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": true,
-                "tag": null,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": true,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -100,27 +100,27 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": true,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
@@ -130,70 +130,37 @@ const mockedClientList:Clients[] = [
         "features": [
             {
                 "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "NONE",
+                "tag": "ENABLED",
             },
             {
                 "name": "inArticleReco",
-                "client": true,
-                "category": false,
-                "tag": false,
+                "client": "DISABLED",
+                "category": "ENABLED",
+                "tag": "ENABLED",
             },
             {
                 "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
+                "client": "ENABLED",
+                "category": "ENABLED_AND_DISABLED",
+                "tag": "NONE",
             },
             {
                 "name": "paywall",
-                "client": true,
-                "category": true,
-                "tag": true,
+                "client": "ENABLED",
+                "category": "DISABLED",
+                "tag": "ENABLED",
             },
         ],
     },
 ];
-
-const mockedFilteredList:Clients[] = [
-    {
-        "id": 241,
-        "name": "BlickPunkt Nienburg",
-        "features": [
-            {
-                "name": "traffective",
-                "client": true,
-                "category": false,
-                "tag": null,
-            },
-            {
-                "name": "inArticleReco",
-                "client": true,
-                "category": false,
-                "tag": null,
-            },
-            {
-                "name": "cleverPush",
-                "client": true,
-                "category": false,
-                "tag": null,
-            },
-            {
-                "name": "paywall",
-                "client": true,
-                "category": false,
-                "tag": null,
-            },
-        ],
-    },
-];
+const setFilteredValues = jest.fn();
 
 test("checkbox components are not rendered at page load", () => {
     render(<IDComboSelect
         values={mockedClientList}
         placeholder="Test"
-        filteredValues={[]}
         setFilteredValues={() => null} />);
 
     expect(screen.queryByTestId(241)).toBeFalsy();
@@ -203,7 +170,6 @@ test("placeholder is set and visible on rendered component", () => {
     render(<IDComboSelect
         values={mockedClientList}
         placeholder="Test"
-        filteredValues={[]}
         setFilteredValues={() => null} />);
 
     expect(screen.getByText("Test")).toBeInTheDocument();
@@ -213,7 +179,6 @@ test("checkbox components are rendered after select change", () => {
     render(<IDComboSelect
         values={mockedClientList}
         placeholder="Test"
-        filteredValues={[]}
         setFilteredValues={() => null} />);
 
     // focus on autocomplete and type "abc" as sample text
@@ -225,20 +190,20 @@ test("checkbox components are rendered after select change", () => {
     expect(screen.queryByTestId(241)).toBeInTheDocument();
 });
 
-test("checkbox are checked when their values are present in filteredClients", () => {
+test("handleChange behavior - setFilteredValues is called when a combobox option is clicked", () => {
     render(<IDComboSelect
         values={mockedClientList}
         placeholder="Test"
-        filteredValues={mockedFilteredList}
-        setFilteredValues={() => null} />);
+        setFilteredValues={setFilteredValues} />);
 
-    // focus on autocomplete and type "abc" as sample text
+    // focus on autocomplete and type "BlickPunkt" as text in order to retrieve the mocked value
     const autocomplete = screen.getByTestId("combobox");
     const input = within(autocomplete).getByRole("combobox");
     autocomplete.focus();
-    fireEvent.change(input, {target: {value: "abc"}});
+    fireEvent.change(input, {target: {value: "BlickPunkt"}});
+    fireEvent.click(screen.getByText("BlickPunkt Nienburg"));
 
-    expect(screen.queryByTestId(241)).toHaveClass("Mui-checked");
+    expect(setFilteredValues).toHaveBeenCalled();
 });
 
 /* Unit Tests */
