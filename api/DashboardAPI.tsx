@@ -1,7 +1,8 @@
 import {Clients} from "../types/api.types";
 
-// get the endpoint from the environment variable
+// get the endpoint from the environment variables
 const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
+const featuresEndpoint = process.env.NEXT_PUBLIC_FEATURES_API_ENDPOINT || "";
 
 /**
  * Get the complete list of the clients.
@@ -28,7 +29,7 @@ export async function getIntegratedClientList() {
  */
 export async function getFeaturesList() {
     try {
-        const response = await fetch("http://localhost:3004/features");
+        const response = await fetch(featuresEndpoint);
 
         // return features list
         return await response.json();
