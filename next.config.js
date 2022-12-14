@@ -1,21 +1,20 @@
 /** @type {import('next').NextConfig} */
-require('dotenv-flow').config({
-  node_env: process.env.APP_ENV || process.env.NODE_ENV || 'development'
-});
+require("dotenv").config({ path: `${process.env.ENV_FILE}` })
 
-const env = {}
-Object.keys(process.env).forEach((key) => {
-  if (key.startsWith('NEXT_PUBLIC_')) {
-    env[key] = process.env[key]
-  }
-})
+const dotenv = {
+	env: {},
+	serverRuntimeConfig: {
+		ENVIRONMENT: process.env.ENVIRONMENT,
+	},
+	publicRuntimeConfig: {
+		ENVIRONMENT: process.env.ENVIRONMENT,
+		ENV: process.env.ENVIRONMENT,
+	},
+}
 
 module.exports = {
   reactStrictMode: true,
-  publicRuntimeConfig: {
-    apiEnv: process.env.APP_ENV || process.env.NODE_ENV,
-    apiTest: "testapi"
-  },
+  ...dotenv,
   output: 'standalone',
     webpack: (config) => {
     config.module.rules.push({
