@@ -2,6 +2,7 @@ import {Card, CardContent, Typography} from "@mui/material";
 import {Clients, Feature} from "../types/api.types";
 import {MainContentProps} from "../types/componentProps.types";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import CircleIcon from "@mui/icons-material/Circle";
 import Grow from "@mui/material/Grow";
 import Fade from "@mui/material/Fade";
@@ -73,6 +74,7 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, featur
 
     return (
         <>
+            <Button variant="outlined">Outlined</Button>
             {shownClients.map((client: Clients, index: number) => (
                 <Fade in key={index}>
                     <Card>
