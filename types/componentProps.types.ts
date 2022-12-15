@@ -28,6 +28,10 @@ export interface IDComboSelectProps {
     showDetailInfo?: boolean
 }
 
+export interface IDInfoButtonProps {
+    align: string
+}
+
 export interface IDRadioGroupProps {
     handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
