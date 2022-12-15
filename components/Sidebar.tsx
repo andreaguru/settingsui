@@ -12,6 +12,10 @@ import MuiDrawer from "@mui/material/Drawer";
 import {SidebarProps} from "../types/componentProps.types";
 import IDComboSelect from "./IDComboSelect";
 
+/*
+We customise the MUI Component MuiDrawer in order to apply custom styles/effects to the sidebar.
+Customisation is performed via styled utility (https://mui.com/system/styled/)
+*/
 const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
     "& .MuiDrawer-paper": {
         position: "relative",
@@ -37,8 +41,8 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})
 }));
 
 /**
- * Sidebar component. The two properties clients and setFilteredClients are just passed to IDComboSelect,
- * please refer to IdComboSelect component.
+ * Sidebar component. The two properties clients and setFilteredClients are just passed to IDComboSelect.
+ * the state open is used to manage the status of the sidebar (open/closed)
  *
  * @constructor
  */
@@ -60,6 +64,7 @@ function Sidebar(
                     px: [1],
                 }}
             >
+                {/* check the state of the component. If open, show arrow-left, if not open show arrow-right */}
                 <IconButton onClick={toggleDrawer}>{open ? <ChevronLeft/> : <ChevronRight/>}</IconButton>
             </Toolbar>
 

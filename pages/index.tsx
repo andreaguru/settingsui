@@ -19,15 +19,32 @@ import {getIntegratedClientList} from "../api/DashboardAPI";
 
 import {Clients} from "../types/api.types";
 
+const headerHeight = "80px";
+
+// create MUI Theme and assign custom style rules for each MUI component
 const mdTheme = createTheme({
     components: {
-        // Name of the component
-        MuiChip: {
+        // Style the main container
+        MuiContainer: {
             styleOverrides: {
-                // Name of the slot
-                deleteIcon: {
-                    // Some CSS
-                },
+                root: ({ownerState, theme}) => ({
+                    ...(ownerState.component === "main" && {
+                        backgroundColor: theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900],
+                        flexGrow: 1,
+                        height: `calc(100vh - ${headerHeight})`,
+                        overflow: "auto",
+                        paddingTop: 10,
+                        paddingBottom: 10,
+                    }),
+                }),
+            },
+        },
+        // Style the AppBar
+        MuiAppBar: {
+            styleOverrides: {
+                root: ({theme}) => ({
+                    zIndex: theme.zIndex.drawer + 1,
+                }),
             },
         },
     },
@@ -35,8 +52,10 @@ const mdTheme = createTheme({
 
 /**
  * The Home Page. This is currently the only page of the project.
- * Here are set the states that are used throughout the all App.
- * In useEffect are retrieved the infos that are needed when the App is loaded.
+ * Here are declared the states that are used throughout the App.
+ * The states can be updated via setters (e.g. setClients).
+ * The setters can be passed as props to children components and called from there.
+ * In useEffect we retrieve the infos that are needed when the App is loaded.
  *
  * @constructor
  */
@@ -58,11 +77,9 @@ function Home() {
 
     return (
         <ThemeProvider theme={mdTheme}>
-            <Box sx={{display: "flex", pt: 10}}>
+            <Box sx={{display: "flex", pt: headerHeight}}>
                 <CssBaseline/>
-                <MuiAppBar position="absolute" sx={{
-                    zIndex: (theme) => (theme.zIndex.drawer + 1),
-                }}>
+                <MuiAppBar position="absolute">
                     <Toolbar>
                         <List component="nav">
                             <Image alt="" layout="fixed" src={logo} width={50} height={50}/>
@@ -77,23 +94,11 @@ function Home() {
                     filteredClients={filteredClients}
                     setFilteredClients={setFilteredClients} />
 
-                <Box component="main" sx={{
-                    backgroundColor: (theme) => (
-                        theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900]
-                    ),
-                    flexGrow: 1,
-                    height: "100vh",
-                    overflow: "auto",
-                }}
-                >
-                    <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12} md={12} lg={12}>
-                                <MainContent clientsList={clients} filteredClientsList={filteredClients} />
-                            </Grid>
-                        </Grid>
-                    </Container>
-                </Box>
+                <Container component="main" maxWidth="lg">
+                    <Grid item xs={12}>
+                        <MainContent clientsList={clients} filteredClientsList={filteredClients} />
+                    </Grid>
+                </Container>
             </Box>
         </ThemeProvider>
     );
