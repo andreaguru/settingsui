@@ -47,6 +47,14 @@ const mdTheme = createTheme({
                 }),
             },
         },
+        // Style the Autcomplete
+        MuiAutocomplete: {
+            styleOverrides: {
+                endAdornment: {
+                    top: 0,
+                },
+            },
+        },
     },
 });
 
