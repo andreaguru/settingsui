@@ -15,7 +15,8 @@ import IDInfoButton from "./IDInfoButton";
  * @constructor
  */
 function MainContent({clientsList, filteredClientsList, filteredFeatures, featureStatus}: MainContentProps) {
-    const shownClients = filteredClientsList.length ? filteredClientsList : clientsList;
+    const filteredClientsListSize = filteredClientsList.length;
+    const shownClients = filteredClientsListSize ? filteredClientsList : clientsList;
 
     /**
      *
@@ -74,11 +75,20 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, featur
 
     return (
         <>
+            <Typography variant="h5" component="h1">
+                Mandanten
+            </Typography>
+            {filteredClientsListSize || clientsList.length} von {clientsList.length}
             <IDInfoButton align="right"/>
             {shownClients.map((client: Clients, index: number) => (
                 <Fade in key={index}>
                     <Card>
                         <CardContent>
+                            <Typography color="text.secondary" gutterBottom> </Typography>
+                            <Typography variant="h5" component="div">
+                                {client.name} ({client.id})
+                            </Typography>
+                            <Typography variant="body2"> </Typography>
                             {client.features &&
                             showSelectedFeatures(client.features).map((feature:Feature, index:number) => (
                                 <Grow in key={index}>
@@ -90,11 +100,6 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, featur
                                     </Box>
                                 </Grow>
                             ))}
-                            <Typography color="text.secondary" gutterBottom> </Typography>
-                            <Typography variant="h5" component="div">
-                                {client.name}
-                            </Typography>
-                            <Typography variant="body2"> </Typography>
                         </CardContent>
                     </Card>
                 </Fade>

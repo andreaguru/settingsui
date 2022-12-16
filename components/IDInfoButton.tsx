@@ -3,6 +3,7 @@ import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import HelpIcon from "@mui/icons-material/Help";
 import {useState} from "react";
 import {IDInfoButtonProps} from "../types/componentProps.types";
 
@@ -31,7 +32,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
             display: "flex",
             justifyContent: align,
         }}>
-            <Button aria-describedby={id} variant="contained" onClick={handleClick}>Outlined</Button>
+            <Button aria-describedby={id} variant="text" startIcon={<HelpIcon />} onClick={handleClick}>Hilfe</Button>
             <Popover
                 id={id}
                 open={open}

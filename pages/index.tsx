@@ -31,6 +31,7 @@ const mdTheme = createTheme({
                     ...(ownerState.component === "main" && {
                         backgroundColor: theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900],
                         flexGrow: 1,
+                        position: "relative",
                         height: `calc(100vh - ${headerHeight})`,
                         overflow: "auto",
                         paddingTop: 10,
@@ -52,6 +53,18 @@ const mdTheme = createTheme({
             styleOverrides: {
                 endAdornment: {
                     top: 0,
+                },
+            },
+        },
+        // Style the Info Button
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    position: "absolute",
+                    top: "0",
+                },
+                text: {
+                    textTransform: "initial",
                 },
             },
         },
