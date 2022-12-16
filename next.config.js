@@ -8,7 +8,6 @@ const dotenv = {
 	},
 	publicRuntimeConfig: {
 		ENVIRONMENT: process.env.ENVIRONMENT,
-		ENV: process.env.ENVIRONMENT,
 	},
 }
 
