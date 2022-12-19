@@ -53,7 +53,8 @@ function Home() {
 
     return (
         <ThemeProvider theme={edidTheme}>
-            <Box sx={{display: "flex", pt: headerHeight}}>
+            {/* use the variable declared in the createTheme to get the height of the header */}
+            <Box sx={{display: "flex", pt: edidTheme.variables.headerMarginTop}}>
                 <CssBaseline/>
                 <MuiAppBar position="absolute">
                     <Toolbar>
