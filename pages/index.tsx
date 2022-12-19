@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import {createTheme, ThemeProvider} from "@mui/material/styles";
+import {ThemeProvider} from "@mui/material/styles";
+import {edidTheme} from "../themes/edid";
 import CssBaseline from "@mui/material/CssBaseline";
 
 // import MUI Components
@@ -18,45 +19,6 @@ import MuiAppBar from "@mui/material/AppBar";
 import {getIntegratedClientList} from "../api/DashboardAPI";
 
 import {Clients} from "../types/api.types";
-
-const headerHeight = "80px";
-
-// create MUI Theme and assign custom style rules for each MUI component
-const mdTheme = createTheme({
-    components: {
-        // Style the main container
-        MuiContainer: {
-            styleOverrides: {
-                root: ({ownerState, theme}) => ({
-                    ...(ownerState.component === "main" && {
-                        backgroundColor: theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900],
-                        flexGrow: 1,
-                        height: `calc(100vh - ${headerHeight})`,
-                        overflow: "auto",
-                        paddingTop: 10,
-                        paddingBottom: 10,
-                    }),
-                }),
-            },
-        },
-        // Style the AppBar
-        MuiAppBar: {
-            styleOverrides: {
-                root: ({theme}) => ({
-                    zIndex: theme.zIndex.drawer + 1,
-                }),
-            },
-        },
-        // Style the Autcomplete
-        MuiAutocomplete: {
-            styleOverrides: {
-                endAdornment: {
-                    top: 0,
-                },
-            },
-        },
-    },
-});
 
 /**
  * The Home Page. This is currently the only page of the project.
@@ -84,8 +46,9 @@ function Home() {
     }, []);
 
     return (
-        <ThemeProvider theme={mdTheme}>
-            <Box sx={{display: "flex", pt: headerHeight}}>
+        <ThemeProvider theme={edidTheme}>
+            {/* use the variable declared in the createTheme to get the height of the header */}
+            <Box sx={{display: "flex", pt: edidTheme.variables.headerMarginTop}}>
                 <CssBaseline/>
                 <MuiAppBar position="absolute">
                     <Toolbar>
