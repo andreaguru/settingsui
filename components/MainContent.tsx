@@ -1,8 +1,9 @@
-import {Card, CardContent, Typography} from "@mui/material";
+import {Card, CardContent, Paper, Typography} from "@mui/material";
 import {Clients, Feature} from "../types/api.types";
 import {MainContentProps} from "../types/componentProps.types";
-import Box from "@mui/material/Box";
-import CircleIcon from "@mui/icons-material/Circle";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import Grow from "@mui/material/Grow";
 import Fade from "@mui/material/Fade";
 import IDInfoButton from "./IDInfoButton";
@@ -92,12 +93,12 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, featur
                             {client.features &&
                             showSelectedFeatures(client.features).map((feature:Feature, index:number) => (
                                 <Grow in key={index}>
-                                    <Box display="inline-block" sx={{m: 2}}>
-                                        <CircleIcon color={showFeatureStatus(feature.client)} />
-                                        <CircleIcon color={showFeatureStatus(feature.category)} />
-                                        <CircleIcon color={showFeatureStatus(feature.tag)} />
+                                    <Paper component={"div"} sx={{m: 2}}>
+                                        <ApartmentIcon color={showFeatureStatus(feature.client)} />
+                                        <AccountTreeIcon color={showFeatureStatus(feature.category)} />
+                                        <LocalOfferIcon color={showFeatureStatus(feature.tag)} />
                                         <span>{feature.name}</span>
-                                    </Box>
+                                    </Paper>
                                 </Grow>
                             ))}
                         </CardContent>
