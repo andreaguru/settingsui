@@ -30,6 +30,9 @@ export const edidTheme = createTheme({
         headerMarginTop: "80px",
     },
     palette: {
+        secondary: {
+            main: "#EEEEEE",
+        },
         success: {
             main: "#52A959",
         },
@@ -83,6 +86,28 @@ export const edidTheme = createTheme({
                 text: {
                     textTransform: "initial",
                 },
+            },
+        },
+        // Style the Card (see MainContent.tsx)
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    margin: "20px 0",
+                },
+            },
+        },
+        // Style the Icon Button when is a div component (see MainContent.tsx)
+        MuiIconButton: {
+            styleOverrides: {
+                root: ({ownerState, theme}) => ({
+                    ...(ownerState.component === "div" && {
+                        display: "flex",
+                        margin: "10px 10px 10px 0",
+                        padding: "10px",
+                        borderRadius: "4px",
+                        backgroundColor: theme.palette.secondary.main,
+                    }),
+                }),
             },
         },
     },
