@@ -1,4 +1,6 @@
 import {Card, CardContent, Typography} from "@mui/material";
+
+// import typescript Interfaces
 import {Clients} from "../types/api.types";
 import {MainContentProps} from "../types/componentProps.types";
 

@@ -11,11 +11,12 @@
     "build:production": "ENV_FILE=envs/.env.production next build",
     "start:production": "ENV_FILE=envs/.env.production next start",
     "eslint": "next lint",
-    "eslint:fix": "next lint . --ext .ts --fix",
+    "eslint:fix": "next lint . --ext .tsx --fix",
     "test": "jest",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "dependencies": {
+    "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.12",
     "dotenv": "^16.0.3",

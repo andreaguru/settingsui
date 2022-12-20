@@ -1,23 +1,31 @@
 import {useEffect, useState} from "react";
 import {ThemeProvider} from "@mui/material/styles";
 import {edidTheme} from "../themes/edid";
-import CssBaseline from "@mui/material/CssBaseline";
+
+// import Fonts
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 // import MUI Components
+import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import MuiAppBar from "@mui/material/AppBar";
 
-import logo from "../assets/eddi-logo.jpg";
+// import custom Components
+import logo from "../assets/edid-logo.jpg";
 import Image from "next/image";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
-import MuiAppBar from "@mui/material/AppBar";
 import {getIntegratedClientList} from "../api/DashboardAPI";
 
+// import typescript Interfaces
 import {Clients} from "../types/api.types";
 
 /**

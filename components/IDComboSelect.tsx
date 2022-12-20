@@ -1,12 +1,14 @@
 import FormControl from "@mui/material/FormControl";
-import {Clients} from "../types/api.types";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import List from "@mui/material/List";
-import {IDComboSelectProps} from "../types/componentProps.types";
 import Typography from "@mui/material/Typography";
 import {SyntheticEvent} from "react";
+
+// import typescript Interfaces
+import {Clients} from "../types/api.types";
+import {IDComboSelectProps} from "../types/componentProps.types";
 
 /**
  * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 4 properties:
@@ -26,7 +28,7 @@ function IDComboSelect({values, placeholder, setFilteredValues, showDetailInfo}:
     return (
         <List component="nav">
             <FormControl sx={{m: 1, width: "90%"}}>
-                <Typography component="h2" sx={{mb: 2}}>{placeholder}</Typography>
+                <Typography component="label">{placeholder}</Typography>
                 {values.length > 0 && (
                     <Autocomplete
                         multiple
