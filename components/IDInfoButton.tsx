@@ -1,10 +1,11 @@
-import {MouseEvent} from "react";
+import {MouseEvent, useState} from "react";
 import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import HelpIcon from "@mui/icons-material/Help";
-import {useState} from "react";
+
+// import typescript Interfaces
 import {IDInfoButtonProps} from "../types/componentProps.types";
 
 /**
@@ -32,7 +33,11 @@ function IDInfoButton({align}:IDInfoButtonProps) {
             display: "flex",
             justifyContent: align,
         }}>
-            <Button aria-describedby={id} variant="text" startIcon={<HelpIcon />} onClick={handleClick}>Hilfe</Button>
+            <Button
+                aria-describedby={id}
+                variant="text" color="info"
+                startIcon={<HelpIcon />}
+                onClick={handleClick}>Hilfe</Button>
             <Popover
                 id={id}
                 open={open}

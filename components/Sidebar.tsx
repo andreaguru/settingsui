@@ -1,50 +1,36 @@
 import {useEffect, useState} from "react";
 
 // import MUI Components
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import ChevronLeft from "@mui/icons-material/ChevronLeft";
-import ChevronRight from "@mui/icons-material/ChevronRight";
+import FilterAltSharpIcon from "@mui/icons-material/FilterAltSharp";
 import styled from "@mui/material/styles/styled";
 import MuiDrawer from "@mui/material/Drawer";
-import {getFeaturesList} from "../api/DashboardAPI";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
-// import Interfaces to check data type in Typescript
-import {SidebarProps} from "../types/componentProps.types";
+// import custom Components
+import {getFeaturesList} from "../api/DashboardAPI";
 import IDComboSelect from "./IDComboSelect";
 import IDRadioGroup from "./IDRadioGroup";
 
+// import Interfaces to check data type in Typescript
+import {SidebarProps} from "../types/componentProps.types";
+
 /*
 We customise the MUI Component MuiDrawer in order to apply custom styles/effects to the sidebar.
-Customisation is performed via styled utility (https://mui.com/system/styled/)
+Components customisation is performed via styled utility (https://mui.com/system/styled/)
 */
-const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== "open"})(({theme, open}) => ({
+const Drawer = styled(MuiDrawer)(() => ({
     "& .MuiDrawer-paper": {
         position: "relative",
         whiteSpace: "nowrap",
         width: 300,
-        transition: theme.transitions.create("width", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
         boxSizing: "border-box",
-        ...(!open && {
-            overflowX: "hidden",
-            transition: theme.transitions.create("width", {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-            }),
-            width: theme.spacing(7),
-            [theme.breakpoints.up("sm")]: {
-                width: theme.spacing(9),
-            },
-        }),
     },
 }));
 
 /**
  * Sidebar component. The two properties clients and setFilteredClients are just passed to IDComboSelect.
- * the state open is used to manage the status of the sidebar (open/closed)
+ * in useEffect we retrieve the complete Featurelist and assign it to the status features
  *
  * @constructor
  */
@@ -54,11 +40,6 @@ function Sidebar(
         setFilteredFeatures,
         handleFeatureStatusChange}: SidebarProps
 ) {
-    const [open, setOpen] = useState(true);
-    const toggleDrawer = () => {
-        setOpen(!open);
-    };
-
     // get the complete list of Features
     const [features, setFeatures] = useState([]);
 
@@ -75,31 +56,28 @@ function Sidebar(
     }, []);
 
     return (
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent">
             <Toolbar
                 sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "flex-end",
+                    justifyContent: "flex-start",
                     px: [1],
                 }}
             >
-                {/* check the state of the component. If open, show arrow-left, if not open show arrow-right */}
-                <IconButton onClick={toggleDrawer}>{open ? <ChevronLeft/> : <ChevronRight/>}</IconButton>
+                <FilterAltSharpIcon fontSize="medium" /> <Typography marginLeft={1} variant="h6">Filter</Typography>
             </Toolbar>
-
             <IDComboSelect values={clients}
-                placeholder="ClientID / Name"
+                placeholder="Mandant"
                 setFilteredValues={setFilteredClients}
                 showDetailInfo={true}/>
 
             <IDComboSelect values={features}
-                placeholder="Features"
+                placeholder="Feature"
                 setFilteredValues={setFilteredFeatures}
                 showDetailInfo={true}/>
 
             <IDRadioGroup handleFeatureStatusChange={handleFeatureStatusChange} />
-
         </Drawer>
     );
 }

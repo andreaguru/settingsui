@@ -27,6 +27,12 @@
                "client": "ENABLED",
                "category": "DISABLED",
                "tag": "ENABLED"
+            },
+            {
+               "name": "glomex",
+               "client": "NONE",
+               "category": "NONE",
+               "tag": "NONE"
             }
         ]
     },
@@ -56,6 +62,12 @@
                "name": "paywall",
                "client": "ENABLED",
                "category": "DISABLED",
+               "tag": "ENABLED"
+            },
+            {
+               "name": "glomex",
+               "client": "ENABLED",
+               "category": "ENABLED",
                "tag": "ENABLED"
             }
         ]
@@ -87,6 +99,12 @@
                "client": "ENABLED",
                "category": "ENABLED_AND_DISABLED",
                "tag": "ENABLED"
+            },
+            {
+               "name": "glomex",
+               "client": "DISABLED",
+               "category": "DISABLED",
+               "tag": "DISABLED"
             }
         ]
     },
@@ -117,6 +135,12 @@
                "client": "ENABLED",
                "category": "DISABLED",
                "tag": "ENABLED"
+            },
+            {
+               "name": "glomex",
+               "client": "ENABLED_AND_DISABLED",
+               "category": "NONE",
+               "tag": "NONE"
             }
         ]
     },
@@ -147,6 +171,12 @@
                "client": "ENABLED",
                "category": "DISABLED",
                "tag": "ENABLED"
+            },
+            {
+               "name": "glomex",
+               "client": "NONE",
+               "category": "ENABLED",
+               "tag": "NONE"
             }
         ]
     },
@@ -177,6 +207,12 @@
                "client": "ENABLED_AND_DISABLED",
                "category": "DISABLED",
                "tag": "NONE"
+            },
+            {
+               "name": "glomex",
+               "client": "NONE",
+               "category": "NONE",
+               "tag": "NONE"
             }
         ]
     }
@@ -197,6 +233,10 @@
     {
       "id": 4,
       "name": "paywall"
+    },
+    {
+      "id": 5,
+      "name": "glomex"
     }
   ]
 }

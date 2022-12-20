@@ -1,6 +1,4 @@
 import {Card, CardContent, Typography} from "@mui/material";
-import {Clients, Feature} from "../types/api.types";
-import {MainContentProps} from "../types/componentProps.types";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
@@ -9,6 +7,10 @@ import Fade from "@mui/material/Fade";
 import IDInfoButton from "./IDInfoButton";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+
+// import typescript Interfaces
+import {Clients, Feature} from "../types/api.types";
+import {MainContentProps} from "../types/componentProps.types";
 
 /**
  * MainContent component. It accepts 2 parameters:
@@ -87,19 +89,17 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, featur
                 <Fade in key={index}>
                     <Card>
                         <CardContent>
-                            <Typography color="text.secondary" gutterBottom> </Typography>
-                            <Typography variant="h5" component="div">
+                            <Typography variant="body1" component="h2">
                                 {client.name} ({client.id})
                             </Typography>
-                            <Typography variant="body2"> </Typography>
                             <Box sx={{display: "flex", flexWrap: "wrap"}}>
                                 {client.features &&
                                 showSelectedFeatures(client.features).map((feature:Feature, index:number) => (
                                     <Grow in key={index}>
-                                        <IconButton component="div" >
-                                            <ApartmentIcon color={showFeatureStatus(feature.client)} />
-                                            <AccountTreeIcon color={showFeatureStatus(feature.category)} />
-                                            <LocalOfferIcon color={showFeatureStatus(feature.tag)} />
+                                        <IconButton component="div">
+                                            <ApartmentIcon color={showFeatureStatus(feature.client)} />&nbsp;
+                                            <AccountTreeIcon color={showFeatureStatus(feature.category)} />&nbsp;
+                                            <LocalOfferIcon color={showFeatureStatus(feature.tag)} />&nbsp;
                                             <Typography variant="body2">{feature.name}</Typography>
                                         </IconButton>
                                     </Grow>

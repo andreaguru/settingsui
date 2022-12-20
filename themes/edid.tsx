@@ -30,8 +30,14 @@ export const edidTheme = createTheme({
         headerMarginTop: "80px",
     },
     palette: {
+        primary: {
+            main: "#000000",
+        },
         secondary: {
             main: "#EEEEEE",
+        },
+        info: {
+            main: "#1976D2",
         },
         success: {
             main: "#52A959",
@@ -92,7 +98,7 @@ export const edidTheme = createTheme({
         MuiCard: {
             styleOverrides: {
                 root: {
-                    margin: "20px 0",
+                    margin: "30px 0",
                 },
             },
         },
@@ -101,13 +107,22 @@ export const edidTheme = createTheme({
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
                     ...(ownerState.component === "div" && {
+                        color: theme.palette.primary.main,
                         display: "flex",
                         margin: "10px 10px 10px 0",
-                        padding: "10px",
+                        padding: "0 8px",
                         borderRadius: "4px",
                         backgroundColor: theme.palette.secondary.main,
                     }),
                 }),
+            },
+        },
+        // Style the Form Control Label
+        MuiFormControlLabel: {
+            styleOverrides: {
+                label: {
+                    fontSize: ".88em",
+                },
             },
         },
     },
