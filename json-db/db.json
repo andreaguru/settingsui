@@ -138,7 +138,7 @@
             },
             {
                "name": "glomex",
-               "client": "ENABLED_AND_DISABLED",
+               "client": "ENABLED",
                "category": "NONE",
                "tag": "NONE"
             }
@@ -204,7 +204,7 @@
             },
             {
                "name": "paywall",
-               "client": "ENABLED_AND_DISABLED",
+               "client": "NONE",
                "category": "DISABLED",
                "tag": "NONE"
             },
