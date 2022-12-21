@@ -19,7 +19,7 @@ import {IDComboSelectProps} from "../types/componentProps.types";
  *
  * @constructor
  */
-function IDComboSelect({values, placeholder, setFilteredValues, showDetailInfo}: IDComboSelectProps) {
+function IDComboSelect({values, placeholder, setFilteredValues, checkIfHasFeatures, showDetailInfo}: IDComboSelectProps) {
     const handleChange = (event: SyntheticEvent, value:Clients[]) => {
         // check if the selected element is a React Node element and if contains a value inside its props
         setFilteredValues(value);
@@ -39,16 +39,21 @@ function IDComboSelect({values, placeholder, setFilteredValues, showDetailInfo}:
                         disableCloseOnSelect={true}
                         isOptionEqualToValue={(option, value) => option.name === value.name}
                         getOptionLabel={(option) => option.name}
+                        ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
                         renderOption={(props, option, {selected}) => (
-                            <li {...props}>
+                            <li {...props} >
                                 <Checkbox
                                     data-testid={option.id}
                                     style={{marginRight: 8}}
                                     checked={selected}
+                                    size="small"
                                 />
                                 {option.name + (showDetailInfo ? ` (${option.id})` : "")}
                             </li>
                         )}
+                        getOptionDisabled={(option) =>
+                            checkIfHasFeatures === true && !option.hasFeatures
+                        }
                         renderInput={(params) => (
                             <TextField {...params} placeholder="Select a value" variant="standard" />
                         )}

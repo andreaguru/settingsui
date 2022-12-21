@@ -18,12 +18,15 @@ function IDRadioGroup({handleFeatureStatusChange}:IDRadioGroupProps) {
                 onChange={handleFeatureStatusChange}
                 defaultValue=""
                 name="radio-buttons-group">
-                <FormControlLabel value="" control={<Radio color="info" size="small" />} label="keine Auswahl" />
-                <FormControlLabel value="ACTIVE" control={<Radio color="info" size="small" />} label="aktiviert" />
-                <FormControlLabel value="INACTIVE"
-                    color="info"
+                <FormControlLabel value=""
                     control={<Radio size="small" />}
-                    label="deaktiviert / nicht konfiguriert" />
+                    label={<Typography variant="body2">keine Auswahl</Typography>} />
+                <FormControlLabel value="ACTIVE"
+                    control={<Radio size="small" />}
+                    label={<Typography variant="body2">aktiviert</Typography>} />
+                <FormControlLabel value="INACTIVE"
+                    control={<Radio size="small" />}
+                    label={<Typography variant="body2">deaktiviert / nicht konfiguriert</Typography>} />
             </RadioGroup>
         </FormControl>
     );

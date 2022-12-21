@@ -22,9 +22,10 @@ export interface SidebarProps {
 }
 
 export interface IDComboSelectProps {
-    values: Clients[] | FeaturesList[]
+    values: Clients[]
     placeholder: string
-    setFilteredValues: Dispatch<SetStateAction<Clients[]|FeaturesList[]>>
+    setFilteredValues: Dispatch<SetStateAction<Clients[]>> | Dispatch<SetStateAction<FeaturesList[]>>
+    checkIfHasFeatures?: boolean
     showDetailInfo?: boolean
 }
 

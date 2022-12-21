@@ -22,6 +22,12 @@ You always can start the web application in two different ways:
 ## Datenbank auf lokal starten
 
 Um die API auf Lokal zu mocken, wird json-server benutzt: https://github.com/typicode/json-server
+Zuerst muss man json-server global installieren:
+
+```sh
+npm install -g json-server
+```
+
 Wenn man npm run dev ruft, wird zuerst dieses Befehl aufgeruft:
 
 ```sh

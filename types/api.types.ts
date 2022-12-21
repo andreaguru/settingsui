@@ -20,10 +20,12 @@ export interface Feature {
 export interface Clients {
     id: number;
     name: string;
-    features?: Feature[];
+    features: Feature[];
+    hasFeatures?: boolean;
 }
 
 export interface FeaturesList {
     id: number;
     name: string;
 }
+

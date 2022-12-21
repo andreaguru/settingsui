@@ -12,14 +12,15 @@ declare module "@mui/material/styles" {
         headerMarginTop: string;
     };
   }
-
   interface Palette {
     neutral: Palette["primary"];
+    lightGrey: Palette["primary"];
   }
 
   // allow configuration using `createTheme`
   interface PaletteOptions {
     neutral?: PaletteOptions["primary"];
+    lightGrey?: PaletteOptions["primary"];
   }
 }
 
@@ -31,13 +32,10 @@ export const edidTheme = createTheme({
     },
     palette: {
         primary: {
-            main: "#000000",
+            main: "#1976D2",
         },
         secondary: {
-            main: "#EEEEEE",
-        },
-        info: {
-            main: "#1976D2",
+            main: "#212121",
         },
         success: {
             main: "#52A959",
@@ -47,6 +45,9 @@ export const edidTheme = createTheme({
         },
         neutral: {
             main: "#A5A5A5",
+        },
+        lightGrey: {
+            main: "#EEEEEE",
         },
     },
     components: {
@@ -71,6 +72,7 @@ export const edidTheme = createTheme({
             styleOverrides: {
                 root: ({theme}) => ({
                     zIndex: theme.zIndex.drawer + 1,
+                    backgroundColor: theme.palette.secondary.main,
                 }),
             },
         },
@@ -107,22 +109,13 @@ export const edidTheme = createTheme({
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
                     ...(ownerState.component === "div" && {
-                        color: theme.palette.primary.main,
                         display: "flex",
                         margin: "10px 10px 10px 0",
                         padding: "0 8px",
                         borderRadius: "4px",
-                        backgroundColor: theme.palette.secondary.main,
+                        backgroundColor: theme.palette.lightGrey.main,
                     }),
                 }),
-            },
-        },
-        // Style the Form Control Label
-        MuiFormControlLabel: {
-            styleOverrides: {
-                label: {
-                    fontSize: ".88em",
-                },
             },
         },
     },

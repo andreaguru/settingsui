@@ -35,7 +35,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
         }}>
             <Button
                 aria-describedby={id}
-                variant="text" color="info"
+                variant="text"
                 startIcon={<HelpIcon />}
                 onClick={handleClick}>Hilfe</Button>
             <Popover

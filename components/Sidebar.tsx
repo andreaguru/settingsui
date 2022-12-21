@@ -70,12 +70,13 @@ function Sidebar(
             <IDComboSelect values={clients}
                 placeholder="Mandant"
                 setFilteredValues={setFilteredClients}
+                checkIfHasFeatures={true}
                 showDetailInfo={true}/>
 
             <IDComboSelect values={features}
                 placeholder="Feature"
                 setFilteredValues={setFilteredFeatures}
-                showDetailInfo={true}/>
+                showDetailInfo={false}/>
 
             <IDRadioGroup handleFeatureStatusChange={handleFeatureStatusChange} />
         </Drawer>

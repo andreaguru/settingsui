@@ -80,21 +80,18 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, featur
 
     return (
         <>
-            <Typography variant="h5" component="h1">
-                Mandanten
-            </Typography>
+            <Typography variant="h6" component="h6">Mandanten</Typography>
             {filteredClientsListSize || clientsList.length} von {clientsList.length}
             <IDInfoButton align="right"/>
             {shownClients.map((client: Clients, index: number) => (
-                <Fade in key={index}>
+                client.hasFeatures && client.features && <Fade in key={index}>
                     <Card>
                         <CardContent>
                             <Typography variant="body1" component="h2">
                                 {client.name} ({client.id})
                             </Typography>
                             <Box sx={{display: "flex", flexWrap: "wrap"}}>
-                                {client.features &&
-                                showSelectedFeatures(client.features).map((feature:Feature, index:number) => (
+                                {showSelectedFeatures(client.features).map((feature:Feature, index:number) => (
                                     <Grow in key={index}>
                                         <IconButton component="div">
                                             <ApartmentIcon color={showFeatureStatus(feature.client)} />&nbsp;

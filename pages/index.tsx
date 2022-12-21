@@ -26,7 +26,7 @@ import MainContent from "../components/MainContent";
 import {getIntegratedClientList} from "../api/DashboardAPI";
 
 // import typescript Interfaces
-import {Clients, FeaturesList} from "../types/api.types";
+import {Clients, Feature, FeaturesList} from "../types/api.types";
 
 /**
  * The Home Page. This is currently the only page of the project.
@@ -38,7 +38,7 @@ import {Clients, FeaturesList} from "../types/api.types";
  * @constructor
  */
 function Home() {
-    const [clients, setClients] = useState<[]>([]);
+    const [clients, setClients] = useState<Clients[]>([]);
     const [filteredClients, setFilteredClients] = useState<Clients[]>([]);
     const [filteredFeatures, setFilteredFeatures] = useState<FeaturesList[]>([]);
     const [featureStatus, setFeatureStatus] = useState<string>("NONE");
@@ -47,11 +47,57 @@ function Home() {
         setFeatureStatus((event.target as HTMLInputElement).value);
     };
 
+    const showFeaturesPerStatus = (featuresPerClient:Feature[]) => {
+        switch (featureStatus) {
+        case "ACTIVE":
+            return featuresPerClient.filter(
+                (feat:Feature) => {
+                    return Object.values(feat).includes("ENABLED") ||
+                       Object.values(feat).includes("ENABLED_AND_DISABLED");
+                }
+            );
+        case "INACTIVE":
+            return featuresPerClient.filter(
+                (feat:Feature) => {
+                    return (Object.values(feat).includes("DISABLED") ||
+                        Object.values(feat).includes("ENABLED_AND_DISABLED") ||
+                        Object.values(feat).every((value) => value === "NONE"));
+                }
+            );
+        case "":
+            return featuresPerClient;
+        default:
+            return featuresPerClient;
+        }
+    };
+
+    const showSelectedFeatures = (featuresPerClient:Feature[]) => {
+        // check features status
+        const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient);
+
+        if (filteredFeatures.length > 0) {
+            return (
+                featuresFilteredPerStatus.filter((feat:Feature) => filteredFeatures.some((el) => el.name === feat.name))
+            );
+        } else return featuresFilteredPerStatus;
+    };
+
+    useEffect(() => {
+        const newState:Clients[] = clients.map((client:Clients) => {
+            return {...client, hasFeatures: showSelectedFeatures(client.features).length > 0};
+        });
+        setClients(newState);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [featureStatus, filteredFeatures]);
+
     useEffect(() => {
         const data = getIntegratedClientList();
         data.then((data) => {
             if (data) {
-                setClients(data);
+                const newState = data.map((client:Clients) => {
+                    return {...client, hasFeatures: true};
+                });
+                setClients(newState);
             }
         })
             .catch((error) => {
