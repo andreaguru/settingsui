@@ -1,4 +1,4 @@
-import {Clients, FeaturesList} from "./api.types";
+import {Clients, Feature, FeaturesList} from "./api.types";
 import {ChangeEvent, Dispatch, SetStateAction} from "react";
 
 /*
@@ -9,6 +9,7 @@ export interface MainContentProps {
     clientsList: Clients[]
     filteredClientsList: Clients[]
     filteredFeatures: FeaturesList[]
+    showSelectedFeatures: (featuresPerClient: Feature[]) => Feature[]
     featureStatus: string
 }
 

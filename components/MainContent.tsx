@@ -19,49 +19,9 @@ import {MainContentProps} from "../types/componentProps.types";
  *
  * @constructor
  */
-function MainContent({clientsList, filteredClientsList, filteredFeatures, featureStatus}: MainContentProps) {
+function MainContent({clientsList, filteredClientsList, showSelectedFeatures, featureStatus}: MainContentProps) {
     const filteredClientsListSize = filteredClientsList.length;
     const shownClients = filteredClientsListSize ? filteredClientsList : clientsList;
-
-    /**
-     *
-     * @param {Feature[]} featuresPerClient
-     * @return {Feature[]}
-     */
-    function showFeaturesPerStatus(featuresPerClient:Feature[]) {
-        switch (featureStatus) {
-        case "ACTIVE":
-            return featuresPerClient.filter(
-                (feat:Feature) => {
-                    return Object.values(feat).includes("ENABLED") ||
-                       Object.values(feat).includes("ENABLED_AND_DISABLED");
-                }
-            );
-        case "INACTIVE":
-            return featuresPerClient.filter(
-                (feat:Feature) => {
-                    return (Object.values(feat).includes("DISABLED") ||
-                        Object.values(feat).includes("ENABLED_AND_DISABLED") ||
-                        Object.values(feat).every((value) => value === "NONE"));
-                }
-            );
-        case "":
-            return featuresPerClient;
-        default:
-            return featuresPerClient;
-        }
-    }
-
-    const showSelectedFeatures = (featuresPerClient:Feature[]) => {
-        // check features status
-        const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient);
-
-        if (filteredFeatures.length > 0) {
-            return (
-                featuresFilteredPerStatus.filter((feat:Feature) => filteredFeatures.some((el) => el.name === feat.name))
-            );
-        } else return featuresFilteredPerStatus;
-    };
 
     const showFeatureStatus = (status:string) => {
         switch (status) {

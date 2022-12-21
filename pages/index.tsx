@@ -134,6 +134,7 @@ function Home() {
                             clientsList={clients}
                             filteredClientsList={filteredClients}
                             filteredFeatures={filteredFeatures}
+                            showSelectedFeatures={showSelectedFeatures}
                             featureStatus={featureStatus}/>
                     </Grid>
                 </Container>
