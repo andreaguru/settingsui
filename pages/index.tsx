@@ -83,25 +83,6 @@ function Home() {
     };
 
     useEffect(() => {
-        /* here we set the status of property hasFeatures for each client.
-        hasFeatures is a boolean that tell us if a client has features to show according to the current set filters.
-        If there are no features, we set hasFeatures to false.
-        This property is currently used in MainContent and IDComboSelect.
-        Every time a state changes (featureStatus, filteredFeatures or filteredClients) we check also hasFeatures status */
-        const stateWithHasFeaturesProp = (clients:Clients[]) => clients.map((client:Clients) => {
-            return {...client, hasFeatures: showSelectedFeatures(client.features).length > 0};
-        });
-
-        /* set hasFeatures status for client list */
-        setClients(stateWithHasFeaturesProp(clients));
-
-        /* set hasFeatures status for filtered client list */
-        setFilteredClients(stateWithHasFeaturesProp(filteredClients));
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [featureStatus, filteredFeatures, filteredClients]);
-
-    useEffect(() => {
         const data = getIntegratedClientList();
         data.then((data) => {
             if (data) {
@@ -115,6 +96,40 @@ function Home() {
                 console.log(error);
             });
     }, []);
+
+    useEffect(() => {
+        /* here we set the status of property hasFeatures for each client.
+        hasFeatures is a boolean that tell us if a client has features to show according to the current set filters.
+        If there are no features, we set hasFeatures to false.
+        This property is currently used in MainContent and IDComboSelect.
+        Every time a state changes (featureStatus or filteredFeatures) we check also hasFeatures status */
+        const stateWithHasFeaturesProp = (clients:Clients[]) => clients.map((client:Clients) => {
+            return {...client, hasFeatures: showSelectedFeatures(client.features).length > 0};
+        });
+
+        if (clients.length) {
+            /* set hasFeatures status for client list */
+            setClients(stateWithHasFeaturesProp(clients));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [featureStatus, filteredFeatures]);
+
+    useEffect(() => {
+        /* here we set the status of property hasFeatures for each filtered client.
+        hasFeatures is a boolean that tell us if a filtered client has features to show according to the current set filters.
+        If there are no features, we set hasFeatures to false.
+        This property is currently used in MainContent and IDComboSelect.
+        Every time the filteredClients changes we check also hasFeatures status */
+        const stateWithHasFeaturesProp = (clients:Clients[]) => clients.map((client:Clients) => {
+            return {...client, hasFeatures: showSelectedFeatures(client.features).length > 0};
+        });
+
+        if (filteredClients.length) {
+            /* set hasFeatures status for filtered client list */
+            setFilteredClients(stateWithHasFeaturesProp(filteredClients));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filteredClients]);
 
     return (
         <ThemeProvider theme={edidTheme}>

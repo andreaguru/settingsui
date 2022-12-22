@@ -6,8 +6,8 @@
   "scripts": {
     "server": "cd json-db && json-server db.json --port 3004 --middlewares file.js",
     "dev": "concurrently \"npm run server\" \"cross-env ENV_FILE=envs/.env.development next dev\"",
-    "build:staging": "ENV_FILE=envs/.env.staging next build",
-    "start:staging": "ENV_FILE=envs/.env.staging next start",
+    "build:staging": "cross-env ENV_FILE=envs/.env.staging next build",
+    "start:staging": "cross-env ENV_FILE=envs/.env.staging next start",
     "build:production": "ENV_FILE=envs/.env.production next build",
     "start:production": "ENV_FILE=envs/.env.production next start",
     "eslint": "next lint",
