@@ -83,12 +83,23 @@ function Home() {
     };
 
     useEffect(() => {
-        const newState:Clients[] = clients.map((client:Clients) => {
+        /* here we set the status of property hasFeatures for each client.
+        hasFeatures is a boolean that tell us if a client has features to show according to the current set filters.
+        If there are no features, we set hasFeatures to false.
+        This property is currently used in MainContent and IDComboSelect.
+        Every time a state changes (featureStatus, filteredFeatures or filteredClients) we check also hasFeatures status */
+        const stateWithHasFeaturesProp = (clients:Clients[]) => clients.map((client:Clients) => {
             return {...client, hasFeatures: showSelectedFeatures(client.features).length > 0};
         });
-        setClients(newState);
+
+        /* set hasFeatures status for client list */
+        setClients(stateWithHasFeaturesProp(clients));
+
+        /* set hasFeatures status for filtered client list */
+        setFilteredClients(stateWithHasFeaturesProp(filteredClients));
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [featureStatus, filteredFeatures]);
+    }, [featureStatus, filteredFeatures, filteredClients]);
 
     useEffect(() => {
         const data = getIntegratedClientList();
@@ -128,7 +139,7 @@ function Home() {
                     setFilteredFeatures={setFilteredFeatures}
                     handleFeatureStatusChange={handleFeatureStatusChange}/>
 
-                <Container component="main" maxWidth="lg">
+                <Container component="main" maxWidth={false}>
                     <Grid item xs={12}>
                         <MainContent
                             clientsList={clients}

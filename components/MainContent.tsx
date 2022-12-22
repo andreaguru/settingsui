@@ -20,9 +20,6 @@ import {MainContentProps} from "../types/componentProps.types";
  * @constructor
  */
 function MainContent({clientsList, filteredClientsList, showSelectedFeatures, featureStatus}: MainContentProps) {
-    const filteredClientsListSize = filteredClientsList.length;
-    const shownClients = filteredClientsListSize ? filteredClientsList : clientsList;
-
     const showFeatureStatus = (status:string) => {
         switch (status) {
         case "ENABLED":
@@ -38,12 +35,18 @@ function MainContent({clientsList, filteredClientsList, showSelectedFeatures, fe
         }
     };
 
+    /* filter the clients that have to be shown, according to current filter status */
+    const shownClients = () => {
+        const clients = filteredClientsList.length ? filteredClientsList : clientsList;
+        return clients.filter((client) => client.hasFeatures === true);
+    };
+
     return (
         <>
             <Typography variant="h6" component="h6">Mandanten</Typography>
-            {filteredClientsListSize || clientsList.length} von {clientsList.length}
+            {shownClients().length} von {clientsList.length}
             <IDInfoButton align="right"/>
-            {shownClients.map((client: Clients, index: number) => (
+            {shownClients().map((client: Clients, index: number) => (
                 client.hasFeatures && client.features && <Fade in key={index}>
                     <Card>
                         <CardContent>
