@@ -15,6 +15,7 @@ import {IDComboSelectProps} from "../types/componentProps.types";
  * values: the list of options that have to be shown
  * placeholder: the title at the top of the Component
  * setFilteredValues: the setter Method used to update the values
+ * TODO: Rename more like "showId" - it's already too specific in the code
  * showDetailInfo: used to show extra infos (in brackets) after each option
  *
  * @constructor
@@ -26,17 +27,19 @@ function IDComboSelect({values, placeholder, setFilteredValues, checkIfHasFeatur
     };
 
     return (
+        // TODO: Shouldnt be List in outside wrapper? This is just the select-dropdown module?
         <List component="nav">
+            {/* TODO: Do margin and padding in sidebar? Isn't there a default? */}
             <FormControl sx={{m: 1, width: "90%"}}>
                 <Typography component="label">{placeholder}</Typography>
                 {values.length > 0 && (
                     <Autocomplete
                         multiple
-                        id="checkboxes-tags-demo"
                         options={values}
                         onChange={handleChange}
                         data-testid="combobox"
                         disableCloseOnSelect={true}
+                        // TODO: Add type definition for parameters
                         isOptionEqualToValue={(option, value) => option.name === value.name}
                         getOptionLabel={(option) => option.name}
                         ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
@@ -55,6 +58,9 @@ function IDComboSelect({values, placeholder, setFilteredValues, checkIfHasFeatur
                             checkIfHasFeatures === true && !option.hasFeatures
                         }
                         renderInput={(params) => (
+                            // TODO: Sprache auf deutsch ändern
+                            // TODO: Placeholder läuft aus dem Feld raus/wird abgeschitten
+                            //  --> sollte in die nächste Zeile rutschen
                             <TextField {...params} placeholder="Select a value" variant="standard" />
                         )}
                     />

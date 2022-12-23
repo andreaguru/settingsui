@@ -1,5 +1,6 @@
 import {createTheme} from "@mui/material/styles";
 
+// TODO: Is this really neccessary? Is it used anywhere?
 declare module "@mui/material/styles" {
   interface Theme {
     variables: {

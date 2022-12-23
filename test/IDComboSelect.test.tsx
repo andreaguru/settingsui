@@ -3,6 +3,8 @@ import "@testing-library/jest-dom";
 import IDComboSelect from "../components/IDComboSelect";
 import {Clients} from "../types/api.types";
 
+// TODO: Is it clearer to write Array<Client> ?
+// TODO: This is duplicate. Move outside or use mocking-data?
 const mockedClientList:Clients[] = [
     {
         "id": 241,

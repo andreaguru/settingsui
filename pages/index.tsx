@@ -47,6 +47,8 @@ function Home() {
         setFeatureStatus((event.target as HTMLInputElement).value);
     };
 
+    // TODO: Are we doing this logic multiple times? Can't we migrate it with the stuff from MainContent.tsx?
+    // TODO: Convert to function + add jsdoc - add tests
     const showFeaturesPerStatus = (featuresPerClient:Feature[]) => {
         switch (featureStatus) {
         case "ACTIVE":
@@ -71,21 +73,27 @@ function Home() {
         }
     };
 
+    // TODO: Are we doing this logic multiple times? Can't we migrate it with the stuff from MainContent.tsx?
+    // TODO: Convert to function + add jsdoc + write tests
     const showSelectedFeatures = (featuresPerClient:Feature[]) => {
         // check features status
         const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient);
 
         if (filteredFeatures.length > 0) {
             return (
+                // TODO: Very difficult to read/understand! Can we split it or/and write some explanation?
                 featuresFilteredPerStatus.filter((feat:Feature) => filteredFeatures.some((el) => el.name === feat.name))
             );
         } else return featuresFilteredPerStatus;
     };
 
+    // TODO: Very difficult to read/understand! Can we split it or/and write some explanation?
     useEffect(() => {
         const data = getIntegratedClientList();
         data.then((data) => {
             if (data) {
+                // TODO: Add type to function-declaration --> define return value in type-definition
+                // TODO: Rename variable to something like "normalizedClients"
                 const newState = data.map((client:Clients) => {
                     return {...client, hasFeatures: true};
                 });

@@ -15,3 +15,5 @@ test("renders the home page with all the static elements", () => {
     render(<Home/>);
     expect(screen.getByRole("img")).toBeInTheDocument();
 });
+
+// TODO: Add more tests here: showFeaturesPerStatus, showSelectedFeatures, ...

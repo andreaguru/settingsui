@@ -2,6 +2,7 @@
 Interfaces for the APIs Data
 */
 
+// TODO: Remove unused types + Add missing types (e.g. client- and feature-response)
 export interface Image {
     defaultContentImageRatio: string;
 }
@@ -16,7 +17,7 @@ export interface Feature {
     category: string;
     tag: string;
 }
-
+// TODO: Rename to "Client"
 export interface Clients {
     id: number;
     name: string;

@@ -16,10 +16,13 @@ import {MainContentProps} from "../types/componentProps.types";
  * MainContent component. It accepts 2 parameters:
  * clientsList: the complete list of the clients
  * filteredClientsList: the filtered list of the clients. This value is set through setFilteredClients, in index.js
- *
+ * TODO: Add type to function-declaration --> define return value in type-definition
  * @constructor
  */
 function MainContent({clientsList, filteredClientsList, showSelectedFeatures, featureStatus}: MainContentProps) {
+    // TODO: Add type to function-declaration --> define return value in type-definition
+    // TODO: Use function-syntax here? --> consistent function-syntax
+    // TODO: Rename e.g. to "getFeatureColorByStatus"
     const showFeatureStatus = (status:string) => {
         switch (status) {
         case "ENABLED":
@@ -36,6 +39,9 @@ function MainContent({clientsList, filteredClientsList, showSelectedFeatures, fe
     };
 
     /* filter the clients that have to be shown, according to current filter status */
+    // TODO: Add type to function-declaration --> define return value in type-definition
+    // TODO: Use function-syntax here? --> consistent function-syntax
+    // TODO: Add jsdoc
     const shownClients = () => {
         const clients = filteredClientsList.length ? filteredClientsList : clientsList;
         return clients.filter((client) => client.hasFeatures === true);
@@ -44,6 +50,7 @@ function MainContent({clientsList, filteredClientsList, showSelectedFeatures, fe
     return (
         <>
             <Typography variant="h6" component="h6">Mandanten</Typography>
+            {/* TODO: Use Typography-Component here? */}
             {shownClients().length} von {clientsList.length}
             <IDInfoButton align="right"/>
             {shownClients().map((client: Clients, index: number) => (
@@ -57,6 +64,8 @@ function MainContent({clientsList, filteredClientsList, showSelectedFeatures, fe
                                 {showSelectedFeatures(client.features).map((feature:Feature, index:number) => (
                                     <Grow in key={index}>
                                         <IconButton component="div">
+                                            {/* TODO: Rename to our convention: ClientIcon, CategoryIcon, TagIcon */}
+                                            {/* TODO: Use css insted of &nbsp; - sx= or global theme? */}
                                             <ApartmentIcon color={showFeatureStatus(feature.client)} />&nbsp;
                                             <AccountTreeIcon color={showFeatureStatus(feature.category)} />&nbsp;
                                             <LocalOfferIcon color={showFeatureStatus(feature.tag)} />&nbsp;

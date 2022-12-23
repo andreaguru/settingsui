@@ -19,6 +19,7 @@ import {SidebarProps} from "../types/componentProps.types";
 We customise the MUI Component MuiDrawer in order to apply custom styles/effects to the sidebar.
 Components customisation is performed via styled utility (https://mui.com/system/styled/)
 */
+// TODO: Move to theme
 const Drawer = styled(MuiDrawer)(() => ({
     "& .MuiDrawer-paper": {
         position: "relative",
@@ -43,20 +44,25 @@ function Sidebar(
     // get the complete list of Features
     const [features, setFeatures] = useState([]);
 
+    // TODO: Add comment about "useEffect"
+    // TODO: What is this doing here? Why just features? Move it?
     useEffect(() => {
         const data = getFeaturesList();
         data.then((data) => {
             if (data) {
+                // TODO: Where is this declared? --> small description
                 setFeatures(data);
             }
         })
             .catch((error) => {
+                // TODO: Add logger
                 console.log(error);
             });
     }, []);
 
     return (
         <Drawer variant="permanent">
+            {/* TODO: Move styles somewhere else and style whole sidebar?*/}
             <Toolbar
                 sx={{
                     display: "flex",

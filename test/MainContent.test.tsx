@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import MainContent from "../components/MainContent";
 import {Clients} from "../types/api.types";
 
+// TODO: This is duplicate. Move outside or use mocking-data?
 const mockedClientList:Clients[] = [
     {
         "id": 241,
@@ -219,3 +220,5 @@ test("component shows filteredClientList instead of clientList if the first is n
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
+
+// TODO: Add more tests here: showFeaturesPerStatus, showSelectedFeatures, showFeatureStatus, ...
