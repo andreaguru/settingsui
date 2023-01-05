@@ -1,6 +1,10 @@
 import {createTheme} from "@mui/material/styles";
 
 // TODO: Is this really neccessary? Is it used anywhere?
+/* ANSWER: We need to enhance the Theme and Palette Interfaces in order to add new custom values
+(in our case variables, neutral and lightGrey).
+The Interfaces are declared in node_modules/@mui/material/styles/createTheme.d.ts and
+node_modules/@mui/material/styles/createPalette.d.ts */
 declare module "@mui/material/styles" {
   interface Theme {
     variables: {
@@ -17,7 +21,6 @@ declare module "@mui/material/styles" {
     neutral: Palette["primary"];
     lightGrey: Palette["primary"];
   }
-
   // allow configuration using `createTheme`
   interface PaletteOptions {
     neutral?: PaletteOptions["primary"];
@@ -77,11 +80,42 @@ export const edidTheme = createTheme({
                 }),
             },
         },
+        // Style the Filter Icon
+        MuiToolbar: {
+            styleOverrides: {
+                root: ({ownerState, theme}) => ({
+                    ...(ownerState.className === "filterIcon" && {
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        [theme.breakpoints.up("md")]: {
+                            paddingLeft: 0,
+                        },
+                    }),
+                }),
+            },
+        },
+        // Style the Sidebar
+        MuiDrawer: {
+            styleOverrides: {
+                paper: {
+                    position: "relative",
+                    width: 300,
+                    padding: "0 15px",
+                },
+            },
+        },
         // Style the Autcomplete
         MuiAutocomplete: {
             styleOverrides: {
+                root: {
+                    marginBottom: "30px",
+                },
                 endAdornment: {
                     top: 0,
+                },
+                input: {
+                    flexBasis: "100%",
                 },
             },
         },
@@ -112,9 +146,11 @@ export const edidTheme = createTheme({
                     ...(ownerState.component === "div" && {
                         display: "flex",
                         margin: "10px 10px 10px 0",
-                        padding: "0 8px",
+                        padding: "8px",
                         borderRadius: "4px",
+                        gap: "8px",
                         backgroundColor: theme.palette.lightGrey.main,
+                        color: theme.palette.secondary.main,
                     }),
                 }),
             },

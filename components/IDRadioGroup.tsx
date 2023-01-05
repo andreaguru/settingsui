@@ -11,8 +11,7 @@ import {IDRadioGroupProps} from "../types/componentProps.types";
  */
 function IDRadioGroup({handleFeatureStatusChange}:IDRadioGroupProps) {
     return (
-        // TODO: Do margin and padding in sidebar? Isn't there a default?
-        <FormControl sx={{m: 1, width: "90%"}}>
+        <FormControl>
             <Typography component="label">Status der Features</Typography>
             <RadioGroup sx={{pl: 2}}
                 onChange={handleFeatureStatusChange}

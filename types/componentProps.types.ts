@@ -1,33 +1,34 @@
-import {Clients, Feature, FeaturesList} from "./api.types";
-import {ChangeEvent, Dispatch, SetStateAction} from "react";
+import {Client, ClientOrFeatureList, Feature, FeatureList} from "./api.types";
+import {ChangeEvent} from "react";
 
 /*
 Interfaces for the Components
 */
 
 export interface MainContentProps {
-    clientsList: Clients[]
-    filteredClientsList: Clients[]
-    filteredFeatures: FeaturesList[]
-    showSelectedFeatures: (featuresPerClient: Feature[]) => Feature[]
-    featureStatus: string
+    clientsList: Client[]
+    filteredClientsList: Client[]
+    filteredFeatures: FeatureList[]
+    showSelectedFeatures: (featuresPerClient:Feature[], featureStatus:FeatSelectedStatus, filteredFeatures:FeatureList[]) => Feature[]
+    featureStatus: FeatSelectedStatus
 }
 
 export interface SidebarProps {
-    clients: Clients[]
-    filteredClients: Clients[]
-    setFilteredClients: Dispatch<SetStateAction<Clients[]>>
-    filteredFeatures: FeaturesList[]
-    setFilteredFeatures: Dispatch<SetStateAction<FeaturesList[]>>
+    clients: Client[]
+    filteredClients: Client[]
+    setFilteredClients: (name: Client[]) => void;
+    filteredFeatures: FeatureList[]
+    setFilteredFeatures: (name: FeatureList[]) => void;
     handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export interface IDComboSelectProps {
-    values: Clients[]
+export type IDComboSelectProps = {
+    values: ClientOrFeatureList[]
+    title: string
     placeholder: string
-    setFilteredValues: Dispatch<SetStateAction<Clients[]>> | Dispatch<SetStateAction<FeaturesList[]>>
+    setFilteredValues: (name: any) => void;
     checkIfHasFeatures?: boolean
-    showDetailInfo?: boolean
+    showId?: boolean
 }
 
 export interface IDInfoButtonProps {
@@ -36,4 +37,10 @@ export interface IDInfoButtonProps {
 
 export interface IDRadioGroupProps {
     handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+export enum FeatSelectedStatus {
+    ACTIVE = "ACTIVE",
+    INACTIVE = "INACTIVE",
+    ALL = "",
 }

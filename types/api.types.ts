@@ -3,13 +3,8 @@ Interfaces for the APIs Data
 */
 
 // TODO: Remove unused types + Add missing types (e.g. client- and feature-response)
-export interface Image {
-    defaultContentImageRatio: string;
-}
-
-export interface SeoStoryTicker {
-    activated: boolean;
-}
+/* ANSWER: I created a type ClientOrFeatureList that will cover all the cases where both Client and Feature interfaces are needed.
+Is this what you mean? */
 
 export interface Feature {
     name: string;
@@ -17,16 +12,19 @@ export interface Feature {
     category: string;
     tag: string;
 }
-// TODO: Rename to "Client"
-export interface Clients {
+
+export interface Client {
     id: number;
     name: string;
     features: Feature[];
     hasFeatures?: boolean;
 }
 
-export interface FeaturesList {
+export interface FeatureList {
     id: number;
     name: string;
+    hasFeatures?: boolean;
 }
+
+export type ClientOrFeatureList = Client | FeatureList
 
