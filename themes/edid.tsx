@@ -32,7 +32,7 @@ declare module "@mui/material/styles" {
 export const edidTheme = createTheme({
     // Global variables used in theme and components
     variables: {
-        headerMarginTop: "80px",
+        headerMarginTop: "64px",
     },
     palette: {
         primary: {
