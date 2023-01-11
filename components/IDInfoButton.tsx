@@ -48,7 +48,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                     horizontal: "left",
                 }}
             >
-                <Typography sx={{p: 2}}>The content of the Popover.</Typography>
+                <Typography>The content of the Popover.</Typography>
             </Popover>
         </Box>
     );

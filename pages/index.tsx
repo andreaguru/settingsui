@@ -193,9 +193,7 @@ function Home() {
                 </MuiAppBar>
                 <Sidebar
                     clients={clients}
-                    filteredClients={filteredClients}
                     setFilteredClients={setFilteredClients}
-                    filteredFeatures={filteredFeatures}
                     setFilteredFeatures={setFilteredFeatures}
                     handleFeatureStatusChange={handleFeatureStatusChange}/>
 

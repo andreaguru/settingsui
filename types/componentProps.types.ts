@@ -15,9 +15,7 @@ export interface MainContentProps {
 
 export interface SidebarProps {
     clients: Client[]
-    filteredClients: Client[]
     setFilteredClients: (name: Client[]) => void;
-    filteredFeatures: FeatureList[]
     setFilteredFeatures: (name: FeatureList[]) => void;
     handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
