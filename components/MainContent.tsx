@@ -40,13 +40,18 @@ function getFeatureColorByStatus(status:string, featureStatus?:FeatSelectedStatu
  * filteredClientsList: the filtered list of the clients. This value is set through setFilteredClients, in index.js
  * @constructor
  */
-function MainContent({clientsList, filteredClientsList, filteredFeatures, showSelectedFeatures, featureStatus}:MainContentProps) {
+function MainContent({
+    clientsList,
+    filteredClientsList,
+    filteredFeatures,
+    showSelectedFeatures,
+    featureStatus}:MainContentProps) {
     /* filter the clients that have to be shown, according to current filter status */
     /**
      * shownClients
-     * @return {Client[]}
+     * @return {Array<Client>}
      */
-    function shownClients():Client[] {
+    function shownClients():Array<Client> {
         const clients = filteredClientsList.length ? filteredClientsList : clientsList;
         return clients.filter((client) => client.hasFeatures === true);
     }
@@ -70,8 +75,10 @@ function MainContent({clientsList, filteredClientsList, filteredFeatures, showSe
                                     filteredFeatures).map((feature:Feature, index:number) => (
                                     <Grow in key={index}>
                                         <IconButton component="div">
-                                            <ClientIcon color={getFeatureColorByStatus(feature.client, featureStatus)} />
-                                            <CategoryIcon color={getFeatureColorByStatus(feature.category, featureStatus)} />
+                                            <ClientIcon
+                                                color={getFeatureColorByStatus(feature.client, featureStatus)} />
+                                            <CategoryIcon
+                                                color={getFeatureColorByStatus(feature.category, featureStatus)} />
                                             <TagIcon color={getFeatureColorByStatus(feature.tag, featureStatus)} />
                                             <Typography variant="body2">{feature.name}</Typography>
                                         </IconButton>

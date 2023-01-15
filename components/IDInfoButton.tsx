@@ -34,6 +34,10 @@ function IDInfoButton({align}:IDInfoButtonProps) {
             justifyContent: align,
         }}>
             <Button
+                sx={{
+                    position: "absolute",
+                    top: "0",
+                }}
                 aria-describedby={id}
                 variant="text"
                 startIcon={<HelpIcon />}

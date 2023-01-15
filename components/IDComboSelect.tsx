@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import {SyntheticEvent} from "react";
 
 // import typescript Interfaces
-import {ClientOrFeatureList} from "../types/api.types";
+import {ClientOrFeature} from "../types/api.types";
 import {IDComboSelectProps} from "../types/componentProps.types";
 
 /**
@@ -18,8 +18,13 @@ import {IDComboSelectProps} from "../types/componentProps.types";
  *
  * @constructor
  */
-function IDComboSelect({values, title, placeholder, setFilteredValues, checkIfHasFeatures, showId}: IDComboSelectProps) {
-    const handleChange = (event: SyntheticEvent, value:ClientOrFeatureList[]) => {
+function IDComboSelect({
+    values,
+    title,
+    placeholder,
+    setFilteredValues,
+    showId}: IDComboSelectProps) {
+    const handleChange = (event: SyntheticEvent, value:Array<ClientOrFeature>) => {
         // check if the selected element is a React Node element and if contains a value inside its props
         setFilteredValues(value);
     };
@@ -34,22 +39,24 @@ function IDComboSelect({values, title, placeholder, setFilteredValues, checkIfHa
                     onChange={handleChange}
                     data-testid="combobox"
                     disableCloseOnSelect={true}
-                    isOptionEqualToValue={(option:ClientOrFeatureList, value:ClientOrFeatureList) => option.name === value.name}
-                    getOptionLabel={(option:ClientOrFeatureList) => option.name}
+                    isOptionEqualToValue={
+                        (option:ClientOrFeature, value:ClientOrFeature) => option.name === value.name
+                    }
+                    getOptionLabel={(option:ClientOrFeature) => option.name}
                     ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
-                    renderOption={(props, option:ClientOrFeatureList, {selected}) => (
+                    renderOption={(props, option:ClientOrFeature, {selected}) => (
                         <li {...props} >
                             <Checkbox
-                                data-testid={option.id}
+                                data-testid={"id" in option ? option.id : ""}
                                 style={{marginRight: 8}}
                                 checked={selected}
                                 size="small"
                             />
-                            {option.name + (showId ? ` (${option.id})` : "")}
+                            {option.name + (showId ? ` (${"id" in option ? option.id : ""})` : "")}
                         </li>
                     )}
                     getOptionDisabled={(option) =>
-                        checkIfHasFeatures === true && !option.hasFeatures
+                        "hasFeatures" in option ? !option.hasFeatures : false
                     }
                     renderInput={(params) => (
                         <TextField {...params} placeholder={placeholder} variant="standard" />

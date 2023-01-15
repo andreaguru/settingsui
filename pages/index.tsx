@@ -25,17 +25,17 @@ import MainContent from "../components/MainContent";
 import {getClientList} from "../api/DashboardAPI";
 
 // import typescript Interfaces
-import {Client, Feature, FeatureList} from "../types/api.types";
+import {Client, Feature} from "../types/api.types";
 import {FeatSelectedStatus} from "../types/componentProps.types";
 
 /**
  * check if features status has been selected in combobox.
  * If so, returns the features array filtered per status. If not, return the features array without any modification.
- * @param {Feature[]} featuresPerClient
+ * @param {Array<Feature>} featuresPerClient
  * @param {string} featureStatus
- * @return {Feature[]}
+ * @return {Array<Feature>}
  */
-function showFeaturesPerStatus(featuresPerClient:Feature[], featureStatus:FeatSelectedStatus) {
+function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:FeatSelectedStatus) {
     switch (featureStatus) {
     case FeatSelectedStatus.ACTIVE:
         return featuresPerClient.filter(
@@ -68,12 +68,14 @@ therefore all the methods that can update them need to be in the index, and pass
  * showSelectedFeatures
  * it shows the Features that have been selected by the user
  * (e.g. checks if "traffective" and "aktiviert" have been selected and shows the result)
- * @param {Feature[]} featuresPerClient
+ * @param {Array<Feature>} featuresPerClient
  * @param {FeatSelectedStatus} featureStatus
- * @param {FeatureList[]} filteredFeatures
- * @return {Feature[]}
+ * @param {Array<Feature>} filteredFeatures
+ * @return {Array<Feature>}
  */
-function showSelectedFeatures(featuresPerClient:Feature[], featureStatus:FeatSelectedStatus, filteredFeatures:FeatureList[]) {
+function showSelectedFeatures(featuresPerClient:Array<Feature>,
+    featureStatus:FeatSelectedStatus,
+    filteredFeatures:Array<Feature>) {
     const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
 
     // if one or more features have been selected in the combobox...
@@ -93,6 +95,15 @@ function showSelectedFeatures(featuresPerClient:Feature[], featureStatus:FeatSel
 }
 
 /**
+ * getFeaturesList
+ * @param {Array<Client>} clients
+ * @return {Array<Feature>}
+ */
+function getFeaturesList(clients:Array<Client>) {
+    return clients.length > 0 ? clients[0].features : [];
+}
+
+/**
  * The Home Page. This is currently the only page of the project.
  * Here are declared the states that are used throughout the App.
  * The states can be updated via setters (e.g. setClients).
@@ -102,15 +113,16 @@ function showSelectedFeatures(featuresPerClient:Feature[], featureStatus:FeatSel
  * @constructor
  */
 function Home() {
-    const [clients, setClients] = useState<Client[]>([]);
+    const [clients, setClients] = useState<Array<Client>>([]);
 
     // contains the list of clients that have been selected by the user
-    const [filteredClients, setFilteredClients] = useState<Client[]>([]);
+    const [filteredClients, setFilteredClients] = useState<Array<Client>>([]);
 
     // contains the list of features that have been selected by the user
-    const [filteredFeatures, setFilteredFeatures] = useState<FeatureList[]>([]);
+    const [filteredFeatures, setFilteredFeatures] = useState<Array<Feature>>([]);
 
-    // contains the current selected status of the features to show (keine Auswahl, aktiviert, deaktiviert / nicht konfiguriert)
+    /* contains the current selected status of the features to show
+    (keine Auswahl, aktiviert, deaktiviert / nicht konfiguriert) */
     const [featureStatus, setFeatureStatus] = useState<FeatSelectedStatus>(FeatSelectedStatus.ALL);
 
     const handleFeatureStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -120,12 +132,15 @@ function Home() {
 
     /**
      * getStateWithHasFeaturesProp
-     * @param {Client[]} clients
-     * @return {Client[]}
+     * @param {Array<Client>} clients
+     * @return {Array<Client>}
      */
-    function getStateWithHasFeaturesProp(clients:Client[]) {
+    function getStateWithHasFeaturesProp(clients:Array<Client>) {
         return clients.map((client: Client):Client => {
-            return {...client, hasFeatures: showSelectedFeatures(client.features, featureStatus, filteredFeatures).length > 0};
+            return {
+                ...client,
+                hasFeatures: showSelectedFeatures(client.features, featureStatus, filteredFeatures).length > 0,
+            };
         });
     }
 
@@ -136,7 +151,7 @@ function Home() {
         data.then((data) => {
             if (data && data.length) {
                 // update the returned data array adding hasFeatures prop to each element of it
-                const clientsWithHasFeaturesProperty:Client[] = data.map((client:Client):Client => {
+                const clientsWithHasFeaturesProperty:Array<Client> = data.map((client:Client):Client => {
                     return {...client, hasFeatures: true};
                 });
                 // update clients state with the new value
@@ -167,7 +182,8 @@ function Home() {
     // The code inside this useEffect is called everytime there is a change in filteredClients state
     useEffect(() => {
         /* here we set the status of property hasFeatures for each filtered client.
-        hasFeatures is a boolean that tell us if a filtered client has features to show according to the current set filters.
+        hasFeatures is a boolean that tell us if a filtered client
+        has features to show according to the current set filters.
         If there are no features, we set hasFeatures to false.
         This property is currently used in MainContent and IDComboSelect.
         Every time the filteredClients changes we update also hasFeatures value */
@@ -193,6 +209,7 @@ function Home() {
                 </MuiAppBar>
                 <Sidebar
                     clients={clients}
+                    features={getFeaturesList(clients)}
                     setFilteredClients={setFilteredClients}
                     setFilteredFeatures={setFilteredFeatures}
                     handleFeatureStatusChange={handleFeatureStatusChange}/>

@@ -1,32 +1,36 @@
-import {Client, Feature, FeatureList} from "../types/api.types";
+import {Client, Feature} from "../types/api.types";
 
 // TODO: Is it clearer to write Array<Client> ?
 /* ANSWER: not sure about it. I choose the short form to put more focus on the interface (Client)
 But we can discuss it. In case, we need to change it everywhere in the project */
-export const mockedClientList:Client[] = [
+export const mockedClientList:Array<Client> = [
     {
         "id": 241,
         "name": "BlickPunkt Nienburg",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -39,24 +43,28 @@ export const mockedClientList:Client[] = [
         "name": "webnachrichten.de",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -69,24 +77,28 @@ export const mockedClientList:Client[] = [
         "name": "meine-anzeigenzeitung.de",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -99,24 +111,28 @@ export const mockedClientList:Client[] = [
         "name": "Wetterauer Zeitung",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -126,30 +142,34 @@ export const mockedClientList:Client[] = [
     },
 ];
 
-export const mockedClientListWithHasFeatures:Client[] = [
+export const mockedClientListWithHasFeatures:Array<Client> = [
     {
         "id": 241,
         "name": "BlickPunkt Nienburg",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -163,24 +183,28 @@ export const mockedClientListWithHasFeatures:Client[] = [
         "name": "webnachrichten.de",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -194,24 +218,28 @@ export const mockedClientListWithHasFeatures:Client[] = [
         "name": "meine-anzeigenzeitung.de",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -225,24 +253,28 @@ export const mockedClientListWithHasFeatures:Client[] = [
         "name": "Wetterauer Zeitung",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -253,30 +285,34 @@ export const mockedClientListWithHasFeatures:Client[] = [
     },
 ];
 
-export const mockedFilteredList:Client[] = [
+export const mockedFilteredList:Array<Client> = [
     {
         "id": 241,
         "name": "BlickPunkt Nienburg",
         "features": [
             {
+                "id": 1,
                 "name": "traffective",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
             },
             {
+                "id": 2,
                 "name": "inArticleReco",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
             },
             {
+                "id": 3,
                 "name": "cleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
             },
             {
+                "id": 4,
                 "name": "paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
@@ -287,20 +323,23 @@ export const mockedFilteredList:Client[] = [
     },
 ];
 
-export const mockedFeatures:Feature[] = [
+export const mockedFeatures:Array<Feature> = [
     {
+        "id": 1,
         "name": "traffective",
         "client": "DISABLED",
         "category": "NONE",
         "tag": "DISABLED",
     },
     {
+        "id": 2,
         "name": "inArticleReco",
         "client": "DISABLED",
         "category": "DISABLED",
         "tag": "DISABLED",
     },
     {
+        "id": 3,
         "name": "cleverPush",
         "client": "ENABLED",
         "category": "NONE",
@@ -308,13 +347,19 @@ export const mockedFeatures:Feature[] = [
     },
 ];
 
-export const mockedFilteredFeatures:FeatureList[] = [
+export const mockedFilteredFeatures:Array<Feature> = [
     {
         "id": 1,
         "name": "traffective",
+        "client": "DISABLED",
+        "category": "NONE",
+        "tag": "DISABLED",
     },
     {
         "id": 2,
         "name": "inArticleReco",
+        "client": "DISABLED",
+        "category": "NONE",
+        "tag": "DISABLED",
     },
 ];

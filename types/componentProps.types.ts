@@ -1,4 +1,4 @@
-import {Client, ClientOrFeatureList, Feature, FeatureList} from "./api.types";
+import {Client, ClientOrFeature, Feature} from "./api.types";
 import {ChangeEvent} from "react";
 
 /*
@@ -6,26 +6,29 @@ Interfaces for the Components
 */
 
 export interface MainContentProps {
-    clientsList: Client[]
-    filteredClientsList: Client[]
-    filteredFeatures: FeatureList[]
-    showSelectedFeatures: (featuresPerClient:Feature[], featureStatus:FeatSelectedStatus, filteredFeatures:FeatureList[]) => Feature[]
+    clientsList: Array<Client>
+    filteredClientsList: Array<Client>
+    filteredFeatures: Array<Feature>
+    showSelectedFeatures: (
+        featuresPerClient:Array<Feature>,
+        featureStatus:FeatSelectedStatus,
+        filteredFeatures:Array<Feature>) => Array<Feature>
     featureStatus: FeatSelectedStatus
 }
 
 export interface SidebarProps {
-    clients: Client[]
-    setFilteredClients: (name: Client[]) => void;
-    setFilteredFeatures: (name: FeatureList[]) => void;
+    clients: Array<Client>
+    features: Array<Feature>
+    setFilteredClients: (name: Array<Client>) => void;
+    setFilteredFeatures: (name: Array<Feature>) => void;
     handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export type IDComboSelectProps = {
-    values: ClientOrFeatureList[]
+    values: Array<ClientOrFeature>
     title: string
     placeholder: string
     setFilteredValues: (name: any) => void;
-    checkIfHasFeatures?: boolean
     showId?: boolean
 }
 

@@ -60,7 +60,9 @@ export const edidTheme = createTheme({
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
                     ...(ownerState.component === "main" && {
-                        backgroundColor: theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[900],
+                        backgroundColor: theme.palette.mode === "light" ?
+                            theme.palette.grey[100] :
+                            theme.palette.grey[900],
                         flexGrow: 1,
                         position: "relative",
                         height: `calc(100vh - ${theme.variables.headerMarginTop})`,
@@ -122,10 +124,6 @@ export const edidTheme = createTheme({
         // Style the Info Button
         MuiButton: {
             styleOverrides: {
-                root: {
-                    position: "absolute",
-                    top: "0",
-                },
                 text: {
                     textTransform: "initial",
                 },
@@ -143,7 +141,7 @@ export const edidTheme = createTheme({
         MuiIconButton: {
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
-                    ...(ownerState.component === "div" && {
+                    ...(ownerState.classNAme === "div" && {
                         display: "flex",
                         margin: "10px 10px 10px 0",
                         padding: "8px",

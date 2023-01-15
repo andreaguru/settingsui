@@ -44,17 +44,17 @@ test("component shows filteredClientList instead of clientList if filteredClient
 });
 
 // UNIT TESTS
-test("getFeatureColorByStatus returns success if feature status is enabled", () => {
+test("returns success if feature status is enabled", () => {
     const colors = getFeatureColorByStatus("ENABLED");
     expect(colors).toBe("success");
 });
 
-test("getFeatureColorByStatus returns success if feature status is enabled_and_disabled and feature filter is set to active", () => {
+test("returns success if status is enabled_and_disabled and feature filter is set to active", () => {
     const colors = getFeatureColorByStatus("ENABLED_AND_DISABLED", FeatSelectedStatus.ACTIVE);
     expect(colors).toBe("success");
 });
 
-test("getFeatureColorByStatus returns error if feature status is enabled_and_disabled and feature filter is set to inactive", () => {
+test("returns error if status is enabled_and_disabled and feature filter is set to inactive", () => {
     const colors = getFeatureColorByStatus("ENABLED_AND_DISABLED", FeatSelectedStatus.INACTIVE);
     expect(colors).toBe("error");
 });
