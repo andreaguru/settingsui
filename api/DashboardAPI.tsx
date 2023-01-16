@@ -9,12 +9,8 @@ const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
  * @return {Promise<Array<Client>>}
  * @constructor
  */
-export async function getClientList():Promise<Array<Client> | undefined> {
+export async function getClientList():Promise<Array<Client> | void> {
     try {
-        // TODO: Add type to variable-declaration --> define response object in type-definition
-        /* ANSWER: I added types for the return value and response.json().
-       Also add a type for the return of getClientList, in this case type is Promise<Array<Client> | undefined>
-         as the function can return undefined in case of Error */
         const response = await fetch(apiEndpoint);
 
         // return two arrays with the data from the two fetch requests

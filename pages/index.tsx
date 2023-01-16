@@ -18,7 +18,7 @@ import Grid from "@mui/material/Grid";
 import MuiAppBar from "@mui/material/AppBar";
 
 // import custom Components
-import logo from "../assets/EdID_Logo.svg";
+import logo from "../assets/logo.svg";
 import Image from "next/image";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
@@ -60,10 +60,6 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
     }
 }
 
-// TODO: Are we doing this logic multiple times? Can't we migrate it with the stuff from MainContent.tsx?
-/* ANSWER: we need to have all these features methods available in index.tsx.
-The filteredFeatures and featureStatus state are needed in IDComboSelect and MainContent components,
-therefore all the methods that can update them need to be in the index, and passed down to the children components */
 /**
  * showSelectedFeatures
  * it shows the Features that have been selected by the user

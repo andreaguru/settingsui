@@ -1,7 +1,6 @@
 import {createTheme} from "@mui/material/styles";
 
-// TODO: Is this really neccessary? Is it used anywhere?
-/* ANSWER: We need to enhance the Theme and Palette Interfaces in order to add new custom values
+/* We need to enhance the Theme and Palette Interfaces in order to add new custom values
 (in our case variables, neutral and lightGrey).
 The Interfaces are declared in node_modules/@mui/material/styles/createTheme.d.ts and
 node_modules/@mui/material/styles/createPalette.d.ts */
