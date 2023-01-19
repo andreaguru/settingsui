@@ -9,7 +9,7 @@ stages:
 include:
   - project: "cicd-blueprints/pipeline-modules/ci/nodejs"
     file: "main.gitlab-ci.yml"
-    ref: 11.0.2
+    ref: 12.0.0
   - project: "cicd-blueprints/pipeline-modules/cd/flux"
     file: "main.gitlab-ci.yml"
     ref: 3.4.0
@@ -19,13 +19,14 @@ include:
 
 # Adjust only "PROVIDER_IMAGE_TAG" to your needs. This will set the tag of the docker image to be deployed. This docker image tag cannot be updated once the branch is deployed!
 variables:
+  GITLAB_REGISTRY: "true"
   STG_DEPLOY_BRANCH: "master"
   SETTINGS_IMAGE_TAG: $CI_COMMIT_BRANCH
   DEPLOYMENT_REPO: git@gitlab.id-repository.de:west/deployments.git
   DEPLOYMENT: settings-ui
   DEPLOY_BRANCH_STG: "false" # "branch deployment that is overwriting branch is not required"
-  REPO: ippendigital
-  IMAGE_NAME: settings-ui
+  REPO: docker.id-repository.de
+  IMAGE_NAME: west/settings-ui
   FLUX_FORWARD_NAMESPACE: west
   NODE_VERSION: 19
   CYPRESS_VERSION: node16.5.0-chrome94-ff93
@@ -73,6 +74,7 @@ json-server:
   image: docker
   variables:
     IMAGE_NAME: settings-ui-mock
+    REPO: ippendigital
   script:
     - echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
     - docker build json-db -t $IMAGE_NAME
