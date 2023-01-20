@@ -2,24 +2,20 @@
 Interfaces for the APIs Data
 */
 
-export interface Image {
-    defaultContentImageRatio: string;
-}
-
-export interface SeoStoryTicker {
-    activated: boolean;
-}
-
 export interface Feature {
+    id: number;
     name: string;
     client: string;
     category: string;
     tag: string;
 }
 
-export interface Clients {
+export interface Client {
     id: number;
     name: string;
-    features?: Feature[];
+    features: Array<Feature>;
+    hasFeatures?: boolean;
 }
+
+export type ClientOrFeature = Client | Feature
 

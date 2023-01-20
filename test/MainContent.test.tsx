@@ -1,218 +1,60 @@
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MainContent from "../components/MainContent";
-import {Clients} from "../types/api.types";
+import MainContent, {getFeatureColorByStatus} from "../components/MainContent";
+import {mockedClientListWithHasFeatures, mockedFeatures, mockedFilteredList} from "./mockData";
+import {FeatSelectedStatus} from "../types/componentProps.types";
 
-const mockedClientList:Clients[] = [
-    {
-        "id": 241,
-        "name": "BlickPunkt Nienburg",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-    {
-        "id": 252,
-        "name": "webnachrichten.de",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-    {
-        "id": 290,
-        "name": "meine-anzeigenzeitung.de",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-    {
-        "id": 315,
-        "name": "Wetterauer Zeitung",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-    {
-        "id": 249,
-        "name": "Remscheider General-Anzeiger",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-];
-
-const mockedFilteredList:Clients[] = [
-    {
-        "id": 241,
-        "name": "BlickPunkt Nienburg",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-];
+const showSelectedFeatures = jest.fn();
+showSelectedFeatures.mockReturnValue(mockedFeatures);
 
 test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
     render(<MainContent
         clientsList={[]}
         filteredClientsList={[]}
-    />);
+        filteredFeatures={[]}
+        showSelectedFeatures={showSelectedFeatures}
+        featureStatus={FeatSelectedStatus.ALL}/>);
 
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
 
 test("component shows clientList if it is passed in the props", () => {
     render(<MainContent
-        clientsList={mockedClientList}
+        clientsList={mockedClientListWithHasFeatures}
         filteredClientsList={[]}
-    />);
+        filteredFeatures={[]}
+        showSelectedFeatures={showSelectedFeatures}
+        featureStatus={FeatSelectedStatus.ALL}/>);
 
-    expect(screen.queryByText("Wetterauer Zeitung")).toBeInTheDocument();
+    expect(screen.queryByText(/BlickPunkt Nienburg/i)).toBeInTheDocument();
 });
 
-test("component shows filteredClientList instead of clientList if the first is not empty", () => {
+test("component shows filteredClientList instead of clientList if filteredClientList is not empty", () => {
     render(<MainContent
-        clientsList={mockedClientList}
+        clientsList={mockedClientListWithHasFeatures}
         filteredClientsList={mockedFilteredList}
-    />);
+        filteredFeatures={[]}
+        showSelectedFeatures={showSelectedFeatures}
+        featureStatus={FeatSelectedStatus.ALL}/>);
+
 
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
-    expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
+    expect(screen.queryByText(/BlickPunkt Nienburg/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Wetterauer Zeitung/i)).not.toBeInTheDocument();
+});
+
+// UNIT TESTS
+test("returns success if feature status is enabled", () => {
+    const colors = getFeatureColorByStatus("ENABLED");
+    expect(colors).toBe("success");
+});
+
+test("returns success if status is enabled_and_disabled and feature filter is set to active", () => {
+    const colors = getFeatureColorByStatus("ENABLED_AND_DISABLED", FeatSelectedStatus.ACTIVE);
+    expect(colors).toBe("success");
+});
+
+test("returns error if status is enabled_and_disabled and feature filter is set to inactive", () => {
+    const colors = getFeatureColorByStatus("ENABLED_AND_DISABLED", FeatSelectedStatus.INACTIVE);
+    expect(colors).toBe("error");
 });

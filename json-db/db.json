@@ -138,7 +138,7 @@
             },
             {
                "name": "glomex",
-               "client": "ENABLED",
+               "client": "ENABLED_AND_DISABLED",
                "category": "NONE",
                "tag": "NONE"
             }
@@ -204,7 +204,7 @@
             },
             {
                "name": "paywall",
-               "client": "NONE",
+               "client": "ENABLED_AND_DISABLED",
                "category": "DISABLED",
                "tag": "NONE"
             },
@@ -216,27 +216,5 @@
             }
         ]
     }
-    ],
-  "features": [
-    {
-      "id": 1,
-      "name": "traffective"
-    },
-    {
-      "id": 2,
-      "name": "inArticleReco"
-    },
-    {
-      "id": 3,
-      "name": "cleverPush"
-    },
-    {
-      "id": 4,
-      "name": "paywall"
-    },
-    {
-      "id": 5,
-      "name": "glomex"
-    }
-  ]
+    ]
 }

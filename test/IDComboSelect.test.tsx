@@ -1,165 +1,14 @@
 import {fireEvent, render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import IDComboSelect from "../components/IDComboSelect";
-import {Clients} from "../types/api.types";
+import {mockedClientList} from "./mockData";
 
-const mockedClientList:Clients[] = [
-    {
-        "id": 241,
-        "name": "BlickPunkt Nienburg",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-    {
-        "id": 252,
-        "name": "webnachrichten.de",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-    {
-        "id": 290,
-        "name": "meine-anzeigenzeitung.de",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-    {
-        "id": 315,
-        "name": "Wetterauer Zeitung",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-    {
-        "id": 249,
-        "name": "Remscheider General-Anzeiger",
-        "features": [
-            {
-                "name": "traffective",
-                "client": "ENABLED",
-                "category": "NONE",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "inArticleReco",
-                "client": "DISABLED",
-                "category": "ENABLED",
-                "tag": "ENABLED",
-            },
-            {
-                "name": "cleverPush",
-                "client": "ENABLED",
-                "category": "ENABLED_AND_DISABLED",
-                "tag": "NONE",
-            },
-            {
-                "name": "paywall",
-                "client": "ENABLED",
-                "category": "DISABLED",
-                "tag": "ENABLED",
-            },
-        ],
-    },
-];
 const setFilteredValues = jest.fn();
 
 test("checkbox components are not rendered at page load", () => {
     render(<IDComboSelect
         values={mockedClientList}
+        title="Test"
         placeholder="Test"
         setFilteredValues={() => null} />);
 
@@ -169,6 +18,7 @@ test("checkbox components are not rendered at page load", () => {
 test("placeholder is set and visible on rendered component", () => {
     render(<IDComboSelect
         values={mockedClientList}
+        title="Test"
         placeholder="Test"
         setFilteredValues={() => null} />);
 
@@ -178,6 +28,7 @@ test("placeholder is set and visible on rendered component", () => {
 test("checkbox components are rendered after select change", () => {
     render(<IDComboSelect
         values={mockedClientList}
+        title="Test"
         placeholder="Test"
         setFilteredValues={() => null} />);
 
@@ -193,6 +44,7 @@ test("checkbox components are rendered after select change", () => {
 test("handleChange behavior - setFilteredValues is called when a combobox option is clicked", () => {
     render(<IDComboSelect
         values={mockedClientList}
+        title="Test"
         placeholder="Test"
         setFilteredValues={setFilteredValues} />);
 

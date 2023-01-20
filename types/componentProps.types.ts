@@ -1,25 +1,47 @@
-import {Clients} from "./api.types";
-import {Dispatch, SetStateAction} from "react";
+import {Client, ClientOrFeature, Feature} from "./api.types";
+import {ChangeEvent} from "react";
 
 /*
 Interfaces for the Components
 */
 
 export interface MainContentProps {
-    clientsList: Clients[]
-    filteredClientsList: Clients[]
+    clientsList: Array<Client>
+    filteredClientsList: Array<Client>
+    filteredFeatures: Array<Feature>
+    showSelectedFeatures: (
+        featuresPerClient:Array<Feature>,
+        featureStatus:FeatSelectedStatus,
+        filteredFeatures:Array<Feature>) => Array<Feature>
+    featureStatus: FeatSelectedStatus
 }
 
 export interface SidebarProps {
-    clients: Clients[]
-    filteredClients: Clients[]
-    setFilteredClients: Dispatch<SetStateAction<Clients[]>>
-    showDetailInfo?: boolean;
+    clients: Array<Client>
+    features: Array<Feature>
+    setFilteredClients: (name: Array<Client>) => void;
+    setFilteredFeatures: (name: Array<Feature>) => void;
+    handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export interface IDComboSelectProps {
-    values: Clients[]
+export type IDComboSelectProps = {
+    values: Array<ClientOrFeature>
+    title: string
     placeholder: string
-    setFilteredValues: Dispatch<SetStateAction<Clients[]>>
-    showDetailInfo?: boolean
+    setFilteredValues: (name: any) => void;
+    showId?: boolean
+}
+
+export interface IDInfoButtonProps {
+    align: string
+}
+
+export interface IDRadioGroupProps {
+    handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+export enum FeatSelectedStatus {
+    ACTIVE = "ACTIVE",
+    INACTIVE = "INACTIVE",
+    ALL = "",
 }
