@@ -42,6 +42,7 @@ export const edidTheme = createTheme({
         },
         success: {
             main: "#52A959",
+            light: "#43C59E1F",
         },
         error: {
             main: "#DB504A",
@@ -58,10 +59,8 @@ export const edidTheme = createTheme({
         MuiContainer: {
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
-                    ...(ownerState.component === "main" && {
-                        backgroundColor: theme.palette.mode === "light" ?
-                            theme.palette.grey[100] :
-                            theme.palette.grey[900],
+                    ...(ownerState.className === "mainContent" && {
+                        backgroundColor: theme.palette.grey[100],
                         flexGrow: 1,
                         position: "relative",
                         height: `calc(100vh - ${theme.variables.headerMarginTop})`,
@@ -78,21 +77,6 @@ export const edidTheme = createTheme({
                 root: ({theme}) => ({
                     zIndex: theme.zIndex.drawer + 1,
                     backgroundColor: theme.palette.secondary.main,
-                }),
-            },
-        },
-        // Style the Filter Icon
-        MuiToolbar: {
-            styleOverrides: {
-                root: ({ownerState, theme}) => ({
-                    ...(ownerState.className === "filterIcon" && {
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "flex-start",
-                        [theme.breakpoints.up("md")]: {
-                            paddingLeft: 0,
-                        },
-                    }),
                 }),
             },
         },
@@ -139,15 +123,13 @@ export const edidTheme = createTheme({
         // Style the Icon Button when is a div component (see MainContent.tsx)
         MuiIconButton: {
             styleOverrides: {
-                root: ({ownerState, theme}) => ({
-                    ...(ownerState.classNAme === "div" && {
+                root: ({ownerState}) => ({
+                    ...(ownerState.className === "iconStatus" && {
                         display: "flex",
                         margin: "10px 10px 10px 0",
                         padding: "8px",
                         borderRadius: "4px",
                         gap: "8px",
-                        backgroundColor: theme.palette.lightGrey.main,
-                        color: theme.palette.secondary.main,
                     }),
                 }),
             },

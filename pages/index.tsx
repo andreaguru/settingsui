@@ -175,22 +175,6 @@ function Home() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [featureStatus, filteredFeatures]);
 
-    // The code inside this useEffect is called everytime there is a change in filteredClients state
-    useEffect(() => {
-        /* here we set the status of property hasFeatures for each filtered client.
-        hasFeatures is a boolean that tell us if a filtered client
-        has features to show according to the current set filters.
-        If there are no features, we set hasFeatures to false.
-        This property is currently used in MainContent and IDComboSelect.
-        Every time the filteredClients changes we update also hasFeatures value */
-
-        if (filteredClients.length) {
-            /* add hasFeatures prop to filteredClients state and update the state itself with this new value */
-            setFilteredClients(getStateWithHasFeaturesProp(filteredClients));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filteredClients]);
-
     return (
         <ThemeProvider theme={edidTheme}>
             {/* use the variable declared in the createTheme to get the height of the header */}
@@ -210,7 +194,7 @@ function Home() {
                     setFilteredFeatures={setFilteredFeatures}
                     handleFeatureStatusChange={handleFeatureStatusChange}/>
 
-                <Container component="main" maxWidth={false}>
+                <Container className="mainContent" component="main" maxWidth={false}>
                     <Grid item xs={12}>
                         <MainContent
                             clientsList={clients}

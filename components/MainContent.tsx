@@ -1,5 +1,4 @@
 import {Card, CardContent, Typography} from "@mui/material";
-import ClientIcon from "@mui/icons-material/Apartment";
 import TagIcon from "@mui/icons-material/LocalOffer";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import Grow from "@mui/material/Grow";
@@ -10,27 +9,43 @@ import IconButton from "@mui/material/IconButton";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
-import {MainContentProps, FeatSelectedStatus} from "../types/componentProps.types";
+import {MainContentProps} from "../types/componentProps.types";
+
+import {useTheme} from "@mui/material/styles";
+import {Theme} from "@mui/system";
 
 /**
  * getFeatureColorByStatus
  * @param {string} status
- * @param {FeatSelectedStatus} featureStatus
  * @return {string}
  */
-function getFeatureColorByStatus(status:string, featureStatus?:FeatSelectedStatus):"success" | "error" | "disabled" {
+function getIconColorByStatus(status:string) {
     switch (status) {
     case "ENABLED":
         return "success";
     case "DISABLED":
         return "error";
     case "ENABLED_AND_DISABLED":
-        if (featureStatus === "ACTIVE") {
-            return "success";
-        } else return "error";
+        return "warning";
     case "NONE":
-        return "disabled";
     default: return "disabled";
+    }
+}
+
+/**
+ *
+ * @param {string} status
+ * @param {Theme} theme
+ * @param {boolean} isBackground
+ * @return {string}
+ */
+function getClientColorByStatus(status:string, theme:Theme, isBackground?:boolean) {
+    switch (status) {
+    case "ENABLED":
+        return isBackground ? theme.palette.success.light : theme.palette.success.main;
+    case "DISABLED":
+    case "NONE":
+        return isBackground ? theme.palette.lightGrey.main : theme.palette.secondary.main;
     }
 }
 
@@ -56,6 +71,8 @@ function MainContent({
         return clients.filter((client) => client.hasFeatures === true);
     }
 
+    const theme = useTheme();
+
     return (
         <>
             <Typography variant="h6" component="h6">Mandanten</Typography>
@@ -74,12 +91,14 @@ function MainContent({
                                     featureStatus,
                                     filteredFeatures).map((feature:Feature, index:number) => (
                                     <Grow in key={index}>
-                                        <IconButton component="div">
-                                            <ClientIcon
-                                                color={getFeatureColorByStatus(feature.client, featureStatus)} />
+                                        <IconButton className="iconStatus"
+                                            sx={{
+                                                color: getClientColorByStatus(feature.client, theme),
+                                                backgroundColor: getClientColorByStatus(feature.client, theme, true),
+                                            }}>
                                             <CategoryIcon
-                                                color={getFeatureColorByStatus(feature.category, featureStatus)} />
-                                            <TagIcon color={getFeatureColorByStatus(feature.tag, featureStatus)} />
+                                                color={getIconColorByStatus(feature.category)} />
+                                            <TagIcon color={getIconColorByStatus(feature.tag)} />
                                             <Typography variant="body2">{feature.name}</Typography>
                                         </IconButton>
                                     </Grow>
@@ -97,6 +116,6 @@ export default MainContent;
 
 /* start-test-block */
 export {
-    getFeatureColorByStatus,
+    getIconColorByStatus,
 };
 /* end-test-block */

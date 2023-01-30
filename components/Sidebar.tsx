@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 // import custom Components
 import IDComboSelect from "./IDComboSelect";
-import IDRadioGroup from "./IDRadioGroup";
+/* import IDRadioGroup from "./IDRadioGroup"; */
 
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
@@ -20,12 +20,11 @@ function Sidebar(
         clients,
         features,
         setFilteredClients,
-        setFilteredFeatures,
-        handleFeatureStatusChange}: SidebarProps
+        setFilteredFeatures}: SidebarProps
 ) {
     return (
         <MuiDrawer variant="permanent">
-            <Toolbar className="filterIcon">
+            <Toolbar className="filterIcon" disableGutters={true}>
                 <FilterAltSharpIcon fontSize="medium" /> <Typography marginLeft={1} variant="h6">Filter</Typography>
             </Toolbar>
             <IDComboSelect values={clients}
@@ -40,7 +39,7 @@ function Sidebar(
                 setFilteredValues={setFilteredFeatures}
                 showId={false}/>
 
-            <IDRadioGroup handleFeatureStatusChange={handleFeatureStatusChange} />
+            {/* <IDRadioGroup handleFeatureStatusChange={handleFeatureStatusChange} /> */}
         </MuiDrawer>
     );
 }
