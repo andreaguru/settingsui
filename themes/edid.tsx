@@ -1,7 +1,7 @@
 import {createTheme} from "@mui/material/styles";
 
 /* We need to enhance the Theme and Palette Interfaces in order to add new custom values
-(in our case variables, neutral and lightGrey).
+(in our case variables, disabled).
 The Interfaces are declared in node_modules/@mui/material/styles/createTheme.d.ts and
 node_modules/@mui/material/styles/createPalette.d.ts */
 declare module "@mui/material/styles" {
@@ -17,13 +17,13 @@ declare module "@mui/material/styles" {
     };
   }
   interface Palette {
+    disabled: Palette["primary"];
     neutral: Palette["primary"];
-    lightGrey: Palette["primary"];
   }
   // allow configuration using `createTheme`
   interface PaletteOptions {
+    disabled?: PaletteOptions["primary"];
     neutral?: PaletteOptions["primary"];
-    lightGrey?: PaletteOptions["primary"];
   }
 }
 
@@ -41,17 +41,21 @@ export const edidTheme = createTheme({
             main: "#212121",
         },
         success: {
-            main: "#52A959",
+            main: "#319E7D",
             light: "#43C59E1F",
         },
+        warning: {
+            main: "#FDAD0D",
+        },
         error: {
-            main: "#DB504A",
+            main: "#F15653",
         },
         neutral: {
-            main: "#A5A5A5",
+            main: "#616161",
+            light: "#61616114",
         },
-        lightGrey: {
-            main: "#EEEEEE",
+        disabled: {
+            main: "#A5A5A5",
         },
     },
     components: {

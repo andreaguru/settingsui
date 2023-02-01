@@ -15,7 +15,7 @@ import {useTheme} from "@mui/material/styles";
 import {Theme} from "@mui/system";
 
 /**
- * getFeatureColorByStatus
+ * getFeatureColorByStatus - return the right icon color according to category and tag status
  * @param {string} status
  * @return {string}
  */
@@ -33,7 +33,7 @@ function getIconColorByStatus(status:string) {
 }
 
 /**
- *
+ * getClientColorByStatus - return the right color of text and background according to feature client status
  * @param {string} status
  * @param {Theme} theme
  * @param {boolean} isBackground
@@ -45,7 +45,7 @@ function getClientColorByStatus(status:string, theme:Theme, isBackground?:boolea
         return isBackground ? theme.palette.success.light : theme.palette.success.main;
     case "DISABLED":
     case "NONE":
-        return isBackground ? theme.palette.lightGrey.main : theme.palette.secondary.main;
+        return isBackground ? theme.palette.neutral.light : theme.palette.neutral.main;
     }
 }
 
@@ -96,10 +96,10 @@ function MainContent({
                                                 color: getClientColorByStatus(feature.client, theme),
                                                 backgroundColor: getClientColorByStatus(feature.client, theme, true),
                                             }}>
+                                            <Typography variant="body2">{feature.name}</Typography>
                                             <CategoryIcon
                                                 color={getIconColorByStatus(feature.category)} />
                                             <TagIcon color={getIconColorByStatus(feature.tag)} />
-                                            <Typography variant="body2">{feature.name}</Typography>
                                         </IconButton>
                                     </Grow>
                                 ))}
