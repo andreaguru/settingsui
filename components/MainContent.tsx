@@ -3,7 +3,7 @@ import TagIcon from "@mui/icons-material/LocalOffer";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import Grow from "@mui/material/Grow";
 import Fade from "@mui/material/Fade";
-import IDInfoButton from "./IDInfoButton";
+// import IDInfoButton from "./IDInfoButton";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 
@@ -77,7 +77,7 @@ function MainContent({
         <>
             <Typography variant="h6" component="h6">Mandanten</Typography>
             <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
-            <IDInfoButton align="right"/>
+            {/* <IDInfoButton align="right"/> */}
             {shownClients().map((client: Client, index: number) => (
                 client.hasFeatures && client.features && <Fade in key={index}>
                     <Card>
