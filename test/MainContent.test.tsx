@@ -1,8 +1,9 @@
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MainContent, {getFeatureColorByStatus} from "../components/MainContent";
+import MainContent, {getClientColorByStatus, getIconColorByStatus} from "../components/MainContent";
 import {mockedClientListWithHasFeatures, mockedFeatures, mockedFilteredList} from "./mockData";
 import {FeatSelectedStatus} from "../types/componentProps.types";
+import {edidTheme} from "../themes/edid";
 
 const showSelectedFeatures = jest.fn();
 showSelectedFeatures.mockReturnValue(mockedFeatures);
@@ -45,16 +46,21 @@ test("component shows filteredClientList instead of clientList if filteredClient
 
 // UNIT TESTS
 test("returns success if feature status is enabled", () => {
-    const colors = getFeatureColorByStatus("ENABLED");
+    const colors = getIconColorByStatus("ENABLED");
     expect(colors).toBe("success");
 });
 
 test("returns success if status is enabled_and_disabled and feature filter is set to active", () => {
-    const colors = getFeatureColorByStatus("ENABLED_AND_DISABLED", FeatSelectedStatus.ACTIVE);
+    const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
     expect(colors).toBe("success");
 });
 
 test("returns error if status is enabled_and_disabled and feature filter is set to inactive", () => {
-    const colors = getFeatureColorByStatus("ENABLED_AND_DISABLED", FeatSelectedStatus.INACTIVE);
+    const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
     expect(colors).toBe("error");
+});
+
+test("returns success if feature status is enabled", () => {
+    const colors = getClientColorByStatus("ENABLED", edidTheme, false);
+    expect(colors).toBe("success");
 });

@@ -117,5 +117,6 @@ export default MainContent;
 /* start-test-block */
 export {
     getIconColorByStatus,
+    getClientColorByStatus,
 };
 /* end-test-block */
