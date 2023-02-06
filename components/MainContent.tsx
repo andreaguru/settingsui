@@ -92,14 +92,27 @@ function MainContent({
                                     filteredFeatures).map((feature:Feature, index:number) => (
                                     <Grow in key={index}>
                                         <IconButton className="iconStatus"
-                                            sx={{
-                                                color: getClientColorByStatus(feature.client, theme),
-                                                backgroundColor: getClientColorByStatus(feature.client, theme, true),
-                                            }}>
+                                            sx={[
+                                                {
+                                                    color: getClientColorByStatus(feature.client, theme),
+                                                    backgroundColor: getClientColorByStatus(
+                                                        feature.client,
+                                                        theme,
+                                                        true),
+                                                },
+                                                {
+                                                    "&:hover": {
+                                                        backgroundColor: getClientColorByStatus(
+                                                            feature.client,
+                                                            theme,
+                                                            true),
+                                                    },
+                                                },
+                                            ]}>
                                             <Typography variant="body2">{feature.name}</Typography>
                                             <CategoryIcon
-                                                color={getIconColorByStatus(feature.category)} />
-                                            <TagIcon color={getIconColorByStatus(feature.tag)} />
+                                                color={getIconColorByStatus(feature.category)}/>
+                                            <TagIcon color={getIconColorByStatus(feature.tag)}/>
                                         </IconButton>
                                     </Grow>
                                 ))}

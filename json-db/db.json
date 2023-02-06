@@ -137,10 +137,10 @@
                "tag": "ENABLED"
             },
             {
-               "name": "glomex",
-               "client": "ENABLED_AND_DISABLED",
-               "category": "NONE",
-               "tag": "NONE"
+              "name": "glomex",
+              "client": "DISABLED",
+              "category": "NONE",
+              "tag": "NONE"
             }
         ]
     },
@@ -192,28 +192,28 @@
             },
             {
                "name": "inArticleReco",
-               "client": "DISABLED",
-               "category": "ENABLED",
-               "tag": "ENABLED"
+              "client": "DISABLED",
+              "category": "ENABLED",
+              "tag": "ENABLED"
             },
-            {
-               "name": "cleverPush",
-               "client": "ENABLED",
-               "category": "ENABLED_AND_DISABLED",
-               "tag": "NONE"
-            },
-            {
-               "name": "paywall",
-               "client": "ENABLED_AND_DISABLED",
-               "category": "DISABLED",
-               "tag": "NONE"
-            },
-            {
-               "name": "glomex",
-               "client": "NONE",
-               "category": "NONE",
-               "tag": "NONE"
-            }
+          {
+            "name": "cleverPush",
+            "client": "ENABLED",
+            "category": "ENABLED_AND_DISABLED",
+            "tag": "NONE"
+          },
+          {
+            "name": "paywall",
+            "client": "ENABLED",
+            "category": "DISABLED",
+            "tag": "NONE"
+          },
+          {
+            "name": "glomex",
+            "client": "NONE",
+            "category": "NONE",
+            "tag": "NONE"
+          }
         ]
     }
     ]
