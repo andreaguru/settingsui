@@ -131,7 +131,7 @@ export const edidTheme = createTheme({
                     ...(ownerState.className === "iconStatus" && {
                         display: "flex",
                         margin: "10px 10px 10px 0",
-                        padding: "8px",
+                        padding: "8px 16px",
                         borderRadius: "4px",
                         gap: "8px",
                     }),

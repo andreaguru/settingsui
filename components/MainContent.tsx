@@ -13,6 +13,7 @@ import {MainContentProps} from "../types/componentProps.types";
 
 import {useTheme} from "@mui/material/styles";
 import {Theme} from "@mui/system";
+import {lighten} from "@mui/system/colorManipulator";
 
 /**
  * getFeatureColorByStatus - return the right icon color according to category and tag status
@@ -89,33 +90,32 @@ function MainContent({
                                 {showSelectedFeatures(
                                     client.features,
                                     featureStatus,
-                                    filteredFeatures).map((feature:Feature, index:number) => (
-                                    <Grow in key={index}>
+                                    filteredFeatures).map((feature:Feature, index:number) => {
+                                    const clientColor = getClientColorByStatus(
+                                        feature.client,
+                                        theme,
+                                        true);
+                                    return <Grow in key={index}>
                                         <IconButton className="iconStatus"
                                             sx={[
                                                 {
                                                     color: getClientColorByStatus(feature.client, theme),
-                                                    backgroundColor: getClientColorByStatus(
-                                                        feature.client,
-                                                        theme,
-                                                        true),
+                                                    backgroundColor: clientColor,
                                                 },
                                                 {
                                                     "&:hover": {
-                                                        backgroundColor: getClientColorByStatus(
-                                                            feature.client,
-                                                            theme,
-                                                            true),
+                                                        backgroundColor: lighten(clientColor, 0.3),
+                                                        boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
                                                     },
                                                 },
                                             ]}>
-                                            <Typography variant="body2">{feature.name}</Typography>
+                                            <Typography variant="subtitle2">{feature.name}</Typography>
                                             <CategoryIcon
                                                 color={getIconColorByStatus(feature.category)}/>
                                             <TagIcon color={getIconColorByStatus(feature.tag)}/>
                                         </IconButton>
-                                    </Grow>
-                                ))}
+                                    </Grow>;
+                                })}
                             </Box>
                         </CardContent>
                     </Card>
