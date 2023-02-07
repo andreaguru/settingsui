@@ -110,9 +110,9 @@ function MainContent({
                                                 },
                                             ]}>
                                             <Typography variant="subtitle2">{feature.name}</Typography>
-                                            <CategoryIcon
+                                            <CategoryIcon fontSize="small"
                                                 color={getIconColorByStatus(feature.category)}/>
-                                            <TagIcon color={getIconColorByStatus(feature.tag)}/>
+                                            <TagIcon fontSize="small" color={getIconColorByStatus(feature.tag)}/>
                                         </IconButton>
                                     </Grow>;
                                 })}

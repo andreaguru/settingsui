@@ -5,31 +5,31 @@
         "name": "BlickPunkt Nienburg",
         "features": [
             {
-               "name": "traffective",
+               "name": "Traffective",
                "client": "ENABLED",
                "category": "NONE",
                "tag": "ENABLED"
             },
             {
-               "name": "inArticleReco",
+               "name": "InArticleReco",
                "client": "DISABLED",
                "category": "ENABLED",
                "tag": "ENABLED"
             },
             {
-               "name": "cleverPush",
+               "name": "CleverPush",
                "client": "ENABLED",
                "category": "ENABLED_AND_DISABLED",
                "tag": "NONE"
             },
             {
-               "name": "paywall",
+               "name": "Paywall",
                "client": "ENABLED",
                "category": "DISABLED",
                "tag": "ENABLED"
             },
             {
-               "name": "glomex",
+               "name": "Glomex",
                "client": "NONE",
                "category": "NONE",
                "tag": "NONE"
@@ -41,31 +41,31 @@
         "name": "webnachrichten.de",
         "features": [
             {
-               "name": "traffective",
+               "name": "Traffective",
                "client": "ENABLED",
                "category": "NONE",
                "tag": "ENABLED"
             },
             {
-               "name": "inArticleReco",
+               "name": "InArticleReco",
                "client": "DISABLED",
                "category": "ENABLED",
                "tag": "ENABLED"
             },
             {
-               "name": "cleverPush",
+               "name": "CleverPush",
                "client": "ENABLED",
                "category": "ENABLED_AND_DISABLED",
                "tag": "NONE"
             },
             {
-               "name": "paywall",
+               "name": "Paywall",
                "client": "ENABLED",
                "category": "DISABLED",
                "tag": "ENABLED"
             },
             {
-               "name": "glomex",
+               "name": "Glomex",
                "client": "ENABLED",
                "category": "ENABLED",
                "tag": "ENABLED"
@@ -77,31 +77,31 @@
         "name": "meine-anzeigenzeitung.de",
         "features": [
             {
-               "name": "traffective",
+               "name": "Traffective",
                "client": "DISABLED",
                "category": "NONE",
                "tag": "ENABLED"
             },
             {
-               "name": "inArticleReco",
+               "name": "InArticleReco",
                "client": "DISABLED",
                "category": "ENABLED",
                "tag": "ENABLED"
             },
             {
-               "name": "cleverPush",
+               "name": "CleverPush",
                "client": "ENABLED",
                "category": "NONE",
                "tag": "NONE"
             },
             {
-               "name": "paywall",
+               "name": "Paywall",
                "client": "ENABLED",
                "category": "ENABLED_AND_DISABLED",
                "tag": "ENABLED"
             },
             {
-               "name": "glomex",
+               "name": "Glomex",
                "client": "DISABLED",
                "category": "DISABLED",
                "tag": "DISABLED"
@@ -113,31 +113,31 @@
         "name": "Wetterauer Zeitung",
         "features": [
             {
-               "name": "traffective",
+               "name": "Traffective",
                "client": "ENABLED",
                "category": "NONE",
                "tag": "ENABLED"
             },
             {
-               "name": "inArticleReco",
+               "name": "InArticleReco",
                "client": "DISABLED",
                "category": "ENABLED",
                "tag": "ENABLED"
             },
             {
-               "name": "cleverPush",
+               "name": "CleverPush",
                "client": "ENABLED",
                "category": "ENABLED_AND_DISABLED",
                "tag": "NONE"
             },
             {
-               "name": "paywall",
+               "name": "Paywall",
                "client": "ENABLED",
                "category": "DISABLED",
                "tag": "ENABLED"
             },
             {
-              "name": "glomex",
+              "name": "Glomex",
               "client": "DISABLED",
               "category": "NONE",
               "tag": "NONE"
@@ -149,31 +149,31 @@
         "name": "Remscheider General-Anzeiger",
         "features": [
             {
-               "name": "traffective",
+               "name": "Traffective",
                "client": "ENABLED",
                "category": "NONE",
                "tag": "ENABLED"
             },
             {
-               "name": "inArticleReco",
+               "name": "InArticleReco",
                "client": "DISABLED",
                "category": "DISABLED",
                "tag": "NONE"
             },
             {
-               "name": "cleverPush",
+               "name": "CleverPush",
                "client": "ENABLED",
                "category": "ENABLED_AND_DISABLED",
                "tag": "NONE"
             },
             {
-               "name": "paywall",
+               "name": "Paywall",
                "client": "ENABLED",
                "category": "DISABLED",
                "tag": "ENABLED"
             },
             {
-               "name": "glomex",
+               "name": "Glomex",
                "client": "NONE",
                "category": "ENABLED",
                "tag": "NONE"
@@ -185,31 +185,31 @@
         "name": "come-on.de",
         "features": [
             {
-               "name": "traffective",
+               "name": "Traffective",
                "client": "ENABLED",
                "category": "NONE",
                "tag": "ENABLED"
             },
             {
-               "name": "inArticleReco",
+               "name": "InArticleReco",
               "client": "DISABLED",
               "category": "ENABLED",
               "tag": "ENABLED"
             },
           {
-            "name": "cleverPush",
+            "name": "CleverPush",
             "client": "ENABLED",
             "category": "ENABLED_AND_DISABLED",
             "tag": "NONE"
           },
           {
-            "name": "paywall",
+            "name": "Paywall",
             "client": "ENABLED",
             "category": "DISABLED",
             "tag": "NONE"
           },
           {
-            "name": "glomex",
+            "name": "Glomex",
             "client": "NONE",
             "category": "NONE",
             "tag": "NONE"

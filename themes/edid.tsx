@@ -124,14 +124,22 @@ export const edidTheme = createTheme({
                 },
             },
         },
+        // Style the Card (see MainContent.tsx)
+        MuiCardContent: {
+            styleOverrides: {
+                root: {
+                    padding: "24px",
+                },
+            },
+        },
         // Style the Icon Button when is a div component (see MainContent.tsx)
         MuiIconButton: {
             styleOverrides: {
                 root: ({ownerState}) => ({
                     ...(ownerState.className === "iconStatus" && {
                         display: "flex",
-                        margin: "10px 10px 10px 0",
-                        padding: "8px 16px",
+                        margin: "16px 16px 0 0",
+                        padding: "6px 16px",
                         borderRadius: "4px",
                         gap: "8px",
                     }),
