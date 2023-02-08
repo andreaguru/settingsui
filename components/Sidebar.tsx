@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 // import custom Components
 import IDComboSelect from "./IDComboSelect";
 /* import IDRadioGroup from "./IDRadioGroup"; */
-
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
 
@@ -24,8 +23,8 @@ function Sidebar(
 ) {
     return (
         <MuiDrawer variant="permanent">
-            <Toolbar className="filterIcon" disableGutters={true}>
-                <FilterAltSharpIcon fontSize="medium" /> <Typography marginLeft={1} variant="h6">Filter</Typography>
+            <Toolbar className="toolbarTitle" disableGutters={true}>
+                <FilterAltSharpIcon fontSize="inherit" /> <Typography marginLeft={1} variant="h6">Filter</Typography>
             </Toolbar>
             <IDComboSelect values={clients}
                 title="Mandant"

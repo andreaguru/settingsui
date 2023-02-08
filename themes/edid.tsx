@@ -84,6 +84,20 @@ export const edidTheme = createTheme({
                 }),
             },
         },
+        // Style the Sidebar Title
+        MuiToolbar: {
+            styleOverrides: {
+                root: ({theme, ownerState}) => ({
+                    ...(ownerState.className === "toolbarTitle" && {
+                        fontSize: "30px",
+                        padding: "14px 0 24px 0",
+                        [theme.breakpoints.up("sm")]: {
+                            minHeight: "44px",
+                        },
+                    }),
+                }),
+            },
+        },
         // Style the Sidebar
         MuiDrawer: {
             styleOverrides: {
@@ -111,9 +125,11 @@ export const edidTheme = createTheme({
         // Style the Info Button
         MuiButton: {
             styleOverrides: {
-                text: {
-                    textTransform: "initial",
-                },
+                text: ({ownerState}) => ({
+                    ...(ownerState.className === "infoButton" && {
+                        textTransform: "initial",
+                    }),
+                }),
             },
         },
         // Style the Card (see MainContent.tsx)
@@ -124,7 +140,7 @@ export const edidTheme = createTheme({
                 },
             },
         },
-        // Style the Card (see MainContent.tsx)
+        // Style the Card content (see MainContent.tsx)
         MuiCardContent: {
             styleOverrides: {
                 root: {

@@ -78,7 +78,7 @@ function MainContent({
         <>
             <Typography variant="h6" component="h6">Mandanten</Typography>
             <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
-            {/* <IDInfoButton align="right"/> */}
+            {/* <IDInfoButton className="infoButton" align="right"/> */}
             {shownClients().map((client: Client, index: number) => (
                 client.hasFeatures && client.features && <Fade in key={index}>
                     <Card>
