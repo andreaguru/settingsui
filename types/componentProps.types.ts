@@ -14,6 +14,7 @@ export interface MainContentProps {
         featureStatus:FeatSelectedStatus,
         filteredFeatures:Array<Feature>) => Array<Feature>
     featureStatus: FeatSelectedStatus
+    isLoading: boolean
 }
 
 export interface SidebarProps {
@@ -28,7 +29,7 @@ export type IDComboSelectProps = {
     values: Array<ClientOrFeature>
     title: string
     placeholder: string
-    setFilteredValues: (name: any) => void;
+    setFilteredValues: (name: unknown) => void;
     showId?: boolean
 }
 

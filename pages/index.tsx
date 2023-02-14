@@ -121,6 +121,8 @@ function Home() {
     (keine Auswahl, aktiviert, deaktiviert / nicht konfiguriert) */
     const [featureStatus, setFeatureStatus] = useState<FeatSelectedStatus>(FeatSelectedStatus.ALL);
 
+    const [isLoading, setLoading] = useState(true);
+
     const handleFeatureStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
         // the input value has to be a string that is included in the FeatSelectedStatus enum
         setFeatureStatus((event.target as HTMLInputElement).value as FeatSelectedStatus);
@@ -152,6 +154,7 @@ function Home() {
                 });
                 // update clients state with the new value
                 setClients(clientsWithHasFeaturesProperty);
+                setLoading(false);
             }
         })
             .catch((error) => {
@@ -201,7 +204,8 @@ function Home() {
                             filteredClientsList={filteredClients}
                             filteredFeatures={filteredFeatures}
                             showSelectedFeatures={showSelectedFeatures}
-                            featureStatus={featureStatus}/>
+                            featureStatus={featureStatus}
+                            isLoading={isLoading}/>
                     </Grid>
                 </Container>
             </Box>

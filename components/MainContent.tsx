@@ -6,6 +6,7 @@ import Fade from "@mui/material/Fade";
 // import IDInfoButton from "./IDInfoButton";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+import Skeleton from "@mui/material/Skeleton";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
@@ -61,7 +62,8 @@ function MainContent({
     filteredClientsList,
     filteredFeatures,
     showSelectedFeatures,
-    featureStatus}:MainContentProps) {
+    featureStatus,
+    isLoading}:MainContentProps) {
     /* filter the clients that have to be shown, according to current filter status */
     /**
      * shownClients
@@ -79,7 +81,15 @@ function MainContent({
             <Typography variant="h6" component="h6">Mandanten</Typography>
             <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
             {/* <IDInfoButton className="infoButton" align="right"/> */}
-            {shownClients().map((client: Client, index: number) => (
+            {isLoading &&
+                <>
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                </>
+            }
+            {!isLoading && shownClients().map((client: Client, index: number) => (
                 client.hasFeatures && client.features && <Fade in key={index}>
                     <Card>
                         <CardContent>
