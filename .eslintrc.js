@@ -14,6 +14,7 @@ module.exports = {
         "next/core-web-vitals"],
     rules: {
         "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/no-explicit-any": [1, {"ignoreRestArgs": true}],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "error",
         "max-len": [2, {"code": 120}],
