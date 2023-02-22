@@ -6,6 +6,7 @@ import Fade from "@mui/material/Fade";
 // import IDInfoButton from "./IDInfoButton";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+import Skeleton from "@mui/material/Skeleton";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
@@ -34,13 +35,13 @@ function getIconColorByStatus(status:string) {
 }
 
 /**
- * getClientColorByStatus - return the right color of text and background according to feature client status
+ * getButtonColorByStatus - return the right color of text and background according to feature client status
  * @param {string} status
  * @param {Theme} theme
  * @param {boolean} isBackground
  * @return {string}
  */
-function getClientColorByStatus(status:string, theme:Theme, isBackground?:boolean) {
+function getButtonColorByStatus(status:string, theme:Theme, isBackground?:boolean) {
     switch (status) {
     case "ENABLED":
         return isBackground ? theme.palette.success.light : theme.palette.success.main;
@@ -61,7 +62,8 @@ function MainContent({
     filteredClientsList,
     filteredFeatures,
     showSelectedFeatures,
-    featureStatus}:MainContentProps) {
+    featureStatus,
+    isLoading}:MainContentProps) {
     /* filter the clients that have to be shown, according to current filter status */
     /**
      * shownClients
@@ -79,9 +81,17 @@ function MainContent({
             <Typography variant="h6" component="h6">Mandanten</Typography>
             <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
             {/* <IDInfoButton className="infoButton" align="right"/> */}
-            {shownClients().map((client: Client, index: number) => (
+            {isLoading &&
+                <>
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                </>
+            }
+            {!isLoading && shownClients().map((client: Client, index: number) => (
                 client.hasFeatures && client.features && <Fade in key={index}>
-                    <Card>
+                    <Card data-testid={client.id}>
                         <CardContent>
                             <Typography variant="body1" component="h2">
                                 {client.name} ({client.id})
@@ -91,15 +101,12 @@ function MainContent({
                                     client.features,
                                     featureStatus,
                                     filteredFeatures).map((feature:Feature, index:number) => {
-                                    const clientColor = getClientColorByStatus(
-                                        feature.client,
-                                        theme,
-                                        true);
+                                    const clientColor = getButtonColorByStatus(feature.client, theme, true);
                                     return <Grow in key={index}>
                                         <IconButton className="iconStatus"
                                             sx={[
                                                 {
-                                                    color: getClientColorByStatus(feature.client, theme),
+                                                    color: getButtonColorByStatus(feature.client, theme),
                                                     backgroundColor: clientColor,
                                                 },
                                                 {
@@ -130,6 +137,6 @@ export default MainContent;
 /* start-test-block */
 export {
     getIconColorByStatus,
-    getClientColorByStatus,
+    getButtonColorByStatus,
 };
 /* end-test-block */

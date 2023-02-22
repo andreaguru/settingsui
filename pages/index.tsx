@@ -73,6 +73,7 @@ function showSelectedFeatures(featuresPerClient:Array<Feature>,
     featureStatus:FeatSelectedStatus,
     filteredFeatures:Array<Feature>) {
     const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
+    featuresFilteredPerStatus.sort((featurePrev, featureNext) => featurePrev.name.localeCompare(featureNext.name));
 
     // if one or more features have been selected in the combobox...
     if (filteredFeatures.length > 0) {
@@ -121,6 +122,8 @@ function Home() {
     (keine Auswahl, aktiviert, deaktiviert / nicht konfiguriert) */
     const [featureStatus, setFeatureStatus] = useState<FeatSelectedStatus>(FeatSelectedStatus.ALL);
 
+    const [isLoading, setLoading] = useState(true);
+
     const handleFeatureStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
         // the input value has to be a string that is included in the FeatSelectedStatus enum
         setFeatureStatus((event.target as HTMLInputElement).value as FeatSelectedStatus);
@@ -152,6 +155,7 @@ function Home() {
                 });
                 // update clients state with the new value
                 setClients(clientsWithHasFeaturesProperty);
+                setLoading(false);
             }
         })
             .catch((error) => {
@@ -201,7 +205,8 @@ function Home() {
                             filteredClientsList={filteredClients}
                             filteredFeatures={filteredFeatures}
                             showSelectedFeatures={showSelectedFeatures}
-                            featureStatus={featureStatus}/>
+                            featureStatus={featureStatus}
+                            isLoading={isLoading}/>
                     </Grid>
                 </Container>
             </Box>

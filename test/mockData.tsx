@@ -327,7 +327,7 @@ export const mockedFeatures:Array<Feature> = [
     {
         "id": 1,
         "name": "traffective",
-        "client": "DISABLED",
+        "client": "ENABLED",
         "category": "NONE",
         "tag": "DISABLED",
     },
