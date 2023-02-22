@@ -71,7 +71,7 @@ docker:production:
 # build sidecar container with mocking data
 json-server:
   stage: docker
-  image: docker
+  image: ippendigital/iddt:2.0.0
   variables:
     IMAGE_NAME: settings-ui-mock
     REPO: ippendigital
