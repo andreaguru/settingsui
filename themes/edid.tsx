@@ -1,7 +1,8 @@
 import {createTheme} from "@mui/material/styles";
+import {lighten} from "@mui/system/colorManipulator";
 
 /* We need to enhance the Theme and Palette Interfaces in order to add new custom values
-(in our case variables, neutral and lightGrey).
+(in our case variables, disabled).
 The Interfaces are declared in node_modules/@mui/material/styles/createTheme.d.ts and
 node_modules/@mui/material/styles/createPalette.d.ts */
 declare module "@mui/material/styles" {
@@ -17,13 +18,13 @@ declare module "@mui/material/styles" {
     };
   }
   interface Palette {
+    disabled: Palette["primary"];
     neutral: Palette["primary"];
-    lightGrey: Palette["primary"];
   }
   // allow configuration using `createTheme`
   interface PaletteOptions {
+    disabled?: PaletteOptions["primary"];
     neutral?: PaletteOptions["primary"];
-    lightGrey?: PaletteOptions["primary"];
   }
 }
 
@@ -41,16 +42,21 @@ export const edidTheme = createTheme({
             main: "#212121",
         },
         success: {
-            main: "#52A959",
+            main: "#319E7D",
+            light: lighten("#319E7D", 0.88),
+        },
+        warning: {
+            main: "#FDAD0D",
         },
         error: {
-            main: "#DB504A",
+            main: "#F15653",
         },
         neutral: {
-            main: "#A5A5A5",
+            main: "#616161",
+            light: lighten("#616161", 0.86),
         },
-        lightGrey: {
-            main: "#EEEEEE",
+        disabled: {
+            main: "#A5A5A5",
         },
     },
     components: {
@@ -58,10 +64,8 @@ export const edidTheme = createTheme({
         MuiContainer: {
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
-                    ...(ownerState.component === "main" && {
-                        backgroundColor: theme.palette.mode === "light" ?
-                            theme.palette.grey[100] :
-                            theme.palette.grey[900],
+                    ...(ownerState.className === "mainContent" && {
+                        backgroundColor: theme.palette.grey[100],
                         flexGrow: 1,
                         position: "relative",
                         height: `calc(100vh - ${theme.variables.headerMarginTop})`,
@@ -81,16 +85,15 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the Filter Icon
+        // Style the Sidebar Title
         MuiToolbar: {
             styleOverrides: {
-                root: ({ownerState, theme}) => ({
-                    ...(ownerState.className === "filterIcon" && {
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "flex-start",
-                        [theme.breakpoints.up("md")]: {
-                            paddingLeft: 0,
+                root: ({theme, ownerState}) => ({
+                    ...(ownerState.className === "toolbarTitle" && {
+                        fontSize: "30px",
+                        padding: "14px 0 24px 0",
+                        [theme.breakpoints.up("sm")]: {
+                            minHeight: "44px",
                         },
                     }),
                 }),
@@ -123,9 +126,11 @@ export const edidTheme = createTheme({
         // Style the Info Button
         MuiButton: {
             styleOverrides: {
-                text: {
-                    textTransform: "initial",
-                },
+                text: ({ownerState}) => ({
+                    ...(ownerState.className === "infoButton" && {
+                        textTransform: "initial",
+                    }),
+                }),
             },
         },
         // Style the Card (see MainContent.tsx)
@@ -136,18 +141,24 @@ export const edidTheme = createTheme({
                 },
             },
         },
+        // Style the Card content (see MainContent.tsx)
+        MuiCardContent: {
+            styleOverrides: {
+                root: {
+                    padding: "24px",
+                },
+            },
+        },
         // Style the Icon Button when is a div component (see MainContent.tsx)
         MuiIconButton: {
             styleOverrides: {
-                root: ({ownerState, theme}) => ({
-                    ...(ownerState.classNAme === "div" && {
+                root: ({ownerState}) => ({
+                    ...(ownerState.className === "iconStatus" && {
                         display: "flex",
-                        margin: "10px 10px 10px 0",
-                        padding: "8px",
+                        margin: "16px 16px 0 0",
+                        padding: "6px 16px",
                         borderRadius: "4px",
                         gap: "8px",
-                        backgroundColor: theme.palette.lightGrey.main,
-                        color: theme.palette.secondary.main,
                     }),
                 }),
             },

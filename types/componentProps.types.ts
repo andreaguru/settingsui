@@ -14,6 +14,7 @@ export interface MainContentProps {
         featureStatus:FeatSelectedStatus,
         filteredFeatures:Array<Feature>) => Array<Feature>
     featureStatus: FeatSelectedStatus
+    isLoading: boolean
 }
 
 export interface SidebarProps {

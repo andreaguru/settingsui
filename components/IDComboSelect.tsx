@@ -27,7 +27,6 @@ function IDComboSelect({
     setFilteredValues,
     showId}: IDComboSelectProps) {
     const handleChange = (event: SyntheticEvent, value:Array<ClientOrFeature>) => {
-        // check if the selected element is a React Node element and if contains a value inside its props
         setFilteredValues(value);
     };
 

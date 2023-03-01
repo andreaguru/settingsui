@@ -4,34 +4,53 @@ import TagIcon from "@mui/icons-material/LocalOffer";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import Grow from "@mui/material/Grow";
 import Fade from "@mui/material/Fade";
-import IDInfoButton from "./IDInfoButton";
+// import IDInfoButton from "./IDInfoButton";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+import Skeleton from "@mui/material/Skeleton";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
 import {FeatSelectedStatus, MainContentProps} from "../types/componentProps.types";
 import NextLink from "next/link";
+import {MainContentProps} from "../types/componentProps.types";
+
+import {useTheme} from "@mui/material/styles";
+import {Theme} from "@mui/system";
+import {lighten} from "@mui/system/colorManipulator";
 
 /**
- * getFeatureColorByStatus
+ * getFeatureColorByStatus - return the right icon color according to category and tag status
  * @param {string} status
- * @param {FeatSelectedStatus} featureStatus
  * @return {string}
  */
-function getFeatureColorByStatus(status:string, featureStatus?:FeatSelectedStatus):"success" | "error" | "disabled" {
+function getIconColorByStatus(status:string) {
     switch (status) {
     case "ENABLED":
         return "success";
     case "DISABLED":
         return "error";
     case "ENABLED_AND_DISABLED":
-        if (featureStatus === "ACTIVE") {
-            return "success";
-        } else return "error";
+        return "warning";
     case "NONE":
-        return "disabled";
     default: return "disabled";
+    }
+}
+
+/**
+ * getButtonColorByStatus - return the right color of text and background according to feature client status
+ * @param {string} status
+ * @param {Theme} theme
+ * @param {boolean} isBackground
+ * @return {string}
+ */
+function getButtonColorByStatus(status:string, theme:Theme, isBackground?:boolean) {
+    switch (status) {
+    case "ENABLED":
+        return isBackground ? theme.palette.success.light : theme.palette.success.main;
+    case "DISABLED":
+    case "NONE":
+        return isBackground ? theme.palette.neutral.light : theme.palette.neutral.main;
     }
 }
 
@@ -46,7 +65,8 @@ function MainContent({
     filteredClientsList,
     filteredFeatures,
     showSelectedFeatures,
-    featureStatus}:MainContentProps) {
+    featureStatus,
+    isLoading}:MainContentProps) {
     /* filter the clients that have to be shown, according to current filter status */
     /**
      * shownClients
@@ -57,14 +77,24 @@ function MainContent({
         return clients.filter((client) => client.hasFeatures === true);
     }
 
+    const theme = useTheme();
+
     return (
         <>
             <Typography variant="h6" component="h6">Mandanten</Typography>
             <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
-            <IDInfoButton align="right"/>
-            {shownClients().map((client: Client, index: number) => (
+            {/* <IDInfoButton className="infoButton" align="right"/> */}
+            {isLoading &&
+                <>
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                    <Skeleton variant="rounded" height={180} />
+                </>
+            }
+            {!isLoading && shownClients().map((client: Client, index: number) => (
                 client.hasFeatures && client.features && <Fade in key={index}>
-                    <Card>
+                    <Card data-testid={client.id}>
                         <CardContent>
                             <Typography variant="body1" component="h2">
                                 {client.name} ({client.id})
@@ -73,22 +103,29 @@ function MainContent({
                                 {showSelectedFeatures(
                                     client.features,
                                     featureStatus,
-                                    filteredFeatures).map((feature:Feature, index:number) => (
-                                    <NextLink key={index} href={`/feature/${client.id}/${feature.name}`} passHref>
-                                        <Button component="a" onClick={() => console.log(feature.name)}>
-                                            <Grow in>
-                                                <IconButton component="div">
-                                                    <ClientIcon
-                                                        color={getFeatureColorByStatus(feature.client, featureStatus)} />
-                                                    <CategoryIcon
-                                                        color={getFeatureColorByStatus(feature.category, featureStatus)} />
-                                                    <TagIcon color={getFeatureColorByStatus(feature.tag, featureStatus)} />
-                                                    <Typography variant="body2">{feature.name}</Typography>
-                                                </IconButton>
-                                            </Grow>
-                                        </Button>
-                                    </NextLink>
-                                ))}
+                                    filteredFeatures).map((feature:Feature, index:number) => {
+                                    const clientColor = getButtonColorByStatus(feature.client, theme, true);
+                                    return <Grow in key={index}>
+                                        <IconButton className="iconStatus"
+                                            sx={[
+                                                {
+                                                    color: getButtonColorByStatus(feature.client, theme),
+                                                    backgroundColor: clientColor,
+                                                },
+                                                {
+                                                    "&:hover": {
+                                                        backgroundColor: lighten(clientColor, 0.3),
+                                                        boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
+                                                    },
+                                                },
+                                            ]}>
+                                            <Typography variant="subtitle2">{feature.name}</Typography>
+                                            <CategoryIcon fontSize="small"
+                                                color={getIconColorByStatus(feature.category)}/>
+                                            <TagIcon fontSize="small" color={getIconColorByStatus(feature.tag)}/>
+                                        </IconButton>
+                                    </Grow>;
+                                })}
                             </Box>
                         </CardContent>
                     </Card>
@@ -102,6 +139,7 @@ export default MainContent;
 
 /* start-test-block */
 export {
-    getFeatureColorByStatus,
+    getIconColorByStatus,
+    getButtonColorByStatus,
 };
 /* end-test-block */
