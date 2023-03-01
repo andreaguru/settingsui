@@ -9,6 +9,7 @@ test("checkbox components are not rendered at page load", () => {
     render(<IDComboSelect
         values={mockedClientList}
         title="Test"
+        filteredValues={[]}
         placeholder="Test"
         setFilteredValues={() => null} />);
 
@@ -19,6 +20,7 @@ test("placeholder is set and visible on rendered component", () => {
     render(<IDComboSelect
         values={mockedClientList}
         title="Test"
+        filteredValues={[]}
         placeholder="Test"
         setFilteredValues={() => null} />);
 
@@ -29,6 +31,7 @@ test("checkbox components are rendered after select change", () => {
     render(<IDComboSelect
         values={mockedClientList}
         title="Test"
+        filteredValues={[]}
         placeholder="Test"
         setFilteredValues={() => null} />);
 
@@ -45,6 +48,7 @@ test("handleChange behavior - setFilteredValues is called when a combobox option
     render(<IDComboSelect
         values={mockedClientList}
         title="Test"
+        filteredValues={[]}
         placeholder="Test"
         setFilteredValues={setFilteredValues} />);
 

@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Home, {showFeaturesPerStatus, showSelectedFeatures} from "../pages/index";
+import Home, {showFeaturesPerStatus, showSelectedFeatures} from "../pages";
 import * as apiMethods from "../api/DashboardAPI";
 import {mockedFeatures, mockedFilteredFeatures} from "./mockData";
 import {FeatSelectedStatus} from "../types/componentProps.types";

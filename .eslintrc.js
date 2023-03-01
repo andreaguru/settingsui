@@ -18,6 +18,8 @@ module.exports = {
         "@typescript-eslint/no-unused-vars": "error",
         "max-len": [2, {"code": 120}],
         "quotes": [2, "double"],
-        "indent": [2, 4]
+        "indent": [2, 4],
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "off"
     }
 };

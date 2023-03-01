@@ -19,8 +19,10 @@ export interface MainContentProps {
 export interface SidebarProps {
     clients: Array<Client>
     features: Array<Feature>
+    filteredFeatures: Array<Feature>
+    filteredClients: Array<Client>
     setFilteredClients: (name: Array<Client>) => void;
-    setFilteredFeatures: (name: Array<Feature>) => void;
+    setFilteredFeatures: (name: Array<Feature>) => void
     handleFeatureStatusChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -28,7 +30,8 @@ export type IDComboSelectProps = {
     values: Array<ClientOrFeature>
     title: string
     placeholder: string
-    setFilteredValues: (name: any) => void;
+    filteredValues: Array<ClientOrFeature>
+    setFilteredValues: (name: any) => void
     showId?: boolean
 }
 

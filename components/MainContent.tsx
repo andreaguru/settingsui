@@ -1,4 +1,4 @@
-import {Card, CardContent, Typography} from "@mui/material";
+import {Button, Card, CardContent, Typography} from "@mui/material";
 import ClientIcon from "@mui/icons-material/Apartment";
 import TagIcon from "@mui/icons-material/LocalOffer";
 import CategoryIcon from "@mui/icons-material/AccountTree";
@@ -10,7 +10,8 @@ import IconButton from "@mui/material/IconButton";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
-import {MainContentProps, FeatSelectedStatus} from "../types/componentProps.types";
+import {FeatSelectedStatus, MainContentProps} from "../types/componentProps.types";
+import NextLink from "next/link";
 
 /**
  * getFeatureColorByStatus
@@ -73,16 +74,20 @@ function MainContent({
                                     client.features,
                                     featureStatus,
                                     filteredFeatures).map((feature:Feature, index:number) => (
-                                    <Grow in key={index}>
-                                        <IconButton component="div">
-                                            <ClientIcon
-                                                color={getFeatureColorByStatus(feature.client, featureStatus)} />
-                                            <CategoryIcon
-                                                color={getFeatureColorByStatus(feature.category, featureStatus)} />
-                                            <TagIcon color={getFeatureColorByStatus(feature.tag, featureStatus)} />
-                                            <Typography variant="body2">{feature.name}</Typography>
-                                        </IconButton>
-                                    </Grow>
+                                    <NextLink key={index} href={`/feature/${client.id}/${feature.name}`} passHref>
+                                        <Button component="a" onClick={() => console.log(feature.name)}>
+                                            <Grow in>
+                                                <IconButton component="div">
+                                                    <ClientIcon
+                                                        color={getFeatureColorByStatus(feature.client, featureStatus)} />
+                                                    <CategoryIcon
+                                                        color={getFeatureColorByStatus(feature.category, featureStatus)} />
+                                                    <TagIcon color={getFeatureColorByStatus(feature.tag, featureStatus)} />
+                                                    <Typography variant="body2">{feature.name}</Typography>
+                                                </IconButton>
+                                            </Grow>
+                                        </Button>
+                                    </NextLink>
                                 ))}
                             </Box>
                         </CardContent>
