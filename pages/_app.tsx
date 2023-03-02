@@ -1,5 +1,6 @@
 import {getClientList} from "../api/DashboardAPI";
-import {ChangeEvent, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
+import type {AppProps} from "next/app";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
@@ -38,51 +39,10 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
 }
 
 /**
- * showSelectedFeatures
- * it shows the Features that have been selected by the user
- * (e.g. checks if "traffective" and "aktiviert" have been selected and shows the result)
- * @param {Array<Feature>} featuresPerClient
- * @param {FeatSelectedStatus} featureStatus
- * @param {Array<Feature>} filteredFeatures
- * @return {Array<Feature>}
- */
-function showSelectedFeatures(featuresPerClient:Array<Feature>,
-    featureStatus:FeatSelectedStatus,
-    filteredFeatures:Array<Feature>) {
-    const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
-
-    // if one or more features have been selected in the combobox...
-    if (filteredFeatures.length > 0) {
-        return (
-            /* we return the features that pass the following criteria:
-            1) they have been filtered through showFeaturesPerStatus
-            in order to show them according to the selected status (active, inactive or all)
-            2) are also present in filteredFeatures array. */
-            featuresFilteredPerStatus.filter((feat:Feature) =>
-                // for each feature we check if it is present in filteredFeatures array
-                filteredFeatures.some((filteredFeat) => filteredFeat.name === feat.name)
-            )
-        );
-        // if there is no feature in filteredFeatures, we show them according to point 1)
-    } else return featuresFilteredPerStatus;
-}
-
-/**
- * getFeaturesList
- * @param {Array<Client>} clients
- * @return {Array<Feature>}
- */
-function getFeaturesList(clients:Array<Client>) {
-    return clients.length > 0 ? clients[0].features : [];
-}
-
-/**
  *
- * @param Component
- * @param pageProps
  * @constructor
  */
-function MyApp({Component, pageProps}) {
+function MyApp({Component, pageProps}:AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
 
     // contains the list of clients that have been selected by the user
@@ -95,10 +55,35 @@ function MyApp({Component, pageProps}) {
     (keine Auswahl, aktiviert, deaktiviert / nicht konfiguriert) */
     const [featureStatus, setFeatureStatus] = useState<FeatSelectedStatus>(FeatSelectedStatus.ALL);
 
-    const handleFeatureStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
-        // the input value has to be a string that is included in the FeatSelectedStatus enum
-        setFeatureStatus((event.target as HTMLInputElement).value as FeatSelectedStatus);
-    };
+    const [isLoading, setLoading] = useState(true);
+
+    /**
+     * showSelectedFeatures
+     * it shows the Features that have been selected by the user
+     * (e.g. checks if "traffective" and "aktiviert" have been selected and shows the result)
+     * @param {Array<Feature>} featuresPerClient
+     * @param {FeatSelectedStatus} featureStatus
+     * @param {Array<Feature>} filteredFeatures
+     * @return {Array<Feature>}
+     */
+    function showSelectedFeatures(featuresPerClient:Array<Feature>) {
+        const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
+
+        // if one or more features have been selected in the combobox...
+        if (filteredFeatures.length > 0) {
+            return (
+                /* we return the features that pass the following criteria:
+                1) they have been filtered through showFeaturesPerStatus
+                in order to show them according to the selected status (active, inactive or all)
+                2) are also present in filteredFeatures array. */
+                featuresFilteredPerStatus.filter((feat:Feature) =>
+                    // for each feature we check if it is present in filteredFeatures array
+                    filteredFeatures.some((filteredFeat) => filteredFeat.name === feat.name)
+                )
+            );
+            // if there is no feature in filteredFeatures, we show them according to point 1)
+        } else return featuresFilteredPerStatus;
+    }
 
     /**
      * getStateWithHasFeaturesProp
@@ -109,26 +94,10 @@ function MyApp({Component, pageProps}) {
         return clients.map((client: Client):Client => {
             return {
                 ...client,
-                hasFeatures: showSelectedFeatures(client.features, featureStatus, filteredFeatures).length > 0,
+                hasFeatures: showSelectedFeatures(client.features).length > 0,
             };
         });
     }
-
-    // The code inside this useEffect is called everytime there is a change in filteredClients state
-    useEffect(() => {
-        /* here we set the status of property hasFeatures for each filtered client.
-        hasFeatures is a boolean that tell us if a filtered client
-        has features to show according to the current set filters.
-        If there are no features, we set hasFeatures to false.
-        This property is currently used in MainContent and IDComboSelect.
-        Every time the filteredClients changes we update also hasFeatures value */
-
-        if (filteredClients.length) {
-            /* add hasFeatures prop to filteredClients state and update the state itself with this new value */
-            setFilteredClients(getStateWithHasFeaturesProp(filteredClients));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filteredClients]);
 
     /* The code inside this useEffect is called only once, the first time that the Home component is loaded.
     This is the moment when we want to get the clients list from APIs and set the clients status with its value. */
@@ -142,7 +111,7 @@ function MyApp({Component, pageProps}) {
                 });
                 // update clients state with the new value
                 setClients(clientsWithHasFeaturesProperty);
-                setFilteredClients(clientsWithHasFeaturesProperty.filter((e) => e.name === "BlickPunkt Nienburg"));
+                setLoading(false);
             }
         })
             .catch((error) => {
@@ -175,8 +144,8 @@ function MyApp({Component, pageProps}) {
                 setFilteredClients={setFilteredClients}
                 setFilteredFeatures={setFilteredFeatures}
                 showSelectedFeatures={showSelectedFeatures}
-                handleFeatureStatusChange={handleFeatureStatusChange}
-                getFeaturesList={getFeaturesList}
+                setFeatureStatus={setFeatureStatus}
+                isLoading={isLoading}
             />
         </div>
     );
@@ -187,6 +156,5 @@ export default MyApp;
 /* start-test-block */
 export {
     showFeaturesPerStatus,
-    showSelectedFeatures,
 };
 /* end-test-block */

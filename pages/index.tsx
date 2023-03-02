@@ -21,19 +21,7 @@ import logo from "../assets/logo.svg";
 import Image from "next/image";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
-
-type ContainerProps = {
-    clients: any;
-    filteredClients: any;
-    filteredFeatures: any;
-    setFilteredClients: any;
-    setFilteredFeatures: any;
-    featureStatus: any;
-    handleFeatureStatusChange: any;
-    showSelectedFeatures: any;
-    getFeaturesList: any;
-    children: React.ReactNode; // 👈 children prop typr
-};
+import {HomeProps} from "../types/componentProps.types";
 
 /**
  * The Home Page. This is currently the only page of the project.
@@ -41,11 +29,10 @@ type ContainerProps = {
  * The states can be updated via setters (e.g. setClients).
  * The setters can be passed as props to children components and called from there.
  * In useEffect we retrieve the infos that are needed when the App is loaded.
- * props fefewf
  *
  * @constructor
  */
-function Home(props: ContainerProps) {
+function Home({...props}: HomeProps) {
     return (
         <ThemeProvider theme={edidTheme}>
             {/* use the variable declared in the createTheme to get the height of the header */}
@@ -60,21 +47,19 @@ function Home(props: ContainerProps) {
                 </MuiAppBar>
                 <Sidebar
                     clients={props.clients}
-                    features={props.getFeaturesList(props.clients)}
                     filteredClients={props.filteredClients}
                     filteredFeatures={props.filteredFeatures}
                     setFilteredClients={props.setFilteredClients}
                     setFilteredFeatures={props.setFilteredFeatures}
-                    handleFeatureStatusChange={props.handleFeatureStatusChange}/>
+                    setFeatureStatus={props.setFeatureStatus}/>
 
                 <Container component="main" maxWidth={false}>
                     <Grid item xs={12}>
                         <MainContent
                             clientsList={props.clients}
                             filteredClientsList={props.filteredClients}
-                            filteredFeatures={props.filteredFeatures}
                             showSelectedFeatures={props.showSelectedFeatures}
-                            featureStatus={props.featureStatus}/>
+                            isLoading={props.isLoading}/>
                     </Grid>
                 </Container>
             </Box>

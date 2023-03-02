@@ -3,13 +3,19 @@ import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 
 // import typescript Interfaces
-import {IDRadioGroupProps} from "../types/componentProps.types";
+import {FeatSelectedStatus, IDRadioGroupProps} from "../types/componentProps.types";
+import {ChangeEvent} from "react";
 
 /**
  *
  * @constructor
  */
-function IDRadioGroup({handleFeatureStatusChange}:IDRadioGroupProps) {
+function IDRadioGroup({setFeatureStatus}: IDRadioGroupProps) {
+    const handleFeatureStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
+        // the input value has to be a string that is included in the FeatSelectedStatus enum
+        setFeatureStatus((event.target as HTMLInputElement).value as FeatSelectedStatus);
+    };
+
     return (
         <FormControl>
             <Typography component="label">Status der Features</Typography>

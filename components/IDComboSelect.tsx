@@ -37,6 +37,7 @@ function IDComboSelect({
                 <Autocomplete
                     multiple
                     options={values}
+                    value={filteredValues}
                     onChange={handleChange}
                     data-testid="combobox"
                     disableCloseOnSelect={true}
@@ -45,12 +46,12 @@ function IDComboSelect({
                     }
                     getOptionLabel={(option:ClientOrFeature) => option.name}
                     ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
-                    renderOption={(props, option:ClientOrFeature) => (
+                    renderOption={(props, option:ClientOrFeature, {selected}) => (
                         <li {...props} >
                             <Checkbox
                                 data-testid={"id" in option ? option.id : ""}
                                 style={{marginRight: 8}}
-                                checked={filteredValues.some((filteredVal) => filteredVal.name === option.name)}
+                                checked={selected}
                                 size="small"
                             />
                             {option.name + (showId ? ` (${"id" in option ? option.id : ""})` : "")}

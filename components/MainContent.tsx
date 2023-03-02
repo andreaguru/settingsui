@@ -1,5 +1,4 @@
 import {Button, Card, CardContent, Typography} from "@mui/material";
-import ClientIcon from "@mui/icons-material/Apartment";
 import TagIcon from "@mui/icons-material/LocalOffer";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import Grow from "@mui/material/Grow";
@@ -11,9 +10,8 @@ import Skeleton from "@mui/material/Skeleton";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
-import {FeatSelectedStatus, MainContentProps} from "../types/componentProps.types";
-import NextLink from "next/link";
 import {MainContentProps} from "../types/componentProps.types";
+import NextLink from "next/link";
 
 import {useTheme} from "@mui/material/styles";
 import {Theme} from "@mui/system";
@@ -24,7 +22,7 @@ import {lighten} from "@mui/system/colorManipulator";
  * @param {string} status
  * @return {string}
  */
-function getIconColorByStatus(status:string) {
+function getIconColorByStatus(status: string) {
     switch (status) {
     case "ENABLED":
         return "success";
@@ -33,7 +31,8 @@ function getIconColorByStatus(status:string) {
     case "ENABLED_AND_DISABLED":
         return "warning";
     case "NONE":
-    default: return "disabled";
+    default:
+        return "disabled";
     }
 }
 
@@ -44,7 +43,7 @@ function getIconColorByStatus(status:string) {
  * @param {boolean} isBackground
  * @return {string}
  */
-function getButtonColorByStatus(status:string, theme:Theme, isBackground?:boolean) {
+function getButtonColorByStatus(status: string, theme: Theme, isBackground?: boolean) {
     switch (status) {
     case "ENABLED":
         return isBackground ? theme.palette.success.light : theme.palette.success.main;
@@ -63,16 +62,14 @@ function getButtonColorByStatus(status:string, theme:Theme, isBackground?:boolea
 function MainContent({
     clientsList,
     filteredClientsList,
-    filteredFeatures,
     showSelectedFeatures,
-    featureStatus,
-    isLoading}:MainContentProps) {
+    isLoading}: MainContentProps) {
     /* filter the clients that have to be shown, according to current filter status */
     /**
      * shownClients
      * @return {Array<Client>}
      */
-    function shownClients():Array<Client> {
+    function shownClients(): Array<Client> {
         const clients = filteredClientsList.length ? filteredClientsList : clientsList;
         return clients.filter((client) => client.hasFeatures === true);
     }
@@ -85,12 +82,12 @@ function MainContent({
             <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
             {/* <IDInfoButton className="infoButton" align="right"/> */}
             {isLoading &&
-                <>
-                    <Skeleton variant="rounded" height={180} />
-                    <Skeleton variant="rounded" height={180} />
-                    <Skeleton variant="rounded" height={180} />
-                    <Skeleton variant="rounded" height={180} />
-                </>
+            <>
+                <Skeleton variant="rounded" height={180}/>
+                <Skeleton variant="rounded" height={180}/>
+                <Skeleton variant="rounded" height={180}/>
+                <Skeleton variant="rounded" height={180}/>
+            </>
             }
             {!isLoading && shownClients().map((client: Client, index: number) => (
                 client.hasFeatures && client.features && <Fade in key={index}>
@@ -100,31 +97,36 @@ function MainContent({
                                 {client.name} ({client.id})
                             </Typography>
                             <Box sx={{display: "flex", flexWrap: "wrap"}}>
-                                {showSelectedFeatures(
-                                    client.features,
-                                    featureStatus,
-                                    filteredFeatures).map((feature:Feature, index:number) => {
+                                {showSelectedFeatures(client.features).map((feature: Feature, index: number) => {
                                     const clientColor = getButtonColorByStatus(feature.client, theme, true);
-                                    return <Grow in key={index}>
-                                        <IconButton className="iconStatus"
-                                            sx={[
-                                                {
-                                                    color: getButtonColorByStatus(feature.client, theme),
-                                                    backgroundColor: clientColor,
-                                                },
-                                                {
-                                                    "&:hover": {
-                                                        backgroundColor: lighten(clientColor, 0.3),
-                                                        boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
-                                                    },
-                                                },
-                                            ]}>
-                                            <Typography variant="subtitle2">{feature.name}</Typography>
-                                            <CategoryIcon fontSize="small"
-                                                color={getIconColorByStatus(feature.category)}/>
-                                            <TagIcon fontSize="small" color={getIconColorByStatus(feature.tag)}/>
-                                        </IconButton>
-                                    </Grow>;
+                                    return <NextLink
+                                        key={index}
+                                        href={`/feature/${client.id}/${feature.name}`}
+                                        passHref>
+                                        <Button component="a" onClick={() => console.log(feature.name)}>
+                                            <Grow in key={index}>
+                                                <IconButton className="iconStatus"
+                                                    sx={[
+                                                        {
+                                                            color: getButtonColorByStatus(feature.client, theme),
+                                                            backgroundColor: clientColor,
+                                                        },
+                                                        {
+                                                            "&:hover": {
+                                                                backgroundColor: lighten(clientColor, 0.3),
+                                                                boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
+                                                            },
+                                                        },
+                                                    ]}>
+                                                    <Typography variant="subtitle2">{feature.name}</Typography>
+                                                    <CategoryIcon fontSize="small"
+                                                        color={getIconColorByStatus(feature.category)}/>
+                                                    <TagIcon fontSize="small"
+                                                        color={getIconColorByStatus(feature.tag)}/>
+                                                </IconButton>
+                                            </Grow>
+                                        </Button>
+                                    </NextLink>;
                                 })}
                             </Box>
                         </CardContent>

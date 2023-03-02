@@ -2,15 +2,16 @@ import Box from "@mui/material/Box";
 import React, {forwardRef} from "react";
 
 interface FeatureDetail {
-   id: string;
+   clientId: string;
    featureName: string;
    pathname: string;
 }
 
-const FeatureDetail = forwardRef<unknown, FeatureDetail>(({id, featureName, pathname}, ref) => (
+const FeatureDetail = forwardRef<unknown, FeatureDetail>(({clientId, featureName, pathname}, ref) => (
     <Box ref={ref}>
-            Client Id: {id} <br/>
-            I am the feature {featureName}; my pathname is: {pathname}
+            Client Id: {clientId} <br/>
+            I am the feature {featureName};<br/>
+            my pathname is: {pathname}
     </Box>
 ));
 
