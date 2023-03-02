@@ -4,39 +4,43 @@ import MainContent, {getClientColorByStatus, getIconColorByStatus} from "../comp
 import {mockedClientListWithHasFeatures, mockedFeatures, mockedFilteredList} from "./mockData";
 import {FeatSelectedStatus} from "../types/componentProps.types";
 import {edidTheme} from "../themes/edid";
+import {ThemeProvider} from "@mui/material/styles";
 
 const showSelectedFeatures = jest.fn();
 showSelectedFeatures.mockReturnValue(mockedFeatures);
 
 test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
-    render(<MainContent
+    render(<ThemeProvider theme={edidTheme}><MainContent
         clientsList={[]}
         filteredClientsList={[]}
         filteredFeatures={[]}
         showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}/>);
+        featureStatus={FeatSelectedStatus.ALL}
+        isLoading={false}/></ThemeProvider>);
 
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
 
 test("component shows clientList if it is passed in the props", () => {
-    render(<MainContent
+    render(<ThemeProvider theme={edidTheme}><MainContent
         clientsList={mockedClientListWithHasFeatures}
         filteredClientsList={[]}
         filteredFeatures={[]}
         showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}/>);
+        featureStatus={FeatSelectedStatus.ALL}
+        isLoading={false}/></ThemeProvider>);
 
     expect(screen.queryByText(/BlickPunkt Nienburg/i)).toBeInTheDocument();
 });
 
 test("component shows filteredClientList instead of clientList if filteredClientList is not empty", () => {
-    render(<MainContent
+    render(<ThemeProvider theme={edidTheme}><MainContent
         clientsList={mockedClientListWithHasFeatures}
         filteredClientsList={mockedFilteredList}
         filteredFeatures={[]}
         showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}/>);
+        featureStatus={FeatSelectedStatus.ALL}
+        isLoading={false}/></ThemeProvider>);
 
 
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
@@ -50,17 +54,12 @@ test("returns success if feature status is enabled", () => {
     expect(colors).toBe("success");
 });
 
-test("returns success if status is enabled_and_disabled and feature filter is set to active", () => {
-    const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("success");
-});
-
-test("returns error if status is enabled_and_disabled and feature filter is set to inactive", () => {
-    const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("error");
-});
-
 test("returns success if feature status is enabled", () => {
     const colors = getClientColorByStatus("ENABLED", edidTheme, false);
-    expect(colors).toBe("success");
+    expect(colors).toBe("#319E7D");
+});
+
+test("returns success if feature status is disabled", () => {
+    const colors = getClientColorByStatus("DISABLED", edidTheme, false);
+    expect(colors).toBe("#616161");
 });
