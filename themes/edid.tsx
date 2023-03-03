@@ -60,6 +60,13 @@ export const edidTheme = createTheme({
         },
     },
     components: {
+        MuiSkeleton: {
+            styleOverrides: {
+                root: {
+                    margin: "30px 0",
+                },
+            },
+        },
         // Style the main container
         MuiContainer: {
             styleOverrides: {
