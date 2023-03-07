@@ -1,21 +1,35 @@
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import * as apiMethods from "../api/DashboardAPI";
 import Home from "../pages";
-import {mockedClientListWithHasFeatures} from "./mockData";
-import {showSelectedFeatures} from "../pages/_app";
+import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
 
 jest.mock("../api/DashboardAPI");
 
 const setFilteredValues = jest.fn();
 
-beforeAll(async () => {
-    const promise = Promise.resolve([]);
-    jest.spyOn(apiMethods, "getClientList").mockReturnValue(promise);
+const showSelectedFeatures = jest.fn();
+showSelectedFeatures.mockReturnValue(mockedFeatures);
+
+test("client list is not present and loader is present if isLoading is true", () => {
+    const {container} = render(<Home
+        clients={mockedClientListWithHasFeatures}
+        filteredClients={[]}
+        filteredFeatures={[]}
+        featureStatus={[]}
+        setFilteredClients={setFilteredValues}
+        setFilteredFeatures={setFilteredValues}
+        showSelectedFeatures={showSelectedFeatures}
+        setFeatureStatus={setFilteredValues}
+        isLoading={true}
+    />);
+    // test that client list returns an empty array
+    expect(screen.queryAllByTestId("client").length).toBe(0);
+    // test that 4 loaders (Skeleton components) are present in the document
+    expect(container.getElementsByClassName("MuiSkeleton-root").length).toBe(4);
 });
 
-test("renders the home page with all the static elements", () => {
-    render(<Home
+test("client list is present and loader is not present if isLoading is false", () => {
+    const {container} = render(<Home
         clients={mockedClientListWithHasFeatures}
         filteredClients={[]}
         filteredFeatures={[]}
@@ -26,5 +40,8 @@ test("renders the home page with all the static elements", () => {
         setFeatureStatus={setFilteredValues}
         isLoading={false}
     />);
-    expect(screen.getByRole("img")).toBeInTheDocument();
+    // test that client list returns an array with 4 values
+    expect(screen.queryAllByTestId("client").length).toBe(4);
+    // test that loaders (Skeleton components) are not present in the document
+    expect(container.getElementsByClassName("MuiSkeleton-root").length).toBe(0);
 });

@@ -19,14 +19,8 @@ import {IDComboSelectProps} from "../types/componentProps.types";
  *
  * @constructor
  */
-function IDComboSelect({
-    values,
-    title,
-    placeholder,
-    filteredValues,
-    setFilteredValues,
-    showId}: IDComboSelectProps) {
-    const handleChange = (event: SyntheticEvent, value:Array<ClientOrFeature>) => {
+function IDComboSelect({values, title, placeholder, filteredValues, setFilteredValues, showId}: IDComboSelectProps) {
+    const handleChange = (event: SyntheticEvent, value: Array<ClientOrFeature>) => {
         setFilteredValues(value);
     };
 
@@ -42,27 +36,20 @@ function IDComboSelect({
                     data-testid="combobox"
                     disableCloseOnSelect={true}
                     isOptionEqualToValue={
-                        (option:ClientOrFeature, value:ClientOrFeature) => option.name === value.name
+                        (option: ClientOrFeature, value: ClientOrFeature) => option.name === value.name
                     }
-                    getOptionLabel={(option:ClientOrFeature) => option.name}
+                    getOptionLabel={(option: ClientOrFeature) => option.name}
                     ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
-                    renderOption={(props, option:ClientOrFeature, {selected}) => (
-                        <li {...props} >
+                    renderOption={(props, option: ClientOrFeature, {selected}) => (
+                        <li {...props}>
                             <Checkbox
-                                data-testid={"id" in option ? option.id : ""}
-                                style={{marginRight: 8}}
-                                checked={selected}
-                                size="small"
-                            />
+                                data-testid={"id" in option ? `checkbox-${option.id}` : ""}
+                                style={{marginRight: 8}} checked={selected} size="small" />
                             {option.name + (showId ? ` (${"id" in option ? option.id : ""})` : "")}
                         </li>
                     )}
-                    getOptionDisabled={(option) =>
-                        "hasFeatures" in option ? !option.hasFeatures : false
-                    }
-                    renderInput={(params) => (
-                        <TextField {...params} placeholder={placeholder} variant="standard" />
-                    )}
+                    getOptionDisabled={(option) => ("hasFeatures" in option ? !option.hasFeatures : false)}
+                    renderInput={(params) => <TextField {...params} placeholder={placeholder} variant="standard" />}
                 />
             )}
         </FormControl>

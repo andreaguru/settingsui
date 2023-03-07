@@ -2,7 +2,6 @@ import {render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MainContent, {getButtonColorByStatus, getIconColorByStatus} from "../components/MainContent";
 import {mockedClientListWithHasFeatures, mockedFeatures, mockedFilteredList} from "./mockData";
-import {FeatSelectedStatus} from "../types/componentProps.types";
 import {edidTheme} from "../themes/edid";
 import {ThemeProvider} from "@mui/material/styles";
 
@@ -10,37 +9,39 @@ const showSelectedFeatures = jest.fn();
 showSelectedFeatures.mockReturnValue(mockedFeatures);
 
 test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
-    render(<MainContent
-        clientsList={[]}
-        filteredClientsList={[]}
-        filteredFeatures={[]}
-        showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}
-        isLoading={false}/>);
+    render(<ThemeProvider theme={edidTheme}>
+        <MainContent
+            clientsList={[]}
+            filteredClientsList={[]}
+            showSelectedFeatures={showSelectedFeatures}
+            isLoading={false}/>
+    </ThemeProvider>);
+
+    screen.debug();
 
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
 
 test("component shows clientList if it is passed in the props", () => {
-    render(<MainContent
-        clientsList={mockedClientListWithHasFeatures}
-        filteredClientsList={[]}
-        filteredFeatures={[]}
-        showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}
-        isLoading={false}/>);
+    render(<ThemeProvider theme={edidTheme}>
+        <MainContent
+            clientsList={mockedClientListWithHasFeatures}
+            filteredClientsList={[]}
+            showSelectedFeatures={showSelectedFeatures}
+            isLoading={false}/>
+    </ThemeProvider>);
 
     expect(screen.queryByText(/BlickPunkt Nienburg/i)).toBeInTheDocument();
 });
 
 test("component shows filteredClientList instead of clientList if filteredClientList is not empty", () => {
-    render(<MainContent
-        clientsList={mockedClientListWithHasFeatures}
-        filteredClientsList={mockedFilteredList}
-        filteredFeatures={[]}
-        showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}
-        isLoading={false}/>);
+    render(<ThemeProvider theme={edidTheme}>
+        <MainContent
+            clientsList={mockedClientListWithHasFeatures}
+            filteredClientsList={mockedFilteredList}
+            showSelectedFeatures={showSelectedFeatures}
+            isLoading={false}/>
+    </ThemeProvider>);
 
 
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
@@ -54,15 +55,13 @@ test("client color is green when client feature is active", () => {
             <MainContent
                 clientsList={mockedClientListWithHasFeatures}
                 filteredClientsList={[]}
-                filteredFeatures={[]}
                 showSelectedFeatures={showSelectedFeatures}
-                featureStatus={FeatSelectedStatus.ALL}
                 isLoading={false}/>
         </ThemeProvider>);
 
 
     // traffective -> feature client is ENABLED
-    const autocomplete = screen.getByTestId("241");
+    const autocomplete = screen.getAllByTestId("client")[0];
     const traffective = within(autocomplete).getByText(/traffective/).parentElement as HTMLElement;
     expect(traffective).toHaveStyle({
         "color": edidTheme.palette.success.main,
@@ -75,15 +74,13 @@ test("client color is dark gray when client feature is inactive", () => {
             <MainContent
                 clientsList={mockedClientListWithHasFeatures}
                 filteredClientsList={[]}
-                filteredFeatures={[]}
                 showSelectedFeatures={showSelectedFeatures}
-                featureStatus={FeatSelectedStatus.ALL}
                 isLoading={false}/>
         </ThemeProvider>);
 
 
     // inArticleReco -> feature client is DISABLED
-    const autocomplete = screen.getByTestId("241");
+    const autocomplete = screen.getAllByTestId("client")[0];
     const traffective = within(autocomplete).getByText(/inArticleReco/).parentElement as HTMLElement;
     expect(traffective).toHaveStyle({
         "color": edidTheme.palette.neutral.main,
@@ -96,15 +93,13 @@ test("category icon color is green when category feature is active", () => {
             <MainContent
                 clientsList={mockedClientListWithHasFeatures}
                 filteredClientsList={[]}
-                filteredFeatures={[]}
                 showSelectedFeatures={showSelectedFeatures}
-                featureStatus={FeatSelectedStatus.ALL}
                 isLoading={false}/>
         </ThemeProvider>);
 
 
-    // traffective -> feature category is NONE, feature tag is DISABLED
-    const autocomplete = screen.getByTestId("241");
+    // traffective -> feature category is NONE, feature tag is ENABLED
+    const autocomplete = screen.getAllByTestId("client")[0];
     const traffective = within(autocomplete).getByText(/traffective/).parentElement as HTMLElement;
     // category icon
     const categoryIcon = within(traffective).getByTestId("AccountTreeIcon");
@@ -113,8 +108,8 @@ test("category icon color is green when category feature is active", () => {
 
     // Test if feature category has grey color
     expect(categoryIcon).toHaveStyle({"color": edidTheme.palette.disabled.main});
-    // Test if feature tag has red color
-    expect(tagIcon).toHaveStyle({"color": edidTheme.palette.error.main});
+    // Test if feature tag has green color
+    expect(tagIcon).toHaveStyle({"color": edidTheme.palette.success.main});
 });
 
 // UNIT TESTS
@@ -123,17 +118,12 @@ test("returns success if feature status is enabled", () => {
     expect(colors).toBe("success");
 });
 
-test("returns success if status is enabled_and_disabled and feature filter is set to active", () => {
+test("returns warning if status is enabled_and_disabled", () => {
     const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("success");
-});
-
-test("returns error if status is enabled_and_disabled and feature filter is set to inactive", () => {
-    const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("error");
+    expect(colors).toBe("warning");
 });
 
 test("returns success if feature status is enabled", () => {
     const colors = getButtonColorByStatus("ENABLED", edidTheme, false);
-    expect(colors).toBe("success");
+    expect(colors).toBe(edidTheme.palette.success.main);
 });

@@ -42,7 +42,7 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
  *
  * @constructor
  */
-function MyApp({Component, pageProps}:AppProps) {
+function TemplatePage({Component, pageProps}:AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
 
     // contains the list of clients that have been selected by the user
@@ -62,8 +62,6 @@ function MyApp({Component, pageProps}:AppProps) {
      * it shows the Features that have been selected by the user
      * (e.g. checks if "traffective" and "aktiviert" have been selected and shows the result)
      * @param {Array<Feature>} featuresPerClient
-     * @param {FeatSelectedStatus} featureStatus
-     * @param {Array<Feature>} filteredFeatures
      * @return {Array<Feature>}
      */
     function showSelectedFeatures(featuresPerClient:Array<Feature>) {
@@ -151,7 +149,7 @@ function MyApp({Component, pageProps}:AppProps) {
     );
 }
 
-export default MyApp;
+export default TemplatePage;
 
 /* start-test-block */
 export {

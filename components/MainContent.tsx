@@ -80,7 +80,6 @@ function MainContent({
         <>
             <Typography variant="h6" component="h6">Mandanten</Typography>
             <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
-            {/* <IDInfoButton className="infoButton" align="right"/> */}
             {isLoading &&
             <>
                 <Skeleton variant="rounded" height={180}/>
@@ -90,8 +89,8 @@ function MainContent({
             </>
             }
             {!isLoading && shownClients().map((client: Client, index: number) => (
-                client.hasFeatures && client.features && <Fade in key={index}>
-                    <Card data-testid={client.id}>
+                client.features && <Fade in key={index}>
+                    <Card data-testid="client">
                         <CardContent>
                             <Typography variant="body1" component="h2">
                                 {client.name} ({client.id})
