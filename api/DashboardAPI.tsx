@@ -18,7 +18,9 @@ export async function getClientList():Promise<Array<Client> | void> {
 
         // filter the result in order to show only clients that have a name
         if (clientsPromise.length) {
-            return clientsPromise.filter((client: Client) => client.name) as Array<Client>;
+            const clientArray = clientsPromise.filter((client: Client) => client.name) as Array<Client>;
+            clientArray.sort((clientPrev, clientNext) => clientPrev.name.localeCompare(clientNext.name));
+            return clientArray;
         }
     } catch (error) {
         logger.error(error);
