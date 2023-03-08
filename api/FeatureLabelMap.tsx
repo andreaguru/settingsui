@@ -57,7 +57,7 @@ export const FeatureLabelMap = [
     },
     {
         name: "traffective",
-        label: "Traffective ",
+        label: "Traffective Ads",
     },
     {
         name: "uiwi",

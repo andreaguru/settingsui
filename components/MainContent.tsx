@@ -78,8 +78,10 @@ function MainContent({
 
     return (
         <>
-            <Typography variant="h6" component="h6">Mandanten</Typography>
-            <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
+            <Box sx={{paddingBottom: "20px"}}>
+                <Typography variant="h6" component="h6">Mandanten</Typography>
+                <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
+            </Box>
             {/* <IDInfoButton className="infoButton" align="right"/> */}
             {isLoading &&
                 <>

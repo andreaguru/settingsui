@@ -63,7 +63,7 @@ test("client color is green when client feature is active", () => {
 
     // traffective -> feature client is ENABLED
     const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/traffective/).parentElement as HTMLElement;
+    const traffective = within(autocomplete).getByText(/Traffective Ads/).parentElement as HTMLElement;
     expect(traffective).toHaveStyle({
         "color": edidTheme.palette.success.main,
         "backgroundColor": edidTheme.palette.success.light});
@@ -84,7 +84,7 @@ test("client color is dark gray when client feature is inactive", () => {
 
     // inArticleReco -> feature client is DISABLED
     const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/inArticleReco/).parentElement as HTMLElement;
+    const traffective = within(autocomplete).getByText(/ECR In Article/).parentElement as HTMLElement;
     expect(traffective).toHaveStyle({
         "color": edidTheme.palette.neutral.main,
         "backgroundColor": edidTheme.palette.neutral.light});
@@ -105,7 +105,7 @@ test("category icon color is green when category feature is active", () => {
 
     // traffective -> feature category is NONE, feature tag is DISABLED
     const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/traffective/).parentElement as HTMLElement;
+    const traffective = within(autocomplete).getByText(/Traffective Ads/).parentElement as HTMLElement;
     // category icon
     const categoryIcon = within(traffective).getByTestId("AccountTreeIcon");
     // tag icon

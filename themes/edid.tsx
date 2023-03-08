@@ -9,12 +9,14 @@ declare module "@mui/material/styles" {
   interface Theme {
     variables: {
        headerMarginTop: string;
+       mainContentElementsMargin: string;
     };
   }
   // allow configuration using `createTheme`
   interface ThemeOptions {
     variables?: {
         headerMarginTop: string;
+        mainContentElementsMargin: string;
     };
   }
   interface Palette {
@@ -33,6 +35,7 @@ export const edidTheme = createTheme({
     // Global variables used in theme and components
     variables: {
         headerMarginTop: "64px",
+        mainContentElementsMargin: "0 0 32px",
     },
     palette: {
         primary: {
@@ -62,9 +65,9 @@ export const edidTheme = createTheme({
     components: {
         MuiSkeleton: {
             styleOverrides: {
-                root: {
-                    margin: "30px 0",
-                },
+                root: ({theme}) => ({
+                    margin: theme.variables.mainContentElementsMargin,
+                }),
             },
         },
         // Style the main container
@@ -77,7 +80,7 @@ export const edidTheme = createTheme({
                         position: "relative",
                         height: `calc(100vh - ${theme.variables.headerMarginTop})`,
                         overflow: "auto",
-                        paddingTop: 10,
+                        paddingTop: 20,
                         paddingBottom: 10,
                     }),
                 }),
@@ -98,7 +101,7 @@ export const edidTheme = createTheme({
                 root: ({theme, ownerState}) => ({
                     ...(ownerState.className === "toolbarTitle" && {
                         fontSize: "30px",
-                        padding: "14px 0 24px 0",
+                        padding: "20px 0 24px 0",
                         [theme.breakpoints.up("sm")]: {
                             minHeight: "44px",
                         },
@@ -143,9 +146,9 @@ export const edidTheme = createTheme({
         // Style the Card (see MainContent.tsx)
         MuiCard: {
             styleOverrides: {
-                root: {
-                    margin: "30px 0",
-                },
+                root: ({theme}) => ({
+                    margin: theme.variables.mainContentElementsMargin,
+                }),
             },
         },
         // Style the Card content (see MainContent.tsx)
