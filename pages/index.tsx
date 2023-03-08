@@ -24,6 +24,9 @@ import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
 import {getClientList} from "../api/DashboardAPI";
 
+// import utilities
+import {FeatureLabelMap} from "../api/FeatureLabelMap";
+
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
 import {FeatSelectedStatus} from "../types/componentProps.types";
@@ -101,6 +104,22 @@ function getFeaturesList(clients:Array<Client>) {
 }
 
 /**
+ * addFeatureLabel
+ * @param {Array<Feature>} features
+ * @return {Array<Feature>}
+ */
+function addFeatureLabel(features:Array<Feature>) {
+    return features.map((feat) => {
+        const featureInLabelMap = FeatureLabelMap.find((feature) => feature.name == feat.name);
+
+        return {
+            ...feat,
+            label: featureInLabelMap ? featureInLabelMap.label : "",
+        };
+    });
+}
+
+/**
  * The Home Page. This is currently the only page of the project.
  * Here are declared the states that are used throughout the App.
  * The states can be updated via setters (e.g. setClients).
@@ -151,7 +170,10 @@ function Home() {
             if (data && data.length) {
                 // update the returned data array adding hasFeatures prop to each element of it
                 const clientsWithHasFeaturesProperty:Array<Client> = data.map((client:Client):Client => {
-                    return {...client, hasFeatures: true};
+                    return {
+                        ...client,
+                        features: addFeatureLabel(client.features),
+                        hasFeatures: true};
                 });
                 // update clients state with the new value
                 setClients(clientsWithHasFeaturesProperty);

@@ -125,5 +125,5 @@ test("returns success if feature status is enabled", () => {
 
 test("returns success if feature status is enabled", () => {
     const colors = getButtonColorByStatus("ENABLED", edidTheme, false);
-    expect(colors).toBe("success");
+    expect(colors).toBe(edidTheme.palette.success.main);
 });

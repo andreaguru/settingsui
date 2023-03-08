@@ -41,7 +41,7 @@ function IDComboSelect({
                     isOptionEqualToValue={
                         (option:ClientOrFeature, value:ClientOrFeature) => option.name === value.name
                     }
-                    getOptionLabel={(option:ClientOrFeature) => option.name}
+                    getOptionLabel={(option:ClientOrFeature) => "label" in option ? option.label : option.name}
                     ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
                     renderOption={(props, option:ClientOrFeature, {selected}) => (
                         <li {...props} >
@@ -51,7 +51,7 @@ function IDComboSelect({
                                 checked={selected}
                                 size="small"
                             />
-                            {option.name + (showId ? ` (${"id" in option ? option.id : ""})` : "")}
+                            {"label" in option ? option.label : option.name + (showId ? ` (${option.id})` : "")}
                         </li>
                     )}
                     getOptionDisabled={(option) =>
