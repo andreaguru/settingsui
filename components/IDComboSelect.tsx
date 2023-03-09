@@ -2,6 +2,7 @@ import FormControl from "@mui/material/FormControl";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import {SyntheticEvent} from "react";
 
@@ -30,37 +31,39 @@ function IDComboSelect({
 
     return (
         <FormControl>
-            <Typography component="label">{title}</Typography>
+            {values.length == 0 && (
+                <Skeleton variant="rounded" height={56} />
+            )}
             {values.length > 0 && (
-                <Autocomplete
-                    multiple
-                    options={values}
-                    onChange={handleChange}
-                    data-testid="combobox"
-                    disableCloseOnSelect={true}
-                    isOptionEqualToValue={
-                        (option:ClientOrFeature, value:ClientOrFeature) => option.name === value.name
-                    }
-                    getOptionLabel={(option:ClientOrFeature) => "label" in option ? option.label : option.name}
-                    ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
-                    renderOption={(props, option:ClientOrFeature, {selected}) => (
-                        <li {...props} >
-                            <Checkbox
-                                data-testid={"id" in option ? option.id : ""}
-                                style={{marginRight: 8}}
-                                checked={selected}
-                                size="small"
-                            />
-                            {"label" in option ? option.label : option.name + (showId ? ` (${option.id})` : "")}
-                        </li>
-                    )}
-                    getOptionDisabled={(option) =>
-                        "hasFeatures" in option ? !option.hasFeatures : false
-                    }
-                    renderInput={(params) => (
-                        <TextField {...params} placeholder={placeholder} variant="standard" />
-                    )}
-                />
+                <>
+                    <Typography component="label">{title}</Typography><Autocomplete
+                        multiple
+                        options={values}
+                        onChange={handleChange}
+                        data-testid="combobox"
+                        disableCloseOnSelect={true}
+                        isOptionEqualToValue={
+                            (option: ClientOrFeature, value: ClientOrFeature) => option.name === value.name
+                        }
+                        getOptionLabel={
+                            (option: ClientOrFeature) => "label" in option ? option.label : (option.name + option.id)
+                        }
+                        ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
+                        renderOption={(props, option: ClientOrFeature, {selected}) => (
+                            <li {...props}>
+                                <Checkbox
+                                    data-testid={option.id}
+                                    style={{marginRight: 8}}
+                                    checked={selected}
+                                    size="small"/>
+                                {"label" in option ? option.label : option.name + (showId ? ` (${option.id})` : "")}
+                            </li>
+                        )}
+                        getOptionDisabled={(option) => "hasFeatures" in option ? !option.hasFeatures : false}
+                        renderInput={(params) => (
+                            <TextField {...params} placeholder={placeholder} variant="standard"/>
+                        )}/>
+                </>
             )}
         </FormControl>
     );
