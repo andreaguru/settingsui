@@ -22,7 +22,8 @@ import {lighten} from "@mui/system/colorManipulator";
  * @return {string}
  */
 function getIconColorByStatus(status:string) {
-    // TODO: for easier readability can we add some comments which color it really is. Like this its difficult to read: color = warning
+    // TODO: for easier readability can we add some comments which color it really is.
+    //       Like this its difficult to read: color = warning
     switch (status) {
     case "ENABLED":
         return "success";
@@ -43,8 +44,9 @@ function getIconColorByStatus(status:string) {
  * @return {string}
  */
 function getButtonColorByStatus(status:string, theme:Theme, isBackground?:boolean) {
-    // TODO: this "isBackground" thing is a little bit strange. Maybe we can return a styling-json like {bgc: "error", color: "black"}
-    // Usage: const btnBG = getButtonColorByStatus(...).bgc; const btnColor = getButtonColorByStatus(...).color;
+    // TODO: this "isBackground" thing is a little bit strange.
+    //        Maybe we can return a styling-json like {bgc: "error", color: "black"}
+    //       Usage: const btnBG = getButtonColorByStatus(...).bgc; const btnColor = getButtonColorByStatus(...).color;
     switch (status) {
     case "ENABLED":
         return isBackground ? theme.palette.success.light : theme.palette.success.main;
@@ -104,8 +106,10 @@ function MainContent({
                                     client.features,
                                     featureStatus,
                                     filteredFeatures).map((feature:Feature, index:number) => {
-                                    // TODO: this "isBackground" thing is a little bit strange. Maybe we can return a styling-json like {bgc: "error", color: "black"}
-                                    // Usage: const btnBG = getButtonColorByStatus(...).bgc; const btnColor = getButtonColorByStatus(...).color;
+                                    // TODO: this "isBackground" thing is a little bit strange.
+                                    //       Maybe we can return a styling-json like {bgc: "error", color: "black"}
+                                    //       Usage: const btnBG = getButtonColorByStatus(...).bgc;
+                                    //              const btnColor = getButtonColorByStatus(...).color;
                                     const clientColor = getButtonColorByStatus(feature.client, theme, true);
                                     return <Grow in key={index}>
                                         <IconButton className="iconStatus"
