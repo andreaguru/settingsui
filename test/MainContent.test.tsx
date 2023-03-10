@@ -129,14 +129,9 @@ test("returns success if feature status is enabled", () => {
     expect(colors).toBe("success");
 });
 
-test("returns success if status is enabled_and_disabled and feature filter is set to active", () => {
+test("returns warning if status is enabled_and_disabled", () => {
     const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("success");
-});
-
-test("returns error if status is enabled_and_disabled and feature filter is set to inactive", () => {
-    const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("error");
+    expect(colors).toBe("warning");
 });
 
 test("returns success color if feature status is enabled", () => {
