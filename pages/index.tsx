@@ -73,6 +73,7 @@ function showSelectedFeatures(featuresPerClient:Array<Feature>,
     featureStatus:FeatSelectedStatus,
     filteredFeatures:Array<Feature>) {
     const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
+    featuresFilteredPerStatus.sort((featurePrev, featureNext) => featurePrev.name.localeCompare(featureNext.name));
 
     // if one or more features have been selected in the combobox...
     if (filteredFeatures.length > 0) {

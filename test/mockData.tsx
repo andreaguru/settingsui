@@ -1,8 +1,5 @@
 import {Client, Feature} from "../types/api.types";
 
-// TODO: Is it clearer to write Array<Client> ?
-/* ANSWER: not sure about it. I choose the short form to put more focus on the interface (Client)
-But we can discuss it. In case, we need to change it everywhere in the project */
 export const mockedClientList:Array<Client> = [
     {
         "id": 241,
@@ -327,7 +324,7 @@ export const mockedFeatures:Array<Feature> = [
     {
         "id": 1,
         "name": "traffective",
-        "client": "DISABLED",
+        "client": "ENABLED",
         "category": "NONE",
         "tag": "DISABLED",
     },
