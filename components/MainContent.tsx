@@ -22,17 +22,15 @@ import {lighten} from "@mui/system/colorManipulator";
  * @return {string}
  */
 function getIconColorByStatus(status:string) {
-    // TODO: for easier readability can we add some comments which color it really is.
-    //       Like this its difficult to read: color = warning
     switch (status) {
     case "ENABLED":
-        return "success";
+        return "success"; // #319E7D
     case "DISABLED":
-        return "error";
+        return "error"; // #F15653
     case "ENABLED_AND_DISABLED":
-        return "warning";
+        return "warning"; // #FDAD0D
     case "NONE":
-    default: return "disabled";
+    default: return "disabled"; // #A5A5A5
     }
 }
 
@@ -40,19 +38,16 @@ function getIconColorByStatus(status:string) {
  * getButtonColorByStatus - return the right color of text and background according to feature client status
  * @param {string} status
  * @param {Theme} theme
- * @param {boolean} isBackground
  * @return {string}
  */
-function getButtonColorByStatus(status:string, theme:Theme, isBackground?:boolean) {
-    // TODO: this "isBackground" thing is a little bit strange.
-    //        Maybe we can return a styling-json like {bgc: "error", color: "black"}
-    //       Usage: const btnBG = getButtonColorByStatus(...).bgc; const btnColor = getButtonColorByStatus(...).color;
+function getButtonColorByStatus(status:string, theme:Theme) {
     switch (status) {
     case "ENABLED":
-        return isBackground ? theme.palette.success.light : theme.palette.success.main;
+        return {bgColor: theme.palette.success.light, color: theme.palette.success.main};
     case "DISABLED":
     case "NONE":
-        return isBackground ? theme.palette.neutral.light : theme.palette.neutral.main;
+        return {bgColor: theme.palette.neutral.light, color: theme.palette.neutral.main};
+    default: return {bgColor: theme.palette.neutral.light, color: theme.palette.neutral.main};
     }
 }
 
@@ -106,16 +101,14 @@ function MainContent({
                                     client.features,
                                     featureStatus,
                                     filteredFeatures).map((feature:Feature, index:number) => {
-                                    // TODO: this "isBackground" thing is a little bit strange.
-                                    //       Maybe we can return a styling-json like {bgc: "error", color: "black"}
-                                    //       Usage: const btnBG = getButtonColorByStatus(...).bgc;
-                                    //              const btnColor = getButtonColorByStatus(...).color;
-                                    const clientColor = getButtonColorByStatus(feature.client, theme, true);
+                                    // set background color of the button according to feature client status
+                                    const clientColor = getButtonColorByStatus(feature.client, theme).bgColor;
+
                                     return <Grow in key={index}>
                                         <IconButton className="iconStatus"
                                             sx={[
                                                 {
-                                                    color: getButtonColorByStatus(feature.client, theme),
+                                                    color: getButtonColorByStatus(feature.client, theme).color,
                                                     backgroundColor: clientColor,
                                                 },
                                                 {
