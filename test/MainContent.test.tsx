@@ -133,7 +133,12 @@ test("returns error if status is enabled_and_disabled and feature filter is set 
     expect(colors).toBe("error");
 });
 
-test("returns success if feature status is enabled", () => {
-    const colors = getButtonColorByStatus("ENABLED", edidTheme, false);
-    expect(colors).toBe("success");
+test("returns success color if feature status is enabled", () => {
+    const color = getButtonColorByStatus("ENABLED", edidTheme).color;
+    expect(color).toBe(edidTheme.palette.success.main);
+});
+
+test("returns success background color if feature status is enabled", () => {
+    const color = getButtonColorByStatus("ENABLED", edidTheme).bgColor;
+    expect(color).toBe(edidTheme.palette.success.light);
 });
