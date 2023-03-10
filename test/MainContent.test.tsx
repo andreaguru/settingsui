@@ -22,25 +22,31 @@ test("component is empty if empty clientList and empty filteredClientList is pas
 });
 
 test("component shows clientList if it is passed in the props", () => {
-    render(<MainContent
-        clientsList={mockedClientListWithHasFeatures}
-        filteredClientsList={[]}
-        filteredFeatures={[]}
-        showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}
-        isLoading={false}/>);
+    render(
+        <ThemeProvider theme={edidTheme}>
+            <MainContent
+                clientsList={mockedClientListWithHasFeatures}
+                filteredClientsList={[]}
+                filteredFeatures={[]}
+                showSelectedFeatures={showSelectedFeatures}
+                featureStatus={FeatSelectedStatus.ALL}
+                isLoading={false}/>
+        </ThemeProvider>);
 
     expect(screen.queryByText(/BlickPunkt Nienburg/i)).toBeInTheDocument();
 });
 
 test("component shows filteredClientList instead of clientList if filteredClientList is not empty", () => {
-    render(<MainContent
-        clientsList={mockedClientListWithHasFeatures}
-        filteredClientsList={mockedFilteredList}
-        filteredFeatures={[]}
-        showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}
-        isLoading={false}/>);
+    render(
+        <ThemeProvider theme={edidTheme}>
+            <MainContent
+                clientsList={mockedClientListWithHasFeatures}
+                filteredClientsList={mockedFilteredList}
+                filteredFeatures={[]}
+                showSelectedFeatures={showSelectedFeatures}
+                featureStatus={FeatSelectedStatus.ALL}
+                isLoading={false}/>
+        </ThemeProvider>);
 
 
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
