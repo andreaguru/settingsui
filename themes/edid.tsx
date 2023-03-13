@@ -140,11 +140,12 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the Card (see MainContent.tsx)
+        // Style the Client Card (see MainContent.tsx)
         MuiCard: {
             styleOverrides: {
                 root: {
                     margin: "30px 0",
+                    minHeight: "180px",
                 },
             },
         },

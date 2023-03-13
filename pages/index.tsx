@@ -14,7 +14,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import MuiAppBar from "@mui/material/AppBar";
 
 // import custom Components
@@ -199,15 +198,13 @@ function Home() {
                     handleFeatureStatusChange={handleFeatureStatusChange}/>
 
                 <Container className="mainContent" component="main" maxWidth={false}>
-                    <Grid item xs={12}>
-                        <MainContent
-                            clientsList={clients}
-                            filteredClientsList={filteredClients}
-                            filteredFeatures={filteredFeatures}
-                            showSelectedFeatures={showSelectedFeatures}
-                            featureStatus={featureStatus}
-                            isLoading={isLoading}/>
-                    </Grid>
+                    <MainContent
+                        clientsList={clients}
+                        filteredClientsList={filteredClients}
+                        filteredFeatures={filteredFeatures}
+                        showSelectedFeatures={showSelectedFeatures}
+                        featureStatus={featureStatus}
+                        isLoading={isLoading}/>
                 </Container>
             </Box>
         </ThemeProvider>
