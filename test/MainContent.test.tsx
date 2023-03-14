@@ -17,8 +17,6 @@ test("component is empty if empty clientList and empty filteredClientList is pas
             isLoading={false}/>
     </ThemeProvider>);
 
-    screen.debug();
-
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
 });
 
