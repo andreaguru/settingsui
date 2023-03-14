@@ -121,7 +121,12 @@ test("returns warning if status is enabled_and_disabled", () => {
     expect(colors).toBe("warning");
 });
 
-test("returns success if feature status is enabled", () => {
-    const colors = getButtonColorByStatus("ENABLED", edidTheme, false);
+test("returns success main color if feature status is enabled", () => {
+    const colors = getButtonColorByStatus("ENABLED", edidTheme).color;
     expect(colors).toBe(edidTheme.palette.success.main);
+});
+
+test("returns success if feature status is enabled", () => {
+    const colors = getButtonColorByStatus("ENABLED", edidTheme).bgColor;
+    expect(colors).toBe(edidTheme.palette.success.light);
 });
