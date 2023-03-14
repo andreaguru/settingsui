@@ -1,6 +1,5 @@
 import {logger} from "../logger";
 import {Client} from "../types/api.types";
-import {BlackListClients} from "./BlackListClients";
 
 // get the endpoint from the environment variables
 const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
@@ -17,11 +16,9 @@ export async function getClientList():Promise<Array<Client> | void> {
         // return two arrays with the data from the two fetch requests
         const clientsPromise:Array<Client> = await response.json();
 
-        // filter the result in order to show only clients that have a name and that are not in the black list
+        // filter the result in order to show only clients that have a name
         if (clientsPromise.length) {
-            const clientArray = clientsPromise.filter((client: Client) => {
-                return client.name && !BlackListClients.includes(client.name);
-            }) as Array<Client>;
+            const clientArray = clientsPromise.filter((client: Client) => client.name) as Array<Client>;
             clientArray.sort((clientPrev, clientNext) => clientPrev.name.localeCompare(clientNext.name));
             return clientArray;
         }
