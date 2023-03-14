@@ -20,7 +20,7 @@ export async function getClientList():Promise<Array<Client> | void> {
         // filter the result in order to show only clients that have a name and that are not in the black list
         if (clientsPromise.length) {
             const clientArray = clientsPromise.filter((client: Client) => {
-                client.name && !BlackListClients.includes(client.name);
+                return client.name && !BlackListClients.includes(client.name);
             }) as Array<Client>;
             clientArray.sort((clientPrev, clientNext) => clientPrev.name.localeCompare(clientNext.name));
             return clientArray;
