@@ -44,12 +44,7 @@ export type IDComboSelectProps = {
 
 export interface ClientCardProps {
     client: Client
-    filteredFeatures: Array<Feature>
-    showSelectedFeatures: (
-        featuresPerClient:Array<Feature>,
-        featureStatus:FeatSelectedStatus,
-        filteredFeatures:Array<Feature>) => Array<Feature>
-    featureStatus: FeatSelectedStatus
+    showSelectedFeatures: (featuresPerClient:Array<Feature>) => Array<Feature>
 }
 
 export interface IDInfoButtonProps {

@@ -9,7 +9,7 @@ import IDComboSelect from "./IDComboSelect";
 /* import IDRadioGroup from "./IDRadioGroup"; */
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
-import {Client} from "../types/api.types";
+import {getFeaturesList} from "../utils/utils";
 
 /**
  * Sidebar component. The two properties clients and setFilteredClients are just passed to IDComboSelect.
@@ -24,15 +24,6 @@ function Sidebar(
         setFilteredFeatures,
         setFeatureStatus}: SidebarProps
 ) {
-    /**
-     * getFeaturesList
-     * @param {Array<Client>} clients
-     * @return {Array<Feature>}
-     */
-    function getFeaturesList(clients:Array<Client>) {
-        return clients.length > 0 ? clients[0].features : [];
-    }
-
     return (
         <MuiDrawer variant="permanent">
             <Toolbar className="toolbarTitle" disableGutters={true}>

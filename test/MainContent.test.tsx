@@ -2,7 +2,6 @@ import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MainContent from "../components/MainContent";
 import {mockedClientListWithHasFeatures, mockedFeatures, mockedFilteredList} from "./mockData";
-import {FeatSelectedStatus} from "../types/componentProps.types";
 import {edidTheme} from "../themes/edid";
 import {ThemeProvider} from "@mui/material/styles";
 
@@ -23,9 +22,7 @@ test("component is empty if empty clientList and empty filteredClientList is pas
     render(<MainContent
         clientsList={[]}
         filteredClientsList={[]}
-        filteredFeatures={[]}
         showSelectedFeatures={showSelectedFeatures}
-        featureStatus={FeatSelectedStatus.ALL}
         isLoading={false}/>);
 
     expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
@@ -37,9 +34,7 @@ test("component shows clientList if it is passed in the props", () => {
             <MainContent
                 clientsList={mockedClientListWithHasFeatures}
                 filteredClientsList={[]}
-                filteredFeatures={[]}
                 showSelectedFeatures={showSelectedFeatures}
-                featureStatus={FeatSelectedStatus.ALL}
                 isLoading={false}/>
         </ThemeProvider>);
 
@@ -52,9 +47,7 @@ test("component shows filteredClientList instead of clientList if filteredClient
             <MainContent
                 clientsList={mockedClientListWithHasFeatures}
                 filteredClientsList={mockedFilteredList}
-                filteredFeatures={[]}
                 showSelectedFeatures={showSelectedFeatures}
-                featureStatus={FeatSelectedStatus.ALL}
                 isLoading={false}/>
         </ThemeProvider>);
 

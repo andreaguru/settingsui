@@ -9,6 +9,7 @@ import TagIcon from "@mui/icons-material/LocalOffer";
 import {useTheme} from "@mui/material/styles";
 import {Theme} from "@mui/system";
 import {useInView} from "react-intersection-observer";
+import NextLink from "next/link";
 
 // import typescript Interfaces
 import {Feature} from "../types/api.types";
@@ -57,9 +58,7 @@ function getButtonColorByStatus(status:string, theme:Theme) {
  */
 function ClientCard({
     client,
-    filteredFeatures,
-    showSelectedFeatures,
-    featureStatus}:ClientCardProps) {
+    showSelectedFeatures}:ClientCardProps) {
     const theme = useTheme();
 
     /* We use react-intersection-observer in order to perform a lazy-rendering of the Features
@@ -78,35 +77,36 @@ function ClientCard({
                     {client.name} ({client.id})
                 </Typography>
                 <Box sx={{display: "flex", flexWrap: "wrap"}}>
-                    {showSelectedFeatures(
-                        client.features,
-                        featureStatus,
-                        filteredFeatures).map((feature:Feature, index:number) => {
+                    {showSelectedFeatures(client.features).map((feature:Feature, index:number) => {
                         // set background color of the button according to feature client status
                         const clientColor = getButtonColorByStatus(feature.client, theme).bgColor;
 
                         return <div key={index} ref={ref}>
                             { /* show a featureButton only if it is inside the viewport */
-                                inView && <Fade in>
-                                    <IconButton className="iconStatus"
-                                        sx={[
-                                            {
-                                                color: getButtonColorByStatus(feature.client, theme).color,
-                                                backgroundColor: clientColor,
-                                            },
-                                            {
-                                                "&:hover": {
-                                                    backgroundColor: lighten(clientColor, 0.3),
-                                                    boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
+                                inView && <NextLink
+                                    href={`/feature/${client.id}/${feature.name}`}
+                                    passHref>
+                                    <Fade in>
+                                        <IconButton className="iconStatus"
+                                            sx={[
+                                                {
+                                                    color: getButtonColorByStatus(feature.client, theme).color,
+                                                    backgroundColor: clientColor,
                                                 },
-                                            },
-                                        ]}>
-                                        <Typography variant="subtitle2">{feature.name}</Typography>
-                                        <CategoryIcon fontSize="small"
-                                            color={getIconColorByStatus(feature.category)}/>
-                                        <TagIcon fontSize="small" color={getIconColorByStatus(feature.tag)}/>
-                                    </IconButton>
-                                </Fade>}
+                                                {
+                                                    "&:hover": {
+                                                        backgroundColor: lighten(clientColor, 0.3),
+                                                        boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
+                                                    },
+                                                },
+                                            ]}>
+                                            <Typography variant="subtitle2">{feature.name}</Typography>
+                                            <CategoryIcon fontSize="small"
+                                                color={getIconColorByStatus(feature.category)}/>
+                                            <TagIcon fontSize="small" color={getIconColorByStatus(feature.tag)}/>
+                                        </IconButton>
+                                    </Fade>
+                                </NextLink>}
                         </div>;
                     })}
                 </Box>

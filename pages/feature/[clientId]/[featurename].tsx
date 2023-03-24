@@ -4,6 +4,8 @@ import DialogContent from "@mui/material/DialogContent";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
 import {HomeProps} from "../../../types/componentProps.types";
+import {getFeaturesList} from "../../../utils/utils";
+import {getClientList} from "../../../api/DashboardAPI";
 
 const style = {
     position: "absolute" as const,
@@ -21,10 +23,14 @@ const style = {
  *
  * @constructor
  */
-function FeatureDetailPage({...props}: HomeProps) {
+function FeatureDetailPage({clientList, ...props}: HomeProps) {
     const router = useRouter();
     const clientId = router.query.clientId as string;
     const featureName = router.query.featurename as string;
+
+    if (!getFeaturesList(clientList).some((feat) => feat.name === featureName)) {
+        return "404 Invalid";
+    }
 
     return (
         <Home {...props}>
@@ -40,6 +46,11 @@ function FeatureDetailPage({...props}: HomeProps) {
 
     );
 }
+
+FeatureDetailPage.getInitialProps = async () => {
+    const res = await getClientList();
+    return {clientList: res};
+};
 
 export default FeatureDetailPage;
 
