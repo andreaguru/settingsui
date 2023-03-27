@@ -1,5 +1,6 @@
 import {Typography} from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
+import Box from "@mui/material/Box";
 
 // import typescript Interfaces
 import {Client} from "../types/api.types";
@@ -28,8 +29,10 @@ function MainContent({
     }
     return (
         <>
-            <Typography variant="h6" component="h6">Mandanten</Typography>
-            <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
+            <Box sx={{paddingBottom: "20px"}}>
+                <Typography variant="h6" component="h6">Mandanten</Typography>
+                <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
+            </Box>
             {/* <IDInfoButton className="infoButton" align="right"/> */}
             {/* if loading is in progress, show the placeholder elements */
                 isLoading &&

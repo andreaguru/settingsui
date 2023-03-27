@@ -36,7 +36,7 @@ function Home({...props}: HomeProps) {
     return (
         <ThemeProvider theme={edidTheme}>
             {/* use the variable declared in the createTheme to get the height of the header */}
-            <Box sx={{display: "flex", pt: edidTheme.variables.headerMarginTop}}>
+            <Box sx={{display: "flex", paddingTop: edidTheme.variables.headerMarginTop}}>
                 <CssBaseline/>
                 <MuiAppBar position="absolute">
                     <Toolbar>

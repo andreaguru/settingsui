@@ -8,6 +8,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -15,6 +16,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -22,6 +24,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -29,6 +32,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -42,6 +46,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -49,6 +54,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -56,6 +62,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -63,6 +70,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -76,6 +84,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -83,6 +92,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -90,6 +100,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -97,6 +108,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -110,6 +122,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -117,6 +130,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -124,6 +138,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -131,6 +146,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -147,6 +163,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -154,6 +171,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -161,6 +179,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -168,6 +187,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -182,6 +202,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -189,6 +210,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -196,6 +218,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -203,6 +226,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -217,6 +241,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -224,6 +249,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -231,6 +257,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -238,6 +265,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -252,6 +280,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -259,6 +288,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -266,6 +296,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -273,6 +304,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -290,6 +322,7 @@ export const mockedFilteredList:Array<Client> = [
             {
                 "id": 1,
                 "name": "traffective",
+                "label": "Traffective Ads",
                 "client": "ENABLED",
                 "category": "NONE",
                 "tag": "ENABLED",
@@ -297,6 +330,7 @@ export const mockedFilteredList:Array<Client> = [
             {
                 "id": 2,
                 "name": "inArticleReco",
+                "label": "ECR In Article",
                 "client": "DISABLED",
                 "category": "ENABLED",
                 "tag": "ENABLED",
@@ -304,6 +338,7 @@ export const mockedFilteredList:Array<Client> = [
             {
                 "id": 3,
                 "name": "cleverPush",
+                "label": "CleverPush",
                 "client": "ENABLED",
                 "category": "ENABLED_AND_DISABLED",
                 "tag": "NONE",
@@ -311,6 +346,7 @@ export const mockedFilteredList:Array<Client> = [
             {
                 "id": 4,
                 "name": "paywall",
+                "label": "Paywall",
                 "client": "ENABLED",
                 "category": "DISABLED",
                 "tag": "ENABLED",
@@ -324,6 +360,7 @@ export const mockedFeatures:Array<Feature> = [
     {
         "id": 1,
         "name": "traffective",
+        "label": "Traffective Ads",
         "client": "ENABLED",
         "category": "NONE",
         "tag": "ENABLED",
@@ -331,6 +368,7 @@ export const mockedFeatures:Array<Feature> = [
     {
         "id": 2,
         "name": "inArticleReco",
+        "label": "ECR In Article",
         "client": "DISABLED",
         "category": "DISABLED",
         "tag": "DISABLED",
@@ -338,6 +376,7 @@ export const mockedFeatures:Array<Feature> = [
     {
         "id": 3,
         "name": "cleverPush",
+        "label": "CleverPush",
         "client": "ENABLED",
         "category": "NONE",
         "tag": "NONE",
@@ -348,6 +387,7 @@ export const mockedFilteredFeatures:Array<Feature> = [
     {
         "id": 1,
         "name": "traffective",
+        "label": "Traffective Ads",
         "client": "DISABLED",
         "category": "NONE",
         "tag": "DISABLED",
@@ -355,6 +395,7 @@ export const mockedFilteredFeatures:Array<Feature> = [
     {
         "id": 2,
         "name": "inArticleReco",
+        "label": "ECR In Article",
         "client": "DISABLED",
         "category": "NONE",
         "tag": "DISABLED",

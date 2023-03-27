@@ -5,6 +5,7 @@ Interfaces for the APIs Data
 export interface Feature {
     id: number;
     name: string;
+    label: string;
     client: string;
     category: string;
     tag: string;
