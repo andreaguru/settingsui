@@ -101,7 +101,7 @@ function ClientCard({
                                                 },
                                             },
                                         ]}>
-                                        <Typography variant="subtitle2">{feature.name}</Typography>
+                                        <Typography variant="subtitle2">{feature.label}</Typography>
                                         <CategoryIcon fontSize="small"
                                             color={getIconColorByStatus(feature.category)}/>
                                         <TagIcon fontSize="small" color={getIconColorByStatus(feature.tag)}/>
