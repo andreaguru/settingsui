@@ -1,7 +1,7 @@
 export const FeatureLabelMap = [
     {
         name: "adDefend",
-        label: "Ad Defend",
+        label: "AdDefend",
     },
     {
         name: "amp",
