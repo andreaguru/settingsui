@@ -143,7 +143,7 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the Client Card (see MainContent.tsx)
+        // Style the Client Card (see ClientCard.tsx)
         MuiCard: {
             styleOverrides: {
                 root: ({theme}) => ({
