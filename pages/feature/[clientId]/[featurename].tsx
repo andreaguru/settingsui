@@ -3,7 +3,7 @@ import Modal from "@mui/material/Modal";
 import DialogContent from "@mui/material/DialogContent";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
-import {HomeProps} from "../../../types/componentProps.types";
+import {FeatureDetailPageProps} from "../../../types/componentProps.types";
 import {getFeaturesList} from "../../../utils/utils";
 import {getClientList} from "../../../api/DashboardAPI";
 
@@ -23,7 +23,7 @@ const style = {
  *
  * @constructor
  */
-function FeatureDetailPage({clientList, ...props}: HomeProps) {
+function FeatureDetailPage({clientList, ...props}: FeatureDetailPageProps) {
     const router = useRouter();
     const clientId = router.query.clientId as string;
     const featureName = router.query.featurename as string;

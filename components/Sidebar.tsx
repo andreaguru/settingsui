@@ -22,6 +22,7 @@ function Sidebar(
         filteredFeatures,
         setFilteredClients,
         setFilteredFeatures,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         setFeatureStatus}: SidebarProps
 ) {
     return (

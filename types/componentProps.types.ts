@@ -1,20 +1,25 @@
 import {Client, ClientOrFeature, Feature} from "./api.types";
+import {ReactNode} from "react";
 
 /*
 Interfaces for the Components
 */
 
 export interface HomeProps {
-    clients: any
-    filteredClients: any
-    filteredFeatures: any
-    setFilteredClients: any
-    setFilteredFeatures: any
-    featureStatus: any
-    setFeatureStatus: any
-    showSelectedFeatures: any
+    clients: Array<Client>
+    filteredClients: Array<Client>
+    filteredFeatures: Array<Feature>
+    setFilteredClients: (name: Array<Client>) => void
+    setFilteredFeatures: (name: Array<Feature>) => void
+    featureStatus: FeatSelectedStatus | Array<string>
+    setFeatureStatus: (name: FeatSelectedStatus) => void
+    showSelectedFeatures: (featuresPerClient:Array<Feature>) => Array<Feature>
     isLoading: boolean
-    children?: React.ReactNode; // 👈 children prop typr
+    children?: ReactNode; // 👈 children prop type
+}
+
+export interface FeatureDetailPageProps extends HomeProps{
+    clientList: Array<Client>
 }
 
 export interface MainContentProps {
@@ -28,7 +33,7 @@ export interface SidebarProps {
     clients: Array<Client>
     filteredFeatures: Array<Feature>
     filteredClients: Array<Client>
-    setFilteredClients: (name: Array<Client>) => void;
+    setFilteredClients: (name: Array<Client>) => void
     setFilteredFeatures: (name: Array<Feature>) => void
     setFeatureStatus: (name: FeatSelectedStatus) => void
 }

@@ -20,6 +20,7 @@ module.exports = {
         "quotes": [2, "double"],
         "indent": [2, 4],
         "no-empty-function": "off",
+        "ignoreRestArgs": true,
         "@typescript-eslint/no-empty-function": "off"
     }
 };
