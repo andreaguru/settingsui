@@ -5,6 +5,7 @@ import type {AppProps} from "next/app";
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
 import {FeatSelectedStatus} from "../types/componentProps.types";
+import {FeatureLabelMap} from "../api/FeatureLabelMap";
 
 /**
  * check if features status has been selected in combobox.
@@ -84,6 +85,22 @@ function TemplatePage({Component, pageProps}:AppProps) {
     }
 
     /**
+ * addFeatureLabel
+ * @param {Array<Feature>} features
+ * @return {Array<Feature>}
+ */
+    function addFeatureLabel(features:Array<Feature>) {
+        return features.map((feat) => {
+            const featureInLabelMap = FeatureLabelMap.find((feature) => feature.name == feat.name);
+
+            return {
+                ...feat,
+                label: featureInLabelMap ? featureInLabelMap.label : "",
+            };
+        });
+    }
+
+    /**
      * getStateWithHasFeaturesProp
      * @param {Array<Client>} clients
      * @return {Array<Client>}
@@ -105,7 +122,10 @@ function TemplatePage({Component, pageProps}:AppProps) {
             if (data && data.length) {
                 // update the returned data array adding hasFeatures prop to each element of it
                 const clientsWithHasFeaturesProperty:Array<Client> = data.map((client:Client):Client => {
-                    return {...client, hasFeatures: true};
+                    return {
+                        ...client,
+                        features: addFeatureLabel(client.features),
+                        hasFeatures: true};
                 });
                 // update clients state with the new value
                 setClients(clientsWithHasFeaturesProperty);

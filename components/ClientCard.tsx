@@ -58,9 +58,7 @@ function getButtonColorByStatus(status:string, theme:Theme) {
  */
 function ClientCard({
     client,
-    filteredFeatures,
-    showSelectedFeatures,
-    featureStatus}:ClientCardProps) {
+    showSelectedFeatures}:ClientCardProps) {
     const theme = useTheme();
 
     /* We use react-intersection-observer in order to perform a lazy-rendering of the Features
@@ -79,10 +77,7 @@ function ClientCard({
                     {client.name} ({client.id})
                 </Typography>
                 <Box sx={{display: "flex", flexWrap: "wrap"}}>
-                    {showSelectedFeatures(
-                        client.features,
-                        featureStatus,
-                        filteredFeatures).map((feature:Feature, index:number) => {
+                    {showSelectedFeatures(client.features).map((feature:Feature, index:number) => {
                         // set background color of the button according to feature client status
                         const clientColor = getButtonColorByStatus(feature.client, theme).bgColor;
 

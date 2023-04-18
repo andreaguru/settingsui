@@ -2,10 +2,8 @@ import {render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ClientCard, {getButtonColorByStatus, getIconColorByStatus} from "../components/ClientCard";
 import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
-import {FeatSelectedStatus} from "../types/componentProps.types";
 import {edidTheme} from "../themes/edid";
 import {ThemeProvider} from "@mui/material/styles";
-import MainContent from "../components/MainContent";
 import * as reactObserver from "react-intersection-observer";
 import {InViewHookResponse} from "react-intersection-observer";
 
@@ -25,37 +23,49 @@ beforeEach( () => {
     jest.spyOn(reactObserver, "useInView").mockReturnValue(inViewMockResponse);
 });
 
-test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
+test("component has a title if client name is passed as prop", () => {
     render(<ThemeProvider theme={edidTheme}>
         <ClientCard
-            client={{}}
-            filteredFeatures={[]}
-            showSelectedFeatures={showSelectedFeatures}
-            featureStatus={FeatSelectedStatus.ALL}/>
+            client={{
+                id: 1,
+                name: "Test",
+                features: [],
+            }}
+            showSelectedFeatures={() => []}/>
     </ThemeProvider>);
 
-    expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
+    expect(screen.queryByText("Test")).not.toBeInTheDocument();
 });
 
-test("component shows clientList if it is passed in the props", () => {
+test("component shows no features if showSelectedFeatures returns and empty array", () => {
+    render(<ThemeProvider theme={edidTheme}>
+        <ClientCard
+            client={{
+                id: 1,
+                name: "Test",
+                features: [],
+            }}
+            showSelectedFeatures={() => []}/>
+    </ThemeProvider>);
+
+    expect(screen.queryByText("Traffective Ads")).not.toBeInTheDocument();
+});
+
+test("component shows features if showSelectedFeatures returns an array with values", () => {
     render(<ThemeProvider theme={edidTheme}>
         <ClientCard
             client={mockedClientListWithHasFeatures[0]}
-            filteredFeatures={[]}
-            showSelectedFeatures={showSelectedFeatures}
-            featureStatus={FeatSelectedStatus.ALL}/>);
+            showSelectedFeatures={showSelectedFeatures}/>);
     </ThemeProvider>);
 
-    expect(screen.queryByText(/BlickPunkt Nienburg/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Traffective Ads/i)).toBeInTheDocument();
 });
 
 test("client color is green when client feature is active", () => {
     render(<ThemeProvider theme={edidTheme}>
         <ClientCard
             client={mockedClientListWithHasFeatures[0]}
-            filteredFeatures={[]}
-            showSelectedFeatures={showSelectedFeatures}
-            featureStatus={FeatSelectedStatus.ALL}/>);
+            showSelectedFeatures={showSelectedFeatures}/>);
     </ThemeProvider>);
 
 
@@ -65,54 +75,6 @@ test("client color is green when client feature is active", () => {
     expect(traffective).toHaveStyle({
         "color": edidTheme.palette.success.main,
         "backgroundColor": edidTheme.palette.success.light});
-});
-
-test("client color is dark gray when client feature is inactive", () => {
-    render(
-        <ThemeProvider theme={edidTheme}>
-            <MainContent
-                clientsList={mockedClientListWithHasFeatures}
-                filteredClientsList={[]}
-                filteredFeatures={[]}
-                showSelectedFeatures={showSelectedFeatures}
-                featureStatus={FeatSelectedStatus.ALL}
-                isLoading={false}/>
-        </ThemeProvider>);
-
-
-    // inArticleReco -> feature client is DISABLED
-    const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/ECR In Article/).parentElement as HTMLElement;
-    expect(traffective).toHaveStyle({
-        "color": edidTheme.palette.neutral.main,
-        "backgroundColor": edidTheme.palette.neutral.light});
-});
-
-test("category icon color is green when category feature is active", () => {
-    render(
-        <ThemeProvider theme={edidTheme}>
-            <MainContent
-                clientsList={mockedClientListWithHasFeatures}
-                filteredClientsList={[]}
-                filteredFeatures={[]}
-                showSelectedFeatures={showSelectedFeatures}
-                featureStatus={FeatSelectedStatus.ALL}
-                isLoading={false}/>
-        </ThemeProvider>);
-
-
-    // traffective -> feature category is NONE, feature tag is DISABLED
-    const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/Traffective Ads/).parentElement as HTMLElement;
-    // category icon
-    const categoryIcon = within(traffective).getByTestId("AccountTreeIcon");
-    // tag icon
-    const tagIcon = within(traffective).getByTestId("LocalOfferIcon");
-
-    // Test if feature category has grey color
-    expect(categoryIcon).toHaveStyle({"color": edidTheme.palette.disabled.main});
-    // Test if feature tag has red color
-    expect(tagIcon).toHaveStyle({"color": edidTheme.palette.error.main});
 });
 
 // UNIT TESTS

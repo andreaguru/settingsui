@@ -11,7 +11,7 @@ test("checkbox components are not rendered at page load", () => {
         title="Test" filteredValues={[]}
         placeholder="Test" setFilteredValues={() => null} />);
 
-    expect(screen.queryByTestId("checkbox-241")).toBeFalsy();
+    expect(screen.queryByTestId("241")).toBeFalsy();
 });
 
 test("placeholder is set and visible on rendered component", () => {
@@ -37,7 +37,7 @@ test("checkbox components are rendered after select change", () => {
     autocomplete.focus();
     fireEvent.change(input, {target: {value: "abc"}});
 
-    expect(screen.queryByTestId("checkbox-241")).toBeInTheDocument();
+    expect(screen.queryByTestId("241")).toBeInTheDocument();
 });
 
 test("handleChange behavior - setFilteredValues is called when a combobox option is clicked", () => {
