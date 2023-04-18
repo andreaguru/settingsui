@@ -72,7 +72,7 @@ function ClientCard({
     });
 
     return (
-        <Card data-testid={client.id}>
+        <Card data-testid={client.id} ref={ref}>
             <CardContent>
                 <Typography variant="body1" component="h2">
                     {client.name} ({client.id})
@@ -85,7 +85,7 @@ function ClientCard({
                         // set background color of the button according to feature client status
                         const clientColor = getButtonColorByStatus(feature.client, theme).bgColor;
 
-                        return <div key={index} ref={ref}>
+                        return <div key={index}>
                             { /* show a featureButton only if it is inside the viewport */
                                 inView && <Fade in>
                                     <IconButton className="iconStatus"
