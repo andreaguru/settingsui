@@ -43,7 +43,9 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                             (option: ClientOrFeature, value: ClientOrFeature) => option.name === value.name
                         }
                         getOptionLabel={
-                            (option: ClientOrFeature) => "label" in option ? option.label : (option.name + option.id)
+                            (option: ClientOrFeature) => "label" in option ?
+                                option.label :
+                                `${option.name} (${option.id})`
                         }
                         ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
                         renderOption={(props, option: ClientOrFeature, {selected}) => (
