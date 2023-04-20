@@ -10,7 +10,7 @@ interface FeatureDetail {
 const FeatureDetail = forwardRef<unknown, FeatureDetail>(({clientId, featureName, pathname}, ref) => (
     <Box ref={ref}>
             Client Id: {clientId} <br/>
-            I am the feature {featureName};<br/>
+            I am the feature <strong>{featureName}</strong><br/>
             my pathname is: {pathname}
     </Box>
 ));
