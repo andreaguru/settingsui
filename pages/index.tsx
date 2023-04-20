@@ -53,7 +53,7 @@ function Home({...props}: HomeProps) {
                     setFilteredFeatures={props.setFilteredFeatures}
                     setFeatureStatus={props.setFeatureStatus}/>
 
-                <Container component="main" className="mainContent " maxWidth={false}>
+                <Container component="main" className="mainContent" maxWidth={false}>
                     <Grid item xs={12}>
                         <MainContent
                             clientsList={props.clients}
