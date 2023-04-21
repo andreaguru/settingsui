@@ -154,18 +154,16 @@ function TemplatePage({Component, pageProps}:AppProps) {
     }, [featureStatus, filteredFeatures]);
 
     return (
-        <div>
-            <Component {...pageProps}
-                clients={clients}
-                filteredClients={filteredClients}
-                filteredFeatures={filteredFeatures}
-                setFilteredClients={setFilteredClients}
-                setFilteredFeatures={setFilteredFeatures}
-                showSelectedFeatures={showSelectedFeatures}
-                setFeatureStatus={setFeatureStatus}
-                isLoading={isLoading}
-            />
-        </div>
+        <Component {...pageProps}
+            clients={clients}
+            filteredClients={filteredClients}
+            filteredFeatures={filteredFeatures}
+            setFilteredClients={setFilteredClients}
+            setFilteredFeatures={setFilteredFeatures}
+            showSelectedFeatures={showSelectedFeatures}
+            setFeatureStatus={setFeatureStatus}
+            isLoading={isLoading}
+        />
     );
 }
 

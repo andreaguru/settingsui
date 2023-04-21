@@ -3,9 +3,9 @@ import Modal from "@mui/material/Modal";
 import DialogContent from "@mui/material/DialogContent";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
-import {FeatureDetailPageProps} from "../../../types/componentProps.types";
 import {getFeaturesList} from "../../../utils/utils";
-import {getClientList} from "../../../api/DashboardAPI";
+import Skeleton from "@mui/material/Skeleton";
+import {HomeProps} from "../../../types/componentProps.types";
 
 const style = {
     position: "absolute" as const,
@@ -23,34 +23,36 @@ const style = {
  *
  * @constructor
  */
-function FeatureDetailPage({clientList, ...props}: FeatureDetailPageProps) {
+function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = router.query.clientId as string;
     const featureName = router.query.featurename as string;
 
-    if (!getFeaturesList(clientList).some((feat) => feat.name === featureName)) {
-        return "404 Invalid";
+    if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.name === featureName)) {
+        return "Das Feature wurde nicht gefunden";
     }
 
     return (
-        <Home {...props}>
-            <Modal
-                open={true} // The modal should always be shown on page load, it is the 'page'
-                onClose={() => router.push("/")}
-            >
-                <DialogContent sx={style}>
-                    <FeatureDetail clientId={clientId} featureName={featureName} pathname={router.pathname}/>
-                </DialogContent>
-            </Modal>
-        </Home>
-
+        <>
+            {/* if loading is in progress, show the placeholder elements */
+                props.isLoading && <Skeleton variant="rounded" height={"100vh"} />
+            }
+            {/* if loading is in progress, show the placeholder elements */
+                !props.isLoading &&
+                <Home {...props}>
+                    <Modal
+                        open={true} // The modal should always be shown on page load, it is the 'page'
+                        onClose={() => router.push("/")}
+                    >
+                        <DialogContent sx={style}>
+                            <FeatureDetail clientId={clientId} featureName={featureName} pathname={router.pathname}/>
+                        </DialogContent>
+                    </Modal>
+                </Home>
+            }
+        </>
     );
 }
-
-FeatureDetailPage.getInitialProps = async () => {
-    const res = await getClientList();
-    return {clientList: res};
-};
 
 export default FeatureDetailPage;
 

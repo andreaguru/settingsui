@@ -18,10 +18,6 @@ export interface HomeProps {
     children?: ReactNode; // 👈 children prop type
 }
 
-export interface FeatureDetailPageProps extends HomeProps{
-    clientList: Array<Client>
-}
-
 export interface MainContentProps {
     clientsList: Array<Client>
     filteredClientsList: Array<Client>

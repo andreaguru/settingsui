@@ -84,8 +84,7 @@ function ClientCard({
                         return <div key={index}>
                             { /* show a featureButton only if it is inside the viewport */
                                 inView && <NextLink
-                                    href={`/feature/${client.id}/${feature.name}`}
-                                    passHref>
+                                    href={`/feature/${client.id}/${feature.name}`}>
                                     <Fade in>
                                         <IconButton className="iconStatus"
                                             sx={[
