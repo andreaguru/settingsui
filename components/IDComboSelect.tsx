@@ -11,21 +11,17 @@ import {ClientOrFeature} from "../types/api.types";
 import {IDComboSelectProps} from "../types/componentProps.types";
 
 /**
- * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 4 properties:
+ * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 5 properties:
  * values: the list of options that have to be shown
+ * title: the label of the combo box
  * placeholder: the title at the top of the Component
  * setFilteredValues: the setter Method used to update the values
  * showId: used to show extra infos (in brackets) after each option
  *
  * @constructor
  */
-function IDComboSelect({
-    values,
-    title,
-    placeholder,
-    setFilteredValues,
-    showId}: IDComboSelectProps) {
-    const handleChange = (event: SyntheticEvent, value:Array<ClientOrFeature>) => {
+function IDComboSelect({values, title, placeholder, filteredValues, setFilteredValues, showId}: IDComboSelectProps) {
+    const handleChange = (event: SyntheticEvent, value: Array<ClientOrFeature>) => {
         setFilteredValues(value);
     };
 
@@ -39,6 +35,7 @@ function IDComboSelect({
                     <Typography component="label">{title}</Typography><Autocomplete
                         multiple
                         options={values}
+                        value={filteredValues}
                         onChange={handleChange}
                         data-testid="combobox"
                         disableCloseOnSelect={true}

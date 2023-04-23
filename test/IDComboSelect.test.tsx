@@ -8,17 +8,16 @@ const setFilteredValues = jest.fn();
 test("checkbox components are not rendered at page load", () => {
     render(<IDComboSelect
         values={mockedClientList}
-        title="Test"
-        placeholder="Test"
-        setFilteredValues={() => null} />);
+        title="Test" filteredValues={[]}
+        placeholder="Test" setFilteredValues={() => null} />);
 
-    expect(screen.queryByTestId(241)).toBeFalsy();
+    expect(screen.queryByTestId("241")).toBeFalsy();
 });
 
 test("placeholder is set and visible on rendered component", () => {
     render(<IDComboSelect
         values={mockedClientList}
-        title="Test"
+        title="Test" filteredValues={[]}
         placeholder="Test"
         setFilteredValues={() => null} />);
 
@@ -28,8 +27,8 @@ test("placeholder is set and visible on rendered component", () => {
 test("checkbox components are rendered after select change", () => {
     render(<IDComboSelect
         values={mockedClientList}
-        title="Test"
-        placeholder="Test"
+        title="Test" filteredValues={[]}
+        placeholder="test"
         setFilteredValues={() => null} />);
 
     // focus on autocomplete and type "abc" as sample text
@@ -38,13 +37,13 @@ test("checkbox components are rendered after select change", () => {
     autocomplete.focus();
     fireEvent.change(input, {target: {value: "abc"}});
 
-    expect(screen.queryByTestId(241)).toBeInTheDocument();
+    expect(screen.queryByTestId("241")).toBeInTheDocument();
 });
 
 test("handleChange behavior - setFilteredValues is called when a combobox option is clicked", () => {
     render(<IDComboSelect
         values={mockedClientList}
-        title="Test"
+        title="Test" filteredValues={[]}
         placeholder="Test"
         setFilteredValues={setFilteredValues} />);
 

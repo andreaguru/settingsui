@@ -9,6 +9,7 @@ import IDComboSelect from "./IDComboSelect";
 /* import IDRadioGroup from "./IDRadioGroup"; */
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
+import {getFeaturesList} from "../utils/utils";
 
 /**
  * Sidebar component. The two properties clients and setFilteredClients are just passed to IDComboSelect.
@@ -17,9 +18,12 @@ import {SidebarProps} from "../types/componentProps.types";
 function Sidebar(
     {
         clients,
-        features,
+        filteredClients,
+        filteredFeatures,
         setFilteredClients,
-        setFilteredFeatures}: SidebarProps
+        setFilteredFeatures,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        setFeatureStatus}: SidebarProps
 ) {
     return (
         <MuiDrawer variant="permanent">
@@ -29,16 +33,18 @@ function Sidebar(
             <IDComboSelect values={clients}
                 title="Mandant"
                 placeholder="Name / clientId"
+                filteredValues={filteredClients}
                 setFilteredValues={setFilteredClients}
                 showId={true}/>
 
-            <IDComboSelect values={features}
+            <IDComboSelect values={getFeaturesList(clients)}
                 title="Feature"
                 placeholder="z.B. AdDefend, CleverPush Anmelde-Widget"
+                filteredValues={filteredFeatures}
                 setFilteredValues={setFilteredFeatures}
                 showId={false}/>
 
-            {/* <IDRadioGroup handleFeatureStatusChange={handleFeatureStatusChange} /> */}
+            {/* <IDRadioGroup setFeatureStatus={setFeatureStatus} /> */}
         </MuiDrawer>
     );
 }
