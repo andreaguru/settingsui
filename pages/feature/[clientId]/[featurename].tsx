@@ -42,7 +42,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                 <Home {...props}>
                     <Modal
                         open={true} // The modal should always be shown on page load, it is the 'page'
-                        onClose={() => router.push("/")}
+                        onClose={() => router.push(`/#${clientId}`)}
                     >
                         <DialogContent sx={style}>
                             <FeatureDetail clientId={clientId} featureName={featureName} pathname={router.pathname}/>
