@@ -16,10 +16,8 @@ import ClientCard from "./ClientCard";
 function MainContent({
     clientsList,
     filteredClientsList,
-    filteredFeatures,
     showSelectedFeatures,
-    featureStatus,
-    isLoading}:MainContentProps) {
+    isLoading}: MainContentProps) {
     /* filter the clients that have to be shown, according to current filter status */
     /**
      * shownClients
@@ -50,9 +48,7 @@ function MainContent({
                 <ClientCard
                     key={index}
                     client={client}
-                    filteredFeatures={filteredFeatures}
-                    showSelectedFeatures={showSelectedFeatures}
-                    featureStatus={featureStatus}/>
+                    showSelectedFeatures={showSelectedFeatures}/>
                 ))}
         </>
     );
