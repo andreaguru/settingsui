@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import {Client} from "../types/api.types";
 import {MainContentProps} from "../types/componentProps.types";
 import ClientCard from "./ClientCard";
+import {useEffect} from "react";
 
 /**
  * MainContent component. It accepts 6 parameters:
@@ -27,6 +28,21 @@ function MainContent({
         const clients = filteredClientsList.length ? filteredClientsList : clientsList;
         return clients.filter((client) => client.hasFeatures === true);
     }
+
+    /* with useEffect we look for changes in clientList state.
+    When clientList is updated with values, we check if a jump to hash is needed. */
+    useEffect(() => {
+        // Detect if an anchor is present in the URL
+        const hash = window.location.hash;
+        if (hash) {
+            // Scroll to the anchor if the element is present
+            const anchorElement = document.getElementById(hash.replace("#", ""));
+            if (anchorElement) {
+                anchorElement.scrollIntoView();
+            }
+        }
+    }, [clientsList]);
+
     return (
         <>
             <Box sx={{paddingBottom: "20px"}}>
