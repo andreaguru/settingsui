@@ -29,8 +29,8 @@ export interface SidebarProps {
     clients: Array<Client>
     filteredFeatures: Array<Feature>
     filteredClients: Array<Client>
-    setFilteredClients: (name: Array<Client>) => void
-    setFilteredFeatures: (name: Array<Feature>) => void
+    setFilteredClients: (arg: Array<ClientOrFeature>) => void
+    setFilteredFeatures: (arg: Array<ClientOrFeature>) => void
     setFeatureStatus: (name: FeatSelectedStatus) => void
 }
 
