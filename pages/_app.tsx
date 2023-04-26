@@ -1,11 +1,14 @@
 import {getClientList} from "../api/DashboardAPI";
 import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 import type {AppProps} from "next/app";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
 import {FeatSelectedStatus} from "../types/componentProps.types";
 import {FeatureLabelMap} from "../api/FeatureLabelMap";
+import useUpdateEffect from "../utils/customHooks";
+import {getFeaturesList} from "../utils/utils";
 
 /**
  * check if features status has been selected in combobox.
@@ -45,6 +48,7 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
  */
 function TemplatePage({Component, pageProps}:AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
+    const router = useRouter();
 
     // contains the list of clients that have been selected by the user
     const [filteredClients, setFilteredClients] = useState<Array<Client>>([]);
@@ -137,6 +141,31 @@ function TemplatePage({Component, pageProps}:AppProps) {
             });
     }, []);
 
+    useEffect(() => {
+        // if router is not ready or clients state is still empty, do nothing
+        if (!router.isReady || !clients.length) return;
+
+        const filteredClientsQuery = router.query.filteredClients ?? "";
+        const filteredFeaturesQuery = router.query.filteredFeatures ?? "";
+
+        // if filtered clients are present in the url, set the filteredClients state
+        if (filteredClientsQuery.length) {
+            const filteredClients = clients.filter(
+                (client) => filteredClientsQuery.includes(client.name)
+            );
+            setFilteredClients(filteredClients);
+        }
+
+        // if filtered features are present in the url, set the filteredFeatures state
+        if (filteredFeaturesQuery.length) {
+            const filteredFeatures = getFeaturesList(clients).filter(
+                (feature) => filteredFeaturesQuery.includes(feature.name)
+            );
+            setFilteredFeatures(filteredFeatures);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [router.query.filteredClients, clients]);
+
     // The code inside this useEffect is called everytime there is a change in featureStatus or filteredFeatures state
     useEffect(() => {
         /* here we set the status of property hasFeatures for each client.
@@ -152,6 +181,29 @@ function TemplatePage({Component, pageProps}:AppProps) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [featureStatus, filteredFeatures]);
+
+    /* The code inside this custom Hook useUpdateEffect is called everytime there is a change in filteredClients state
+    but not the first time the component is rendered, like it happens for a normal useEffect */
+    useUpdateEffect(() => {
+        // we create an array with all names of selected clients
+        const filteredClientNames = filteredClients.map((a) => a.name);
+        // we create an array with all names of selected clients
+        const filteredFeatureNames = filteredFeatures.map((a) => a.name);
+
+        // we update the url according to app state only if the page is home
+        if (router.pathname === "/") {
+            if (filteredClients.length) {
+                router.push({
+                    query: {
+                        ...(filteredClientNames.length && {filteredClients: JSON.stringify(filteredClientNames)}),
+                        ...(filteredFeatureNames.length && {filteredFeatures: JSON.stringify(filteredFeatureNames)}),
+                    },
+                });
+            } else {
+                router.replace("/", undefined, {shallow: true});
+            }
+        }
+    }, [filteredClients, filteredFeatures]);
 
     return (
         <Component {...pageProps}
