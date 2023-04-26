@@ -47,7 +47,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             const {filteredClients, filteredFeatures} = router.query;
 
                             router.push({
-                                pathname: "/",
+                                pathname: "/#id-clt-${clientId}",
                                 query: {
                                     ...(filteredClients && {filteredClients}),
                                     ...(filteredFeatures && {filteredFeatures}),
