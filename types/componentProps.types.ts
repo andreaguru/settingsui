@@ -9,8 +9,8 @@ export interface HomeProps {
     clients: Array<Client>
     filteredClients: Array<Client>
     filteredFeatures: Array<Feature>
-    setFilteredClients: (name: Array<Client>) => void
-    setFilteredFeatures: (name: Array<Feature>) => void
+    setFilteredClients: (arg: Array<ClientOrFeature>) => void
+    setFilteredFeatures: (arg: Array<ClientOrFeature>) => void
     featureStatus: FeatSelectedStatus | Array<string>
     setFeatureStatus: (name: FeatSelectedStatus) => void
     showSelectedFeatures: (featuresPerClient:Array<Feature>) => Array<Feature>
@@ -29,8 +29,8 @@ export interface SidebarProps {
     clients: Array<Client>
     filteredFeatures: Array<Feature>
     filteredClients: Array<Client>
-    setFilteredClients: (name: Array<Client>) => void
-    setFilteredFeatures: (name: Array<Feature>) => void
+    setFilteredClients: (arg: Array<ClientOrFeature>) => void
+    setFilteredFeatures: (arg: Array<ClientOrFeature>) => void
     setFeatureStatus: (name: FeatSelectedStatus) => void
 }
 
@@ -38,7 +38,7 @@ export type IDComboSelectProps = {
     values: Array<ClientOrFeature>
     title: string
     placeholder: string
-    setFilteredValues: (...args: any[]) => void;
+    setFilteredValues: (arg:ClientOrFeature[]) => void;
     filteredValues: Array<ClientOrFeature>
     showId?: boolean
 }
