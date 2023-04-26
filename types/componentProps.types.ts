@@ -9,8 +9,8 @@ export interface HomeProps {
     clients: Array<Client>
     filteredClients: Array<Client>
     filteredFeatures: Array<Feature>
-    setFilteredClients: (name: Array<Client>) => void
-    setFilteredFeatures: (name: Array<Feature>) => void
+    setFilteredClients: (arg: Array<ClientOrFeature>) => void
+    setFilteredFeatures: (arg: Array<ClientOrFeature>) => void
     featureStatus: FeatSelectedStatus | Array<string>
     setFeatureStatus: (name: FeatSelectedStatus) => void
     showSelectedFeatures: (featuresPerClient:Array<Feature>) => Array<Feature>
