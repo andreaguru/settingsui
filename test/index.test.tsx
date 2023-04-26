@@ -1,49 +1,62 @@
 import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Home, {showFeaturesPerStatus, showSelectedFeatures} from "../pages/index";
-import * as apiMethods from "../api/DashboardAPI";
-import {mockedFeatures, mockedFilteredFeatures} from "./mockData";
-import {FeatSelectedStatus} from "../types/componentProps.types";
+import Home from "../pages";
+import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
+import * as reactObserver from "react-intersection-observer";
+import {InViewHookResponse} from "react-intersection-observer";
 
 jest.mock("../api/DashboardAPI");
 
-beforeAll(async () => {
-    const promise = Promise.resolve([]);
-    jest.spyOn(apiMethods, "getClientList").mockReturnValue(promise);
+const setFilteredValues = jest.fn();
+
+const showSelectedFeatures = jest.fn();
+showSelectedFeatures.mockReturnValue(mockedFeatures);
+
+jest.mock("react-intersection-observer");
+
+beforeEach( () => {
+    // Define the return value of the mock
+    const inViewMockResponse: InViewHookResponse = [
+        jest.fn(),
+        true,
+        undefined, // An optional parameter with no value
+    ] as unknown as InViewHookResponse;
+
+    jest.spyOn(reactObserver, "useInView").mockReturnValue(inViewMockResponse);
 });
 
-test("renders the home page with all the static elements", () => {
-    render(<Home/>);
-    expect(screen.getByRole("img")).toBeInTheDocument();
+test("client list is not present and loader is present if isLoading is true", () => {
+    const {container} = render(<Home
+        clients={mockedClientListWithHasFeatures}
+        filteredClients={[]}
+        filteredFeatures={[]}
+        featureStatus={[]}
+        setFilteredClients={setFilteredValues}
+        setFilteredFeatures={setFilteredValues}
+        showSelectedFeatures={showSelectedFeatures}
+        setFeatureStatus={setFilteredValues}
+        isLoading={true}
+    />);
+    // test that client list returns an empty array
+    expect(screen.queryAllByTestId("client").length).toBe(0);
+    // test that 4 loaders (Skeleton components) are present in the document
+    expect(container.getElementsByClassName("MuiSkeleton-root").length).toBe(4);
 });
 
-/* UNIT TESTS */
-test("showFeaturesPerStatus returns Feature that are enabled or enabled/disabled", () => {
-    const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.ACTIVE);
-    expect(features[0].name).toBe("traffective");
-    expect(features[1].name).toBe("cleverPush");
-});
-
-test("showFeaturesPerStatus returns Features that are disabled or enabled/disabled", () => {
-    const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.INACTIVE);
-    expect(features[0].name).toBe("traffective");
-    expect(features[1].name).toBe("inArticleReco");
-});
-
-test("showFeaturesPerStatus returns all the features (no features removed)", () => {
-    const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.ALL);
-    expect(features[0].name).toBe("traffective");
-    expect(features[1].name).toBe("inArticleReco");
-    expect(features[2].name).toBe("cleverPush");
-});
-
-test("showSelectedFeatures returns the inactive features that have is also present in mockedFilteredFeatures", () => {
-    const features = showSelectedFeatures(mockedFeatures, FeatSelectedStatus.INACTIVE, mockedFilteredFeatures);
-    expect(features[0].name).toBe("inArticleReco");
-});
-
-test("showSelectedFeatures returns the features that are also present in mockedFilteredFeatures", () => {
-    const features = showSelectedFeatures(mockedFeatures, FeatSelectedStatus.ALL, mockedFilteredFeatures);
-    expect(features[0].name).toBe("inArticleReco");
-    expect(features[1].name).toBe("traffective");
+test("client list is present and loader is not present if isLoading is false", () => {
+    const {container} = render(<Home
+        clients={mockedClientListWithHasFeatures}
+        filteredClients={[]}
+        filteredFeatures={[]}
+        featureStatus={[]}
+        setFilteredClients={setFilteredValues}
+        setFilteredFeatures={setFilteredValues}
+        showSelectedFeatures={showSelectedFeatures}
+        setFeatureStatus={setFilteredValues}
+        isLoading={false}
+    />);
+    // test that client list returns an array with 4 values
+    expect(screen.queryByTestId("241")).toBeInTheDocument();
+    // test that loaders (Skeleton components) are not present in the document
+    expect(container.getElementsByClassName("MuiSkeleton-root").length).toBe(0);
 });

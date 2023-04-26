@@ -12,7 +12,7 @@
     "start:staging": "ENV_FILE=envs/.env.staging next start",
     "build:production": "ENV_FILE=envs/.env.production next build",
     "start:production": "ENV_FILE=envs/.env.production next start",
-    "eslint": "next lint",
+    "eslint": "next lint --dir .",
     "eslint:fix": "next lint . --ext .tsx --fix",
     "test": "jest",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
