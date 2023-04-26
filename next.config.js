@@ -12,7 +12,7 @@ const dotenv = {
 }
 
 module.exports = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   ...dotenv,
   output: 'standalone',
     webpack: (config) => {
