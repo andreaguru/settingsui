@@ -38,7 +38,7 @@ export type IDComboSelectProps = {
     values: Array<ClientOrFeature>
     title: string
     placeholder: string
-    setFilteredValues: (...args: []) => void;
+    setFilteredValues: (arg:ClientOrFeature[]) => void;
     filteredValues: Array<ClientOrFeature>
     showId?: boolean
 }
