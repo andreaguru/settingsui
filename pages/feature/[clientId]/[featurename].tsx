@@ -47,11 +47,12 @@ function FeatureDetailPage({...props}: HomeProps) {
                             const {filteredClients, filteredFeatures} = router.query;
 
                             router.push({
-                                pathname: `/#id-clt-${clientId}`,
+                                pathname: "/",
                                 query: {
                                     ...(filteredClients && {filteredClients}),
                                     ...(filteredFeatures && {filteredFeatures}),
                                 },
+                                hash: `id-clt-${clientId}`,
                             });
                         }}
                     >
