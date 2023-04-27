@@ -50,6 +50,8 @@ function TemplatePage({Component, pageProps}:AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
     const router = useRouter();
 
+    const {fltrClients, fltrFeatures} = router.query;
+
     // contains the list of clients that have been selected by the user
     const [filteredClients, setFilteredClients] = useState<Array<Client>>([]);
 
@@ -61,6 +63,8 @@ function TemplatePage({Component, pageProps}:AppProps) {
     const [featureStatus, setFeatureStatus] = useState<FeatSelectedStatus>(FeatSelectedStatus.ALL);
 
     const [isLoading, setLoading] = useState(true);
+
+    const [clientsAreLoaded, setClientsAreLoaded] = useState(false);
 
     /**
      * showSelectedFeatures
@@ -143,28 +147,27 @@ function TemplatePage({Component, pageProps}:AppProps) {
 
     useEffect(() => {
         // if router is not ready or clients state is still empty, do nothing
-        if (!router.isReady || !clients.length) return;
-
-        const filteredClientsQuery = router.query.filteredClients ?? "";
-        const filteredFeaturesQuery = router.query.filteredFeatures ?? "";
+        if (!clients.length || clientsAreLoaded) return;
 
         // if filtered clients are present in the url, set the filteredClients state
-        if (filteredClientsQuery.length) {
+        if (fltrClients?.length) {
             const filteredClients = clients.filter(
-                (client) => filteredClientsQuery.includes(client.name)
+                (client) => fltrClients.includes(client.name)
             );
             setFilteredClients(filteredClients);
         }
 
         // if filtered features are present in the url, set the filteredFeatures state
-        if (filteredFeaturesQuery.length) {
+        if (fltrFeatures?.length) {
             const filteredFeatures = getFeaturesList(clients).filter(
-                (feature) => filteredFeaturesQuery.includes(feature.name)
+                (feature) => fltrFeatures.includes(feature.name)
             );
             setFilteredFeatures(filteredFeatures);
         }
+
+        setClientsAreLoaded(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [router.query.filteredClients, clients]);
+    }, [clients]);
 
     // The code inside this useEffect is called everytime there is a change in featureStatus or filteredFeatures state
     useEffect(() => {
@@ -192,11 +195,11 @@ function TemplatePage({Component, pageProps}:AppProps) {
 
         // we update the url according to app state only if the page is home
         if (router.pathname === "/") {
-            if (filteredClients.length) {
+            if (filteredClients.length || filteredFeatures.length) {
                 router.push({
                     query: {
-                        ...(filteredClientNames.length && {filteredClients: JSON.stringify(filteredClientNames)}),
-                        ...(filteredFeatureNames.length && {filteredFeatures: JSON.stringify(filteredFeatureNames)}),
+                        ...(filteredClientNames.length && {fltrClients: JSON.stringify(filteredClientNames)}),
+                        ...(filteredFeatureNames.length && {fltrFeatures: JSON.stringify(filteredFeatureNames)}),
                     },
                 });
             } else {
