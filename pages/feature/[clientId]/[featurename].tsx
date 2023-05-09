@@ -46,6 +46,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             // get filteredFeatures and filteredClients if present in the url
                             const {fltrClients, fltrFeatures} = router.query;
 
+                            // redirect to home page keeping the query params and the hash
                             router.push({
                                 pathname: "/",
                                 query: {
