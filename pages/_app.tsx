@@ -50,6 +50,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
     const router = useRouter();
 
+    // we get the two query string properties from URL (filtered clients and filtered features)
     const {fltrClients, fltrFeatures} = router.query;
 
     // contains the list of clients that have been selected by the user
@@ -62,9 +63,8 @@ function TemplatePage({Component, pageProps}:AppProps) {
     (keine Auswahl, aktiviert, deaktiviert / nicht konfiguriert) */
     const [featureStatus, setFeatureStatus] = useState<FeatSelectedStatus>(FeatSelectedStatus.ALL);
 
-    const [isLoading, setLoading] = useState(true);
-
-    const [clientsAreLoaded, setClientsAreLoaded] = useState(false);
+    const [clientsLoading, setClientsLoading] = useState(true);
+    const [filtersAreLoaded, setFiltersAreLoaded] = useState(false);
 
     /**
      * showSelectedFeatures
@@ -137,7 +137,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
                 });
                 // update clients state with the new value
                 setClients(clientsWithHasFeaturesProperty);
-                setLoading(false);
+                setClientsLoading(false);
             }
         })
             .catch((error) => {
@@ -145,10 +145,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
             });
     }, []);
 
-    useEffect(() => {
-        // if router is not ready or clients state is still empty, do nothing
-        if (!clients.length || clientsAreLoaded) return;
-
+    useUpdateEffect(() => {
         // if filtered clients are present in the url, set the filteredClients state
         if (fltrClients?.length) {
             const filteredClients = clients.filter(
@@ -164,10 +161,8 @@ function TemplatePage({Component, pageProps}:AppProps) {
             );
             setFilteredFeatures(filteredFeatures);
         }
-
-        setClientsAreLoaded(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [clients]);
+    }, [clientsLoading]);
 
     // The code inside this useEffect is called everytime there is a change in featureStatus or filteredFeatures state
     useEffect(() => {
@@ -186,26 +181,30 @@ function TemplatePage({Component, pageProps}:AppProps) {
     }, [featureStatus, filteredFeatures]);
 
     /* The code inside this custom Hook useUpdateEffect is called everytime there is a change in filteredClients state
-    but not the first time the component is rendered, like it happens for a normal useEffect */
+    but not the first time the component is rendered, like it happens for a normal useEffect
+    Docu: https://usehooks-ts.com/react-hook/use-update-effect */
     useUpdateEffect(() => {
         // we create an array with all names of selected clients
         const filteredClientNames = filteredClients.map((a) => a.name);
         // we create an array with all names of selected clients
         const filteredFeatureNames = filteredFeatures.map((a) => a.name);
 
-        // we update the url according to app state only if the page is home
-        if (router.pathname === "/") {
-            if (filteredClients.length || filteredFeatures.length) {
-                router.push({
-                    query: {
-                        ...(filteredClientNames.length && {fltrClients: JSON.stringify(filteredClientNames)}),
-                        ...(filteredFeatureNames.length && {fltrFeatures: JSON.stringify(filteredFeatureNames)}),
-                    },
-                });
-            } else {
-                router.replace("/", undefined, {shallow: true});
-            }
+        /* we update the url, according to the app state, if one of these conditions is true:
+        1. filtersAreLoaded is true. This means that either filteredClients or filteredFeatures
+        have been called at least once
+        2. the url contains no parameters (router.query is empty). This means that
+        we are not in the case of a shared url with filters already present in the query parameters.
+         */
+        if (filtersAreLoaded || Object.keys(router.query).length === 0) {
+            router.push({
+                query: {
+                    ...(filteredClientNames.length && {fltrClients: JSON.stringify(filteredClientNames)}),
+                    ...(filteredFeatureNames.length && {fltrFeatures: JSON.stringify(filteredFeatureNames)}),
+                },
+            });
         }
+
+        setFiltersAreLoaded(true);
     }, [filteredClients, filteredFeatures]);
 
     return (
@@ -217,7 +216,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
             setFilteredFeatures={setFilteredFeatures}
             showSelectedFeatures={showSelectedFeatures}
             setFeatureStatus={setFeatureStatus}
-            isLoading={isLoading}
+            isLoading={clientsLoading}
         />
     );
 }

@@ -44,13 +44,13 @@ function FeatureDetailPage({...props}: HomeProps) {
                         open={true} // The modal should always be shown on page load, it is the 'page'
                         onClose={() => {
                             // get filteredFeatures and filteredClients if present in the url
-                            const {filteredClients, filteredFeatures} = router.query;
+                            const {fltrClients, fltrFeatures} = router.query;
 
                             router.push({
                                 pathname: "/",
                                 query: {
-                                    ...(filteredClients && {filteredClients}),
-                                    ...(filteredFeatures && {filteredFeatures}),
+                                    ...(fltrClients && {fltrClients}),
+                                    ...(fltrFeatures && {fltrFeatures}),
                                 },
                                 hash: `id-clt-${clientId}`,
                             });
