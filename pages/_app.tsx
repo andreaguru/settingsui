@@ -1,11 +1,14 @@
 import {getClientList} from "../api/DashboardAPI";
 import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 import type {AppProps} from "next/app";
 
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
 import {FeatSelectedStatus} from "../types/componentProps.types";
 import {FeatureLabelMap} from "../api/FeatureLabelMap";
+import useUpdateEffect from "../utils/customHooks";
+import {getFeaturesList} from "../utils/utils";
 
 /**
  * check if features status has been selected in combobox.
@@ -45,6 +48,10 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
  */
 function TemplatePage({Component, pageProps}:AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
+    const router = useRouter();
+
+    // we get the two query string properties from URL (filtered clients and filtered features)
+    const {fltrClients, fltrFeatures} = router.query;
 
     // contains the list of clients that have been selected by the user
     const [filteredClients, setFilteredClients] = useState<Array<Client>>([]);
@@ -56,7 +63,8 @@ function TemplatePage({Component, pageProps}:AppProps) {
     (keine Auswahl, aktiviert, deaktiviert / nicht konfiguriert) */
     const [featureStatus, setFeatureStatus] = useState<FeatSelectedStatus>(FeatSelectedStatus.ALL);
 
-    const [isLoading, setLoading] = useState(true);
+    const [clientsLoading, setClientsLoading] = useState(true);
+    const [filtersAreLoaded, setFiltersAreLoaded] = useState(false);
 
     /**
      * showSelectedFeatures
@@ -129,13 +137,32 @@ function TemplatePage({Component, pageProps}:AppProps) {
                 });
                 // update clients state with the new value
                 setClients(clientsWithHasFeaturesProperty);
-                setLoading(false);
+                setClientsLoading(false);
             }
         })
             .catch((error) => {
                 console.log(error);
             });
     }, []);
+
+    useUpdateEffect(() => {
+        // if filtered clients are present in the url, set the filteredClients state
+        if (fltrClients?.length) {
+            const filteredClients = clients.filter(
+                (client) => fltrClients.includes(client.name)
+            );
+            setFilteredClients(filteredClients);
+        }
+
+        // if filtered features are present in the url, set the filteredFeatures state
+        if (fltrFeatures?.length) {
+            const filteredFeatures = getFeaturesList(clients).filter(
+                (feature) => fltrFeatures.includes(feature.name)
+            );
+            setFilteredFeatures(filteredFeatures);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [clientsLoading]);
 
     // The code inside this useEffect is called everytime there is a change in featureStatus or filteredFeatures state
     useEffect(() => {
@@ -153,6 +180,33 @@ function TemplatePage({Component, pageProps}:AppProps) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [featureStatus, filteredFeatures]);
 
+    /* The code inside this custom Hook useUpdateEffect is called everytime there is a change in filteredClients state
+    but not the first time the component is rendered, like it happens for a normal useEffect
+    Docu: https://usehooks-ts.com/react-hook/use-update-effect */
+    useUpdateEffect(() => {
+        // we create an array with all names of selected clients
+        const filteredClientNames = filteredClients.map((a) => a.name);
+        // we create an array with all names of selected clients
+        const filteredFeatureNames = filteredFeatures.map((a) => a.name);
+
+        /* we update the url, according to the app state, if one of these conditions is true:
+        1. filtersAreLoaded is true. This means that either filteredClients or filteredFeatures
+        have been called at least once
+        2. the url contains no parameters (router.query is empty). This means that
+        we are not in the case of a shared url with filters already present in the query parameters.
+         */
+        if (filtersAreLoaded || Object.keys(router.query).length === 0) {
+            router.push({
+                query: {
+                    ...(filteredClientNames.length && {fltrClients: JSON.stringify(filteredClientNames)}),
+                    ...(filteredFeatureNames.length && {fltrFeatures: JSON.stringify(filteredFeatureNames)}),
+                },
+            });
+        }
+
+        setFiltersAreLoaded(true);
+    }, [filteredClients, filteredFeatures]);
+
     return (
         <Component {...pageProps}
             clients={clients}
@@ -162,7 +216,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
             setFilteredFeatures={setFilteredFeatures}
             showSelectedFeatures={showSelectedFeatures}
             setFeatureStatus={setFeatureStatus}
-            isLoading={isLoading}
+            isLoading={clientsLoading}
         />
     );
 }

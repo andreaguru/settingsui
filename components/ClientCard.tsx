@@ -14,6 +14,7 @@ import NextLink from "next/link";
 // import typescript Interfaces
 import {Feature} from "../types/api.types";
 import {ClientCardProps} from "../types/componentProps.types";
+import {useRouter} from "next/router";
 
 /**
  * getFeatureColorByStatus - return the right icon color according to category and tag status
@@ -70,6 +71,8 @@ function ClientCard({
         triggerOnce: true,
     });
 
+    const router = useRouter();
+
     return (
         <Card data-testid={client.id} id={String(`id-clt-${client.id}`)} ref={ref}>
             <CardContent>
@@ -84,7 +87,13 @@ function ClientCard({
                         return <div key={index}>
                             { /* show a featureButton only if it is inside the viewport */
                                 inView && <NextLink
-                                    href={`/feature/${client.id}/${feature.name}`}>
+                                    href={{
+                                        pathname: `/feature/${client.id}/${feature.name}`,
+                                        /* pass the current query params to the next page
+                                        (filteredClients and filteredFeatures, if present) */
+                                        query: router.query,
+                                    }}
+                                >
                                     <Fade in>
                                         <IconButton className="iconStatus"
                                             sx={[
