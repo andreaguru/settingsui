@@ -51,7 +51,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
     const router = useRouter();
 
     // we get the two query string properties from URL (filtered clients and filtered features)
-    const {fltrClients, fltrFeatures} = router.query;
+    const {["fltr-clients"]: fltrClients, ["fltr-features"]: fltrFeatures} = router.query;
 
     // contains the list of clients that have been selected by the user
     const [filteredClients, setFilteredClients] = useState<Array<Client>>([]);
@@ -198,8 +198,8 @@ function TemplatePage({Component, pageProps}:AppProps) {
         if (filtersAreLoaded || Object.keys(router.query).length === 0) {
             router.push({
                 query: {
-                    ...(filteredClientNames.length && {fltrClients: JSON.stringify(filteredClientNames)}),
-                    ...(filteredFeatureNames.length && {fltrFeatures: JSON.stringify(filteredFeatureNames)}),
+                    ...(filteredClientNames.length && {"fltr-clients": filteredClientNames}),
+                    ...(filteredFeatureNames.length && {"fltr-features": filteredFeatureNames}),
                 },
             });
         }
