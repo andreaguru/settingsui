@@ -63,6 +63,18 @@ export const edidTheme = createTheme({
         },
     },
     components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                "*::-webkit-scrollbar": {
+                    width: "0.4em",
+                    backgroundColor: "#F5F5F5",
+                },
+                "*::-webkit-scrollbar-thumb": {
+                    backgroundColor: "#888",
+                },
+            },
+        },
+        // Style the Skeleton, used as loader
         MuiSkeleton: {
             styleOverrides: {
                 root: ({theme}) => ({
@@ -70,7 +82,7 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the main container
+        // Style the main container (present in index.tsx)
         MuiContainer: {
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
@@ -86,7 +98,7 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the AppBar
+        // Style the AppBar (the header of our App)
         MuiAppBar: {
             styleOverrides: {
                 root: ({theme}) => ({
@@ -155,21 +167,29 @@ export const edidTheme = createTheme({
         // Style the Card content (see MainContent.tsx)
         MuiCardContent: {
             styleOverrides: {
-                root: {
-                    padding: "24px",
-                },
+                root: ({theme}) => ({
+                    padding: theme.spacing(3),
+                }),
             },
         },
-        // Style the Icon Button when is a div component (see MainContent.tsx)
+        // Style the Icon Buttons
         MuiIconButton: {
             styleOverrides: {
                 root: ({ownerState}) => ({
+                    // Style the Feature element (in ClientCard component)
                     ...(ownerState.className === "iconStatus" && {
                         display: "flex",
                         margin: "16px 16px 0 0",
                         padding: "6px 16px",
                         borderRadius: "4px",
                         gap: "8px",
+                    }),
+                    // Style the Modal close button (in featurename page)
+                    ...(ownerState.className === "modalClose" && {
+                        position: "absolute",
+                        top: "18px",
+                        right: "18px",
+                        padding: 0,
                     }),
                 }),
             },
