@@ -8,11 +8,6 @@ import {HomeProps} from "../../../types/componentProps.types";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
-import {Tooltip, Typography} from "@mui/material";
-import IDAccordionList from "../../../components/IDAccordionList";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import IDLinearProgress from "../../../components/IDLinearProgress";
 import IDModalContent from "../../../components/IDModalContent";
 import IDModalSidebar from "../../../components/IDModalSidebar";
 
@@ -78,26 +73,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             </Grid>
 
                             {/* Sidebar*/}
-                            <IDModalSidebar item xs={4}>
-                                <Container>
-                                    <Typography variant="subtitle1">
-                                            Konfigurationen
-                                        <Tooltip title="Info tooltip">
-                                            <HelpOutlineIcon style={{fontSize: "16px"}} />
-                                        </Tooltip>
-                                    </Typography>
-                                    <IDLinearProgress value={80} />
-                                </Container>
-                                <IDAccordionList>
-                                    <div style={{height: "150px", width: "100%"}}>Accordion Placeholder</div>
-                                    <div style={{height: "150px", width: "100%"}}>Accordion Placeholder</div>
-                                    <div style={{height: "150px", width: "100%"}}>Accordion Placeholder</div>
-                                    <div style={{height: "150px", width: "100%"}}>Accordion Placeholder</div>
-                                    <div style={{height: "150px", width: "100%"}}>Accordion Placeholder</div>
-                                    <div style={{height: "150px", width: "100%"}}>Accordion Placeholder</div>
-                                    <div style={{height: "150px", width: "100%"}}>Accordion Placeholder</div>
-                                </IDAccordionList>
-                            </IDModalSidebar>
+                            <IDModalSidebar item xs={4} />
                         </IDModalContent>
                     </Modal>
                 </Home>
@@ -107,4 +83,3 @@ function FeatureDetailPage({...props}: HomeProps) {
 }
 
 export default FeatureDetailPage;
-
