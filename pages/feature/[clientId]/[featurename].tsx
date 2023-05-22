@@ -1,23 +1,16 @@
+import {ThemeProvider} from "@mui/material/styles";
+import {edidTheme} from "../../../themes/edid";
+
 import {useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
-import DialogContent from "@mui/material/DialogContent";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
 import {getFeaturesList} from "../../../utils/utils";
 import Skeleton from "@mui/material/Skeleton";
 import {HomeProps} from "../../../types/componentProps.types";
-
-const style = {
-    position: "absolute" as const,
-    top: "2%",
-    left: "2%",
-    width: "95%",
-    height: "95%",
-    bgcolor: "background.paper",
-    border: "1px solid #000",
-    boxShadow: 24,
-    p: 4,
-};
+import Grid from "@mui/material/Grid";
+import IDModalContent from "../../../components/IDModalContent";
+import IdModalHeader from "../../../components/IDModalHeader";
 
 /**
  *
@@ -33,7 +26,7 @@ function FeatureDetailPage({...props}: HomeProps) {
     }
 
     return (
-        <>
+        <ThemeProvider theme={edidTheme}>
             {/* if loading is in progress, show the placeholder elements */
                 props.isLoading && <Skeleton variant="rounded" height={"100vh"} />
             }
@@ -44,7 +37,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                         open={true} // The modal should always be shown on page load, it is the 'page'
                         onClose={() => {
                             // get filteredFeatures and filteredClients if present in the url
-                            const {["fltr-clients"]: fltrClients, ["fltr-features"]: fltrFeatures} = router.query;
+                            const {fltrClients, fltrFeatures} = router.query;
 
                             // redirect to home page keeping the query params and the hash
                             router.push({
@@ -57,15 +50,28 @@ function FeatureDetailPage({...props}: HomeProps) {
                             });
                         }}
                     >
-                        <DialogContent sx={style}>
-                            <FeatureDetail clientId={clientId} featureName={featureName} pathname={router.pathname}/>
-                        </DialogContent>
+                        <IDModalContent container rowSpacing={3}>
+
+                            {/* Header*/}
+                            <Grid item xs={12}>
+                                <IdModalHeader position="absolute" color="inherit" />
+                            </Grid>
+
+                            {/* Table content*/}
+                            <Grid item sx={{flexGrow: 1, p: 3}}>
+                                <FeatureDetail
+                                    clientId={clientId}
+                                    featureName={featureName}
+                                    pathname={router.pathname}/>
+                            </Grid>
+
+                            {/* Sidebar*/}
+                        </IDModalContent>
                     </Modal>
                 </Home>
             }
-        </>
+        </ThemeProvider>
     );
 }
 
 export default FeatureDetailPage;
-
