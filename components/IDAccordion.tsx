@@ -36,6 +36,12 @@ function IDAccordion() {
     const [expanded, setExpanded] = React.useState(false);
     const theme = useTheme();
     const handleExpandClick = () => {
+        /*
+            TODO
+            Beim Verwenden des alten Wertes sollte hier der prev-Syntax verwendet werden:
+            `setExpanded((prev) => !prev);`
+            Damit wird sicher gestellt, dass auch wirklich immer der aktuelle Wert genutzt wird.
+         */
         setExpanded(!expanded);
     };
 
