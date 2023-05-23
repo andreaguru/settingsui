@@ -38,8 +38,8 @@ function IdModalSidebar(props:GridProps) {
                 <IDLinearProgress value={10} />
             </Container>
             <IDAccordionList>
-                <IDAccordion />
-                <IDAccordion />
+                <IDAccordion disabled />
+                <IDAccordion disabled />
                 <IDAccordion />
                 <IDAccordion />
                 <IDAccordion />

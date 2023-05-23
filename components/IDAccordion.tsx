@@ -1,4 +1,4 @@
-import * as React from "react";
+import {useState} from "react";
 import {styled, useTheme} from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -7,10 +7,11 @@ import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import IconButton, {IconButtonProps} from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import {Divider} from "@mui/material";
+import {IdAccordionProps} from "../types/componentProps.types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -20,11 +21,19 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     const {...other} = props;
     return <IconButton {...other} />;
 })(({theme, expand}) => ({
-    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-    marginLeft: "auto",
+    transform: !expand ? "rotate(90deg)" : "rotate(270deg)",
     transition: theme.transitions.create("transform", {
         duration: theme.transitions.duration.shortest,
     }),
+}));
+
+const StyledIDAccordion = styled(Card)(({theme}) => ({
+    "flexBasis": "100%",
+    "&.Mui-disabled": {
+        opacity: .6,
+        backgroundColor: theme.palette.grey[200],
+        pointerEvents: "none",
+    },
 }));
 
 /**
@@ -32,21 +41,21 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
  *
  * @constructor
  */
-function IDAccordion() {
-    const [expanded, setExpanded] = React.useState(false);
+function IDAccordion({disabled}: IdAccordionProps) {
+    const [expanded, setExpanded] = useState(false);
     const theme = useTheme();
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
     return (
-        <Card sx={{flexBasis: "100%"}}>
+        <StyledIDAccordion className={disabled ? "Mui-disabled" : ""}>
             <CardHeader
                 title="auto"
                 titleTypographyProps={{variant: "subtitle2"}}
                 sx={{pb: 0}}
             />
-            <CardActions sx={{p: 2, pt: 1}}>
+            <CardActions sx={{p: 2, pt: 1, gap: 1}}>
                 <Typography variant="caption">Erstellt 10.02.2023</Typography>
                 <Typography variant="caption">Zuletz geändert 13.02.2023</Typography>
                 <ExpandMore
@@ -55,7 +64,7 @@ function IDAccordion() {
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
-                    <ExpandMoreIcon />
+                    <ArrowForwardIos fontSize="small" />
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -89,7 +98,7 @@ function IDAccordion() {
                     </Grid>
                 </CardContent>
             </Collapse>
-        </Card>
+        </StyledIDAccordion>
     );
 }
 

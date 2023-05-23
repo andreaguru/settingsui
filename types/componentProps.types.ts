@@ -56,6 +56,10 @@ export interface IDRadioGroupProps {
     setFeatureStatus: (name: FeatSelectedStatus) => void
 }
 
+export interface IdAccordionProps {
+    disabled?: boolean,
+}
+
 export enum FeatSelectedStatus {
     ACTIVE = "ACTIVE",
     INACTIVE = "INACTIVE",
