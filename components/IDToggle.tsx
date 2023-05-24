@@ -11,7 +11,7 @@ import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import {Divider} from "@mui/material";
-import {IdAccordionProps} from "../types/componentProps.types";
+import {IdToggleProps} from "../types/componentProps.types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -27,7 +27,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-const StyledIDAccordion = styled(Card)(({theme}) => ({
+const IDToggleWrapper = styled(Card)(({theme}) => ({
     "flexBasis": "100%",
     "&.Mui-disabled": {
         opacity: .6,
@@ -41,7 +41,7 @@ const StyledIDAccordion = styled(Card)(({theme}) => ({
  *
  * @constructor
  */
-function IDAccordion({disabled}: IdAccordionProps) {
+function IDToggle({disabled}: IdToggleProps) {
     const [expanded, setExpanded] = useState(false);
     const theme = useTheme();
     const handleExpandClick = () => {
@@ -49,7 +49,7 @@ function IDAccordion({disabled}: IdAccordionProps) {
     };
 
     return (
-        <StyledIDAccordion className={disabled ? "Mui-disabled" : ""}>
+        <IDToggleWrapper className={disabled ? "Mui-disabled" : ""}>
             <CardHeader
                 title="auto"
                 titleTypographyProps={{variant: "subtitle2"}}
@@ -98,8 +98,8 @@ function IDAccordion({disabled}: IdAccordionProps) {
                     </Grid>
                 </CardContent>
             </Collapse>
-        </StyledIDAccordion>
+        </IDToggleWrapper>
     );
 }
 
-export default IDAccordion;
+export default IDToggle;

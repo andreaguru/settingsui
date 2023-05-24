@@ -56,7 +56,7 @@ export interface IDRadioGroupProps {
     setFeatureStatus: (name: FeatSelectedStatus) => void
 }
 
-export interface IdAccordionProps {
+export interface IdToggleProps {
     disabled?: boolean,
 }
 

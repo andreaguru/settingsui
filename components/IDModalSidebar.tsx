@@ -4,15 +4,15 @@ import Container from "@mui/material/Container";
 import {Tooltip, Typography} from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import IDLinearProgress from "./IDLinearProgress";
-import IDAccordionList from "./IDAccordionList";
-import IDAccordion from "./IDAccordion";
+import IDToggleList from "./IDToggleList";
+import IDToggle from "./IDToggle";
 
 /**
  * IDModalSidebar component. It accepts the same parameters as MUI Grid
  *
  * @constructor
  */
-const StyledIDModalSidebar = styled(Grid)(({theme}) => ({
+const IDModalSidebarWrapper = styled(Grid)(({theme}) => ({
     maxHeight: "100%",
     display: "flex",
     flexDirection: "column",
@@ -27,7 +27,7 @@ const StyledIDModalSidebar = styled(Grid)(({theme}) => ({
  */
 function IdModalSidebar(props:GridProps) {
     return (
-        <StyledIDModalSidebar {...props}>
+        <IDModalSidebarWrapper {...props}>
             <Container>
                 <Typography variant="subtitle1">
                     Konfigurationen
@@ -37,15 +37,15 @@ function IdModalSidebar(props:GridProps) {
                 </Typography>
                 <IDLinearProgress value={10} />
             </Container>
-            <IDAccordionList>
-                <IDAccordion disabled />
-                <IDAccordion disabled />
-                <IDAccordion />
-                <IDAccordion />
-                <IDAccordion />
-                <IDAccordion />
-            </IDAccordionList>
-        </StyledIDModalSidebar>
+            <IDToggleList>
+                <IDToggle disabled />
+                <IDToggle disabled />
+                <IDToggle />
+                <IDToggle />
+                <IDToggle />
+                <IDToggle />
+            </IDToggleList>
+        </IDModalSidebarWrapper>
     );
 }
 
