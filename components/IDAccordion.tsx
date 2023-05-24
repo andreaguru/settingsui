@@ -51,7 +51,7 @@ function IDAccordion({disabled}: IdAccordionProps) {
             `setExpanded((prev) => !prev);`
             Damit wird sicher gestellt, dass auch wirklich immer der aktuelle Wert genutzt wird.
          */
-        setExpanded(!expanded);
+        setExpanded((prev) => !prev);
     };
 
     return (
