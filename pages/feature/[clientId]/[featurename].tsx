@@ -1,23 +1,15 @@
 import {useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
-import DialogContent from "@mui/material/DialogContent";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
 import {getFeaturesList} from "../../../utils/utils";
 import Skeleton from "@mui/material/Skeleton";
 import {HomeProps} from "../../../types/componentProps.types";
-
-const style = {
-    position: "absolute" as const,
-    top: "2%",
-    left: "2%",
-    width: "95%",
-    height: "95%",
-    bgcolor: "background.paper",
-    border: "1px solid #000",
-    boxShadow: 24,
-    p: 4,
-};
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Grid from "@mui/material/Grid";
+import IDModalContent from "../../../components/IDModalContent";
+import IDModalSidebar from "../../../components/IDModalSidebar";
 
 /**
  *
@@ -57,9 +49,32 @@ function FeatureDetailPage({...props}: HomeProps) {
                             });
                         }}
                     >
-                        <DialogContent sx={style}>
-                            <FeatureDetail clientId={clientId} featureName={featureName} pathname={router.pathname}/>
-                        </DialogContent>
+                        <IDModalContent container rowSpacing={3}>
+
+                            {/* Header*/}
+                            <Grid item xs={12}
+                                sx={{position: "absolute",
+                                    height: "80px",
+                                    top: 0,
+                                    width: "100%",
+                                    bgcolor: "green"}}>
+                                    Header...
+                                <IconButton className="modalClose" onClick={() => router.push("/")}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </Grid>
+
+                            {/* Table content*/}
+                            <Grid item sx={{flexGrow: 1, p: 3}}>
+                                <FeatureDetail
+                                    clientId={clientId}
+                                    featureName={featureName}
+                                    pathname={router.pathname}/>
+                            </Grid>
+
+                            {/* Sidebar*/}
+                            <IDModalSidebar item xs={4} />
+                        </IDModalContent>
                     </Modal>
                 </Home>
             }
@@ -68,4 +83,3 @@ function FeatureDetailPage({...props}: HomeProps) {
 }
 
 export default FeatureDetailPage;
-
