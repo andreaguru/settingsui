@@ -1,5 +1,4 @@
 import {styled, useTheme} from "@mui/material/styles";
-import {useRouter} from "next/router";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -24,10 +23,11 @@ const IDStyledModalHeader = styled(AppBar)(({theme}) => ({
  * @constructor
  */
 function IdModalHeader(props:IDModalHeader) {
-    const router = useRouter();
     const theme = useTheme();
+    const {onCloseAction, ...appBarProps} = props;
+
     return (
-        <IDStyledModalHeader {...props}>
+        <IDStyledModalHeader {...appBarProps}>
             <Typography variant="subtitle1"
                 color={theme.palette.neutral.main}
                 sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
@@ -44,7 +44,7 @@ function IdModalHeader(props:IDModalHeader) {
                     <HelpOutlineIcon fontSize="inherit" sx={{ml: .5}} />
                 </Tooltip>
             </Typography>
-            <IconButton color="inherit" className="modalClose" onClick={() => props.redirectToHome(router)}>
+            <IconButton color="inherit" className="modalClose" onClick={onCloseAction}>
                 <CloseIcon />
             </IconButton>
         </IDStyledModalHeader>

@@ -138,15 +138,6 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the Client Card (see ClientCard.tsx)
-        MuiCard: {
-            styleOverrides: {
-                root: ({theme}) => ({
-                    margin: `0 0 ${theme.spacing(4)}`,
-                    minHeight: "180px",
-                }),
-            },
-        },
         // Style the Card content (see MainContent.tsx)
         MuiCardContent: {
             styleOverrides: {

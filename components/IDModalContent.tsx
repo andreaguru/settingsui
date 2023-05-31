@@ -16,7 +16,7 @@ const IDModalContent = styled(Grid)(({theme}) => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
     borderRadius: theme.spacing(.5),
-    paddingTop: theme.spacing(10),
+    paddingTop: theme.spacing(9),
 }));
 
 export default IDModalContent;

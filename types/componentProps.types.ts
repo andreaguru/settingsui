@@ -1,6 +1,5 @@
 import {Client, ClientOrFeature, Feature} from "./api.types";
 import {ReactNode} from "react";
-import {NextRouter} from "next/router";
 import {AppBarProps} from "@mui/material/AppBar";
 
 /*
@@ -59,7 +58,7 @@ export interface IDRadioGroupProps {
 }
 
 export interface IDModalHeader extends AppBarProps {
-    redirectToHome: (router: NextRouter) => void
+    onCloseAction: () => void
 }
 
 export interface IdToggleProps {
