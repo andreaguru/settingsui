@@ -45,6 +45,20 @@ export const edidTheme = createTheme({
         },
     },
     components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                "*::-webkit-scrollbar": {
+                    width: "0.3em",
+                    backgroundColor: "#F5F5F5",
+                },
+                "*::-webkit-scrollbar-thumb": {
+                    backgroundColor: "#888",
+                    borderRadius: "4px",
+                    borderRight: "1px solid white",
+                },
+            },
+        },
+        // Style the Skeleton, used as loader
         MuiSkeleton: {
             styleOverrides: {
                 root: ({theme}) => ({
@@ -52,7 +66,7 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the main container
+        // Style the main container (present in index.tsx)
         MuiContainer: {
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
@@ -67,7 +81,7 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the AppBar
+        // Style the AppBar (the header of our App)
         MuiAppBar: {
             styleOverrides: {
                 root: ({theme}) => ({
@@ -128,7 +142,7 @@ export const edidTheme = createTheme({
         MuiCard: {
             styleOverrides: {
                 root: ({theme}) => ({
-                    margin: `0 0 ${theme.spacing(4)}`,
+                    margin: theme.variables.mainContentElementsMargin,
                     minHeight: "180px",
                 }),
             },
@@ -141,7 +155,7 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the Icon Button when is a div component (see MainContent.tsx)
+        // Style the Icon Buttons
         MuiIconButton: {
             styleOverrides: {
                 root: ({ownerState, theme}) => ({

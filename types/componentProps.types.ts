@@ -62,6 +62,10 @@ export interface IDModalHeader extends AppBarProps {
     redirectToHome: (router: NextRouter) => void
 }
 
+export interface IdToggleProps {
+    disabled?: boolean,
+}
+
 export enum FeatSelectedStatus {
     ACTIVE = "ACTIVE",
     INACTIVE = "INACTIVE",

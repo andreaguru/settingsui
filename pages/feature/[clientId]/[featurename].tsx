@@ -11,6 +11,7 @@ import {HomeProps} from "../../../types/componentProps.types";
 import Grid from "@mui/material/Grid";
 import IDModalContent from "../../../components/IDModalContent";
 import IdModalHeader from "../../../components/IDModalHeader";
+import IDModalSidebar from "../../../components/IDModalSidebar";
 
 /**
  * redirectToHome
@@ -72,6 +73,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             </Grid>
 
                             {/* Sidebar*/}
+                            <IDModalSidebar item xs={4} />
                         </IDModalContent>
                     </Modal>
                 </Home>
