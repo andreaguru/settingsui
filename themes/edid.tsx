@@ -142,7 +142,7 @@ export const edidTheme = createTheme({
         MuiCard: {
             styleOverrides: {
                 root: ({theme}) => ({
-                    margin: theme.variables.mainContentElementsMargin,
+                    margin: `0 0 ${theme.spacing(4)}`,
                     minHeight: "180px",
                 }),
             },
