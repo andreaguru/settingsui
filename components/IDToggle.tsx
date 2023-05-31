@@ -14,7 +14,7 @@ import {Divider} from "@mui/material";
 import {IdToggleProps} from "../types/componentProps.types";
 
 interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
+  expand?: string;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
@@ -59,7 +59,9 @@ function IDToggle({disabled}: IdToggleProps) {
                 <Typography variant="caption">Erstellt 10.02.2023</Typography>
                 <Typography variant="caption">Zuletz geändert 13.02.2023</Typography>
                 <ExpandMore
-                    expand={expanded}
+                    // a ternary operator syntax is needed since a warning is triggered
+                    // when trying to pass a boolean value to a custom property
+                    expand={expanded ? "true" : undefined}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
