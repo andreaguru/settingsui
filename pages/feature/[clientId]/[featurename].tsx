@@ -1,7 +1,7 @@
 import {ThemeProvider} from "@mui/material/styles";
 import {edidTheme} from "../../../themes/edid";
 
-import {useRouter} from "next/router";
+import {NextRouter, useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
@@ -11,6 +11,25 @@ import {HomeProps} from "../../../types/componentProps.types";
 import Grid from "@mui/material/Grid";
 import IDModalContent from "../../../components/IDModalContent";
 import IdModalHeader from "../../../components/IDModalHeader";
+
+/**
+ * redirectToHome
+ * @param {NextRouter} router
+ */
+function redirectToHome(router: NextRouter) {
+    // get filteredFeatures and filteredClients if present in the url
+    const {fltrClients, fltrFeatures} = router.query;
+
+    // redirect to home page keeping the query params and the hash
+    router.push({
+        pathname: "/",
+        query: {
+            ...(fltrClients && {fltrClients}),
+            ...(fltrFeatures && {fltrFeatures}),
+        },
+        hash: `id-clt-${router.query.clientId}`,
+    });
+}
 
 /**
  *
@@ -35,26 +54,13 @@ function FeatureDetailPage({...props}: HomeProps) {
                 <Home {...props}>
                     <Modal
                         open={true} // The modal should always be shown on page load, it is the 'page'
-                        onClose={() => {
-                            // get filteredFeatures and filteredClients if present in the url
-                            const {fltrClients, fltrFeatures} = router.query;
-
-                            // redirect to home page keeping the query params and the hash
-                            router.push({
-                                pathname: "/",
-                                query: {
-                                    ...(fltrClients && {fltrClients}),
-                                    ...(fltrFeatures && {fltrFeatures}),
-                                },
-                                hash: `id-clt-${clientId}`,
-                            });
-                        }}
+                        onClose={() => redirectToHome(router)}
                     >
                         <IDModalContent container rowSpacing={3}>
 
                             {/* Header*/}
                             <Grid item xs={12}>
-                                <IdModalHeader position="absolute" color="inherit" />
+                                <IdModalHeader position="absolute" color="inherit" redirectToHome={redirectToHome} />
                             </Grid>
 
                             {/* Table content*/}

@@ -1,5 +1,7 @@
 import {Client, ClientOrFeature, Feature} from "./api.types";
 import {ReactNode} from "react";
+import {NextRouter} from "next/router";
+import {AppBarProps} from "@mui/material/AppBar";
 
 /*
 Interfaces for the Components
@@ -54,6 +56,10 @@ export interface IDInfoButtonProps {
 
 export interface IDRadioGroupProps {
     setFeatureStatus: (name: FeatSelectedStatus) => void
+}
+
+export interface IDModalHeader extends AppBarProps {
+    redirectToHome: (router: NextRouter) => void
 }
 
 export enum FeatSelectedStatus {
