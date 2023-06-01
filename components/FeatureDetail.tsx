@@ -36,7 +36,7 @@ const IDChip = styled(Chip)(({theme}) => ({
  * @constructor
  */
 function TabPanel(props: TabPanelProps) {
-    const {children, value, index, ...other} = props;
+    const {children, value, index} = props;
 
     return (
         <div
@@ -44,7 +44,6 @@ function TabPanel(props: TabPanelProps) {
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
-            {...other}
         >
             {value === index && (
                 <Box sx={{p: 3}}>
@@ -74,18 +73,18 @@ function a11yProps(index: number) {
  * @constructor
  */
 function FeatureDetail({clientId, featureName}:FeatureDetail) {
-    const [value, setValue] = React.useState(0);
+    const [activeTab, setActiveTab] = React.useState(0);
     const theme = useTheme();
 
     /* console log these values for testing purpose. We will need them to make the component dynamic */
     console.log(clientId, featureName);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
+    const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
+        setActiveTab(newActiveTab);
     };
     return (
         <Box sx={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}}>
-            <Tabs value={value}
+            <Tabs value={activeTab}
                 textColor="inherit"
                 indicatorColor="secondary"
                 onChange={handleChange}
@@ -119,20 +118,20 @@ function FeatureDetail({clientId, featureName}:FeatureDetail) {
                     label="Tag" {...a11yProps(2)} />
             </Tabs>
             <Box sx={{backgroundColor: "white", flex: "1 1 100%"}}>
-                <TabPanel value={value} index={0}>
+                <TabPanel value={activeTab} index={0}>
                     <Box sx={{gap: theme.spacing(2)}}>
                         <IDChip label="success" size="small" />
                     </Box>
                     <IDDataGrid />
                 </TabPanel>
-                <TabPanel value={value} index={1}>
+                <TabPanel value={activeTab} index={1}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
                         <IDChip label="success" size="small" />
                         <IDChip label="error" size="small" />
                     </Box>
                     <IDDataGrid />
                 </TabPanel>
-                <TabPanel value={value} index={2}>
+                <TabPanel value={activeTab} index={2}>
                     <IDChip label="success" size="small" />
                     <IDDataGrid />
                 </TabPanel>
