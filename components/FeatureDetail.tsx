@@ -8,7 +8,7 @@ import ClientIcon from "@mui/icons-material/Apartment";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import TagIcon from "@mui/icons-material/LocalOffer";
 import Chip from "@mui/material/Chip";
-import Badge from "@mui/material/Badge";
+import Badge, {BadgeProps} from "@mui/material/Badge";
 import IDDataGrid from "./IDDataGrid";
 
 // import typescript Interfaces
@@ -28,6 +28,16 @@ interface TabPanelProps {
 const IDChip = styled(Chip)(({theme}) => ({
     color: theme.palette.success.main,
     backgroundColor: theme.palette.success.light,
+}));
+
+const IDBadge = styled(Badge)<BadgeProps>(({theme}) => ({
+    "& .MuiBadge-badge": {
+        right: theme.spacing(-0.7),
+        top: 0,
+        padding: 0,
+        height: theme.spacing(2),
+        minWidth: theme.spacing(2),
+    },
 }));
 
 /**
@@ -109,9 +119,9 @@ function FeatureDetail({clientId, featureName}:FeatureDetail) {
                     icon={<CategoryIcon color="warning" />}
                     iconPosition="start"
                     label={
-                        <Badge badgeContent={4} color="primary">
+                        <IDBadge badgeContent={4} color="primary">
                             Kategorie
-                        </Badge>} {...a11yProps(1)} />
+                        </IDBadge>} {...a11yProps(1)} />
                 <Tab
                     icon={<TagIcon color="success" />}
                     iconPosition="start"
