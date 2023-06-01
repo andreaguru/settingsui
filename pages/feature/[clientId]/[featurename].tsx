@@ -51,7 +51,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                 <Home {...props}>
                     <Modal
                         open={true} // The modal should always be shown on page load, it is the 'page'
-                        onClose={() => onCloseAction()}
+                        onClose={onCloseAction}
                     >
                         <IDModalContent container rowSpacing={3}>
 
