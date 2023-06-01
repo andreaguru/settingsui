@@ -1,5 +1,6 @@
 import {Client, ClientOrFeature, Feature} from "./api.types";
 import {ReactNode} from "react";
+import {AppBarProps} from "@mui/material/AppBar";
 
 /*
 Interfaces for the Components
@@ -54,6 +55,10 @@ export interface IDInfoButtonProps {
 
 export interface IDRadioGroupProps {
     setFeatureStatus: (name: FeatSelectedStatus) => void
+}
+
+export interface IDModalHeader extends AppBarProps {
+    onCloseAction: () => void
 }
 
 export interface IdToggleProps {

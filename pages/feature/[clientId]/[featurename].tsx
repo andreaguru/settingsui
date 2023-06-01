@@ -1,3 +1,6 @@
+import {ThemeProvider} from "@mui/material/styles";
+import {edidTheme} from "../../../themes/edid";
+
 import {useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
 import FeatureDetail from "../../../components/FeatureDetail";
@@ -5,10 +8,9 @@ import Home from "../../index";
 import {getFeaturesList} from "../../../utils/utils";
 import Skeleton from "@mui/material/Skeleton";
 import {HomeProps} from "../../../types/componentProps.types";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Grid";
 import IDModalContent from "../../../components/IDModalContent";
+import IdModalHeader from "../../../components/IDModalHeader";
 import IDModalSidebar from "../../../components/IDModalSidebar";
 
 /**
@@ -20,12 +22,27 @@ function FeatureDetailPage({...props}: HomeProps) {
     const clientId = router.query.clientId as string;
     const featureName = router.query.featurename as string;
 
+    const onCloseAction = () => {
+    // get filteredFeatures and filteredClients if present in the url
+        const {fltrClients, fltrFeatures} = router.query;
+
+        // redirect to home page keeping the query params and the hash
+        router.push({
+            pathname: "/",
+            query: {
+                ...(fltrClients && {fltrClients}),
+                ...(fltrFeatures && {fltrFeatures}),
+            },
+            hash: `id-clt-${clientId}`,
+        });
+    };
+
     if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.name === featureName)) {
         return "Das Feature wurde nicht gefunden";
     }
 
     return (
-        <>
+        <ThemeProvider theme={edidTheme}>
             {/* if loading is in progress, show the placeholder elements */
                 props.isLoading && <Skeleton variant="rounded" height={"100vh"} />
             }
@@ -34,34 +51,13 @@ function FeatureDetailPage({...props}: HomeProps) {
                 <Home {...props}>
                     <Modal
                         open={true} // The modal should always be shown on page load, it is the 'page'
-                        onClose={() => {
-                            // get filteredFeatures and filteredClients if present in the url
-                            const {["fltr-clients"]: fltrClients, ["fltr-features"]: fltrFeatures} = router.query;
-
-                            // redirect to home page keeping the query params and the hash
-                            router.push({
-                                pathname: "/",
-                                query: {
-                                    ...(fltrClients && {fltrClients}),
-                                    ...(fltrFeatures && {fltrFeatures}),
-                                },
-                                hash: `id-clt-${clientId}`,
-                            });
-                        }}
+                        onClose={onCloseAction}
                     >
                         <IDModalContent container rowSpacing={3}>
 
                             {/* Header*/}
-                            <Grid item xs={12}
-                                sx={{position: "absolute",
-                                    height: "80px",
-                                    top: 0,
-                                    width: "100%",
-                                    bgcolor: "green"}}>
-                                    Header...
-                                <IconButton className="modalClose" onClick={() => router.push("/")}>
-                                    <CloseIcon />
-                                </IconButton>
+                            <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
+                                <IdModalHeader position="absolute" color="inherit" onCloseAction={onCloseAction} />
                             </Grid>
 
                             {/* Table content*/}
@@ -78,7 +74,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                     </Modal>
                 </Home>
             }
-        </>
+        </ThemeProvider>
     );
 }
 

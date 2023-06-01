@@ -74,14 +74,7 @@ function ClientCard({
     const router = useRouter();
 
     return (
-        <Card
-            data-testid={client.id}
-            id={String(`id-clt-${client.id}`)}
-            ref={ref}
-            sx={{
-                minHeight: "180px",
-                margin: theme.variables.mainContentElementsMargin,
-            }}>
+        <Card data-testid={client.id} id={String(`id-clt-${client.id}`)} ref={ref}>
             <CardContent>
                 <Typography variant="body1" component="h2">
                     {client.name} ({client.id})
@@ -115,7 +108,7 @@ function ClientCard({
                                                     },
                                                 },
                                             ]}>
-                                            <Typography variant="subtitle2">{feature.label}</Typography>
+                                            <Typography variant="subtitle2" lineHeight={1}>{feature.label}</Typography>
                                             <CategoryIcon fontSize="small"
                                                 color={getIconColorByStatus(feature.category)}/>
                                             <TagIcon fontSize="small" color={getIconColorByStatus(feature.tag)}/>
