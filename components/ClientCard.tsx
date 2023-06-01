@@ -74,7 +74,15 @@ function ClientCard({
     const router = useRouter();
 
     return (
-        <Card data-testid={client.id} id={String(`id-clt-${client.id}`)} ref={ref}>
+        <Card
+            data-testid={client.id}
+            id={String(`id-clt-${client.id}`)}
+            ref={ref}
+            sx={{
+                minHeight: theme.spacing(22), // same height as Skeleton placeholder in MainContent
+                mb: theme.spacing(4),
+            }}
+        >
             <CardContent>
                 <Typography variant="body1" component="h2">
                     {client.name} ({client.id})

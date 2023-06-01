@@ -61,11 +61,10 @@ function FeatureDetailPage({...props}: HomeProps) {
                             </Grid>
 
                             {/* Table content*/}
-                            <Grid item sx={{flexGrow: 1, p: 3}}>
+                            <Grid item xs={8} sx={{p: 3}}>
                                 <FeatureDetail
                                     clientId={clientId}
-                                    featureName={featureName}
-                                    pathname={router.pathname}/>
+                                    featureName={featureName}/>
                             </Grid>
 
                             {/* Sidebar*/}

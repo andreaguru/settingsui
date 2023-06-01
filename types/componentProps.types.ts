@@ -65,6 +65,10 @@ export interface IdToggleProps {
     disabled?: boolean,
 }
 
+export interface FeatureDetail {
+    clientId: string, featureName: string
+}
+
 export enum FeatSelectedStatus {
     ACTIVE = "ACTIVE",
     INACTIVE = "INACTIVE",
