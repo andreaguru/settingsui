@@ -10,6 +10,7 @@ import Skeleton from "@mui/material/Skeleton";
 import {HomeProps} from "../../../types/componentProps.types";
 import Grid from "@mui/material/Grid";
 import IDModalContent from "../../../components/IDModalContent";
+import IdModalHeader from "../../../components/IDModalHeader";
 import IDModalSidebar from "../../../components/IDModalSidebar";
 
 /**
@@ -20,6 +21,21 @@ function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = router.query.clientId as string;
     const featureName = router.query.featurename as string;
+
+    const onCloseAction = () => {
+    // get filteredFeatures and filteredClients if present in the url
+        const {fltrClients, fltrFeatures} = router.query;
+
+        // redirect to home page keeping the query params and the hash
+        router.push({
+            pathname: "/",
+            query: {
+                ...(fltrClients && {fltrClients}),
+                ...(fltrFeatures && {fltrFeatures}),
+            },
+            hash: `id-clt-${clientId}`,
+        });
+    };
 
     if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.name === featureName)) {
         return "Das Feature wurde nicht gefunden";
@@ -35,22 +51,14 @@ function FeatureDetailPage({...props}: HomeProps) {
                 <Home {...props}>
                     <Modal
                         open={true} // The modal should always be shown on page load, it is the 'page'
-                        onClose={() => {
-                            // get filteredFeatures and filteredClients if present in the url
-                            const {["fltr-clients"]: fltrClients, ["fltr-features"]: fltrFeatures} = router.query;
-
-                            // redirect to home page keeping the query params and the hash
-                            router.push({
-                                pathname: "/",
-                                query: {
-                                    ...(fltrClients && {fltrClients}),
-                                    ...(fltrFeatures && {fltrFeatures}),
-                                },
-                                hash: `id-clt-${clientId}`,
-                            });
-                        }}
+                        onClose={onCloseAction}
                     >
                         <IDModalContent container rowSpacing={3}>
+
+                            {/* Header*/}
+                            <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
+                                <IdModalHeader position="absolute" color="inherit" onCloseAction={onCloseAction} />
+                            </Grid>
 
                             {/* Table content*/}
                             <Grid item xs={8} sx={{p: 3}}>

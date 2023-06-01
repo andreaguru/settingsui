@@ -6,19 +6,6 @@ import {lighten} from "@mui/system/colorManipulator";
 The Interfaces are declared in node_modules/@mui/material/styles/createTheme.d.ts and
 node_modules/@mui/material/styles/createPalette.d.ts */
 declare module "@mui/material/styles" {
-  interface Theme {
-    variables: {
-       headerMarginTop: string;
-       mainContentElementsMargin: string;
-    };
-  }
-  // allow configuration using `createTheme`
-  interface ThemeOptions {
-    variables?: {
-        headerMarginTop: string;
-        mainContentElementsMargin: string;
-    };
-  }
   interface Palette {
     disabled: Palette["primary"];
     neutral: Palette["primary"];
@@ -32,11 +19,6 @@ declare module "@mui/material/styles" {
 
 // create MUI Theme and assign custom style rules for each MUI component
 export const edidTheme = createTheme({
-    // Global variables used in theme and components
-    variables: {
-        headerMarginTop: "64px",
-        mainContentElementsMargin: "0 0 32px",
-    },
     palette: {
         primary: {
             main: "#1976D2",
@@ -80,7 +62,7 @@ export const edidTheme = createTheme({
         MuiSkeleton: {
             styleOverrides: {
                 root: ({theme}) => ({
-                    margin: theme.variables.mainContentElementsMargin,
+                    margin: `0 0 ${theme.spacing(4)}`,
                 }),
             },
         },
@@ -92,10 +74,9 @@ export const edidTheme = createTheme({
                         backgroundColor: theme.palette.grey[100],
                         flexGrow: 1,
                         position: "relative",
-                        height: `calc(100vh - ${theme.variables.headerMarginTop})`,
+                        height: `calc(100vh - ${theme.spacing(8)})`,
                         overflow: "auto",
-                        paddingTop: 20,
-                        paddingBottom: 10,
+                        paddingTop: theme.spacing(3),
                     }),
                 }),
             },
@@ -105,7 +86,6 @@ export const edidTheme = createTheme({
             styleOverrides: {
                 root: ({theme}) => ({
                     zIndex: theme.zIndex.drawer + 1,
-                    backgroundColor: theme.palette.secondary.main,
                 }),
             },
         },
@@ -115,7 +95,8 @@ export const edidTheme = createTheme({
                 root: ({theme, ownerState}) => ({
                     ...(ownerState.className === "toolbarTitle" && {
                         fontSize: "30px",
-                        padding: "20px 0 24px 0",
+                        paddingTop: theme.spacing((3)),
+                        paddingBottom: theme.spacing((3)),
                         [theme.breakpoints.up("sm")]: {
                             minHeight: "44px",
                         },
@@ -169,19 +150,19 @@ export const edidTheme = createTheme({
         MuiIconButton: {
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
-                    // Style the Feature element (in ClientCard component)
                     ...(ownerState.className === "iconStatus" && {
                         display: "flex",
-                        margin: "16px 16px 0 0",
-                        padding: "6px 16px",
-                        borderRadius: "4px",
+                        marginTop: theme.spacing(2),
+                        marginRight: theme.spacing(2),
+                        padding: theme.spacing(1) + " " + theme.spacing(2),
+                        borderRadius: theme.spacing(.5),
                         gap: theme.spacing(1),
                     }),
                     // Style the Modal close button (in featurename page)
                     ...(ownerState.className === "modalClose" && {
                         position: "absolute",
-                        top: "18px",
-                        right: "18px",
+                        top: theme.spacing(3),
+                        right: theme.spacing(3),
                         padding: 0,
                     }),
                 }),
