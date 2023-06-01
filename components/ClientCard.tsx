@@ -87,11 +87,12 @@ function ClientCard({
                         return <div key={index}>
                             { /* show a featureButton only if it is inside the viewport */
                                 inView && <NextLink
+                                    passHref
                                     href={{
                                         pathname: `/feature/${client.id}/${feature.name}`,
                                         /* pass the current query params to the next page
                                         (filteredClients and filteredFeatures, if present) */
-                                        query: router.query,
+                                        query: router && router.query,
                                     }}
                                 >
                                     <Fade in>

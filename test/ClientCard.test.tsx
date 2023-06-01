@@ -1,11 +1,13 @@
 import {render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
+import {RouterContext} from "next/dist/shared/lib/router-context";
 import ClientCard, {getButtonColorByStatus, getIconColorByStatus} from "../components/ClientCard";
 import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
 import {edidTheme} from "../themes/edid";
 import {ThemeProvider} from "@mui/material/styles";
 import * as reactObserver from "react-intersection-observer";
 import {InViewHookResponse} from "react-intersection-observer";
+import {createMockRouter} from "./test-utils/createMockRouter";
 
 jest.mock("react-intersection-observer");
 
@@ -34,7 +36,7 @@ test("component has a title if client name is passed as prop", () => {
             showSelectedFeatures={() => []}/>
     </ThemeProvider>);
 
-    expect(screen.queryByText("Test")).not.toBeInTheDocument();
+    expect(screen.getByText(/Test/)).toBeInTheDocument();
 });
 
 test("component shows no features if showSelectedFeatures returns and empty array", () => {
@@ -48,7 +50,7 @@ test("component shows no features if showSelectedFeatures returns and empty arra
             showSelectedFeatures={() => []}/>
     </ThemeProvider>);
 
-    expect(screen.queryByText("Traffective Ads")).not.toBeInTheDocument();
+    expect(screen.queryByText(/Traffective Ads/i)).not.toBeInTheDocument();
 });
 
 test("component shows features if showSelectedFeatures returns an array with values", () => {
@@ -62,11 +64,12 @@ test("component shows features if showSelectedFeatures returns an array with val
 });
 
 test("client color is green when client feature is active", () => {
-    render(<ThemeProvider theme={edidTheme}>
-        <ClientCard
-            client={mockedClientListWithHasFeatures[0]}
-            showSelectedFeatures={showSelectedFeatures}/>);
-    </ThemeProvider>);
+    render(
+        <ThemeProvider theme={edidTheme}>
+            <ClientCard
+                client={mockedClientListWithHasFeatures[0]}
+                showSelectedFeatures={showSelectedFeatures}/>);
+        </ThemeProvider>);
 
 
     // traffective -> feature client is ENABLED
@@ -75,6 +78,26 @@ test("client color is green when client feature is active", () => {
     expect(traffective).toHaveStyle({
         "color": edidTheme.palette.success.main,
         "backgroundColor": edidTheme.palette.success.light});
+});
+
+test("fltr-clients query param is read and appended to href attr in Next Link Component", () => {
+    render(
+        <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "merkur"}})}>
+            <ThemeProvider theme={edidTheme}>
+                <ClientCard
+                    client={mockedClientListWithHasFeatures[0]}
+                    showSelectedFeatures={showSelectedFeatures}/>
+            </ThemeProvider>;
+        </RouterContext.Provider>
+    );
+
+    const autocomplete = screen.getByTestId("241");
+    const traffective = within(autocomplete).getByText(/Traffective Ads/).parentElement as HTMLElement;
+
+    expect(traffective).toHaveAttribute(
+        "href",
+        "/feature/241/traffective?fltr-clients=merkur"
+    );
 });
 
 // UNIT TESTS
