@@ -1,13 +1,13 @@
 import {render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import {RouterContext} from "next/dist/shared/lib/router-context";
+import {createMockRouter} from "./test-utils/createMockRouter";
 import ClientCard, {getButtonColorByStatus, getIconColorByStatus} from "../components/ClientCard";
 import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
 import {edidTheme} from "../themes/edid";
 import {ThemeProvider} from "@mui/material/styles";
 import * as reactObserver from "react-intersection-observer";
 import {InViewHookResponse} from "react-intersection-observer";
-import {createMockRouter} from "./test-utils/createMockRouter";
 
 jest.mock("react-intersection-observer");
 

@@ -73,7 +73,7 @@ function IDToggle({disabled}: IdToggleProps) {
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}}>
+                <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
                         <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>

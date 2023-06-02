@@ -60,3 +60,4 @@ test("client list is present and loader is not present if isLoading is false", (
     // test that loaders (Skeleton components) are not present in the document
     expect(container.getElementsByClassName("MuiSkeleton-root").length).toBe(0);
 });
+
