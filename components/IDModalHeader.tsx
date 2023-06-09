@@ -31,7 +31,7 @@ function IdModalHeader(props:IDModalHeader) {
             <Typography variant="subtitle1"
                 color={theme.palette.neutral.main}
                 sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
-                <Typography fontWeight="medium" color="black">TZ</Typography>
+                <Typography fontWeight="medium" color={theme.palette.secondary.main}>TZ</Typography>
                 <Typography>|</Typography>
                 <Typography>337</Typography>
             </Typography>

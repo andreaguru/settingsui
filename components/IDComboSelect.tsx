@@ -9,6 +9,8 @@ import {SyntheticEvent} from "react";
 // import typescript Interfaces
 import {ClientOrFeature} from "../types/api.types";
 import {IDComboSelectProps} from "../types/componentProps.types";
+import {useTheme} from "@mui/material/styles";
+import {lighten} from "@mui/system/colorManipulator";
 
 /**
  * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 5 properties:
@@ -24,6 +26,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
     const handleChange = (event: SyntheticEvent, value: Array<ClientOrFeature>) => {
         setFilteredValues(value);
     };
+    const theme = useTheme();
 
     return (
         <FormControl>
@@ -32,7 +35,8 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
             )}
             {values.length > 0 && (
                 <>
-                    <Typography component="label">{title}</Typography><Autocomplete
+                    <Typography component="label">{title}</Typography>
+                    <Autocomplete
                         multiple
                         options={values}
                         value={filteredValues}
@@ -45,7 +49,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                         getOptionLabel={
                             (option: ClientOrFeature) => "label" in option ?
                                 option.label :
-                                `${option.name} (${option.id})`
+                                `${option.name} | ${option.id}`
                         }
                         ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
                         renderOption={(props, option: ClientOrFeature, {selected}) => (
@@ -55,7 +59,35 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                     style={{marginRight: 8}}
                                     checked={selected}
                                     size="small"/>
-                                {"label" in option ? option.label : option.name + (showId ? ` (${option.id})` : "")}
+                                <Typography variant="subtitle1"
+                                    color={theme.palette.neutral.main}
+                                    sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
+
+                                    {"label" in option &&
+                                         <Typography
+                                             variant="subtitle2"
+                                             color={theme.palette.secondary.main}
+                                             fontWeight="700">
+                                             {option.label}
+                                         </Typography>
+                                    }
+                                    {!("label" in option) &&
+                                         <Typography
+                                             variant="subtitle2"
+                                             color={theme.palette.secondary.main}
+                                             fontWeight="700">
+                                             {option.name}
+                                             <Typography
+                                                 variant="inherit"
+                                                 component="span"
+                                                 fontWeight="normal"
+                                                 color={lighten(theme.palette.secondary.main, 0.4)}
+                                             >
+                                                 {showId ? ` | ${option.id}` : ""}
+                                             </Typography>
+                                         </Typography>
+                                    }
+                                </Typography>
                             </li>
                         )}
                         getOptionDisabled={(option) => "hasFeatures" in option ? !option.hasFeatures : false}
