@@ -84,8 +84,14 @@ function ClientCard({
             }}
         >
             <CardContent>
-                <Typography variant="body1" component="h2">
-                    {client.name} ({client.id})
+                <Typography variant="subtitle1"
+                    color={lighten(theme.palette.secondary.main, 0.4)}
+                    sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
+                    <Typography fontSize="18px" fontWeight="medium" color={theme.palette.secondary.main}>
+                        {client.name}
+                    </Typography>
+                    <Typography>|</Typography>
+                    <Typography>{client.id}</Typography>
                 </Typography>
                 <Box sx={{display: "flex", flexWrap: "wrap"}}>
                     {showSelectedFeatures(client.features).map((feature:Feature, index:number) => {
