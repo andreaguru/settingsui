@@ -98,7 +98,7 @@ function ClientCard({
                         // set background color of the button according to feature client status
                         const clientColor = getButtonColorByStatus(feature.client, theme).bgColor;
 
-                        return <div key={index}>
+                        return <div data-testid="feature" key={index}>
                             { /* show a featureButton only if it is inside the viewport */
                                 inView && <NextLink
                                     passHref

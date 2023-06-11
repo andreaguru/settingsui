@@ -25,18 +25,19 @@ beforeEach( () => {
     jest.spyOn(reactObserver, "useInView").mockReturnValue(inViewMockResponse);
 });
 
-test("component has a title if client name is passed as prop", () => {
+test("Client name and ID are outputted in the DOM", () => {
     render(<ThemeProvider theme={edidTheme}>
         <ClientCard
             client={{
-                id: 1,
-                name: "Test",
+                id: 321,
+                name: "Merkur",
                 features: [],
             }}
             showSelectedFeatures={() => []}/>
     </ThemeProvider>);
 
-    expect(screen.getByText(/Test/)).toBeInTheDocument();
+    expect(screen.getByText(321)).toBeInTheDocument();
+    expect(screen.getByText(/Merkur/)).toBeInTheDocument();
 });
 
 test("component shows no features if showSelectedFeatures returns and empty array", () => {
@@ -50,7 +51,7 @@ test("component shows no features if showSelectedFeatures returns and empty arra
             showSelectedFeatures={() => []}/>
     </ThemeProvider>);
 
-    expect(screen.queryByText(/Traffective Ads/i)).not.toBeInTheDocument();
+    expect(screen.queryAllByTestId("feature").length).toBe(0);
 });
 
 test("component shows features if showSelectedFeatures returns an array with values", () => {
@@ -60,7 +61,8 @@ test("component shows features if showSelectedFeatures returns an array with val
             showSelectedFeatures={showSelectedFeatures}/>);
     </ThemeProvider>);
 
-    expect(screen.queryByText(/Traffective Ads/i)).toBeInTheDocument();
+    // mockedFeatures contains 3 Features, we expect to have them in the DOM
+    expect(screen.queryAllByTestId("feature").length).toBe(3);
 });
 
 test("client color is green when client feature is active", () => {
@@ -80,7 +82,7 @@ test("client color is green when client feature is active", () => {
         "backgroundColor": edidTheme.palette.success.light});
 });
 
-test("fltr-clients query param is read and appended to href attr in Next Link Component", () => {
+test("fltr-clients query param is appended to href attr in Next Link Component", () => {
     render(
         <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "merkur"}})}>
             <ThemeProvider theme={edidTheme}>

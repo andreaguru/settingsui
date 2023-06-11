@@ -1,4 +1,4 @@
-import {fireEvent, render, screen} from "@testing-library/react";
+import {act, fireEvent, render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import IDToggle from "../components/IDToggle";
 import {ThemeProvider} from "@mui/system";
@@ -7,24 +7,39 @@ import {edidTheme} from "../themes/edid";
 jest.mock("../api/DashboardAPI");
 
 test("Toggle has class disabled when disabled property is passed", () => {
-    const {container} = render(
+    render(
         <ThemeProvider theme={edidTheme}>
             <IDToggle disabled />
         </ThemeProvider>
     );
-    // test that client list returns an array with 4 values
-    expect(container.getElementsByClassName("Mui-disabled").length).toBe(1);
+    // first check if the component has class disabled
+    expect(screen.getByTestId("toggle").classList.contains("Mui-disabled")).toBe(true);
+    // then check if the button inside the component is disabled
+    expect(screen.getByRole("button")).toBeDisabled();
+    // if the button inside the component is disabled, a click is not rendering the collapsed component
+    fireEvent.click(screen.getByRole("button"));
+    expect(screen.queryByTestId("collapsedContent")).not.toBeInTheDocument();
 });
 
-test("Toggle is expanded at first click", () => {
+test("Toggle is expanded at first click / Toggle collapses at second click", async () => {
     render(
         <ThemeProvider theme={edidTheme}>
-            <IDToggle />
+            <IDToggle/>
         </ThemeProvider>
     );
-    fireEvent.click(screen.getByRole("button"));
-    // test that client list returns an array with 4 values
+    await act(async () => {
+        fireEvent.click(screen.getByRole("button"));
+    });
     expect(screen.queryByTestId("collapsedContent")).toBeInTheDocument();
+
+    await act(async () => {
+        fireEvent.click(screen.getByRole("button"));
+    });
+
+    // Wait for another 300 milliseconds after click
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    // test that client list returns an array with 4 values
+    expect(screen.queryByTestId("collapsedContent")).not.toBeInTheDocument();
 });
 
 test("Toggle is collapsed at second click", () => {

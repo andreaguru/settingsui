@@ -30,25 +30,6 @@ beforeEach( () => {
     jest.spyOn(reactObserver, "useInView").mockReturnValue(inViewMockResponse);
 });
 
-const mockRouter: Partial<Router> = {
-    pathname: "/",
-    route: "/",
-    asPath: "/",
-    query: {},
-    basePath: "",
-    push: jest.fn().mockResolvedValue(true),
-    replace: jest.fn().mockResolvedValue(true),
-    reload: jest.fn(),
-    back: jest.fn(),
-    prefetch: jest.fn().mockResolvedValue(undefined),
-    beforePopState: jest.fn(),
-    events: {
-        on: jest.fn(),
-        off: jest.fn(),
-        emit: jest.fn(),
-    },
-};
-
 test("filteredClients state is passed as prop if a filter is present in query param", async () => {
     const MockChildComponent = jest.fn(({filteredClients}) => (
         <div>{filteredClients.length ? filteredClients[0].name : ""}</div>)
@@ -57,7 +38,7 @@ test("filteredClients state is passed as prop if a filter is present in query pa
     await act( async () => {
         render(
             <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "Wetterauer Zeitung"}})}>
-                <MyApp Component={MockChildComponent} pageProps={{}} router={mockRouter as Router} />
+                <MyApp Component={MockChildComponent} pageProps={{}} router={createMockRouter({}) as Router} />
             </RouterContext.Provider>);
     });
     // test that client list returns an array with 4 values

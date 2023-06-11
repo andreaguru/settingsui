@@ -66,6 +66,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                     {"label" in option &&
                                          <Typography
                                              variant="subtitle2"
+                                             component="span"
                                              color={theme.palette.secondary.main}
                                              fontWeight="700">
                                              {option.label}
@@ -74,6 +75,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                     {!("label" in option) &&
                                          <Typography
                                              variant="subtitle2"
+                                             component="span"
                                              color={theme.palette.secondary.main}
                                              fontWeight="700">
                                              {option.name}

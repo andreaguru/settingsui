@@ -43,7 +43,7 @@ test("modal window is rendered if the feature is present", () => {
                 isLoading={false}
             />
         </RouterContext.Provider>);
-    // test that client list returns an array with 4 values
+    // test that client id is rendered in the page
     expect(screen.queryByTestId("241")).toBeInTheDocument();
     // test that loaders (Skeleton components) are not present in the document
     expect(container.getElementsByClassName("MuiSkeleton-root").length).toBe(0);
