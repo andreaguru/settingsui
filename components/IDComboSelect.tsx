@@ -81,7 +81,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                                  variant="inherit"
                                                  component="span"
                                                  fontWeight="normal"
-                                                 color={alpha(theme.palette.secondary.main, 0.4)}
+                                                 color={alpha(theme.palette.secondary.main, 0.6)}
                                              >
                                                  {showId ? ` | ${option.id}` : ""}
                                              </Typography>
