@@ -1,9 +1,8 @@
 import React from "react";
-import {Card, CardContent, Typography} from "@mui/material";
+import {alpha, Card, CardContent, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
-import {lighten} from "@mui/system/colorManipulator";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import TagIcon from "@mui/icons-material/LocalOffer";
 import {useTheme} from "@mui/material/styles";
@@ -85,7 +84,7 @@ function ClientCard({
         >
             <CardContent>
                 <Typography variant="subtitle1"
-                    color={lighten(theme.palette.secondary.main, 0.4)}
+                    color={alpha(theme.palette.secondary.main, 0.4)}
                     sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
                     <Typography fontSize="18px" fontWeight="medium" color={theme.palette.secondary.main}>
                         {client.name}
@@ -117,7 +116,7 @@ function ClientCard({
                                                 },
                                                 {
                                                     "&:hover": {
-                                                        backgroundColor: lighten(clientColor, 0.3),
+                                                        backgroundColor: alpha(clientColor, 0.3),
                                                         boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
                                                     },
                                                 },

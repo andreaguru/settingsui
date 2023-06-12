@@ -10,7 +10,7 @@ import {SyntheticEvent} from "react";
 import {ClientOrFeature} from "../types/api.types";
 import {IDComboSelectProps} from "../types/componentProps.types";
 import {useTheme} from "@mui/material/styles";
-import {lighten} from "@mui/system/colorManipulator";
+import {alpha} from "@mui/material";
 
 /**
  * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 5 properties:
@@ -81,7 +81,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                                  variant="inherit"
                                                  component="span"
                                                  fontWeight="normal"
-                                                 color={lighten(theme.palette.secondary.main, 0.4)}
+                                                 color={alpha(theme.palette.secondary.main, 0.4)}
                                              >
                                                  {showId ? ` | ${option.id}` : ""}
                                              </Typography>
