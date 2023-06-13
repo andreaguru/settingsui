@@ -38,7 +38,7 @@ function FeatureDetailPage({...props}: HomeProps) {
     };
 
     if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.name === featureName)) {
-        return "Das Feature wurde nicht gefunden";
+        return <p>Das Feature wurde nicht gefunden</p>;
     }
 
     return (

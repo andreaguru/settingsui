@@ -52,7 +52,7 @@ function IDToggle({disabled}: IdToggleProps) {
     };
 
     return (
-        <IDToggleWrapper className={disabled ? "Mui-disabled" : ""}>
+        <IDToggleWrapper data-testid="toggle" className={disabled ? "Mui-disabled" : ""}>
             <CardHeader
                 title="auto"
                 titleTypographyProps={{variant: "subtitle2"}}
@@ -68,12 +68,13 @@ function IDToggle({disabled}: IdToggleProps) {
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
+                    disabled={disabled}
                 >
                     <ArrowForwardIos fontSize="small" />
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}}>
+                <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
                         <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>

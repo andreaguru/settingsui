@@ -23,18 +23,18 @@ beforeEach( () => {
     jest.spyOn(reactObserver, "useInView").mockReturnValue(inViewMockResponse);
 });
 
-test("component is empty if empty clientList and empty filteredClientList is passed in the props", () => {
-    render(<MainContent
+test("component contains no CliendCard if clientList and filteredClientList are empty", () => {
+    const {container} = render(<MainContent
         clientsList={[]}
         filteredClientsList={[]}
         showSelectedFeatures={showSelectedFeatures}
         isLoading={false}/>);
 
-    expect(screen.queryByText("Wetterauer Zeitung")).not.toBeInTheDocument();
+    expect(container.getElementsByClassName("MuiCard-root").length).toBe(0);
 });
 
-test("component shows clientList if it is passed in the props", () => {
-    render(
+test("component shows CliendCards if it is passed in the props", () => {
+    const {container} = render(
         <ThemeProvider theme={edidTheme}>
             <MainContent
                 clientsList={mockedClientListWithHasFeatures}
@@ -43,7 +43,7 @@ test("component shows clientList if it is passed in the props", () => {
                 isLoading={false}/>
         </ThemeProvider>);
 
-    expect(screen.queryByText(/BlickPunkt Nienburg/i)).toBeInTheDocument();
+    expect(container.getElementsByClassName("MuiCard-root").length).toBeGreaterThan(0);
 });
 
 test("component shows filteredClientList instead of clientList if filteredClientList is not empty", () => {
@@ -72,11 +72,11 @@ test("client color is dark gray when client feature is inactive", () => {
                 isLoading={false}/>
         </ThemeProvider>);
 
-
+    // get the first rendered ClientCard Component
+    const clientCard = screen.getByTestId(mockedClientListWithHasFeatures[0].id);
     // inArticleReco -> feature client is DISABLED
-    const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/ECR In Article/).parentElement as HTMLElement;
-    expect(traffective).toHaveStyle({
+    const disabledFeature = within(clientCard).getByText(/ECR In Article/).parentElement as HTMLElement;
+    expect(disabledFeature).toHaveStyle({
         "color": edidTheme.palette.neutral.main,
         "backgroundColor": edidTheme.palette.neutral.light});
 });
@@ -91,13 +91,13 @@ test("category icon color is green when category feature is active", () => {
                 isLoading={false}/>
         </ThemeProvider>);
 
-
+    // get the first rendered ClientCard Component
+    const clientCard = screen.getByTestId(mockedClientListWithHasFeatures[0].id);
     // traffective -> feature category is NONE, feature tag is DISABLED
-    const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/Traffective Ads/).parentElement as HTMLElement;
-    // category icon
+    const traffective = within(clientCard).getByText(/Traffective Ads/).parentElement as HTMLElement;
+    // category icon - testid is automatically included by MUI
     const categoryIcon = within(traffective).getByTestId("AccountTreeIcon");
-    // tag icon
+    // tag icon - testid is automatically included by MUI
     const tagIcon = within(traffective).getByTestId("LocalOfferIcon");
 
     // Test if feature category has grey color
