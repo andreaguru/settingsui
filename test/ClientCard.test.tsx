@@ -25,19 +25,92 @@ beforeEach( () => {
     jest.spyOn(reactObserver, "useInView").mockReturnValue(inViewMockResponse);
 });
 
-test("Client name and ID are outputted in the DOM", () => {
-    render(<ThemeProvider theme={edidTheme}>
-        <ClientCard
-            client={{
-                id: 321,
-                name: "Merkur",
-                features: [],
-            }}
-            showSelectedFeatures={() => []}/>
-    </ThemeProvider>);
+describe("Parameterized test for ClientCard", () => {
+    const clientData = [
+        {
+            id: 321,
+            name: "Merkur",
+            features: [],
+        },
+        {
+            id: 234,
+            name: "TZ",
+            features: [],
+        },
+        {
+            id: 145,
+            name: "Kreiszeitung",
+            features: [],
+        },
+    ];
 
-    expect(screen.getByText(321)).toBeInTheDocument();
-    expect(screen.getByText(/Merkur/)).toBeInTheDocument();
+    test.each(clientData)(
+        "Client name and ID are outputted in the DOM",
+        (clientValue) => {
+            render(<ThemeProvider theme={edidTheme}>
+                <ClientCard
+                    client={clientValue}
+                    showSelectedFeatures={() => []}/>
+            </ThemeProvider>);
+
+            expect(screen.getByText(clientValue.name)).toBeInTheDocument();
+            expect(screen.getByText(clientValue.id)).toBeInTheDocument();
+        }
+    );
+
+    test.each(mockedClientListWithHasFeatures)(
+        "Client name and ID are outputted in the DOM",
+        (clientMocked) => {
+            render(
+                <ThemeProvider theme={edidTheme}>
+                    <ClientCard
+                        client={clientMocked}
+                        showSelectedFeatures={showSelectedFeatures}/>);
+                </ThemeProvider>);
+
+
+            const autocomplete = screen.getByTestId(clientMocked.id);
+            // traffective -> feature client is ENABLED
+            const traffective = within(autocomplete)
+                .getByText(clientMocked.features[0].label).parentElement as HTMLElement;
+            // inArticleReco -> feature client is DISABLED
+            const inArticleReco = within(autocomplete)
+                .getByText(clientMocked.features[1].label).parentElement as HTMLElement;
+
+            expect(traffective).toHaveStyle({
+                "color": edidTheme.palette.success.main,
+                "backgroundColor": edidTheme.palette.success.light});
+
+            expect(inArticleReco).toHaveStyle({
+                "color": edidTheme.palette.neutral.main,
+                "backgroundColor": edidTheme.palette.neutral.light});
+        }
+    );
+
+    test.each(mockedClientListWithHasFeatures)(
+        "fltr-clients query param is appended to href attr in Next Link Component",
+        (clientMocked) => {
+            render(
+                <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "merkur"}})}>
+                    <ThemeProvider theme={edidTheme}>
+                        <ClientCard
+                            client={clientMocked}
+                            showSelectedFeatures={showSelectedFeatures}/>
+                    </ThemeProvider>;
+                </RouterContext.Provider>
+            );
+
+            const autocomplete = screen.getByTestId(clientMocked.id);
+            // get first mocked feature -> traffective
+            const traffective = within(autocomplete)
+                .getByText(clientMocked.features[0].label).parentElement as HTMLElement;
+
+            expect(traffective).toHaveAttribute(
+                "href",
+                `/feature/${clientMocked.id}/${clientMocked.features[0].name}?fltr-clients=merkur`
+            );
+        }
+    );
 });
 
 test("component shows no features if showSelectedFeatures returns and empty array", () => {
@@ -63,43 +136,6 @@ test("component shows features if showSelectedFeatures returns an array with val
 
     // mockedFeatures contains 3 Features, we expect to have them in the DOM
     expect(screen.queryAllByTestId("feature").length).toBe(3);
-});
-
-test("client color is green when client feature is active", () => {
-    render(
-        <ThemeProvider theme={edidTheme}>
-            <ClientCard
-                client={mockedClientListWithHasFeatures[0]}
-                showSelectedFeatures={showSelectedFeatures}/>);
-        </ThemeProvider>);
-
-
-    // traffective -> feature client is ENABLED
-    const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/Traffective Ads/).parentElement as HTMLElement;
-    expect(traffective).toHaveStyle({
-        "color": edidTheme.palette.success.main,
-        "backgroundColor": edidTheme.palette.success.light});
-});
-
-test("fltr-clients query param is appended to href attr in Next Link Component", () => {
-    render(
-        <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "merkur"}})}>
-            <ThemeProvider theme={edidTheme}>
-                <ClientCard
-                    client={mockedClientListWithHasFeatures[0]}
-                    showSelectedFeatures={showSelectedFeatures}/>
-            </ThemeProvider>;
-        </RouterContext.Provider>
-    );
-
-    const autocomplete = screen.getByTestId("241");
-    const traffective = within(autocomplete).getByText(/Traffective Ads/).parentElement as HTMLElement;
-
-    expect(traffective).toHaveAttribute(
-        "href",
-        "/feature/241/traffective?fltr-clients=merkur"
-    );
 });
 
 // UNIT TESTS
