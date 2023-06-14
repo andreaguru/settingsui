@@ -1,5 +1,5 @@
 import LinearProgress, {linearProgressClasses, LinearProgressProps} from "@mui/material/LinearProgress";
-import Box from "@mui/material/Box";
+import Box, {BoxProps} from "@mui/material/Box";
 import {Typography} from "@mui/material";
 import {styled} from "@mui/material/styles";
 
@@ -7,6 +7,17 @@ const IDStyleLinearProgress = styled(LinearProgress)(({theme}) => ({
     [`&.${linearProgressClasses.colorPrimary}`]: {
         backgroundColor: theme.palette.secondary.light,
     },
+}));
+
+interface IDBoxLegendProps extends BoxProps {
+  active?: boolean;
+}
+
+const IDBoxLegend = styled(Box)<IDBoxLegendProps>(({theme, active}) => ({
+    width: "6px",
+    height: "6px",
+    borderRadius: "1px",
+    backgroundColor: active ? theme.palette.primary.main : theme.palette.secondary.light,
 }));
 
 /**
@@ -24,23 +35,9 @@ function IDLinearProgress(props: LinearProgressProps & { value: number }) {
                 <IDStyleLinearProgress variant="determinate" {...props} />
             </Box>
             <Box sx={{display: "flex", alignItems: "center", gap: "5px", marginTop: 1}}>
-                <Box
-                    sx={{
-                        width: "6px",
-                        height: "6px",
-                        borderRadius: "1px",
-                        backgroundColor: "primary.main",
-                    }}
-                />
+                <IDBoxLegend active />
                 <Typography variant="caption" component="span" color="text.secondary">verwendet</Typography>
-                <Box
-                    sx={{
-                        width: "6px",
-                        height: "6px",
-                        borderRadius: "1px",
-                        backgroundColor: "secondary.light",
-                    }}
-                />
+                <IDBoxLegend />
                 <Typography variant="caption" component="span" color="text.secondary">nicht verwendet</Typography>
             </Box>
         </Box>
