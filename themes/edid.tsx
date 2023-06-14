@@ -1,5 +1,6 @@
 import {createTheme} from "@mui/material/styles";
 import {lighten} from "@mui/system/colorManipulator";
+import {alpha} from "@mui/material";
 
 /* We need to enhance the Theme and Palette Interfaces in order to add new custom values
 (in our case variables, disabled).
@@ -25,6 +26,7 @@ export const edidTheme = createTheme({
         },
         secondary: {
             main: "#212121",
+            light: alpha("#212121", 0.6),
         },
         success: {
             main: "#319E7D",

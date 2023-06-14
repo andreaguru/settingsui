@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {styled, useTheme} from "@mui/material/styles";
+import {styled} from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
@@ -39,6 +39,14 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
     },
 }));
 
+const IDCardActions = styled(CardActions)(({theme}) => ({
+    "paddingLeft": theme.spacing(2),
+    "gap": 1,
+    "& > :last-child": {
+        "marginLeft": "auto",
+    },
+}));
+
 /**
  * The Ippen Digital Accordion component. Based on MUI Card Complex Interaction
  *
@@ -46,7 +54,6 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
  */
 function IDToggle({disabled}: IdToggleProps) {
     const [expanded, setExpanded] = useState(false);
-    const theme = useTheme();
     const handleExpandClick = () => {
         setExpanded((prev) => !prev);
     };
@@ -58,7 +65,7 @@ function IDToggle({disabled}: IdToggleProps) {
                 titleTypographyProps={{variant: "subtitle2"}}
                 sx={{pb: 0}}
             />
-            <CardActions sx={{p: 2, pt: 1, gap: 1}}>
+            <IDCardActions>
                 <Typography variant="caption">Erstellt 10.02.2023</Typography>
                 <Typography variant="caption">Zuletz geändert 13.02.2023</Typography>
                 <ExpandMore
@@ -70,34 +77,39 @@ function IDToggle({disabled}: IdToggleProps) {
                     aria-label="show more"
                     disabled={disabled}
                 >
-                    <ArrowForwardIos fontSize="small" />
+                    <ArrowForwardIos fontSize="small" sx={{marginLeft: "auto"}} />
                 </ExpandMore>
-            </CardActions>
+            </IDCardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
                         <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
                             <Box>
-                                <Typography variant="caption" color={theme.palette.neutral.main}>label</Typography>
+                                <Typography variant="caption"
+                                    color="secondary.light">label</Typography>
                                 <Typography variant="body2">value</Typography>
                             </Box>
                             <Box>
-                                <Typography variant="caption" color={theme.palette.neutral.main}>label</Typography>
+                                <Typography variant="caption"
+                                    color="secondary.light">label</Typography>
                                 <Typography variant="body2">value</Typography>
                             </Box>
                             <Box>
-                                <Typography variant="caption" color={theme.palette.neutral.main}>label</Typography>
+                                <Typography variant="caption"
+                                    color="secondary.light">label</Typography>
                                 <Typography variant="body2">value</Typography>
                             </Box>
                         </Grid>
                         <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
                             <Box>
-                                <Typography variant="caption" color={theme.palette.neutral.main}>label</Typography>
+                                <Typography variant="caption"
+                                    color="secondary.light">label</Typography>
                                 <Typography variant="body2">value</Typography>
                             </Box>
                             <Box>
-                                <Typography variant="caption" color={theme.palette.neutral.main}>label</Typography>
+                                <Typography variant="caption"
+                                    color="secondary.light">label</Typography>
                                 <Typography variant="body2">value</Typography>
                             </Box>
                         </Grid>
