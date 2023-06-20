@@ -99,7 +99,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
             >
                 <Paper elevation={0} square sx={{width: 188, maxWidth: "100%"}}>
                     <MenuList>
-                        <MenuItem>
+                        <MenuItem sx={{pl: theme.spacing(3)}}>
                             <ListItemIcon>
                                 <Image alt="" layout="fixed" src={iconColors} width={20} height={20}/>
                             </ListItemIcon>
@@ -108,7 +108,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                                 Farben und Icons
                             </ListItemText>
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem sx={{pl: theme.spacing(3)}}>
                             <ListItemIcon>
                                 <SyncAltIcon />
                             </ListItemIcon>
@@ -121,9 +121,9 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                 </Paper>
 
                 {/* Header */}
-                <Box>
+                <Paper elevation={0} sx={{px: theme.spacing(3)}}>
                     <Button
-                        sx={{marginTop: theme.spacing(2), textTransform: "initial"}}
+                        sx={{marginTop: theme.spacing(2), p: 0, textTransform: "initial"}}
                         aria-describedby={id}
                         variant="text"
                         color="inherit"
@@ -131,7 +131,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                     <IconButton size="small" color="inherit" className="modalClose">
                         <CloseIcon />
                     </IconButton>
-                </Box>
+                </Paper>
                 <Paper elevation={0} sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
                     <Typography
                         component="h1"
