@@ -22,6 +22,7 @@ export const edidTheme = createTheme({
     palette: {
         primary: {
             main: "#1976D2",
+            dark: "red",
         },
         secondary: {
             main: "#212121",
@@ -126,16 +127,6 @@ export const edidTheme = createTheme({
                 input: {
                     flexBasis: "100%",
                 },
-            },
-        },
-        // Style the Info Button
-        MuiButton: {
-            styleOverrides: {
-                text: ({ownerState}) => ({
-                    ...(ownerState.className === "infoButton" && {
-                        textTransform: "initial",
-                    }),
-                }),
             },
         },
         // Style the Card content (see MainContent.tsx)

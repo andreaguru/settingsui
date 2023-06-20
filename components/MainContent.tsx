@@ -10,6 +10,9 @@ import {MainContentProps} from "../types/componentProps.types";
 import ClientCard from "./ClientCard";
 import {useEffect} from "react";
 
+// import custom components
+import IDInfoButton from "./IDInfoButton";
+
 /**
  * MainContent component. It accepts 6 parameters:
  * clientsList: the complete list of the clients
@@ -55,7 +58,7 @@ function MainContent({
                 <Typography variant="h6" component="h6">Mandanten</Typography>
                 <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
             </Box>
-            {/* <IDInfoButton className="infoButton" align="right"/> */}
+            <IDInfoButton align="right"/>
             {/* if loading is in progress, show the placeholder elements.
             Placeholders height is the same as ClientCard */
                 isLoading &&

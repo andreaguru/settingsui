@@ -10,11 +10,13 @@ import TagIcon from "@mui/icons-material/LocalOffer";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Chip from "@mui/material/Chip";
 import Badge, {BadgeProps} from "@mui/material/Badge";
-import IDDataGrid from "./IDDataGrid";
 
 // import typescript Interfaces
 import {FeatureDetail} from "../types/componentProps.types";
-import {Alert, AlertProps} from "@mui/material";
+
+// import custom components
+import IDDataGrid from "./IDDataGrid";
+import IDAlert from "./IDAlert";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -39,18 +41,6 @@ const IDBadge = styled(Badge)<BadgeProps>(({theme}) => ({
         padding: 0,
         height: theme.spacing(2),
         minWidth: theme.spacing(2),
-    },
-}));
-
-const IDAlert = styled(Alert)<AlertProps>(({theme}) => ({
-    "backgroundColor": theme.palette.grey[100],
-    "lineHeight": 0,
-    "alignItems": "center",
-    "padding": theme.spacing(.5) + " " + theme.spacing(1),
-    "& .MuiAlert-icon, .MuiAlert-message": {
-        "padding": 0,
-        "color": theme.palette.neutral.main,
-        "marginRight": theme.spacing(.5),
     },
 }));
 
