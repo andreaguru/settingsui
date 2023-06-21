@@ -80,7 +80,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
             <Button
                 sx={{
                     position: "absolute",
-                    top: "0",
+                    top: theme.spacing(3),
                     textTransform: "initial",
                 }}
                 aria-describedby={id}
