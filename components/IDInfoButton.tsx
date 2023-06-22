@@ -115,8 +115,9 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                 }}
                 // Other necessary props for Popover component
                 sx={{
-                    "& > .MuiPaper-root": {
-                        maxHeight: `calc(100vh - ${theme.spacing(14)})`,
+                    "& .MuiPaper-content": {
+                        maxHeight: `calc(100vh - ${theme.spacing(24)})`,
+                        overflowY: "auto",
                     },
                 }}
             >
@@ -144,9 +145,11 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                 </Paper>}
 
                 {/* Header */}
-                {view !== ShowView.MENU && <Paper elevation={0} sx={{position: "sticky", top: 0, px: theme.spacing(3)}}>
+                {view !== ShowView.MENU &&
+                <Paper elevation={0}
+                    sx={{position: "sticky", top: 0, zIndex: 1, px: theme.spacing(3)}}>
                     <Button
-                        sx={{marginTop: theme.spacing(2), p: 0, textTransform: "initial"}}
+                        sx={{marginTop: theme.spacing(2), ml: -1, textTransform: "initial", lineHeight: 1}}
                         aria-describedby={id}
                         variant="text"
                         color="inherit"
@@ -162,13 +165,15 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                         textAlign="center"
                         fontWeight="medium"
                         fontSize={theme.typography.pxToRem(18)}
-                        marginBottom={theme.spacing(2)}>
-                        Farben und Icons
+                        paddingBottom={theme.spacing(2)}>
+                        {view === ShowView.COLORS ? "Farben und Icons" : "Ausspielung"}
                     </Typography>
                 </Paper>}
 
+                {/* Content */}
                 {view === ShowView.COLORS &&
-                <Paper elevation={0} sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
+                <Paper elevation={0} className="MuiPaper-content"
+                    sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
                     <Typography fontSize={theme.typography.pxToRem(14)} sx={{marginBottom: theme.spacing(4)}}>
                         <strong>Konfigurationen</strong> können auf&nbsp;
                         <strong>Mandanten, Kategorie</strong> oder <strong>Tag-Ebene</strong> vorgenommen werden.
@@ -178,19 +183,14 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                         <Image alt="Farben und Icons" src={colorsDiagram} />
                     </Box>
 
+                    {/* Footer */}
                     <IDInfoBoxFooter view={ShowView.DRAW}>weiter zu Ausspielung</IDInfoBoxFooter>
                 </Paper>}
 
+                {/* Content */}
                 {view === ShowView.DRAW &&
-                <Paper elevation={0} sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
-                    <Typography
-                        component="h1"
-                        textAlign="center"
-                        fontWeight="medium"
-                        fontSize={theme.typography.pxToRem(18)}
-                        marginBottom={theme.spacing(2)}>
-                        Ausspielung
-                    </Typography>
+                <Paper elevation={0} className="MuiPaper-content"
+                    sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
                     <Typography fontSize={theme.typography.pxToRem(14)} sx={{marginBottom: theme.spacing(4)}}>
                         Konfigurationen werden <strong>direkt</strong> auf&nbsp;
                         <strong>Mandant, Kategorie</strong> oder <strong>Tag</strong> gesetzt.&nbsp;
@@ -223,6 +223,8 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                     <Box sx={{textAlign: "center"}}>
                         <Image alt="Ausspielung Beispiel" src={drawExampleDiagram}/>
                     </Box>
+
+                    {/* Footer */}
                     <IDInfoBoxFooter view={ShowView.COLORS}>weiter zu Farben & Icons</IDInfoBoxFooter>
                 </Paper>}
             </Popover>
