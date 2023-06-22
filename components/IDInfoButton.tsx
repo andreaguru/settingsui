@@ -38,6 +38,12 @@ const IDInfoBoxButton = styled(Button)<ButtonProps>(({theme}) => ({
     },
 }));
 
+enum ShowView {
+    MENU = "MENU",
+    COLORS = "COLORS",
+    DRAW = "DRAW",
+}
+
 /**
  * IDInfoButton component. It accepts 1 parameter:
  * align: alignment of the button
@@ -46,27 +52,34 @@ const IDInfoBoxButton = styled(Button)<ButtonProps>(({theme}) => ({
  */
 function IDInfoButton({align}:IDInfoButtonProps) {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const [view, setView] = useState<ShowView>(ShowView.MENU);
     const theme = useTheme();
 
     /**
      * Info Footer
      * @constructor
      */
-    function IDInfoBoxFooter() {
+    function IDInfoBoxFooter({children, view}: { children: string, view: ShowView}) {
         return (<Box sx={{display: "flex", justifyContent: "flex-end"}}>
             <IDInfoBoxButton
                 aria-describedby={id}
                 variant="text"
-                endIcon={<ArrowForwardIcon />}>weiter zu Farben & Icons</IDInfoBoxButton>
+                onClick={() => handleChangeView(view)}
+                endIcon={<ArrowForwardIcon />}>{children}</IDInfoBoxButton>
         </Box>);
     }
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+        setView(ShowView.MENU);
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleChangeView = (view:ShowView) => {
+        setView(view);
     };
 
     const open = Boolean(anchorEl);
@@ -93,13 +106,23 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 anchorOrigin={{
-                    vertical: "bottom",
+                    vertical: "top",
                     horizontal: "left",
                 }}
+                transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
+                // Other necessary props for Popover component
+                sx={{
+                    "& > .MuiPaper-root": {
+                        maxHeight: `calc(100vh - ${theme.spacing(14)})`,
+                    },
+                }}
             >
-                <Paper elevation={0} square sx={{width: 188, maxWidth: "100%"}}>
+                {view === ShowView.MENU && <Paper elevation={0} square sx={{width: 188, maxWidth: "100%"}}>
                     <MenuList>
-                        <MenuItem sx={{pl: theme.spacing(3)}}>
+                        <MenuItem sx={{pl: theme.spacing(3)}} onClick={() => handleChangeView(ShowView.COLORS)}>
                             <ListItemIcon>
                                 <Image alt="" layout="fixed" src={iconColors} width={20} height={20}/>
                             </ListItemIcon>
@@ -108,7 +131,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                                 Farben und Icons
                             </ListItemText>
                         </MenuItem>
-                        <MenuItem sx={{pl: theme.spacing(3)}}>
+                        <MenuItem sx={{pl: theme.spacing(3)}} onClick={() => handleChangeView(ShowView.DRAW)}>
                             <ListItemIcon>
                                 <SyncAltIcon />
                             </ListItemIcon>
@@ -118,21 +141,22 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                             </ListItemText>
                         </MenuItem>
                     </MenuList>
-                </Paper>
+                </Paper>}
 
                 {/* Header */}
-                <Paper elevation={0} sx={{px: theme.spacing(3)}}>
+                {view !== ShowView.MENU && <Paper elevation={0} sx={{position: "sticky", top: 0, px: theme.spacing(3)}}>
                     <Button
                         sx={{marginTop: theme.spacing(2), p: 0, textTransform: "initial"}}
                         aria-describedby={id}
                         variant="text"
                         color="inherit"
-                        startIcon={<ArrowBackIcon />}>Übersicht</Button>
-                    <IconButton size="small" color="inherit" className="modalClose">
+                        startIcon={<ArrowBackIcon />}
+                        onClick={() => handleChangeView(ShowView.MENU)}>
+                        Übersicht
+                    </Button>
+                    <IconButton size="small" color="inherit" className="modalClose" onClick={handleClose}>
                         <CloseIcon />
                     </IconButton>
-                </Paper>
-                <Paper elevation={0} sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
                     <Typography
                         component="h1"
                         textAlign="center"
@@ -141,6 +165,10 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                         marginBottom={theme.spacing(2)}>
                         Farben und Icons
                     </Typography>
+                </Paper>}
+
+                {view === ShowView.COLORS &&
+                <Paper elevation={0} sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
                     <Typography fontSize={theme.typography.pxToRem(14)} sx={{marginBottom: theme.spacing(4)}}>
                         <strong>Konfigurationen</strong> können auf&nbsp;
                         <strong>Mandanten, Kategorie</strong> oder <strong>Tag-Ebene</strong> vorgenommen werden.
@@ -150,9 +178,10 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                         <Image alt="Farben und Icons" src={colorsDiagram} />
                     </Box>
 
-                    <IDInfoBoxFooter />
-                </Paper>
+                    <IDInfoBoxFooter view={ShowView.DRAW}>weiter zu Ausspielung</IDInfoBoxFooter>
+                </Paper>}
 
+                {view === ShowView.DRAW &&
                 <Paper elevation={0} sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
                     <Typography
                         component="h1"
@@ -194,8 +223,8 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                     <Box sx={{textAlign: "center"}}>
                         <Image alt="Ausspielung Beispiel" src={drawExampleDiagram}/>
                     </Box>
-                    <IDInfoBoxFooter />
-                </Paper>
+                    <IDInfoBoxFooter view={ShowView.COLORS}>weiter zu Farben & Icons</IDInfoBoxFooter>
+                </Paper>}
             </Popover>
         </Box>
     );
