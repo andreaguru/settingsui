@@ -10,7 +10,6 @@ import {SyntheticEvent} from "react";
 import {ClientOrFeature} from "../types/api.types";
 import {IDComboSelectProps} from "../types/componentProps.types";
 import {useTheme} from "@mui/material/styles";
-import {alpha} from "@mui/material";
 
 /**
  * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 5 properties:
@@ -67,7 +66,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                          <Typography
                                              variant="subtitle2"
                                              component="span"
-                                             color={theme.palette.secondary.main}
+                                             color="secondary.main"
                                              fontWeight="700">
                                              {option.label}
                                          </Typography>
@@ -76,14 +75,14 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                          <Typography
                                              variant="subtitle2"
                                              component="span"
-                                             color={theme.palette.secondary.main}
+                                             color="secondary.main"
                                              fontWeight="700">
                                              {option.name}
                                              <Typography
                                                  variant="inherit"
                                                  component="span"
                                                  fontWeight="normal"
-                                                 color={alpha(theme.palette.secondary.main, 0.6)}
+                                                 color="secondary.light"
                                              >
                                                  {showId ? ` | ${option.id}` : ""}
                                              </Typography>

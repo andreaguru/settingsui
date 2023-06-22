@@ -36,11 +36,8 @@ const IDChip = styled(Chip)(({theme}) => ({
 
 const IDBadge = styled(Badge)<BadgeProps>(({theme}) => ({
     "& .MuiBadge-badge": {
-        right: theme.spacing(-0.7),
-        top: 0,
-        padding: 0,
-        height: theme.spacing(2),
-        minWidth: theme.spacing(2),
+        right: theme.spacing(-1),
+        top: -2,
     },
 }));
 
@@ -104,6 +101,9 @@ function FeatureDetail({clientId, featureName}:FeatureDetail) {
                 onChange={handleChange}
                 aria-label="basic tabs example"
                 sx={{
+                    "& .MuiTab-root": {
+                        "justifyContent": "flex-start",
+                    },
                     "& .MuiTab-labelIcon": {
                         textTransform: "none",
                         minHeight: 0,
@@ -122,6 +122,7 @@ function FeatureDetail({clientId, featureName}:FeatureDetail) {
                 <Tab
                     icon={<CategoryIcon color="warning" />}
                     iconPosition="start"
+                    sx={{minWidth: theme.spacing(19)}}
                     label={
                         <IDBadge badgeContent={4} color="primary">
                             Kategorie
