@@ -14,7 +14,6 @@ import IDHelpIcon from "./IDHelpIcon";
  */
 const IDModalSidebarWrapper = styled(Grid)(({theme}) => ({
     maxHeight: "100%",
-    paddingBottom: theme.spacing(3),
     display: "flex",
     flexDirection: "column",
     rowGap: theme.spacing(3),
@@ -42,7 +41,7 @@ function IdModalSidebar(props:GridProps) {
                 </Typography>
                 <IDLinearProgress value={10} />
             </Container>
-            <IDToggleList>
+            <IDToggleList sx={{paddingBottom: 2}}>
                 <IDToggle disabled />
                 <IDToggle disabled />
                 <IDToggle />

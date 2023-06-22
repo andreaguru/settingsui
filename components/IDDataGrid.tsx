@@ -20,6 +20,9 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
             "display": "none",
         },
     },
+    "& .MuiDataGrid-columnHeaderDraggableContainer": {
+        "display": "block",
+    },
     [`& .${gridClasses.row}`]: {
         "&.odd": {
             "backgroundColor": theme.palette.grey[100],
@@ -50,6 +53,7 @@ function IDDataGrid() {
             field: "category",
             headerName: "Kategorie",
             editable: true,
+            minWidth: 110,
         },
         {
             field: "categoryId",
@@ -57,19 +61,19 @@ function IDDataGrid() {
             headerAlign: "right",
             editable: true,
             align: "right",
+            minWidth: 130,
         },
         {
             field: "configuration",
             headerName: "Konfiguration",
             headerClassName: "configurationField",
-            minWidth: 170,
+            minWidth: 160,
             renderHeader: (params) => <div style={{fontWeight: "500"}}>
                 {params.colDef.headerName}
                 <Tooltip
-                    title="Alle Einstellungen eines Features werden hier
-                    unter Konfigurationen in Instanzen angelegt/geändert. Diese Instanzen können
-                    links auf den Ebenen (Mandant, Kategorie, Tag)
-                    an der gewünschten Stelle gesetzt und aktiviert werden."
+                    title="Alle Einstellungen eines Features können rechts unter Konfigurationen in Instanzen
+                    angelegt/geändert werden. Diese Instanzen können links auf den Ebenen Mandant,
+                    Kategorie oder Tag angewendet und aktiviert werden."
                     placement="right">
                     <IDHelpIcon />
                 </Tooltip>
@@ -89,6 +93,7 @@ function IDDataGrid() {
             }
             sx={{
                 mt: theme.spacing(3),
+                color: "secondary.main",
             }}
         />
     );

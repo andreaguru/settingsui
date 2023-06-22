@@ -47,6 +47,11 @@ export const edidTheme = createTheme({
             main: "#A5A5A5",
         },
     },
+    typography: (theme) => ({
+        body1: {
+            color: theme.secondary.main, // Replace with your desired text color
+        },
+    }),
     components: {
         MuiCssBaseline: {
             styleOverrides: {
@@ -143,6 +148,7 @@ export const edidTheme = createTheme({
         MuiIconButton: {
             styleOverrides: {
                 root: ({ownerState, theme}) => ({
+                    color: theme.palette.secondary.main,
                     ...(ownerState.className === "iconStatus" && {
                         display: "flex",
                         marginTop: theme.spacing(2),

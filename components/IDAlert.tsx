@@ -9,7 +9,7 @@ const IDAlert = styled(Alert)<AlertProps>(({theme}) => ({
     "padding": theme.spacing(.5) + " " + theme.spacing(1),
     "& .MuiAlert-icon, .MuiAlert-message": {
         "padding": 0,
-        "color": theme.palette.neutral.main,
+        "color": theme.palette.secondary.main,
         "marginRight": theme.spacing(.5),
     },
 }));

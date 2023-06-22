@@ -143,7 +143,10 @@ function FeatureDetail({clientId, featureName}:FeatureDetail) {
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
                         <IDChip label="success" size="small" />
                         <IDChip label="error" size="small" />
-                        <IDAlert icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />} severity="info">
+                        <IDAlert
+                            icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />}
+                            severity="info"
+                            sx={{marginLeft: "auto"}}>
                             <Typography variant="caption">This is an info alert — check it out!</Typography>
                         </IDAlert>
                     </Box>

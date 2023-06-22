@@ -86,7 +86,7 @@ function ClientCard({
                 <Typography variant="subtitle1"
                     color="secondary.light"
                     sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
-                    <Typography fontSize="18px" fontWeight="medium" color={theme.palette.secondary.main}>
+                    <Typography fontSize="18px" fontWeight="medium">
                         {client.name}
                     </Typography>
                     <Typography>|</Typography>
