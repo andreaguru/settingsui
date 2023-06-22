@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import IDModalContent from "../../../components/IDModalContent";
 import IdModalHeader from "../../../components/IDModalHeader";
 import IDModalSidebar from "../../../components/IDModalSidebar";
+import CssBaseline from "@mui/material/CssBaseline";
 
 /**
  *
@@ -43,6 +44,7 @@ function FeatureDetailPage({...props}: HomeProps) {
 
     return (
         <ThemeProvider theme={edidTheme}>
+            <CssBaseline />
             {/* if loading is in progress, show the placeholder elements */
                 props.isLoading && <Skeleton variant="rounded" height={"100vh"} />
             }
