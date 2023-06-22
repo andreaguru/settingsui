@@ -50,7 +50,7 @@ export interface ClientCardProps {
 }
 
 export interface IDInfoButtonProps {
-    align: string
+    align?: string
 }
 
 export interface IDRadioGroupProps {
