@@ -6,7 +6,7 @@ const IDAlert = styled(Alert)<AlertProps>(({theme}) => ({
     "backgroundColor": alpha(theme.palette.secondary.main, 0.04),
     "lineHeight": 0,
     "alignItems": "center",
-    "padding": theme.spacing(.5) + " " + theme.spacing(1),
+    "padding": theme.spacing(1),
     "& .MuiAlert-icon, .MuiAlert-message": {
         "padding": 0,
         "color": theme.palette.secondary.main,

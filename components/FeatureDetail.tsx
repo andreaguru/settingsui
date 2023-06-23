@@ -147,7 +147,9 @@ function FeatureDetail({clientId, featureName}:FeatureDetail) {
                             icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />}
                             severity="info"
                             sx={{marginLeft: "auto"}}>
-                            <Typography variant="caption">This is an info alert — check it out!</Typography>
+                            <Typography variant="caption">
+                                nicht konfigurierte Kategorien erhalten automatisch die Konfiguration des Mandanten/Tags
+                            </Typography>
                         </IDAlert>
                     </Box>
                     <IDDataGrid />

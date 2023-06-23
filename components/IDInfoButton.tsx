@@ -119,6 +119,9 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                         maxHeight: `calc(100vh - ${theme.spacing(24)})`,
                         overflowY: "auto",
                     },
+                    "& strong": {
+                        fontWeight: "medium",
+                    },
                 }}
             >
                 {view === ShowView.MENU && <Paper elevation={0} square sx={{width: 188, maxWidth: "100%"}}>
@@ -149,7 +152,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                 <Paper elevation={0}
                     sx={{position: "sticky", top: 0, zIndex: 1, px: theme.spacing(3)}}>
                     <Button
-                        sx={{marginTop: theme.spacing(2), ml: -1, textTransform: "initial", lineHeight: 1}}
+                        sx={{marginTop: theme.spacing(3), ml: -1, textTransform: "initial", lineHeight: 1}}
                         aria-describedby={id}
                         variant="text"
                         color="inherit"
@@ -179,9 +182,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                         <strong>Mandanten, Kategorie</strong> oder <strong>Tag-Ebene</strong> vorgenommen werden.
                     </Typography>
 
-                    <Box sx={{textAlign: "center"}}>
-                        <Image alt="Farben und Icons" src={colorsDiagram} />
-                    </Box>
+                    <Image alt="Farben und Icons" src={colorsDiagram} />
 
                     {/* Footer */}
                     <IDInfoBoxFooter view={ShowView.DRAW}>weiter zu Ausspielung</IDInfoBoxFooter>
@@ -203,7 +204,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                         <Image alt="Ausspielung" src={drawDiagram} />
                     </Box>
 
-                    <IDAlert icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />} severity="info" sx={{marginY: 4}}>
+                    <IDAlert icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />} severity="info" sx={{mb: 4, mt: 3}}>
                         <Typography variant="caption">
                             Mögliche Konfigurationen aus CUE auf dem Artikel überschreiben alles
                         </Typography>
