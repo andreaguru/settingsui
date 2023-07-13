@@ -9,9 +9,10 @@ import IconButton, {IconButtonProps} from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import {Divider} from "@mui/material";
+import Link from "@mui/material/Link";
+import {Divider, ListItem} from "@mui/material";
 import {IdToggleProps} from "../types/componentProps.types";
+import List from "@mui/material/List";
 
 interface ExpandMoreProps extends IconButtonProps {
   $expand: boolean;
@@ -84,7 +85,7 @@ function IDToggle({disabled}: IdToggleProps) {
                 <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
-                        <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
+                        {/* <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
                             <Box>
                                 <Typography variant="caption"
                                     color="secondary.light">label</Typography>
@@ -112,7 +113,21 @@ function IDToggle({disabled}: IdToggleProps) {
                                     color="secondary.light">label</Typography>
                                 <Typography variant="body2">value</Typography>
                             </Box>
-                        </Grid>
+                        </Grid>*/}
+
+                        {/* header or footer layout */}
+                        <List>
+                            <Typography variant="subtitle2">Logo</Typography>
+                            <ListItem>
+                                <Typography variant="body2">LOGO</Typography>
+                            </ListItem>
+
+                            <Typography variant="subtitle2">Featured</Typography>
+                            <ListItem>
+                                <Typography variant="body2">LOGO</Typography>
+                                <Link variant="body2" color="secondary" href="#" underline="hover">Link</Link>
+                            </ListItem>
+                        </List>
                     </Grid>
                 </CardContent>
             </Collapse>

@@ -24,11 +24,6 @@ interface TabPanelProps {
   value: number;
 }
 
-/**
- * IDModalSidebar component. It accepts the same parameters as MUI Grid
- *
- * @constructor
- */
 const IDChip = styled(Chip)(({theme}) => ({
     color: theme.palette.success.main,
     backgroundColor: theme.palette.success.light,
