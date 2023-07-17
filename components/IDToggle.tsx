@@ -38,6 +38,10 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
         backgroundColor: theme.palette.grey[200],
         pointerEvents: "none",
     },
+    ".MuiListItem-root": {
+        display: "block",
+        lineHeight: 1,
+    },
 }));
 
 const IDCardActions = styled(CardActions)(({theme}) => ({
@@ -116,7 +120,7 @@ function IDToggle({disabled}: IdToggleProps) {
                         </Grid>*/}
 
                         {/* header or footer layout */}
-                        <List>
+                        <List disablePadding>
                             <Typography variant="subtitle2">Logo</Typography>
                             <ListItem>
                                 <Typography variant="body2">LOGO</Typography>
@@ -124,8 +128,24 @@ function IDToggle({disabled}: IdToggleProps) {
 
                             <Typography variant="subtitle2">Featured</Typography>
                             <ListItem>
-                                <Typography variant="body2">LOGO</Typography>
-                                <Link variant="body2" color="secondary" href="#" underline="hover">Link</Link>
+                                <Typography variant="body2">Rosenheim</Typography>
+                                <Link variant="body2" color="text.secondary" href="#" underline="hover">Link</Link>
+                            </ListItem>
+                            <ListItem>
+                                <Typography variant="body2">Rosenheim</Typography>
+                                <Link variant="body2" color="text.secondary" href="#" underline="hover">
+                                    https://www.rosenheim24.de/rosenheim/
+                                </Link>
+                            </ListItem>
+
+                            <Typography variant="subtitle2">Actions</Typography>
+                            <ListItem>
+                                <Typography variant="body2">SUCHE</Typography>
+                                <Link variant="body2" color="text.secondary" href="#" underline="hover">Link</Link>
+                            </ListItem>
+                            <ListItem>
+                                <Typography variant="body2">Abo</Typography>
+                                <Link variant="body2" color="text.secondary" href="#" underline="hover">Link</Link>
                             </ListItem>
                         </List>
                     </Grid>
