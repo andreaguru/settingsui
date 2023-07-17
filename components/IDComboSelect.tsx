@@ -51,8 +51,8 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                             (option: ClientOrFeature, value: ClientOrFeature) => option.name === value.name
                         }
                         getOptionLabel={
-                            (option: ClientOrFeature) => "label" in option ?
-                                option.label :
+                            (option: ClientOrFeature) => "technicalName" in option ?
+                                option.name :
                                 `${option.name} | ${option.id}`
                         }
                         ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
@@ -67,16 +67,16 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                     color={theme.palette.neutral.main}
                                     sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
 
-                                    {"label" in option &&
+                                    {"technicalName" in option &&
                                          <Typography
                                              variant="subtitle2"
                                              component="span"
                                              color="secondary.main"
                                              fontWeight="700">
-                                             {option.label}
+                                             {option.name}
                                          </Typography>
                                     }
-                                    {!("label" in option) &&
+                                    {!("technicalName" in option) &&
                                          <Typography
                                              variant="subtitle2"
                                              component="span"
