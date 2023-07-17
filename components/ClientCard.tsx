@@ -95,14 +95,14 @@ function ClientCard({
                 <Box sx={{display: "flex", flexWrap: "wrap"}}>
                     {showSelectedFeatures(client.features).map((feature:Feature, index:number) => {
                         // set background color of the button according to feature client status
-                        const clientColor = getButtonColorByStatus(feature.client, theme).bgColor;
+                        const clientColor = getButtonColorByStatus(feature.status.client, theme).bgColor;
 
                         return <div data-testid="feature" key={index}>
                             { /* show a featureButton only if it is inside the viewport */
                                 inView && <NextLink
                                     passHref
                                     href={{
-                                        pathname: `/feature/${client.id}/${feature.name}`,
+                                        pathname: `/feature/${client.id}/${feature.technicalName}`,
                                         /* pass the current query params to the next page
                                         (filteredClients and filteredFeatures, if present) */
                                         query: router && router.query,
@@ -112,7 +112,7 @@ function ClientCard({
                                         <IconButton className="iconStatus"
                                             sx={[
                                                 {
-                                                    color: getButtonColorByStatus(feature.client, theme).color,
+                                                    color: getButtonColorByStatus(feature.status.client, theme).color,
                                                     backgroundColor: clientColor,
                                                 },
                                                 {
@@ -122,10 +122,10 @@ function ClientCard({
                                                     },
                                                 },
                                             ]}>
-                                            <Typography variant="subtitle2" lineHeight={1}>{feature.label}</Typography>
+                                            <Typography variant="subtitle2" lineHeight={1}>{feature.name}</Typography>
                                             <CategoryIcon fontSize="small"
-                                                color={getIconColorByStatus(feature.category)}/>
-                                            <TagIcon fontSize="small" color={getIconColorByStatus(feature.tag)}/>
+                                                color={getIconColorByStatus(feature.status.category)}/>
+                                            <TagIcon fontSize="small" color={getIconColorByStatus(feature.status.tag)}/>
                                         </IconButton>
                                     </Fade>
                                 </NextLink>}

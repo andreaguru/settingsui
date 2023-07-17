@@ -72,10 +72,10 @@ describe("Parameterized test for ClientCard", () => {
             const autocomplete = screen.getByTestId(clientMocked.id);
             // traffective -> feature client is ENABLED
             const traffective = within(autocomplete)
-                .getByText(clientMocked.features[0].label).parentElement as HTMLElement;
+                .getByText(clientMocked.features[0].name).parentElement as HTMLElement;
             // inArticleReco -> feature client is DISABLED
             const inArticleReco = within(autocomplete)
-                .getByText(clientMocked.features[1].label).parentElement as HTMLElement;
+                .getByText(clientMocked.features[1].name).parentElement as HTMLElement;
 
             expect(traffective).toHaveStyle({
                 "color": edidTheme.palette.success.main,
@@ -103,11 +103,11 @@ describe("Parameterized test for ClientCard", () => {
             const autocomplete = screen.getByTestId(clientMocked.id);
             // get first mocked feature -> traffective
             const traffective = within(autocomplete)
-                .getByText(clientMocked.features[0].label).parentElement as HTMLElement;
+                .getByText(clientMocked.features[0].name).parentElement as HTMLElement;
 
             expect(traffective).toHaveAttribute(
                 "href",
-                `/feature/${clientMocked.id}/${clientMocked.features[0].name}?fltr-clients=merkur`
+                `/feature/${clientMocked.id}/${clientMocked.features[0].technicalName}?fltr-clients=merkur`
             );
         }
     );

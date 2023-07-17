@@ -1,4 +1,4 @@
-import {getClientList} from "../api/DashboardAPI";
+import {getClientList, getFeaturesPerClient} from "../api/DashboardAPI";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import type {AppProps} from "next/app";
@@ -6,7 +6,6 @@ import type {AppProps} from "next/app";
 // import typescript Interfaces
 import {Client, Feature} from "../types/api.types";
 import {FeatSelectedStatus} from "../types/componentProps.types";
-import {FeatureLabelMap} from "../api/FeatureLabelMap";
 import useUpdateEffect from "../utils/customHooks";
 import {getFeaturesList} from "../utils/utils";
 
@@ -22,17 +21,17 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
     case FeatSelectedStatus.ACTIVE:
         return featuresPerClient.filter(
             (feat:Feature) => {
-                return Object.values(feat).includes("ENABLED") ||
-                   Object.values(feat).includes("ENABLED_AND_DISABLED");
+                return Object.values(feat.status).includes("ENABLED") ||
+                   Object.values(feat.status).includes("ENABLED_AND_DISABLED");
             }
         );
     case FeatSelectedStatus.INACTIVE:
         return featuresPerClient.filter(
             (feat:Feature) => {
                 /* Object.values(feat) returns an array with feature name and  */
-                return (Object.values(feat).includes("DISABLED") ||
-                    Object.values(feat).includes("ENABLED_AND_DISABLED") ||
-                    Object.values(feat).slice(1).every((value) => value === "NONE"));
+                return (Object.values(feat.status).includes("DISABLED") ||
+                    Object.values(feat.status).includes("ENABLED_AND_DISABLED") ||
+                    Object.values(feat.status).slice(1).every((value) => value === "NONE"));
             }
         );
     case FeatSelectedStatus.ALL:
@@ -93,22 +92,6 @@ function TemplatePage({Component, pageProps}:AppProps) {
     }
 
     /**
- * addFeatureLabel
- * @param {Array<Feature>} features
- * @return {Array<Feature>}
- */
-    function addFeatureLabel(features:Array<Feature>) {
-        return features.map((feat) => {
-            const featureInLabelMap = FeatureLabelMap.find((feature) => feature.name == feat.name);
-
-            return {
-                ...feat,
-                label: featureInLabelMap ? featureInLabelMap.label : "",
-            };
-        });
-    }
-
-    /**
      * getStateWithHasFeaturesProp
      * @param {Array<Client>} clients
      * @return {Array<Client>}
@@ -129,15 +112,38 @@ function TemplatePage({Component, pageProps}:AppProps) {
         data.then((data) => {
             if (data && data.length) {
                 // update the returned data array adding hasFeatures prop to each element of it
-                const clientsWithHasFeaturesProperty:Array<Client> = data.map((client:Client):Client => {
-                    return {
-                        ...client,
-                        features: addFeatureLabel(client.features),
-                        hasFeatures: true};
+                const clientsWithHasFeaturesPromise = data.map((client: Client): Promise<Client> => {
+                    // get Feature List for each client
+                    return getFeaturesPerClient(client.id)
+                        .then((featuresData) => {
+                            // if there are Features, add them to the client state...
+                            if (featuresData && featuresData.length) {
+                                return {
+                                    ...client,
+                                    features: featuresData,
+                                    hasFeatures: true,
+                                };
+                            // ...otherwise return the client itself
+                            } else {
+                                return client;
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            return client;
+                        });
                 });
-                // update clients state with the new value
-                setClients(clientsWithHasFeaturesProperty);
-                setClientsLoading(false);
+
+                // Wait until all the pending promises are resolved, then update the state
+                Promise.all(clientsWithHasFeaturesPromise)
+                    .then((clientsWithHasFeatures) => {
+                        // update clients state with the new value
+                        setClients(clientsWithHasFeatures);
+                        setClientsLoading(false);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
             }
         })
             .catch((error) => {

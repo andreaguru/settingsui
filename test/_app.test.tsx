@@ -15,6 +15,7 @@ showSelectedFeatures.mockReturnValue(mockedFeatures);
 
 jest.mock("../api/DashboardAPI", () => ({
     getClientList: jest.fn(() => Promise.resolve(mockedClientListWithHasFeatures)),
+    getFeaturesPerClient: jest.fn(() => Promise.resolve(mockedFeatures)),
 }));
 
 jest.mock("react-intersection-observer");
@@ -50,17 +51,17 @@ test("filteredClients state is passed as prop if a filter is present in query pa
 /* UNIT TESTS */
 test("showFeaturesPerStatus returns the only Feature that is enabled", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.ACTIVE);
-    expect(features[0].name).toBe("traffective");
+    expect(features[0].technicalName).toBe("traffective");
 });
 
 test("showFeaturesPerStatus returns the two Features that are not enabled", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.INACTIVE);
-    expect(features[0].name).toBe("inArticleReco");
+    expect(features[0].technicalName).toBe("inArticleReco");
 });
 
 test("showFeaturesPerStatus returns all the features (no features removed)", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.ALL);
-    expect(features[0].name).toBe("traffective");
-    expect(features[1].name).toBe("inArticleReco");
-    expect(features[2].name).toBe("cleverPush");
+    expect(features[0].technicalName).toBe("traffective");
+    expect(features[1].technicalName).toBe("inArticleReco");
+    expect(features[2].technicalName).toBe("cleverpush");
 });

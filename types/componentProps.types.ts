@@ -66,7 +66,8 @@ export interface IdToggleProps {
 }
 
 export interface FeatureDetail {
-    clientId: string, featureName: string
+    clientId: string,
+    featureKey: string
 }
 
 export enum FeatSelectedStatus {

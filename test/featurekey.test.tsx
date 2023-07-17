@@ -5,7 +5,7 @@ import * as reactObserver from "react-intersection-observer";
 import {InViewHookResponse} from "react-intersection-observer";
 import {RouterContext} from "next/dist/shared/lib/router-context";
 import {createMockRouter} from "./test-utils/createMockRouter";
-import FeatureDetailPage from "../pages/feature/[clientId]/[featurename]";
+import FeatureDetailPage from "../pages/feature/[clientId]/[featurekey]";
 
 jest.mock("../api/DashboardAPI");
 
@@ -30,7 +30,7 @@ beforeEach( () => {
 test("modal window is rendered if the feature is present", () => {
     const {container} = render(
         <RouterContext.Provider
-            value={createMockRouter({query: {"clientId": "241", "featurename": "traffective"}})}>
+            value={createMockRouter({query: {"clientId": "241", "featurekey": "traffective"}})}>
             <FeatureDetailPage
                 clients={mockedClientListWithHasFeatures}
                 filteredClients={[]}
