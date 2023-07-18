@@ -21,7 +21,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = router.query.clientId as string;
-    const featureName = router.query.featurename as string;
+    const featureKey = router.query.featurekey as string;
 
     const onCloseAction = () => {
     // get filteredFeatures and filteredClients if present in the url
@@ -38,7 +38,7 @@ function FeatureDetailPage({...props}: HomeProps) {
         });
     };
 
-    if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.name === featureName)) {
+    if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.technicalName === featureKey)) {
         return <p>Das Feature wurde nicht gefunden</p>;
     }
 
@@ -66,7 +66,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             <Grid item xs={8} sx={{p: 3}}>
                                 <FeatureDetail
                                     clientId={clientId}
-                                    featureName={featureName}/>
+                                    featureKey={featureKey}/>
                             </Grid>
 
                             {/* Sidebar*/}

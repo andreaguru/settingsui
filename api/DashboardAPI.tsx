@@ -1,9 +1,10 @@
 import {logger} from "../logger";
-import {Client} from "../types/api.types";
+import {Client, Feature} from "../types/api.types";
 import {BlackListClients} from "./BlackListClients";
 
-// get the endpoint from the environment variables
-const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
+// get the endpoints from the environment variables
+const cmsEndpoint = process.env.NEXT_PUBLIC_CMS_API_CLIENTS || "";
+const settingsApiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_OVERVIEW_BASE || "";
 
 /**
  * Get the complete list of the clients.
@@ -12,7 +13,7 @@ const apiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_ENDPOINT || "";
  */
 export async function getClientList():Promise<Array<Client> | void> {
     try {
-        const response = await fetch(apiEndpoint);
+        const response = await fetch(cmsEndpoint);
 
         // return two arrays with the data from the two fetch requests
         const clientsPromise:Array<Client> = await response.json();
@@ -24,6 +25,26 @@ export async function getClientList():Promise<Array<Client> | void> {
             }) as Array<Client>;
             clientArray.sort((clientPrev, clientNext) => clientPrev.name.localeCompare(clientNext.name));
             return clientArray;
+        }
+    } catch (error) {
+        logger.error(error);
+    }
+}
+
+/**
+ * Get Feature List for a specific client.
+ * @return {Promise<Array<Client>>}
+ * @param {number} clientId
+ * @constructor
+ */
+export async function getFeaturesPerClient(clientId:number):Promise<Array<Feature> | void> {
+    try {
+        const featuresPerClient = `${settingsApiEndpoint}/${clientId}`;
+        const response = await fetch(featuresPerClient);
+        const featuresPromise = await response.json();
+
+        if (featuresPromise.length) {
+            return featuresPromise;
         }
     } catch (error) {
         logger.error(error);

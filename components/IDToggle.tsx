@@ -15,17 +15,17 @@ import {IdToggleProps} from "../types/componentProps.types";
 import List from "@mui/material/List";
 
 interface ExpandMoreProps extends IconButtonProps {
-  $expand: boolean;
+  expand: boolean;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-    // we need to extract the $expand property from props as it cannot be passed directly to IconButton component.
+    // we need to extract the expand property from props as it cannot be passed directly to IconButton component.
     // That's why we also need to disable eslint, in order to not get an "unused variable" error
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {$expand, ...other} = props;
+    const {expand, ...other} = props;
     return <IconButton {...other} />;
-})(({theme, $expand}) => ({
-    transform: !$expand ? "rotate(90deg)" : "rotate(270deg)",
+})(({theme, expand}) => ({
+    transform: !expand ? "rotate(90deg)" : "rotate(270deg)",
     transition: theme.transitions.create("transform", {
         duration: theme.transitions.duration.shortest,
     }),
@@ -76,7 +76,7 @@ function IDToggle({disabled}: IdToggleProps) {
                 <ExpandMore
                     // a ternary operator syntax is needed since a warning is triggered
                     // when trying to pass a boolean value to a custom property
-                    $expand={expanded}
+                    expand={expanded}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"

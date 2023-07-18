@@ -13,7 +13,13 @@ interface IDBoxLegendProps extends BoxProps {
   active?: boolean;
 }
 
-const IDBoxLegend = styled(Box)<IDBoxLegendProps>(({theme, active}) => ({
+const IDBoxLegend = styled((props: IDBoxLegendProps) => {
+    // we need to extract the $expand property from props as it cannot be passed directly to IconButton component.
+    // That's why we also need to disable eslint, in order to not get an "unused variable" error
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const {active, ...other} = props;
+    return <Box {...other} />;
+})(({theme, active}) => ({
     width: "6px",
     height: "6px",
     borderRadius: "1px",
