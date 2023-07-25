@@ -6,5 +6,5 @@ import {Client} from "../types/api.types";
      * @return {Array<Feature>}
      */
 export function getFeaturesList(clients:Array<Client>) {
-    return clients.length > 0 ? clients[0].features : [];
+    return clients.length > 0 && clients[0].features ? clients[0].features : [];
 }
