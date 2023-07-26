@@ -75,15 +75,15 @@ function a11yProps(index: number) {
 /**
  *
  * @param {string} clientId
- * @param {string} featureKey
+ * @param {string} featureId
  * @constructor
  */
-function FeatureDetail({clientId, featureKey}:FeatureDetail) {
+function FeatureDetail({clientId, featureId}:FeatureDetail) {
     const [activeTab, setActiveTab] = React.useState(0);
     const theme = useTheme();
 
     /* console log these values for testing purpose. We will need them to make the component dynamic */
-    console.log(clientId, featureKey);
+    console.log(clientId, featureId);
 
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
         setActiveTab(newActiveTab);
@@ -129,7 +129,7 @@ function FeatureDetail({clientId, featureKey}:FeatureDetail) {
             </Tabs>
             <Box sx={{backgroundColor: "white", flex: "1 1 100%"}}>
                 <TabPanel value={activeTab} index={0}>
-                    <Box sx={{gap: theme.spacing(2)}}>
+                    <Box sx={{display: "flex", gap: theme.spacing(2)}}>
                         <IDChip label="success" size="small" />
                     </Box>
                     <IDDataGrid />
@@ -150,7 +150,9 @@ function FeatureDetail({clientId, featureKey}:FeatureDetail) {
                     <IDDataGrid />
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
-                    <IDChip label="success" size="small" />
+                    <Box sx={{display: "flex", gap: theme.spacing(2)}}>
+                        <IDChip label="success" size="small" />
+                    </Box>
                     <IDDataGrid />
                 </TabPanel>
             </Box>

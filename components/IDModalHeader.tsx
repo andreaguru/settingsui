@@ -24,19 +24,23 @@ const IDStyledModalHeader = styled(AppBar)(({theme}) => ({
  */
 function IdModalHeader(props:IDModalHeader) {
     const theme = useTheme();
-    const {onCloseAction, ...appBarProps} = props;
+    const {
+        onCloseAction,
+        clientName,
+        featuresDetailName,
+        ...appBarProps} = props;
 
     return (
         <IDStyledModalHeader {...appBarProps}>
             <Typography variant="subtitle1"
                 color={theme.palette.neutral.main}
                 sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
-                <Typography fontWeight="medium" fontSize="20px">TZ</Typography>
+                <Typography fontWeight="medium" fontSize="20px">{clientName}</Typography>
                 <Typography>|</Typography>
                 <Typography>337</Typography>
             </Typography>
             <Typography fontSize="18px" fontWeight="medium">
-                Feature sample
+                {featuresDetailName}
                 <Tooltip
                     title="Das CleverPush Anmelde-Widget zeigt ein Formular,
                     um sich für Newsletter oder Messenger anzumelden."

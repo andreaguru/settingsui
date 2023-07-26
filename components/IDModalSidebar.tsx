@@ -1,4 +1,4 @@
-import Grid, {GridProps} from "@mui/material/Grid";
+import Grid from "@mui/material/Grid";
 import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import {Tooltip, Typography} from "@mui/material";
@@ -6,6 +6,7 @@ import IDLinearProgress from "./IDLinearProgress";
 import IDToggleList from "./IDToggleList";
 import IDToggle from "./IDToggle";
 import IDHelpIcon from "./IDHelpIcon";
+import {IDModalSidebar} from "../types/componentProps.types";
 
 /**
  * IDModalSidebar component. It accepts the same parameters as MUI Grid
@@ -22,12 +23,17 @@ const IDModalSidebarWrapper = styled(Grid)(({theme}) => ({
 
 /**
  * The Ippen Digital Modal Sidebar component.
- * @param {GridProps} props
+ * @param {IDModalSidebar} props
  * @constructor
  */
-function IdModalSidebar(props:GridProps) {
+function IdModalSidebar(props:IDModalSidebar) {
+    const {
+        featuresDetailConfig,
+        featureKey,
+        ...modalSidebarProps} = props;
+
     return (
-        <IDModalSidebarWrapper {...props}>
+        <IDModalSidebarWrapper {...modalSidebarProps}>
             <Container>
                 <Typography variant="subtitle1">
                     Konfigurationen
@@ -42,12 +48,9 @@ function IdModalSidebar(props:GridProps) {
                 <IDLinearProgress value={10} />
             </Container>
             <IDToggleList sx={{paddingBottom: 2}}>
-                <IDToggle disabled />
-                <IDToggle disabled />
-                <IDToggle />
-                <IDToggle />
-                <IDToggle />
-                <IDToggle />
+                {featuresDetailConfig.map((config, index) => (
+                    <IDToggle key={index} featureKey={featureKey} config={config} disabled={!config.usages.length} />
+                ))}
             </IDToggleList>
         </IDModalSidebarWrapper>
     );

@@ -1,6 +1,7 @@
-import {Client, ClientOrFeature, Feature} from "./api.types";
+import {Client, ClientOrFeature, Feature, FeaturesConfig} from "./api.types";
 import {ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
+import {GridProps} from "@mui/material/Grid";
 
 /*
 Interfaces for the Components
@@ -58,16 +59,25 @@ export interface IDRadioGroupProps {
 }
 
 export interface IDModalHeader extends AppBarProps {
+    featuresDetailName: string;
+    clientName: string;
     onCloseAction: () => void
 }
 
+export interface IDModalSidebar extends GridProps {
+    featuresDetailConfig: FeaturesConfig[];
+    featureKey: string;
+}
+
 export interface IdToggleProps {
+    config?: FeaturesConfig;
+    featureKey: string;
     disabled?: boolean,
 }
 
 export interface FeatureDetail {
     clientId: string,
-    featureKey: string
+    featureId: number
 }
 
 export enum FeatSelectedStatus {

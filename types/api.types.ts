@@ -29,5 +29,22 @@ export interface Client {
     hasFeatures?: boolean;
 }
 
+export interface FeaturesConfig {
+    id: number;
+    name: string;
+    clientId: number;
+    settings: any[];
+    usages: [];
+}
+
+export interface FeaturesDetail {
+    id: number;
+    name: string;
+    technicalName: string;
+    abbreviation: string;
+    description: string;
+    configurations: Array<FeaturesConfig>;
+}
+
 export type ClientOrFeature = Client | Feature
 

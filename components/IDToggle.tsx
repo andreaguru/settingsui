@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {Fragment, useState} from "react";
 import {styled} from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -13,6 +13,7 @@ import Link from "@mui/material/Link";
 import {Divider, ListItem} from "@mui/material";
 import {IdToggleProps} from "../types/componentProps.types";
 import List from "@mui/material/List";
+import Box from "@mui/material/Box";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -38,15 +39,25 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
         backgroundColor: theme.palette.grey[200],
         pointerEvents: "none",
     },
+    ".MuiList-root": {
+        "h6": {
+            "marginTop": theme.spacing(2),
+            "marginBottom": theme.spacing(1),
+            "&:first-of-type": {
+                marginTop: 0,
+            },
+        },
+    },
     ".MuiListItem-root": {
         display: "block",
+        wordWrap: "break-word",
         lineHeight: 1,
     },
 }));
 
 const IDCardActions = styled(CardActions)(({theme}) => ({
     "paddingLeft": theme.spacing(2),
-    "gap": 1,
+    "paddingTop": 0,
     "& > :last-child": {
         "marginLeft": "auto",
     },
@@ -57,16 +68,23 @@ const IDCardActions = styled(CardActions)(({theme}) => ({
  *
  * @constructor
  */
-function IDToggle({disabled}: IdToggleProps) {
+function IDToggle({disabled, featureKey, config}: IdToggleProps) {
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded((prev) => !prev);
+    };
+    const {
+        name,
+        settings,
+    } = config ?? {
+        name: "",
+        settings: [],
     };
 
     return (
         <IDToggleWrapper data-testid="toggle" className={disabled ? "Mui-disabled" : ""}>
             <CardHeader
-                title="auto"
+                title={name}
                 titleTypographyProps={{variant: "subtitle2"}}
                 sx={{pb: 0}}
             />
@@ -89,65 +107,64 @@ function IDToggle({disabled}: IdToggleProps) {
                 <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
-                        {/* <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
-                            <Box>
-                                <Typography variant="caption"
-                                    color="secondary.light">label</Typography>
-                                <Typography variant="body2">value</Typography>
-                            </Box>
-                            <Box>
-                                <Typography variant="caption"
-                                    color="secondary.light">label</Typography>
-                                <Typography variant="body2">value</Typography>
-                            </Box>
-                            <Box>
-                                <Typography variant="caption"
-                                    color="secondary.light">label</Typography>
-                                <Typography variant="body2">value</Typography>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
-                            <Box>
-                                <Typography variant="caption"
-                                    color="secondary.light">label</Typography>
-                                <Typography variant="body2">value</Typography>
-                            </Box>
-                            <Box>
-                                <Typography variant="caption"
-                                    color="secondary.light">label</Typography>
-                                <Typography variant="body2">value</Typography>
-                            </Box>
-                        </Grid>*/}
+                        {/* normal features */}
+                        {featureKey !== "header" && featureKey !== "footer" &&
+                            <>
+                                <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
+                                    <Box>
+                                        <Typography variant="caption"
+                                            color="secondary.light">label</Typography>
+                                        <Typography variant="body2">value</Typography>
+                                    </Box>
+                                    <Box>
+                                        <Typography variant="caption"
+                                            color="secondary.light">label</Typography>
+                                        <Typography variant="body2">value</Typography>
+                                    </Box>
+                                    <Box>
+                                        <Typography variant="caption"
+                                            color="secondary.light">label</Typography>
+                                        <Typography variant="body2">value</Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
+                                    <Box>
+                                        <Typography variant="caption"
+                                            color="secondary.light">label</Typography>
+                                        <Typography variant="body2">value</Typography>
+                                    </Box>
+                                    <Box>
+                                        <Typography variant="caption"
+                                            color="secondary.light">label</Typography>
+                                        <Typography variant="body2">value</Typography>
+                                    </Box>
+                                </Grid>
+                            </>
+                        }
 
                         {/* header or footer layout */}
+                        {featureKey === "header" || featureKey === "footer" &&
                         <List disablePadding>
-                            <Typography variant="subtitle2">Logo</Typography>
-                            <ListItem>
-                                <Typography variant="body2">LOGO</Typography>
-                            </ListItem>
-
-                            <Typography variant="subtitle2">Featured</Typography>
-                            <ListItem>
-                                <Typography variant="body2">Rosenheim</Typography>
-                                <Link variant="body2" color="text.secondary" href="#" underline="hover">Link</Link>
-                            </ListItem>
-                            <ListItem>
-                                <Typography variant="body2">Rosenheim</Typography>
-                                <Link variant="body2" color="text.secondary" href="#" underline="hover">
-                                    https://www.rosenheim24.de/rosenheim/
-                                </Link>
-                            </ListItem>
-
-                            <Typography variant="subtitle2">Actions</Typography>
-                            <ListItem>
-                                <Typography variant="body2">SUCHE</Typography>
-                                <Link variant="body2" color="text.secondary" href="#" underline="hover">Link</Link>
-                            </ListItem>
-                            <ListItem>
-                                <Typography variant="body2">Abo</Typography>
-                                <Link variant="body2" color="text.secondary" href="#" underline="hover">Link</Link>
-                            </ListItem>
+                            {settings.map((value, index) => (
+                                <Fragment key={index}>
+                                    {value.name &&
+                                        <Typography variant="subtitle2">{value.name}</Typography>
+                                    }
+                                    {value.links.map((link, index) => (
+                                        <ListItem key={index}>
+                                            <Typography variant="body2">{link.name}</Typography>
+                                            <Link variant="body2"
+                                                color="text.secondary"
+                                                href={link.url}
+                                                underline="hover">
+                                                {link.url}
+                                            </Link>
+                                        </ListItem>
+                                    ))}
+                                </Fragment>
+                            ))}
                         </List>
+                        }
                     </Grid>
                 </CardContent>
             </Collapse>

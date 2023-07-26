@@ -7,12 +7,19 @@ import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
 import {getFeaturesList} from "../../../utils/utils";
 import Skeleton from "@mui/material/Skeleton";
-import {HomeProps} from "../../../types/componentProps.types";
 import Grid from "@mui/material/Grid";
+import CssBaseline from "@mui/material/CssBaseline";
+import {getFeatureDetail} from "../../../api/FeatureDetailAPI";
+import {useEffect, useState} from "react";
+
+// import typescript Interfaces
+import {HomeProps} from "../../../types/componentProps.types";
+import {FeaturesDetail} from "../../../types/api.types";
+
+// import custom components
 import IDModalContent from "../../../components/IDModalContent";
 import IdModalHeader from "../../../components/IDModalHeader";
 import IDModalSidebar from "../../../components/IDModalSidebar";
-import CssBaseline from "@mui/material/CssBaseline";
 
 /**
  *
@@ -21,7 +28,27 @@ import CssBaseline from "@mui/material/CssBaseline";
 function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = router.query.clientId as string;
-    const featureKey = router.query.featurekey as string;
+    const clientName = router.query.clientname as string;
+    const featureId = parseInt(router.query.featureId as string);
+    const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
+        abbreviation: "",
+        configurations: [],
+        description: "",
+        id: 0,
+        name: "",
+        technicalName: "",
+    });
+
+    useEffect(() => {
+        if (featureId) {
+            const featurePromise = getFeatureDetail(featureId);
+            featurePromise.then((data) => {
+                if (data && Object.keys(data).length) {
+                    setFeaturesDetail(data);
+                }
+            });
+        }
+    }, [router, featureId]);
 
     const onCloseAction = () => {
     // get filteredFeatures and filteredClients if present in the url
@@ -38,7 +65,7 @@ function FeatureDetailPage({...props}: HomeProps) {
         });
     };
 
-    if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.technicalName === featureKey)) {
+    if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.id === featureId)) {
         return <p>Das Feature wurde nicht gefunden</p>;
     }
 
@@ -59,18 +86,28 @@ function FeatureDetailPage({...props}: HomeProps) {
 
                             {/* Header*/}
                             <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
-                                <IdModalHeader position="absolute" color="inherit" onCloseAction={onCloseAction} />
+                                <IdModalHeader
+                                    featuresDetailName={featuresDetail.name}
+                                    clientName={clientName}
+                                    position="absolute"
+                                    color="inherit"
+                                    onCloseAction={onCloseAction} />
                             </Grid>
 
                             {/* Table content*/}
-                            <Grid item xs={8} sx={{p: 3}}>
+                            <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3}}>
                                 <FeatureDetail
                                     clientId={clientId}
-                                    featureKey={featureKey}/>
+                                    featureId={featureId}/>
                             </Grid>
 
                             {/* Sidebar*/}
-                            <IDModalSidebar item xs={4} />
+                            { featuresDetail.configurations.length &&
+                            <IDModalSidebar
+                                featureKey={featuresDetail.technicalName}
+                                featuresDetailConfig={featuresDetail.configurations}
+                                item xs={4} />
+                            }
                         </IDModalContent>
                     </Modal>
                 </Home>
