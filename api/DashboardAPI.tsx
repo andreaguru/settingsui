@@ -22,7 +22,7 @@ export async function getClientList():Promise<Array<Client> | void> {
         if (clientsPromise.length) {
             const clientArray = clientsPromise.filter((client: Client) => {
                 return client.name && !BlackListClients.includes(client.name);
-            }) as Array<Client>;
+            });
             clientArray.sort((clientPrev, clientNext) => clientPrev.name.localeCompare(clientNext.name));
             return clientArray;
         }

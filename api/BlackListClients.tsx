@@ -2,7 +2,6 @@ export const BlackListClients = [
     "24vest.de",
     "Anzeigenzeitungsverlag",
     "Blickpunkt Nienburg",
-    "BlickPunkt Nienburg",
     "Christkindlmarkt Rosenheim",
     "DA-imNetz.de",
     "Dachauer Rundschau",
