@@ -1,4 +1,5 @@
 import {Fragment, useState} from "react";
+import Form from "react-jsonschema-form";
 import {styled} from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -18,6 +19,16 @@ import Box from "@mui/material/Box";
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
+
+const schema = {
+    title: "Todo",
+    type: "object",
+    required: ["title"],
+    properties: {
+        title: {type: "string", title: "Title", default: "A new task"},
+        done: {type: "boolean", title: "Done?", default: false},
+    },
+};
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
     // we need to extract the expand property from props as it cannot be passed directly to IconButton component.
@@ -80,9 +91,13 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
         name: "",
         settings: [],
     };
+    const onSubmit = (data) => {
+        console.log(data.formData);
+    };
 
     return (
         <IDToggleWrapper data-testid="toggle" className={disabled ? "Mui-disabled" : ""}>
+            <Form schema={schema} onSubmit={onSubmit} />
             <CardHeader
                 title={name}
                 titleTypographyProps={{variant: "subtitle2"}}
