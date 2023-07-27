@@ -5,7 +5,6 @@ import {useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
-import {getFeaturesList} from "../../../utils/utils";
 import Skeleton from "@mui/material/Skeleton";
 import {HomeProps} from "../../../types/componentProps.types";
 import Grid from "@mui/material/Grid";
@@ -38,7 +37,7 @@ function FeatureDetailPage({...props}: HomeProps) {
         });
     };
 
-    if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.technicalName === featureKey)) {
+    if (!props.isLoading && !props.featuresList.some((feat) => feat.technicalName === featureKey)) {
         return <p>Das Feature wurde nicht gefunden</p>;
     }
 
