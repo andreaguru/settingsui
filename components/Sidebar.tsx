@@ -17,7 +17,7 @@ import {SidebarProps} from "../types/componentProps.types";
 function Sidebar(
     {
         clients,
-        featuresList,
+        featureList,
         filteredClients,
         filteredFeatures,
         setFilteredClients,
@@ -37,7 +37,7 @@ function Sidebar(
                 setFilteredValues={setFilteredClients}
                 showId={true}/>
 
-            <IDComboSelect values={featuresList}
+            <IDComboSelect values={featureList}
                 title="Feature"
                 placeholder="z.B. AdDefend, CleverPush Anmelde-Widget"
                 filteredValues={filteredFeatures}

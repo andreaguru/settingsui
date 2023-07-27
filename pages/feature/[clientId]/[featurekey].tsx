@@ -37,7 +37,7 @@ function FeatureDetailPage({...props}: HomeProps) {
         });
     };
 
-    if (!props.isLoading && !props.featuresList.some((feat) => feat.technicalName === featureKey)) {
+    if (!props.isLoading && !props.featureList.some((feat) => feat.technicalName === featureKey)) {
         return <p>Das Feature wurde nicht gefunden</p>;
     }
 

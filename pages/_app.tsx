@@ -47,7 +47,7 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
  */
 function TemplatePage({Component, pageProps}:AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
-    const [featuresList, setFeaturesList] = useState<Array<Feature>>([]);
+    const [featureList, setFeatureList] = useState<Array<Feature>>([]);
     const router = useRouter();
 
     // we get the two query string properties from URL (filtered clients and filtered features)
@@ -102,7 +102,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
             return {
                 ...client,
                 hasFeatures: showSelectedFeatures(client.features).length > 0,
-            };
+            } as Client;
         });
     }
 
@@ -111,30 +111,31 @@ function TemplatePage({Component, pageProps}:AppProps) {
     useEffect(() => {
         getClientList().then((data) => {
             // update the returned data array adding hasFeatures prop to each element of it
-            const clientsWithHasFeaturesPromise = data.map<Promise<Client>>((client: Client) => {
-                return getFeaturesPerClient(client.id)
-                    .then((featuresData) => {
+            const clientsWithHasFeaturesPromise:Promise<Client>[] = data.map<Promise<Client>>((client: Client) => {
+                const promiseFeatures:Promise<Feature[]> = getFeaturesPerClient(client.id);
+                return promiseFeatures
+                    .then((featuresData:Feature[]): Client => {
                         // if there are Features, add them to the client state...
                         return {
                             ...client,
                             features: featuresData,
                             hasFeatures: true,
-                        };
+                        } as Client;
                     })
                     // ...otherwise return the client itself
-                    .catch((error) => {
+                    .catch((error: Error): Client => {
                         console.log(error);
                         return client;
                     });
             });
 
             // Wait until all the pending promises are resolved, then update the state
-            Promise.all(clientsWithHasFeaturesPromise)
-                .then((clientsWithHasFeatures) => {
-                    // update clients state with the new value
-                    setClients(clientsWithHasFeatures);
-                    setClientsLoading(false);
-                })
+            const promises:Promise<Client[]> = Promise.all(clientsWithHasFeaturesPromise);
+            promises.then((clientsWithHasFeatures:Array<Client>) => {
+                // update clients state with the new value
+                setClients(clientsWithHasFeatures);
+                setClientsLoading(false);
+            })
                 .catch((error) => {
                     console.log(error);
                 });
@@ -145,8 +146,8 @@ function TemplatePage({Component, pageProps}:AppProps) {
             });
 
         // set Feature List state in order to use it throughout the project
-        getFeaturesListPromise().then((data) => {
-            setFeaturesList(data);
+        getFeaturesListPromise().then((data:Feature[]) => {
+            setFeatureList(data);
         })
             .catch((error) => {
                 logger.error("Could not get the Feature List", error);
@@ -164,11 +165,11 @@ function TemplatePage({Component, pageProps}:AppProps) {
 
         // if filtered features are present in the url, set the filteredFeatures state
         if (fltrFeatures?.length) {
-            getFeaturesListPromise()
-                .then((data) => {
-                    const filteredFeature = data.filter((feature) => fltrFeatures.includes(feature.name));
-                    setFilteredFeatures(filteredFeature);
-                })
+            const featuresPromise:Promise<Feature[]> = getFeaturesListPromise();
+            featuresPromise.then((data:Feature[]) => {
+                const filteredFeature = data.filter((feature) => fltrFeatures.includes(feature.name));
+                setFilteredFeatures(filteredFeature);
+            })
                 .catch((error) => {
                     console.log(error);
                     return [];
@@ -198,9 +199,9 @@ function TemplatePage({Component, pageProps}:AppProps) {
     Docu: https://usehooks-ts.com/react-hook/use-update-effect */
     useUpdateEffect(() => {
         // we create an array with all names of selected clients
-        const filteredClientNames = filteredClients.map<string>((a) => a.name);
+        const filteredClientNames = filteredClients.map<string>((client) => client.name);
         // we create an array with all names of selected clients
-        const filteredFeatureNames = filteredFeatures.map<string>((a) => a.name);
+        const filteredFeatureNames = filteredFeatures.map<string>((feature) => feature.name);
 
         /* we update the url, according to the app state, if one of these conditions is true:
         1. filtersAreLoaded is true. This means that either filteredClients or filteredFeatures
@@ -223,7 +224,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
     return (
         <Component {...pageProps}
             clients={clients}
-            featuresList={featuresList}
+            featureList={featureList}
             filteredClients={filteredClients}
             filteredFeatures={filteredFeatures}
             setFilteredClients={setFilteredClients}

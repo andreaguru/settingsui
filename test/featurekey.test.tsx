@@ -33,6 +33,7 @@ test("modal window is rendered if the feature is present", () => {
             value={createMockRouter({query: {"clientId": "241", "featurekey": "traffective"}})}>
             <FeatureDetailPage
                 clients={mockedClientListWithHasFeatures}
+                featureList={mockedFeatures}
                 filteredClients={[]}
                 filteredFeatures={[]}
                 featureStatus={[]}

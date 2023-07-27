@@ -8,7 +8,7 @@ Interfaces for the Components
 
 export interface HomeProps {
     clients: Array<Client>
-    featuresList: Array<Feature>
+    featureList: Array<Feature>
     filteredClients: Array<Client>
     filteredFeatures: Array<Feature>
     setFilteredClients: (arg: Array<ClientOrFeature>) => void
@@ -29,7 +29,7 @@ export interface MainContentProps {
 
 export interface SidebarProps {
     clients: Array<Client>
-    featuresList: Array<Feature>
+    featureList: Array<Feature>
     filteredFeatures: Array<Feature>
     filteredClients: Array<Client>
     setFilteredClients: (arg: Array<ClientOrFeature>) => void
