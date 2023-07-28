@@ -5,7 +5,6 @@ import {useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
-import {getFeaturesList} from "../../../utils/utils";
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -29,7 +28,7 @@ function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = router.query.clientId as string;
     const clientName = router.query.clientname as string;
-    const featureId = parseInt(router.query.featureId as string);
+    const featureKey = router.query.featurekey as string;
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
         abbreviation: "",
         configurations: [],
@@ -40,7 +39,7 @@ function FeatureDetailPage({...props}: HomeProps) {
     });
 
     useEffect(() => {
-        if (featureId) {
+        if (featureKey) {
             const featurePromise = getFeatureDetail(featureId);
             featurePromise.then((data) => {
                 if (data && Object.keys(data).length) {
@@ -48,7 +47,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                 }
             });
         }
-    }, [router, featureId]);
+    }, [router, featureKey]);
 
     const onCloseAction = () => {
     // get filteredFeatures and filteredClients if present in the url
@@ -97,14 +96,13 @@ function FeatureDetailPage({...props}: HomeProps) {
                             {/* Table content*/}
                             <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3}}>
                                 <FeatureDetail
-                                    clientId={clientId}
-                                    featureId={featureId}/>
+                                    clientId={clientId}/>
                             </Grid>
 
                             {/* Sidebar*/}
                             { featuresDetail.configurations.length &&
                             <IDModalSidebar
-                                featureKey={featuresDetail.technicalName}
+                                featureKey={featureKey}
                                 featuresDetailConfig={featuresDetail.configurations}
                                 item xs={4} />
                             }

@@ -75,15 +75,14 @@ function a11yProps(index: number) {
 /**
  *
  * @param {string} clientId
- * @param {string} featureId
  * @constructor
  */
-function FeatureDetail({clientId, featureId}:FeatureDetail) {
+function FeatureDetail({clientId}:FeatureDetail) {
     const [activeTab, setActiveTab] = React.useState(0);
     const theme = useTheme();
 
     /* console log these values for testing purpose. We will need them to make the component dynamic */
-    console.log(clientId, featureId);
+    console.log(clientId);
 
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
         setActiveTab(newActiveTab);

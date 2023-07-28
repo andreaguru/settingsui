@@ -4,7 +4,7 @@ import {BlackListClients} from "./BlackListClients";
 
 // get the endpoints from the environment variables
 const cmsEndpoint = process.env.NEXT_PUBLIC_CMS_API_CLIENTS as string;
-const featureListEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_API_FEATURES as string;
+const featureListEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_FEATURES as string;
 const settingsApiEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_OVERVIEW_BASE as string;
 
 /**
