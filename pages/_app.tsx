@@ -1,4 +1,4 @@
-import {getClientList, getFeaturesPerClient} from "../api/DashboardAPI";
+import {getClientList, getFeaturesListPromise, getFeaturesPerClient} from "../api/DashboardAPI";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import type {AppProps} from "next/app";
@@ -7,7 +7,7 @@ import type {AppProps} from "next/app";
 import {Client, Feature} from "../types/api.types";
 import {FeatSelectedStatus} from "../types/componentProps.types";
 import useUpdateEffect from "../utils/customHooks";
-import {getFeaturesList} from "../utils/utils";
+import {logger} from "../logger";
 
 /**
  * check if features status has been selected in combobox.
@@ -47,6 +47,7 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
  */
 function TemplatePage({Component, pageProps}:AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
+    const [featureList, setFeatureList] = useState<Array<Feature>>([]);
     const router = useRouter();
 
     // we get the two query string properties from URL (filtered clients and filtered features)
@@ -84,7 +85,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
                 2) are also present in filteredFeatures array. */
                 featuresFilteredPerStatus.filter((feat:Feature) =>
                     // for each feature we check if it is present in filteredFeatures array
-                    filteredFeatures.some((filteredFeat) => filteredFeat.name === feat.name)
+                    filteredFeatures.some((filteredFeat) => filteredFeat.id === feat.id)
                 )
             );
             // if there is no feature in filteredFeatures, we show them according to point 1)
@@ -97,57 +98,59 @@ function TemplatePage({Component, pageProps}:AppProps) {
      * @return {Array<Client>}
      */
     function getStateWithHasFeaturesProp(clients:Array<Client>) {
-        return clients.map((client: Client):Client => {
+        return clients.map<Client>((client: Client) => {
             return {
                 ...client,
                 hasFeatures: showSelectedFeatures(client.features).length > 0,
-            };
+            } as Client;
         });
     }
 
     /* The code inside this useEffect is called only once, the first time that the Home component is loaded.
     This is the moment when we want to get the clients list from APIs and set the clients status with its value. */
     useEffect(() => {
-        const data = getClientList();
-        data.then((data) => {
-            if (data && data.length) {
-                // update the returned data array adding hasFeatures prop to each element of it
-                const clientsWithHasFeaturesPromise = data.map((client: Client): Promise<Client> => {
-                    // get Feature List for each client
-                    return getFeaturesPerClient(client.id)
-                        .then((featuresData) => {
-                            // if there are Features, add them to the client state...
-                            if (featuresData && featuresData.length) {
-                                return {
-                                    ...client,
-                                    features: featuresData,
-                                    hasFeatures: true,
-                                };
-                            // ...otherwise return the client itself
-                            } else {
-                                return client;
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            return client;
-                        });
-                });
-
-                // Wait until all the pending promises are resolved, then update the state
-                Promise.all(clientsWithHasFeaturesPromise)
-                    .then((clientsWithHasFeatures) => {
-                        // update clients state with the new value
-                        setClients(clientsWithHasFeatures);
-                        setClientsLoading(false);
+        getClientList().then((data) => {
+            // update the returned data array adding hasFeatures prop to each element of it
+            const clientsWithHasFeaturesPromise:Promise<Client>[] = data.map<Promise<Client>>((client: Client) => {
+                const promiseFeatures:Promise<Feature[]> = getFeaturesPerClient(client.id);
+                return promiseFeatures
+                    .then((featuresData:Feature[]): Client => {
+                        // if there are Features, add them to the client state...
+                        return {
+                            ...client,
+                            features: featuresData,
+                            hasFeatures: true,
+                        } as Client;
                     })
-                    .catch((error) => {
+                    // ...otherwise return the client itself
+                    .catch((error: Error): Client => {
                         console.log(error);
+                        return client;
                     });
-            }
+            });
+
+            // Wait until all the pending promises are resolved, then update the state
+            const promises:Promise<Client[]> = Promise.all(clientsWithHasFeaturesPromise);
+            promises.then((clientsWithHasFeatures:Array<Client>) => {
+                // update clients state with the new value
+                setClients(clientsWithHasFeatures);
+                setClientsLoading(false);
+            })
+                .catch((error) => {
+                    console.log(error);
+                });
         })
             .catch((error) => {
-                console.log(error);
+                logger.error("Could not get a client list", error);
+                return [];
+            });
+
+        // set Feature List state in order to use it throughout the project
+        getFeaturesListPromise().then((data:Feature[]) => {
+            setFeatureList(data);
+        })
+            .catch((error) => {
+                logger.error("Could not get the Feature List", error);
             });
     }, []);
 
@@ -162,10 +165,15 @@ function TemplatePage({Component, pageProps}:AppProps) {
 
         // if filtered features are present in the url, set the filteredFeatures state
         if (fltrFeatures?.length) {
-            const filteredFeatures = getFeaturesList(clients).filter(
-                (feature) => fltrFeatures.includes(feature.name)
-            );
-            setFilteredFeatures(filteredFeatures);
+            const featuresPromise:Promise<Feature[]> = getFeaturesListPromise();
+            featuresPromise.then((data:Feature[]) => {
+                const filteredFeature = data.filter((feature) => fltrFeatures.includes(feature.name));
+                setFilteredFeatures(filteredFeature);
+            })
+                .catch((error) => {
+                    console.log(error);
+                    return [];
+                });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clientsLoading]);
@@ -191,9 +199,9 @@ function TemplatePage({Component, pageProps}:AppProps) {
     Docu: https://usehooks-ts.com/react-hook/use-update-effect */
     useUpdateEffect(() => {
         // we create an array with all names of selected clients
-        const filteredClientNames = filteredClients.map((a) => a.name);
+        const filteredClientNames = filteredClients.map<string>((client) => client.name);
         // we create an array with all names of selected clients
-        const filteredFeatureNames = filteredFeatures.map((a) => a.name);
+        const filteredFeatureNames = filteredFeatures.map<string>((feature) => feature.name);
 
         /* we update the url, according to the app state, if one of these conditions is true:
         1. filtersAreLoaded is true. This means that either filteredClients or filteredFeatures
@@ -216,6 +224,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
     return (
         <Component {...pageProps}
             clients={clients}
+            featureList={featureList}
             filteredClients={filteredClients}
             filteredFeatures={filteredFeatures}
             setFilteredClients={setFilteredClients}

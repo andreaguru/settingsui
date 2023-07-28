@@ -16,6 +16,7 @@ showSelectedFeatures.mockReturnValue(mockedFeatures);
 jest.mock("../api/DashboardAPI", () => ({
     getClientList: jest.fn(() => Promise.resolve(mockedClientListWithHasFeatures)),
     getFeaturesPerClient: jest.fn(() => Promise.resolve(mockedFeatures)),
+    getFeaturesListPromise: jest.fn(() => Promise.resolve(mockedFeatures)),
 }));
 
 jest.mock("react-intersection-observer");

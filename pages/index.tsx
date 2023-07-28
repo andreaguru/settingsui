@@ -47,6 +47,7 @@ function Home({...props}: HomeProps) {
                 </MuiAppBar>
                 <Sidebar
                     clients={props.clients}
+                    featureList={props.featureList}
                     filteredClients={props.filteredClients}
                     filteredFeatures={props.filteredFeatures}
                     setFilteredClients={props.setFilteredClients}
