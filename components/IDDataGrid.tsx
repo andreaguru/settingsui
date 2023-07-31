@@ -5,11 +5,11 @@ import CircleIcon from "@mui/icons-material/Circle";
 import {alpha, Tooltip} from "@mui/material";
 import IDHelpIcon from "./IDHelpIcon";
 
-const rows = [
+/* const rows = [
     {id: 1, status: "success", category: "Snow", categoryId: 12345, configuration: "config"},
     {id: 2, status: "warning", category: "Test", categoryId: 12476, configuration: "config2"},
     {id: 3, status: "disabled", category: "Test2", categoryId: 23456, configuration: "config3"},
-];
+];*/
 
 const rowsHeaderFooter = [
     {id: 1, status: "success", configuration: "STANDARD"},
@@ -49,7 +49,7 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
 function IDDataGrid() {
     const theme = useTheme();
 
-    const columns: GridColDef[] = [
+    /*    const columns: GridColDef[] = [
         {
             field: "status",
             headerName: "Status",
@@ -89,7 +89,7 @@ function IDDataGrid() {
             </div>,
             editable: true,
         },
-    ];
+    ];*/
 
     const columnsHeaderFooter: GridColDef[] = [
         {
