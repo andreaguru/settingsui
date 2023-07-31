@@ -5,9 +5,13 @@ import * as reactObserver from "react-intersection-observer";
 import {InViewHookResponse} from "react-intersection-observer";
 import {RouterContext} from "next/dist/shared/lib/router-context";
 import {createMockRouter} from "./test-utils/createMockRouter";
-import FeatureDetailPage from "../pages/feature/[clientId]/[featureId]";
+import FeatureDetailPage from "../pages/feature/[clientId]/[featurekey]";
 
 jest.mock("../api/DashboardAPI");
+
+jest.mock("../api/FeatureDetailAPI", () => ({
+    getFeatureDetail: jest.fn(() => Promise.resolve()),
+}));
 
 const setFilteredValues = jest.fn();
 

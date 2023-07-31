@@ -158,7 +158,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
         // if filtered clients are present in the url, set the filteredClients state
         if (fltrClients?.length) {
             const filteredClients = clients.filter(
-                (client) => fltrClients.includes(client.name)
+                (client) => fltrClients.includes(String(client.id))
             );
             setFilteredClients(filteredClients);
         }
@@ -198,9 +198,9 @@ function TemplatePage({Component, pageProps}:AppProps) {
     but not the first time the component is rendered, like it happens for a normal useEffect
     Docu: https://usehooks-ts.com/react-hook/use-update-effect */
     useUpdateEffect(() => {
-        // we create an array with all names of selected clients
-        const filteredClientNames = filteredClients.map<string>((client) => client.name);
-        // we create an array with all names of selected clients
+        // we create an array with all Ids of selected clients
+        const filteredClientIds = filteredClients.map<number>((client) => client.id);
+        // we create an array with all names of selected features
         const filteredFeatureNames = filteredFeatures.map<string>((feature) => feature.name);
 
         /* we update the url, according to the app state, if one of these conditions is true:
@@ -212,7 +212,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
         if (filtersAreLoaded || Object.keys(router.query).length === 0) {
             router.push({
                 query: {
-                    ...(filteredClientNames.length && {"fltr-clients": filteredClientNames}),
+                    ...(filteredClientIds.length && {"fltr-clients": filteredClientIds}),
                     ...(filteredFeatureNames.length && {"fltr-features": filteredFeatureNames}),
                 },
             });

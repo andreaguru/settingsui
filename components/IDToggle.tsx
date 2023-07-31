@@ -14,6 +14,7 @@ import {Divider, ListItem} from "@mui/material";
 import {IdToggleProps} from "../types/componentProps.types";
 import List from "@mui/material/List";
 import Box from "@mui/material/Box";
+import {SettingsLink} from "../types/api.types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -143,14 +144,14 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
                         }
 
                         {/* header or footer layout */}
-                        {featureKey === "header" || featureKey === "footer" &&
+                        {(featureKey === "header" || featureKey === "footer") &&
                         <List disablePadding>
                             {settings.map((value, index) => (
                                 <Fragment key={index}>
                                     {value.name &&
                                         <Typography variant="subtitle2">{value.name}</Typography>
                                     }
-                                    {value.links.map((link, index) => (
+                                    {value.links.map((link:SettingsLink, index:number) => (
                                         <ListItem key={index}>
                                             <Typography variant="body2">{link.name}</Typography>
                                             <Link variant="body2"

@@ -2,7 +2,7 @@ import {logger} from "../logger";
 import {FeaturesDetail} from "../types/api.types";
 
 // get the endpoints from the environment variables
-const featureDetailEndpoint = process.env.NEXT_PUBLIC_FEATURE_DETAIL || "";
+const featureDetailEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_FEATURES;
 
 /**
  * Get Feature List for a specific client.
@@ -10,16 +10,13 @@ const featureDetailEndpoint = process.env.NEXT_PUBLIC_FEATURE_DETAIL || "";
  * @param {number} featureId
  * @constructor
  */
-export async function getFeatureDetail(featureId:number):Promise<FeaturesDetail | void> {
+export async function getFeatureDetail(featureId:number):Promise<FeaturesDetail> {
     try {
         const featureDetailURL = `${featureDetailEndpoint}/${featureId}`;
         const response = await fetch(featureDetailURL);
-        const featureDetailPromise = await response.json();
-
-        if (Object.keys(featureDetailPromise).length) {
-            return featureDetailPromise;
-        }
+        return await response.json();
     } catch (error) {
-        logger.error(error);
+        logger.error("Could not get Features Details for Feature Id", featureId, error);
+        return Promise.reject(error);
     }
 }

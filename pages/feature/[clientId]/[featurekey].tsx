@@ -29,6 +29,7 @@ function FeatureDetailPage({...props}: HomeProps) {
     const clientId = router.query.clientId as string;
     const clientName = router.query.clientname as string;
     const featureKey = router.query.featurekey as string;
+    const featureId = router.query.featureid as unknown as number;
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
         abbreviation: "",
         configurations: [],
@@ -40,14 +41,14 @@ function FeatureDetailPage({...props}: HomeProps) {
 
     useEffect(() => {
         if (featureKey) {
-            const featurePromise = getFeatureDetail(featureId);
+            const featurePromise:Promise<FeaturesDetail> = getFeatureDetail(featureId);
             featurePromise.then((data) => {
                 if (data && Object.keys(data).length) {
                     setFeaturesDetail(data);
                 }
             });
         }
-    }, [router, featureKey]);
+    }, [router, featureKey, featureId]);
 
     const onCloseAction = () => {
     // get filteredFeatures and filteredClients if present in the url

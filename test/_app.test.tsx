@@ -39,12 +39,12 @@ test("filteredClients state is passed as prop if a filter is present in query pa
 
     await act( async () => {
         render(
-            <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "Wetterauer Zeitung"}})}>
+            <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "315"}})}>
                 <MyApp Component={MockChildComponent} pageProps={{}} router={createMockRouter({}) as Router} />
             </RouterContext.Provider>);
     });
-    // test that client list returns an array with 4 values
     await waitFor(() => {
+        // 315 is the id of client Wetterauer Zeitung
         expect(screen.getByText("Wetterauer Zeitung")).toBeInTheDocument();
     });
 });

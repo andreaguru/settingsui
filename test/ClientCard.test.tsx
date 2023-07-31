@@ -91,7 +91,7 @@ describe("Parameterized test for ClientCard", () => {
         "fltr-clients query param is appended to href attr in Next Link Component",
         (clientMocked) => {
             render(
-                <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "merkur"}})}>
+                <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": clientMocked.id.toString()}})}>
                     <ThemeProvider theme={edidTheme}>
                         <ClientCard
                             client={clientMocked}
@@ -104,10 +104,12 @@ describe("Parameterized test for ClientCard", () => {
             // get first mocked feature -> traffective
             const traffective = within(autocomplete)
                 .getByText(clientMocked.features[0].name).parentElement as HTMLElement;
+            const escapedClientName = clientMocked.name.replace(/ /g, "+");
 
             expect(traffective).toHaveAttribute(
                 "href",
-                `/feature/${clientMocked.id}/${clientMocked.features[0].technicalName}?fltr-clients=merkur`
+                // eslint-disable-next-line max-len
+                `/feature/${clientMocked.id}/${clientMocked.features[0].technicalName}?fltr-clients=${clientMocked.id}&clientname=${escapedClientName}&featureid=${clientMocked.features[0].id}`
             );
         }
     );

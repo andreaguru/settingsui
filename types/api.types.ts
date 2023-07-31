@@ -33,7 +33,7 @@ export interface FeaturesConfig {
     id: number;
     name: string;
     clientId: number;
-    settings: any[];
+    settings: [];
     usages: [];
 }
 
@@ -48,3 +48,7 @@ export interface FeaturesDetail {
 
 export type ClientOrFeature = Client | Feature
 
+export type SettingsLink = {
+    name: string,
+    url: string,
+}
