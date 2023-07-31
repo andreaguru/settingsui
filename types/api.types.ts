@@ -29,11 +29,16 @@ export interface Client {
     hasFeatures?: boolean;
 }
 
+export interface Settings {
+    name: string;
+    links: Array<SettingsLink>;
+}
+
 export interface FeaturesConfig {
     id: number;
     name: string;
     clientId: number;
-    settings: [];
+    settings: Array<Settings>;
     usages: [];
 }
 
