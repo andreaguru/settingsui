@@ -27,7 +27,6 @@ import IDModalSidebar from "../../../components/IDModalSidebar";
 function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = router.query.clientId as string;
-    const clientName = router.query.clientname as string;
     const featureKey = router.query.featurekey as string;
     const featureId = router.query.featureid as unknown as number;
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
@@ -42,11 +41,17 @@ function FeatureDetailPage({...props}: HomeProps) {
     useEffect(() => {
         if (featureKey) {
             const featurePromise:Promise<FeaturesDetail> = getFeatureDetail(featureId);
-            featurePromise.then((data) => {
-                if (data && Object.keys(data).length) {
-                    setFeaturesDetail(data);
-                }
-            });
+
+            featurePromise
+                .then((data) => {
+                    if (data && Object.keys(data).length) {
+                        setFeaturesDetail(data);
+                    }
+                })
+                .catch((error: Error) => {
+                    console.log(error);
+                    return error;
+                });
         }
     }, [router, featureKey, featureId]);
 
@@ -88,7 +93,8 @@ function FeatureDetailPage({...props}: HomeProps) {
                             <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
                                 <IdModalHeader
                                     featuresDetailName={featuresDetail.name}
-                                    clientName={clientName}
+                                    clientList={props.clients}
+                                    clientId={clientId}
                                     position="absolute"
                                     color="inherit"
                                     onCloseAction={onCloseAction} />
@@ -96,8 +102,7 @@ function FeatureDetailPage({...props}: HomeProps) {
 
                             {/* Table content*/}
                             <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3}}>
-                                <FeatureDetail
-                                    clientId={clientId}/>
+                                <FeatureDetail />
                             </Grid>
 
                             {/* Sidebar*/}

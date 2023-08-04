@@ -26,16 +26,25 @@ function IdModalHeader(props:IDModalHeader) {
     const theme = useTheme();
     const {
         onCloseAction,
-        clientName,
+        clientList,
+        clientId,
         featuresDetailName,
         ...appBarProps} = props;
+
+    /**
+     * @return {string} client name
+     */
+    function getClientName():string {
+        const clientValue = clientList.filter((client) => client.id === Number(clientId));
+        return clientValue[0].name;
+    }
 
     return (
         <IDStyledModalHeader {...appBarProps}>
             <Typography variant="subtitle1"
                 color={theme.palette.neutral.main}
                 sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
-                <Typography fontWeight="medium" fontSize="20px">{clientName}</Typography>
+                <Typography fontWeight="medium" fontSize="20px">{getClientName()}</Typography>
                 <Typography>|</Typography>
                 <Typography>337</Typography>
             </Typography>

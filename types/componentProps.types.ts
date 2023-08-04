@@ -62,7 +62,8 @@ export interface IDRadioGroupProps {
 
 export interface IDModalHeader extends AppBarProps {
     featuresDetailName: string;
-    clientName: string;
+    clientId: string;
+    clientList: Array<Client>;
     onCloseAction: () => void
 }
 
@@ -75,10 +76,6 @@ export interface IdToggleProps {
     config?: FeaturesConfig;
     featureKey: string;
     disabled?: boolean,
-}
-
-export interface FeatureDetail {
-    clientId: string,
 }
 
 export enum FeatSelectedStatus {

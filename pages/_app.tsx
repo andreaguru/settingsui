@@ -109,46 +109,50 @@ function TemplatePage({Component, pageProps}:AppProps) {
     /* The code inside this useEffect is called only once, the first time that the Home component is loaded.
     This is the moment when we want to get the clients list from APIs and set the clients status with its value. */
     useEffect(() => {
-        getClientList().then((data) => {
+        getClientList()
+            .then((data) => {
             // update the returned data array adding hasFeatures prop to each element of it
-            const clientsWithHasFeaturesPromise:Promise<Client>[] = data.map<Promise<Client>>((client: Client) => {
-                const promiseFeatures:Promise<Feature[]> = getFeaturesPerClient(client.id);
-                return promiseFeatures
-                    .then((featuresData:Feature[]): Client => {
+                const clientsWithHasFeaturesPromise:Promise<Client>[] = data.map<Promise<Client>>((client: Client) => {
+                    const promiseFeatures:Promise<Feature[]> = getFeaturesPerClient(client.id);
+                    return promiseFeatures
+                        .then((featuresData:Feature[]): Client => {
                         // if there are Features, add them to the client state...
-                        return {
-                            ...client,
-                            features: featuresData,
-                            hasFeatures: true,
-                        } as Client;
-                    })
+                            return {
+                                ...client,
+                                features: featuresData,
+                                hasFeatures: true,
+                            } as Client;
+                        })
                     // ...otherwise return the client itself
-                    .catch((error: Error): Client => {
-                        console.log(error);
-                        return client;
-                    });
-            });
-
-            // Wait until all the pending promises are resolved, then update the state
-            const promises:Promise<Client[]> = Promise.all(clientsWithHasFeaturesPromise);
-            promises.then((clientsWithHasFeatures:Array<Client>) => {
-                // update clients state with the new value
-                setClients(clientsWithHasFeatures);
-                setClientsLoading(false);
-            })
-                .catch((error) => {
-                    console.log(error);
+                        .catch((error: Error): Client => {
+                            console.log(error);
+                            return client;
+                        });
                 });
-        })
+
+                // Wait until all the pending promises are resolved, then update the state
+                const promises:Promise<Client[]> = Promise.all(clientsWithHasFeaturesPromise);
+
+                promises
+                    .then((clientsWithHasFeatures:Array<Client>) => {
+                        // update clients state with the new value
+                        setClients(clientsWithHasFeatures);
+                        setClientsLoading(false);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            })
             .catch((error) => {
                 logger.error("Could not get a client list", error);
                 return [];
             });
 
         // set Feature List state in order to use it throughout the project
-        getFeaturesListPromise().then((data:Feature[]) => {
-            setFeatureList(data);
-        })
+        getFeaturesListPromise()
+            .then((data:Feature[]) => {
+                setFeatureList(data);
+            })
             .catch((error) => {
                 logger.error("Could not get the Feature List", error);
             });
@@ -166,10 +170,12 @@ function TemplatePage({Component, pageProps}:AppProps) {
         // if filtered features are present in the url, set the filteredFeatures state
         if (fltrFeatures?.length) {
             const featuresPromise:Promise<Feature[]> = getFeaturesListPromise();
-            featuresPromise.then((data:Feature[]) => {
-                const filteredFeature = data.filter((feature) => fltrFeatures.includes(feature.name));
-                setFilteredFeatures(filteredFeature);
-            })
+
+            featuresPromise
+                .then((data:Feature[]) => {
+                    const filteredFeature = data.filter((feature) => fltrFeatures.includes(feature.name));
+                    setFilteredFeatures(filteredFeature);
+                })
                 .catch((error) => {
                     console.log(error);
                     return [];
