@@ -62,8 +62,7 @@ export interface IDRadioGroupProps {
 
 export interface IDModalHeader extends AppBarProps {
     featuresDetailName: string;
-    clientId: string;
-    clientList: Array<Client>;
+    clientName?: string;
     onCloseAction: () => void
 }
 

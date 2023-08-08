@@ -13,7 +13,7 @@ import {useEffect, useState} from "react";
 
 // import typescript Interfaces
 import {HomeProps} from "../../../types/componentProps.types";
-import {FeaturesDetail} from "../../../types/api.types";
+import {Client, FeaturesDetail} from "../../../types/api.types";
 
 // import custom components
 import IDModalContent from "../../../components/IDModalContent";
@@ -26,9 +26,9 @@ import IDModalSidebar from "../../../components/IDModalSidebar";
  */
 function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
-    const clientId = router.query.clientId as string;
+    const clientId = Number(router.query.clientId as string);
     const featureKey = router.query.featurekey as string;
-    const featureId = router.query.featureid as unknown as number;
+    const featureId = Number(router.query.featureid as string);
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
         abbreviation: "",
         configurations: [],
@@ -37,6 +37,13 @@ function FeatureDetailPage({...props}: HomeProps) {
         name: "",
         technicalName: "",
     });
+
+    let client:Client | undefined;
+    if (props.clients.some((client) => client.id === clientId)) {
+        client = props.clients.filter((client) => client.id === clientId)[0];
+    } else {
+        console.error("Client not found");
+    }
 
     useEffect(() => {
         if (featureKey) {
@@ -72,6 +79,8 @@ function FeatureDetailPage({...props}: HomeProps) {
 
     if (!props.isLoading && !props.featureList.some((feat) => feat.technicalName === featureKey)) {
         return <p>Das Feature wurde nicht gefunden</p>;
+    } else if (!props.isLoading && !client) {
+        return <p>Der Mandant wurde nicht gefunden</p>;
     }
 
     return (
@@ -93,8 +102,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
                                 <IdModalHeader
                                     featuresDetailName={featuresDetail.name}
-                                    clientList={props.clients}
-                                    clientId={clientId}
+                                    clientName={client && client.name}
                                     position="absolute"
                                     color="inherit"
                                     onCloseAction={onCloseAction} />
