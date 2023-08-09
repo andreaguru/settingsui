@@ -105,8 +105,7 @@ function ClientCard({
                                         pathname: `/feature/${client.id}/${feature.technicalName}`,
                                         /* pass the current query params to the next page
                                         (filteredClients and filteredFeatures, if present) */
-                                        query: router &&
-                                            {...router.query, featureid: feature.id},
+                                        query: router && router.query,
                                     }}
                                 >
                                     <Fade in>
