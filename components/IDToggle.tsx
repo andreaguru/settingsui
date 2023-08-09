@@ -6,7 +6,10 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import IconButton, {IconButtonProps} from "@mui/material/IconButton";
+import Interest from "@mui/icons-material/Interests";
+import AutoAwesome from "@mui/icons-material/AutoAwesome";
 import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
@@ -14,7 +17,7 @@ import {Divider, ListItem} from "@mui/material";
 import {IdToggleProps} from "../types/componentProps.types";
 import List from "@mui/material/List";
 import Box from "@mui/material/Box";
-import {SettingsLink} from "../types/api.types";
+import {ElementType, SettingsLink} from "../types/api.types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -107,53 +110,51 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
                     <Divider />
-                    <Grid container sx={{pt: 2}}>
+                    <Grid container sx={{pt: 2, display: "flex", rowGap: 2}}>
                         {/* normal features */}
                         {featureKey !== "header" && featureKey !== "footer" &&
                             <>
-                                <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
-                                    <Box>
+                                {settings.map((setting, index) => (
+                                    <Box key={index} sx={{flexBasis: "50%"}}>
                                         <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
+                                            color="secondary.light">{setting.name}</Typography>
+                                        <Typography variant="body2">{setting.value}</Typography>
                                     </Box>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                </Grid>
+                                ))}
                             </>
                         }
 
                         {/* header or footer layout */}
                         {(featureKey === "header" || featureKey === "footer") &&
                         <List disablePadding>
-                            {settings.map((value, index) => (
+                            {settings.map((setting, index) => (
                                 <Fragment key={index}>
-                                    {value.name &&
-                                        <Typography variant="subtitle2">{value.name}</Typography>
+                                    {setting.name &&
+                                        <Typography variant="subtitle2">{setting.name}</Typography>
                                     }
-                                    {value.links.map((link:SettingsLink, index:number) => (
+                                    {setting.links && setting.links.map((link:SettingsLink, index:number) => (
                                         <ListItem key={index}>
-                                            <Typography variant="body2">{link.name}</Typography>
+                                            <Typography variant="body2" sx={{display: "flex", alignItems: "center"}}>
+                                                {link.elementType === ElementType.SEARCH_LINK ?
+                                                    <Interest
+                                                        sx={{color: "text.secondary",
+                                                            marginRight: .3}}
+                                                        fontSize="inherit" /> :
+                                                    ""}
+                                                {link.name}
+                                                {link.elementType === ElementType.TEXT_LINK &&
+                                                link.modifierClassExtension !== null ?
+                                                    <Tooltip
+                                                        title={`Hervorgehobener Link: ${link.modifierClassExtension}`}
+                                                        placement="top">
+                                                        <AutoAwesome
+                                                            sx={{color: "text.secondary",
+                                                                marginLeft: .3,
+                                                                cursor: "pointer"}}
+                                                            fontSize="inherit"/>
+                                                    </Tooltip> :
+                                                    ""}
+                                            </Typography>
                                             <Link variant="body2"
                                                 color="text.secondary"
                                                 href={link.url}

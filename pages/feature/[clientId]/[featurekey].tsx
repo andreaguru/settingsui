@@ -45,7 +45,7 @@ function FeatureDetailPage({...props}: HomeProps) {
     }
 
     useEffect(() => {
-        if (featureKey) {
+        if (featureKey && props.featureList.length > 0) {
             const featureId = props.featureList.filter((feature) => feature.technicalName === featureKey)[0].id;
             const featurePromise:Promise<FeaturesDetail> = getFeatureDetail(featureId);
 

@@ -9,6 +9,11 @@ export enum StatusValue {
     NONE = "NONE"
 }
 
+export enum ElementType {
+    TEXT_LINK = "TEXT_LINK",
+    SEARCH_LINK = "SEARCH_LINK",
+}
+
 interface Status {
     client: StatusValue;
     category: StatusValue;
@@ -30,8 +35,9 @@ export interface Client {
 }
 
 export interface Settings {
-    name: string;
-    links: Array<SettingsLink>;
+    name?: string;
+    links?: Array<SettingsLink>;
+    value?: string;
 }
 
 export interface FeaturesConfig {
@@ -56,4 +62,6 @@ export type ClientOrFeature = Client | Feature
 export type SettingsLink = {
     name: string,
     url: string,
+    modifierClassExtension?: string | null,
+    elementType?: ElementType,
 }
