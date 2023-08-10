@@ -137,7 +137,10 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
                                             <Typography variant="body2" sx={{display: "flex", alignItems: "center"}}>
                                                 {link.elementType === ElementType.SEARCH_LINK ?
                                                     <Interest
-                                                        sx={{marginRight: .3}}
+                                                        sx={{
+                                                            marginRight: .3,
+                                                            marginTop: -.2,
+                                                        }}
                                                         fontSize="inherit" /> :
                                                     ""}
                                                 {link.name}
@@ -147,9 +150,14 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
                                                         title={`Hervorgehobener Link: ${link.modifierClassExtension}`}
                                                         placement="top">
                                                         <AutoAwesome
-                                                            sx={{color: "text.secondary",
-                                                                marginLeft: .3,
-                                                                cursor: "pointer"}}
+                                                            sx={{"color": "text.secondary",
+                                                                "marginLeft": .3,
+                                                                "marginTop": -.2,
+                                                                "cursor": "pointer",
+                                                                "&:hover": {
+                                                                    color: "text.primary",
+                                                                },
+                                                            }}
                                                             fontSize="inherit"/>
                                                     </Tooltip> :
                                                     ""}

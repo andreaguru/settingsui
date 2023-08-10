@@ -27,6 +27,7 @@ import IDModalSidebar from "../../../components/IDModalSidebar";
 function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = Number(router.query.clientId as string);
+    let client:Client | undefined;
     const featureKey = router.query.featurekey as string;
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
         abbreviation: "",
@@ -36,13 +37,6 @@ function FeatureDetailPage({...props}: HomeProps) {
         name: "",
         technicalName: "",
     });
-
-    let client:Client | undefined;
-    if (props.clients.some((client) => client.id === clientId)) {
-        client = props.clients.filter((client) => client.id === clientId)[0];
-    } else {
-        console.error("Client not found");
-    }
 
     useEffect(() => {
         if (featureKey && props.featureList.length > 0) {
@@ -77,10 +71,20 @@ function FeatureDetailPage({...props}: HomeProps) {
         });
     };
 
-    if (!props.isLoading && !props.featureList.some((feat) => feat.technicalName === featureKey)) {
-        return <p>Das Feature wurde nicht gefunden</p>;
-    } else if (!props.isLoading && !client) {
-        return <p>Der Mandant wurde nicht gefunden</p>;
+    if (!props.isLoading) {
+        // check if the client id coming from router is present in the list
+        if (props.clients.some((client) => client.id === clientId)) {
+            client = props.clients.filter((client) => client.id === clientId)[0];
+        } else {
+            console.error("Client not found");
+        }
+
+        // Error handling in case feature o client are not present
+        if (!props.featureList.some((feat) => feat.technicalName === featureKey)) {
+            return <p>Das Feature wurde nicht gefunden</p>;
+        } else if (!client) {
+            return <p>Der Mandant wurde nicht gefunden</p>;
+        }
     }
 
     return (
