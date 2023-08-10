@@ -137,8 +137,7 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
                                             <Typography variant="body2" sx={{display: "flex", alignItems: "center"}}>
                                                 {link.elementType === ElementType.SEARCH_LINK ?
                                                     <Interest
-                                                        sx={{color: "text.secondary",
-                                                            marginRight: .3}}
+                                                        sx={{marginRight: .3}}
                                                         fontSize="inherit" /> :
                                                     ""}
                                                 {link.name}
