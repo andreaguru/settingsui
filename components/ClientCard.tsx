@@ -102,7 +102,7 @@ function ClientCard({
                                 inView && <NextLink
                                     passHref
                                     href={{
-                                        pathname: `/feature/${client.id}/${feature.technicalName}`,
+                                        pathname: `/feature/${client.id}/${feature.key}`,
                                         /* pass the current query params to the next page
                                         (filteredClients and filteredFeatures, if present) */
                                         query: router && router.query,

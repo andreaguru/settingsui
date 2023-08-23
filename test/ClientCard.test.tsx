@@ -109,7 +109,7 @@ describe("Parameterized test for ClientCard", () => {
             expect(traffective).toHaveAttribute(
                 "href",
                 // eslint-disable-next-line max-len
-                `/feature/${clientMocked.id}/${clientMocked.features[0].technicalName}?fltr-clients=${clientMocked.id}&clientname=${escapedClientName}&featureid=${clientMocked.features[0].id}`
+                `/feature/${clientMocked.id}/${clientMocked.features[0].key}?fltr-clients=${clientMocked.id}&clientname=${escapedClientName}&featureid=${clientMocked.features[0].id}`
             );
         }
     );
