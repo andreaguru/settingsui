@@ -8,7 +8,7 @@ import Home from "../../index";
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
-import {getFeatureDetail} from "../../../api/FeatureDetailAPI";
+import {getFeatureDetailForClient} from "../../../api/FeatureDetailAPI";
 import {useEffect, useState} from "react";
 
 // import typescript Interfaces
@@ -27,7 +27,7 @@ import IDModalSidebar from "../../../components/IDModalSidebar";
 function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = Number(router.query.clientId as string);
-    let client:Client | undefined;
+    let client: Client | undefined;
     const featureKey = router.query.featurekey as string;
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
         abbreviation: "",
@@ -41,7 +41,7 @@ function FeatureDetailPage({...props}: HomeProps) {
     useEffect(() => {
         if (featureKey && props.featureList.length > 0) {
             const featureId = props.featureList.filter((feature) => feature.technicalName === featureKey)[0].id;
-            const featurePromise:Promise<FeaturesDetail> = getFeatureDetail(featureId);
+            const featurePromise: Promise<FeaturesDetail> = getFeatureDetailForClient(featureId, clientId);
 
             featurePromise
                 .then((data) => {
@@ -54,7 +54,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                     return error;
                 });
         }
-    }, [router, featureKey, props.featureList]);
+    }, [router, featureKey, props.featureList, clientId]);
 
     const onCloseAction = () => {
     // get filteredFeatures and filteredClients if present in the url
@@ -106,7 +106,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
                                 <IdModalHeader
                                     featuresDetailName={featuresDetail.name}
-                                    clientName={client && client.name}
+                                    client={client}
                                     position="absolute"
                                     color="inherit"
                                     onCloseAction={onCloseAction} />
@@ -118,11 +118,11 @@ function FeatureDetailPage({...props}: HomeProps) {
                             </Grid>
 
                             {/* Sidebar*/}
-                            { featuresDetail.configurations.length &&
-                            <IDModalSidebar
-                                featureKey={featureKey}
-                                featuresDetailConfig={featuresDetail.configurations}
-                                item xs={4} />
+                            {featuresDetail.configurations.length > 0 &&
+                                <IDModalSidebar
+                                    featureKey={featureKey}
+                                    featuresDetailConfig={featuresDetail.configurations}
+                                    item xs={4}/>
                             }
                         </IDModalContent>
                     </Modal>
