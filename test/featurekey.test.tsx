@@ -10,7 +10,7 @@ import FeatureDetailPage from "../pages/feature/[clientId]/[featurekey]";
 jest.mock("../api/DashboardAPI");
 
 jest.mock("../api/FeatureDetailAPI", () => ({
-    getFeatureDetailProclient: jest.fn(() => Promise.resolve()),
+    getFeatureDetailForClient: jest.fn(() => Promise.resolve()),
 }));
 
 const setFilteredValues = jest.fn();

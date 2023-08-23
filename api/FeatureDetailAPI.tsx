@@ -11,19 +11,20 @@ const featureDetailEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_FEATURES;
  * @param {number} clientId
  * @constructor
  */
-export async function getFeatureDetailProclient(featureId:number, clientId:number):Promise<FeaturesDetail> {
+export async function getFeatureDetailForClient(featureId: number, clientId: number): Promise<FeaturesDetail> {
     try {
         const featureDetailURL = `${featureDetailEndpoint}/${featureId}`;
         const response = await fetch(featureDetailURL);
         const featuresPromise = await response.json();
 
         // update the configuration list in order to show only configs that are set for a specific client
-        return {
+        const featurePromiseForClient = {
             ...featuresPromise,
             configurations: featuresPromise.configurations.filter((config: FeaturesConfig) => {
                 return config.clientId === clientId;
             }),
         };
+        return featurePromiseForClient;
     } catch (error) {
         logger.error("Could not get Features Details for Feature Id", featureId, error);
         return Promise.reject(error);

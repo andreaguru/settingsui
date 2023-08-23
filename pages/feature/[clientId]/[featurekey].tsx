@@ -8,7 +8,7 @@ import Home from "../../index";
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
-import {getFeatureDetailProclient} from "../../../api/FeatureDetailAPI";
+import {getFeatureDetailForClient} from "../../../api/FeatureDetailAPI";
 import {useEffect, useState} from "react";
 
 // import typescript Interfaces
@@ -41,7 +41,7 @@ function FeatureDetailPage({...props}: HomeProps) {
     useEffect(() => {
         if (featureKey && props.featureList.length > 0) {
             const featureId = props.featureList.filter((feature) => feature.technicalName === featureKey)[0].id;
-            const featurePromise:Promise<FeaturesDetail> = getFeatureDetailProclient(featureId, clientId);
+            const featurePromise: Promise<FeaturesDetail> = getFeatureDetailForClient(featureId, clientId);
 
             featurePromise
                 .then((data) => {
