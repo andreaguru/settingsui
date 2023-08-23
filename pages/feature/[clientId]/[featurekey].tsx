@@ -27,7 +27,7 @@ import IDModalSidebar from "../../../components/IDModalSidebar";
 function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
     const clientId = Number(router.query.clientId as string);
-    let client:Client | undefined;
+    let client: Client | undefined;
     const featureKey = router.query.featurekey as string;
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
         abbreviation: "",
@@ -106,7 +106,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
                                 <IdModalHeader
                                     featuresDetailName={featuresDetail.name}
-                                    clientName={client && client.name}
+                                    client={client}
                                     position="absolute"
                                     color="inherit"
                                     onCloseAction={onCloseAction} />
@@ -118,11 +118,11 @@ function FeatureDetailPage({...props}: HomeProps) {
                             </Grid>
 
                             {/* Sidebar*/}
-                            { featuresDetail.configurations.length &&
-                            <IDModalSidebar
-                                featureKey={featureKey}
-                                featuresDetailConfig={featuresDetail.configurations}
-                                item xs={4} />
+                            {featuresDetail.configurations.length > 0 &&
+                                <IDModalSidebar
+                                    featureKey={featureKey}
+                                    featuresDetailConfig={featuresDetail.configurations}
+                                    item xs={4}/>
                             }
                         </IDModalContent>
                     </Modal>
