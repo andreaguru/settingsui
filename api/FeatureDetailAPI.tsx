@@ -18,13 +18,12 @@ export async function getFeatureDetailForClient(featureId: number, clientId: num
         const featuresPromise = await response.json();
 
         // update the configuration list in order to show only configs that are set for a specific client
-        const featurePromiseForClient = {
+        const configurations = featuresPromise.configurations
+            .filter((config: FeaturesConfig) => config.clientId === clientId);
+        return {
             ...featuresPromise,
-            configurations: featuresPromise.configurations.filter((config: FeaturesConfig) => {
-                return config.clientId === clientId;
-            }),
+            configurations,
         };
-        return featurePromiseForClient;
     } catch (error) {
         logger.error("Could not get Features Details for Feature Id", featureId, error);
         return Promise.reject(error);
