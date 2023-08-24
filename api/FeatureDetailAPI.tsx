@@ -29,3 +29,4 @@ export async function getFeatureDetailForClient(featureId: number, clientId: num
         return Promise.reject(error);
     }
 }
+
