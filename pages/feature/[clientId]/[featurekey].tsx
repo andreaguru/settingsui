@@ -30,17 +30,17 @@ function FeatureDetailPage({...props}: HomeProps) {
     let client: Client | undefined;
     const featureKey = router.query.featurekey as string;
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
-        abbreviation: "",
+        shortName: "",
         configurations: [],
         description: "",
         id: 0,
         name: "",
-        technicalName: "",
+        key: "",
     });
 
     useEffect(() => {
         if (featureKey && props.featureList.length > 0) {
-            const featureId = props.featureList.filter((feature) => feature.technicalName === featureKey)[0].id;
+            const featureId = props.featureList.filter((feature) => feature.key === featureKey)[0].id;
             const featurePromise: Promise<FeaturesDetail> = getFeatureDetailForClient(featureId, clientId);
 
             featurePromise
@@ -80,7 +80,7 @@ function FeatureDetailPage({...props}: HomeProps) {
         }
 
         // Error handling in case feature o client are not present
-        if (!props.featureList.some((feat) => feat.technicalName === featureKey)) {
+        if (!props.featureList.some((feat) => feat.key === featureKey)) {
             return <p>Das Feature wurde nicht gefunden</p>;
         } else if (!client) {
             return <p>Der Mandant wurde nicht gefunden</p>;

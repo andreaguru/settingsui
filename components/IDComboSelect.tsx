@@ -51,7 +51,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                             (option: ClientOrFeature, value: ClientOrFeature) => option.name === value.name
                         }
                         getOptionLabel={
-                            (option: ClientOrFeature) => "technicalName" in option ?
+                            (option: ClientOrFeature) => "key" in option ?
                                 option.name :
                                 `${option.name} | ${option.id}`
                         }
@@ -67,31 +67,31 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                     color={theme.palette.neutral.main}
                                     sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
 
-                                    {"technicalName" in option &&
-                                         <Typography
-                                             variant="subtitle2"
-                                             component="span"
-                                             color="secondary.main"
-                                             fontWeight="700">
-                                             {option.name}
-                                         </Typography>
+                                    {"key" in option &&
+                                        <Typography
+                                            variant="subtitle2"
+                                            component="span"
+                                            color="secondary.main"
+                                            fontWeight="700">
+                                            {option.name}
+                                        </Typography>
                                     }
-                                    {!("technicalName" in option) &&
-                                         <Typography
-                                             variant="subtitle2"
-                                             component="span"
-                                             color="secondary.main"
-                                             fontWeight="700">
-                                             {option.name}
-                                             <Typography
-                                                 variant="inherit"
-                                                 component="span"
-                                                 fontWeight="normal"
-                                                 color="secondary.light"
-                                             >
-                                                 {showId ? ` | ${option.id}` : ""}
-                                             </Typography>
-                                         </Typography>
+                                    {!("key" in option) &&
+                                        <Typography
+                                            variant="subtitle2"
+                                            component="span"
+                                            color="secondary.main"
+                                            fontWeight="700">
+                                            {option.name}
+                                            <Typography
+                                                variant="inherit"
+                                                component="span"
+                                                fontWeight="normal"
+                                                color="secondary.light"
+                                            >
+                                                {showId ? ` | ${option.id}` : ""}
+                                            </Typography>
+                                        </Typography>
                                     }
                                 </Typography>
                             </li>
