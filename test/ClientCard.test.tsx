@@ -104,12 +104,10 @@ describe("Parameterized test for ClientCard", () => {
             // get first mocked feature -> traffective
             const traffective = within(autocomplete)
                 .getByText(clientMocked.features[0].name).parentElement as HTMLElement;
-            const escapedClientName = clientMocked.name.replace(/ /g, "+");
-
             expect(traffective).toHaveAttribute(
                 "href",
                 // eslint-disable-next-line max-len
-                `/feature/${clientMocked.id}/${clientMocked.features[0].technicalName}?fltr-clients=${clientMocked.id}&clientname=${escapedClientName}&featureid=${clientMocked.features[0].id}`
+                `/feature/${clientMocked.id}/${clientMocked.features[0].technicalName}?fltr-clients=${clientMocked.id}`
             );
         }
     );
