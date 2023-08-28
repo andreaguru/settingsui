@@ -14,7 +14,7 @@ import {styled, useTheme} from "@mui/material/styles";
 
 // import typescript Interfaces
 import {IDInfoButtonProps} from "../types/componentProps.types";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 // import custom Components
 import iconColors from "../assets/icon_colors_icons.svg";
