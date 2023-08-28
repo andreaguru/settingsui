@@ -1,14 +1,12 @@
 import {Typography} from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
-import {useRouter} from "next/router";
 import {useTheme} from "@mui/material/styles";
 
 // import typescript Interfaces
 import {Client} from "../types/api.types";
 import {MainContentProps} from "../types/componentProps.types";
 import ClientCard from "./ClientCard";
-import {useEffect} from "react";
 
 // import custom components
 import IDInfoButton from "./IDInfoButton";
@@ -24,7 +22,6 @@ function MainContent({
     filteredClientsList,
     showSelectedFeatures,
     isLoading}: MainContentProps) {
-    const router = useRouter();
     const theme = useTheme();
     /* filter the clients that have to be shown, according to current filter status */
     /**
@@ -35,22 +32,6 @@ function MainContent({
         const clients = filteredClientsList.length ? filteredClientsList : clientsList;
         return clients.filter((client) => client.hasFeatures === true);
     }
-
-    /* with useEffect we look for changes in clientList state.
-    When clientList is updated with values, we check if a jump to hash is needed. */
-    useEffect(() => {
-        // Detect if an anchor is present in the URL
-        const {hash, pathname, search} = window.location;
-        const urlWithoutHash = pathname + search;
-        if (hash && clientsList.length > 0) {
-            // Scroll to the anchor if the element is present
-            const anchorElement = document.getElementById(hash.replace("#", ""));
-            if (anchorElement) {
-                anchorElement.scrollIntoView();
-            }
-            router.replace(urlWithoutHash);
-        }
-    }, [router, clientsList]);
 
     return (
         <>
