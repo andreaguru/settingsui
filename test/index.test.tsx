@@ -13,6 +13,7 @@ const showSelectedFeatures = jest.fn();
 showSelectedFeatures.mockReturnValue(mockedFeatures);
 
 jest.mock("react-intersection-observer");
+jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 beforeEach( () => {
     // Define the return value of the mock
