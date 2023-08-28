@@ -8,7 +8,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -18,7 +18,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -28,7 +28,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -38,7 +38,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -54,7 +54,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -64,7 +64,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -74,7 +74,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -84,7 +84,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -100,7 +100,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -110,7 +110,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -120,7 +120,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -130,7 +130,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -146,7 +146,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -156,7 +156,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -166,7 +166,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -176,7 +176,7 @@ export const mockedClientList:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -195,7 +195,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -205,7 +205,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -215,7 +215,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -225,7 +225,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -242,7 +242,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -252,7 +252,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -262,7 +262,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -272,7 +272,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -289,7 +289,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -299,7 +299,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -309,7 +309,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -319,7 +319,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -336,7 +336,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -346,7 +346,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -356,7 +356,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -366,7 +366,7 @@ export const mockedClientListWithHasFeatures:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -386,7 +386,7 @@ export const mockedFilteredList:Array<Client> = [
             {
                 "id": 1,
                 "name": "Traffective Ads",
-                "technicalName": "traffective",
+                "key": "traffective",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.NONE,
@@ -396,7 +396,7 @@ export const mockedFilteredList:Array<Client> = [
             {
                 "id": 2,
                 "name": "ECR In Article",
-                "technicalName": "inArticleReco",
+                "key": "inArticleReco",
                 "status": {
                     "client": StatusValue.DISABLED,
                     "category": StatusValue.ENABLED,
@@ -406,7 +406,7 @@ export const mockedFilteredList:Array<Client> = [
             {
                 "id": 3,
                 "name": "CleverPush",
-                "technicalName": "cleverpush",
+                "key": "cleverpush",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.ENABLED_AND_DISABLED,
@@ -416,7 +416,7 @@ export const mockedFilteredList:Array<Client> = [
             {
                 "id": 4,
                 "name": "Paywall",
-                "technicalName": "paywall",
+                "key": "paywall",
                 "status": {
                     "client": StatusValue.ENABLED,
                     "category": StatusValue.DISABLED,
@@ -432,7 +432,7 @@ export const mockedFeatures:Array<Feature> = [
     {
         "id": 1,
         "name": "Traffective Ads",
-        "technicalName": "traffective",
+        "key": "traffective",
         "status": {
             "client": StatusValue.ENABLED,
             "category": StatusValue.NONE,
@@ -442,7 +442,7 @@ export const mockedFeatures:Array<Feature> = [
     {
         "id": 2,
         "name": "ECR In Article",
-        "technicalName": "inArticleReco",
+        "key": "inArticleReco",
         "status": {
             "client": StatusValue.DISABLED,
             "category": StatusValue.DISABLED,
@@ -452,7 +452,7 @@ export const mockedFeatures:Array<Feature> = [
     {
         "id": 3,
         "name": "CleverPush",
-        "technicalName": "cleverpush",
+        "key": "cleverpush",
         "status": {
             "client": StatusValue.ENABLED,
             "category": StatusValue.NONE,
@@ -465,7 +465,7 @@ export const mockedFilteredFeatures:Array<Feature> = [
     {
         "id": 1,
         "name": "Traffective Ads",
-        "technicalName": "traffective",
+        "key": "traffective",
         "status": {
             "client": StatusValue.DISABLED,
             "category": StatusValue.NONE,
@@ -475,7 +475,7 @@ export const mockedFilteredFeatures:Array<Feature> = [
     {
         "id": 2,
         "name": "ECR In Article",
-        "technicalName": "inArticleReco",
+        "key": "inArticleReco",
         "status": {
             "client": StatusValue.DISABLED,
             "category": StatusValue.NONE,

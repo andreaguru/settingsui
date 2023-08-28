@@ -52,17 +52,17 @@ test("filteredClients state is passed as prop if a filter is present in query pa
 /* UNIT TESTS */
 test("showFeaturesPerStatus returns the only Feature that is enabled", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.ACTIVE);
-    expect(features[0].technicalName).toBe("traffective");
+    expect(features[0].key).toBe("traffective");
 });
 
 test("showFeaturesPerStatus returns the two Features that are not enabled", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.INACTIVE);
-    expect(features[0].technicalName).toBe("inArticleReco");
+    expect(features[0].key).toBe("inArticleReco");
 });
 
 test("showFeaturesPerStatus returns all the features (no features removed)", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.ALL);
-    expect(features[0].technicalName).toBe("traffective");
-    expect(features[1].technicalName).toBe("inArticleReco");
-    expect(features[2].technicalName).toBe("cleverpush");
+    expect(features[0].key).toBe("traffective");
+    expect(features[1].key).toBe("inArticleReco");
+    expect(features[2].key).toBe("cleverpush");
 });

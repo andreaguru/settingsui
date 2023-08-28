@@ -23,7 +23,7 @@ interface Status {
 export interface Feature {
     id: number;
     name: string;
-    technicalName: string;
+    key: string;
     status: Status;
 }
 
@@ -51,8 +51,8 @@ export interface FeaturesConfig {
 export interface FeaturesDetail {
     id: number;
     name: string;
-    technicalName: string;
-    abbreviation: string;
+    key: string;
+    shortName: string;
     description: string;
     configurations: Array<FeaturesConfig>;
 }
