@@ -54,8 +54,8 @@ describe("Parameterized test for ClientCard", () => {
                     showSelectedFeatures={() => []}/>
             </ThemeProvider>);
 
-            expect(screen.getByText(clientValue.name)).toBeInTheDocument();
-            expect(screen.getByText(clientValue.id)).toBeInTheDocument();
+            expect(screen.getByText(clientValue.name, {exact: false})).toBeInTheDocument();
+            expect(screen.getByText(clientValue.id, {exact: false})).toBeInTheDocument();
         }
     );
 
@@ -73,10 +73,10 @@ describe("Parameterized test for ClientCard", () => {
             const autocomplete = screen.getByTestId(clientMocked.id);
             // traffective -> feature client is ENABLED
             const traffective = within(autocomplete)
-                .getByText(clientMocked.features[0].name).parentElement as HTMLElement;
+                .getAllByText(clientMocked.features[0].name, {exact: false})[0].parentElement as HTMLElement;
             // inArticleReco -> feature client is DISABLED
             const inArticleReco = within(autocomplete)
-                .getByText(clientMocked.features[1].name).parentElement as HTMLElement;
+                .getAllByText(clientMocked.features[1].name, {exact: false})[0].parentElement as HTMLElement;
 
             expect(traffective).toHaveStyle({
                 "color": edidTheme.palette.success.main,
@@ -109,7 +109,7 @@ describe("Parameterized test for ClientCard", () => {
             const autocomplete = screen.getByTestId(clientMocked.id);
             // get first mocked feature -> traffective
             const traffective = within(autocomplete)
-                .getByText(clientMocked.features[0].name).closest("a") as HTMLElement;
+                .getAllByText(clientMocked.features[0].name)[0].closest("a") as HTMLElement;
             expect(traffective).toHaveAttribute(
                 "href",
                 // eslint-disable-next-line max-len

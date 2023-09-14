@@ -38,7 +38,7 @@ function Sidebar(
                 showId={true}/>
 
             <IDComboSelect values={featureList}
-                title="Feature"
+                title="Einstellung"
                 placeholder="z.B. AdDefend, CleverPush Anmelde-Widget"
                 filteredValues={filteredFeatures}
                 setFilteredValues={setFilteredFeatures}
