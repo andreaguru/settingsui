@@ -10,8 +10,8 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
-import FeedbackIcon from '@mui/icons-material/Feedback';
-import Link from '@mui/material/Link';
+import FeedbackIcon from "@mui/icons-material/Feedback";
+import Link from "@mui/material/Link";
 import {styled, useTheme} from "@mui/material/styles";
 
 // import typescript Interfaces
