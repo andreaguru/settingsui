@@ -11,6 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import FeedbackIcon from "@mui/icons-material/Feedback";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Link from "@mui/material/Link";
 import {styled, useTheme} from "@mui/material/styles";
 
@@ -155,6 +156,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                             <ListItemText
                                 primaryTypographyProps={{fontSize: theme.typography.pxToRem(14)}} >
                                 Feedback
+                                <OpenInNewIcon sx={{fontSize: "small", verticalAlign: "3px"}}/>
                             </ListItemText>
                         </MenuItem>
                     </MenuList>
