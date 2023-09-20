@@ -1,7 +1,7 @@
 import {render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import {RouterContext} from "next/dist/shared/lib/router-context";
-import {createMockRouter} from "./test-utils/createMockRouter";
+import mockRouter from "next-router-mock";
 import ClientCard, {getButtonColorByStatus, getIconColorByStatus} from "../components/ClientCard";
 import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
 import {edidTheme} from "../themes/edid";
@@ -10,6 +10,7 @@ import * as reactObserver from "react-intersection-observer";
 import {InViewHookResponse} from "react-intersection-observer";
 
 jest.mock("react-intersection-observer");
+jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 const showSelectedFeatures = jest.fn();
 showSelectedFeatures.mockReturnValue(mockedFeatures);
@@ -59,7 +60,7 @@ describe("Parameterized test for ClientCard", () => {
     );
 
     test.each(mockedClientListWithHasFeatures)(
-        "Client name and ID are outputted in the DOM",
+        "Feature button matches color status",
         (clientMocked) => {
             render(
                 <ThemeProvider theme={edidTheme}>
@@ -90,8 +91,13 @@ describe("Parameterized test for ClientCard", () => {
     test.each(mockedClientListWithHasFeatures)(
         "fltr-clients query param is appended to href attr in Next Link Component",
         (clientMocked) => {
+            mockRouter.push({
+                query: {
+                    "fltr-clients": clientMocked.id.toString(),
+                },
+            });
             render(
-                <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "merkur"}})}>
+                <RouterContext.Provider value={mockRouter}>
                     <ThemeProvider theme={edidTheme}>
                         <ClientCard
                             client={clientMocked}
@@ -103,11 +109,11 @@ describe("Parameterized test for ClientCard", () => {
             const autocomplete = screen.getByTestId(clientMocked.id);
             // get first mocked feature -> traffective
             const traffective = within(autocomplete)
-                .getByText(clientMocked.features[0].name).parentElement as HTMLElement;
-
+                .getByText(clientMocked.features[0].name).closest("a") as HTMLElement;
             expect(traffective).toHaveAttribute(
                 "href",
-                `/feature/${clientMocked.id}/${clientMocked.features[0].technicalName}?fltr-clients=merkur`
+                // eslint-disable-next-line max-len
+                `/feature/${clientMocked.id}/${clientMocked.features[0].key}?fltr-clients=${clientMocked.id}`
             );
         }
     );

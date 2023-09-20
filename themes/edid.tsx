@@ -22,7 +22,7 @@ declare module "@mui/material/styles" {
 export const edidTheme = createTheme({
     palette: {
         primary: {
-            main: "#1976D2",
+            main: "#1976d2",
             dark: "red",
         },
         secondary: {
@@ -30,21 +30,21 @@ export const edidTheme = createTheme({
             light: alpha("#212121", 0.6),
         },
         success: {
-            main: "#319E7D",
-            light: lighten("#319E7D", 0.88),
+            main: "#319e7d",
+            light: lighten("#319e7d", 0.88),
         },
         warning: {
-            main: "#FDAD0D",
+            main: "#fdad0d",
         },
         error: {
-            main: "#F15653",
+            main: "#f15653",
         },
         neutral: {
             main: "#616161",
             light: lighten("#616161", 0.86),
         },
         disabled: {
-            main: "#A5A5A5",
+            main: "#a5a5a5",
         },
     },
     typography: (theme) => ({
@@ -57,7 +57,7 @@ export const edidTheme = createTheme({
             styleOverrides: {
                 "*::-webkit-scrollbar": {
                     width: "0.3em",
-                    backgroundColor: "#F5F5F5",
+                    backgroundColor: "#f5f5f5",
                 },
                 "*::-webkit-scrollbar-thumb": {
                     backgroundColor: "#888",
@@ -150,12 +150,15 @@ export const edidTheme = createTheme({
                 root: ({ownerState, theme}) => ({
                     color: theme.palette.secondary.main,
                     ...(ownerState.className === "iconStatus" && {
-                        display: "flex",
-                        marginTop: theme.spacing(2),
-                        marginRight: theme.spacing(2),
-                        padding: theme.spacing(1) + " " + theme.spacing(2),
-                        borderRadius: theme.spacing(.5),
-                        gap: theme.spacing(1),
+                        "display": "flex",
+                        "marginTop": theme.spacing(2),
+                        "marginRight": theme.spacing(2),
+                        "padding": theme.spacing(1) + " " + theme.spacing(2),
+                        "borderRadius": theme.spacing(.5),
+                        "gap": theme.spacing(1),
+                        "&:hover": {
+                            boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
+                        },
                     }),
                     // Style the Modal close button (in featurename page)
                     ...(ownerState.className === "modalClose" && {

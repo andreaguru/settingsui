@@ -11,9 +11,6 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Chip from "@mui/material/Chip";
 import Badge, {BadgeProps} from "@mui/material/Badge";
 
-// import typescript Interfaces
-import {FeatureDetail} from "../types/componentProps.types";
-
 // import custom components
 import IDDataGrid from "./IDDataGrid";
 import IDAlert from "./IDAlert";
@@ -74,16 +71,11 @@ function a11yProps(index: number) {
 
 /**
  *
- * @param {string} clientId
- * @param {string} featureId
  * @constructor
  */
-function FeatureDetail({clientId, featureId}:FeatureDetail) {
+function FeatureDetail() {
     const [activeTab, setActiveTab] = React.useState(0);
     const theme = useTheme();
-
-    /* console log these values for testing purpose. We will need them to make the component dynamic */
-    console.log(clientId, featureId);
 
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
         setActiveTab(newActiveTab);

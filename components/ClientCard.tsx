@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {alpha, Card, CardContent, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -72,6 +72,16 @@ function ClientCard({
 
     const router = useRouter();
 
+    const [hover, setHover] = useState(false);
+
+    const handleMouseEnter = () => {
+        setHover(true);
+    };
+
+    const handleMouseLeave = () => {
+        setHover(false);
+    };
+
     return (
         <Card
             data-testid={client.id}
@@ -102,26 +112,22 @@ function ClientCard({
                                 inView && <NextLink
                                     passHref
                                     href={{
-                                        pathname: `/feature/${client.id}/${feature.id}`,
+                                        pathname: `/feature/${client.id}/${feature.key}`,
                                         /* pass the current query params to the next page
                                         (filteredClients and filteredFeatures, if present) */
-                                        query: router && {...router.query, clientname: client.name},
+                                        query: router && router.query,
                                     }}
+                                    style={{"textDecoration": "none"}}
                                 >
                                     <Fade in>
                                         <IconButton className="iconStatus"
-                                            sx={[
-                                                {
-                                                    color: getButtonColorByStatus(feature.status.client, theme).color,
-                                                    backgroundColor: clientColor,
-                                                },
-                                                {
-                                                    "&:hover": {
-                                                        backgroundColor: alpha(clientColor, 0.7),
-                                                        boxShadow: "0 3px 3px rgb(0 0 0 / 12%)",
-                                                    },
-                                                },
-                                            ]}>
+                                            style={{
+                                                "color": getButtonColorByStatus(feature.status.client, theme).color,
+                                                "backgroundColor": hover ? alpha(clientColor, 0.7) : clientColor,
+                                            }}
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
+                                        >
                                             <Typography variant="subtitle2" lineHeight={1}>{feature.name}</Typography>
                                             <CategoryIcon fontSize="small"
                                                 color={getIconColorByStatus(feature.status.category)}/>

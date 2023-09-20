@@ -6,7 +6,7 @@ import {edidTheme} from "../themes/edid";
 
 jest.mock("../api/DashboardAPI");
 
-const menuItems = [
+const menuItemsWithoutFeedback = [
     "Farben und Icons",
     "Ausspielung",
 ];
@@ -24,7 +24,7 @@ test("Popover is opened on button click", () => {
     expect(screen.queryByText("Farben und Icons")).toBeInTheDocument();
 });
 
-test.each(menuItems)("Popover menu - click on item opens relative content", (menuItem) => {
+test.each(menuItemsWithoutFeedback)("Popover menu - click on item opens relative content", (menuItem) => {
     render(
         <ThemeProvider theme={edidTheme}>
             <IDInfoButton />
@@ -39,7 +39,7 @@ test.each(menuItems)("Popover menu - click on item opens relative content", (men
     expect(screen.queryByRole("heading", {level: 1})).toHaveTextContent(menuItem);
 });
 
-test.each(menuItems)("click on Übersicht opens again the menu", (menuItem) => {
+test.each(menuItemsWithoutFeedback)("click on Übersicht opens again the menu", (menuItem) => {
     render(
         <ThemeProvider theme={edidTheme}>
             <IDInfoButton />
@@ -53,5 +53,5 @@ test.each(menuItems)("click on Übersicht opens again the menu", (menuItem) => {
     const overViewButton = screen.getByText("Übersicht");
     fireEvent.click(overViewButton);
     // check if Menu is rendered again
-    expect(document.querySelectorAll(".MuiListItemText-root").length).toBe(2);
+    expect(document.querySelectorAll(".MuiList-root").length).toBe(1);
 });

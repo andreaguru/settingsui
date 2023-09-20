@@ -1,5 +1,7 @@
 import {Fragment, useState} from "react";
-import Form from "react-jsonschema-form";
+import validator from "@rjsf/validator-ajv8";
+import {RJSFSchema} from "@rjsf/utils";
+import Form from "@rjsf/core";
 import {styled} from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -20,7 +22,7 @@ interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
 
-const schema = {
+const schema: RJSFSchema = {
     title: "Todo",
     type: "object",
     required: ["title"],
@@ -91,13 +93,15 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
         name: "",
         settings: [],
     };
-    const onSubmit = (data) => {
-        console.log(data.formData);
-    };
+
+    const log = (type: string) => console.log.bind(console, type);
 
     return (
         <IDToggleWrapper data-testid="toggle" className={disabled ? "Mui-disabled" : ""}>
-            <Form schema={schema} onSubmit={onSubmit} />
+            <Form
+                schema={schema}
+                validator={validator}
+                onSubmit={log("submitted")} />
             <CardHeader
                 title={name}
                 titleTypographyProps={{variant: "subtitle2"}}
@@ -165,7 +169,7 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
                                     {value.name &&
                                         <Typography variant="subtitle2">{value.name}</Typography>
                                     }
-                                    {value.links.map((link, index) => (
+                                    {value?.links?.map((link, index) => (
                                         <ListItem key={index}>
                                             <Typography variant="body2">{link.name}</Typography>
                                             <Link variant="body2"

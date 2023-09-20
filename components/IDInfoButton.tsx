@@ -10,11 +10,13 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import FeedbackIcon from "@mui/icons-material/Feedback";
+import Link from "@mui/material/Link";
 import {styled, useTheme} from "@mui/material/styles";
 
 // import typescript Interfaces
 import {IDInfoButtonProps} from "../types/componentProps.types";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 // import custom Components
 import iconColors from "../assets/icon_colors_icons.svg";
@@ -124,9 +126,9 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                     },
                 }}
             >
-                {view === ShowView.MENU && <Paper elevation={0} square sx={{width: 188, maxWidth: "100%"}}>
+                {view === ShowView.MENU && <Paper elevation={0} square sx={{width: 196, maxWidth: "100%"}}>
                     <MenuList>
-                        <MenuItem sx={{pl: theme.spacing(3)}} onClick={() => handleChangeView(ShowView.COLORS)}>
+                        <MenuItem sx={{px: theme.spacing(3)}} onClick={() => handleChangeView(ShowView.COLORS)}>
                             <ListItemIcon>
                                 <Image alt="" layout="fixed" src={iconColors} width={20} height={20}/>
                             </ListItemIcon>
@@ -135,13 +137,24 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                                 Farben und Icons
                             </ListItemText>
                         </MenuItem>
-                        <MenuItem sx={{pl: theme.spacing(3)}} onClick={() => handleChangeView(ShowView.DRAW)}>
+                        <MenuItem sx={{px: theme.spacing(3)}} onClick={() => handleChangeView(ShowView.DRAW)}>
                             <ListItemIcon>
                                 <SyncAltIcon />
                             </ListItemIcon>
                             <ListItemText
                                 primaryTypographyProps={{fontSize: theme.typography.pxToRem(14)}} >
                                 Ausspielung
+                            </ListItemText>
+                        </MenuItem>
+                        {/* temporary link to feedback page will be removed/edited for future versions */}
+                        <MenuItem sx={{px: theme.spacing(3)}}
+                            component={Link} href="https://confluence.ippen.io/x/ooM8Iw" target="_blank">
+                            <ListItemIcon>
+                                <FeedbackIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                                primaryTypographyProps={{fontSize: theme.typography.pxToRem(14)}} >
+                                Feedback
                             </ListItemText>
                         </MenuItem>
                     </MenuList>

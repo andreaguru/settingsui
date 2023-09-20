@@ -5,16 +5,15 @@ import {useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
 import FeatureDetail from "../../../components/FeatureDetail";
 import Home from "../../index";
-import {getFeaturesList} from "../../../utils/utils";
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
-import {getFeatureDetail} from "../../../api/FeatureDetailAPI";
+import {getFeatureDetailForClient} from "../../../api/FeatureDetailAPI";
 import {useEffect, useState} from "react";
 
 // import typescript Interfaces
 import {HomeProps} from "../../../types/componentProps.types";
-import {FeaturesDetail} from "../../../types/api.types";
+import {Client, FeaturesDetail} from "../../../types/api.types";
 
 // import custom components
 import IDModalContent from "../../../components/IDModalContent";
@@ -27,28 +26,35 @@ import IDModalSidebar from "../../../components/IDModalSidebar";
  */
 function FeatureDetailPage({...props}: HomeProps) {
     const router = useRouter();
-    const clientId = router.query.clientId as string;
-    const clientName = router.query.clientname as string;
-    const featureId = parseInt(router.query.featureId as string);
+    const clientId = Number(router.query.clientId as string);
+    let client: Client | undefined;
+    const featureKey = router.query.featurekey as string;
     const [featuresDetail, setFeaturesDetail] = useState<FeaturesDetail>({
-        abbreviation: "",
+        shortName: "",
         configurations: [],
         description: "",
         id: 0,
         name: "",
-        technicalName: "",
+        key: "",
     });
 
     useEffect(() => {
-        if (featureId) {
-            const featurePromise = getFeatureDetail(featureId);
-            featurePromise.then((data) => {
-                if (data && Object.keys(data).length) {
-                    setFeaturesDetail(data);
-                }
-            });
+        if (featureKey && props.featureList.length > 0) {
+            const featureId = props.featureList.filter((feature) => feature.key === featureKey)[0].id;
+            const featurePromise: Promise<FeaturesDetail> = getFeatureDetailForClient(featureId, clientId);
+
+            featurePromise
+                .then((data) => {
+                    if (data && Object.keys(data).length) {
+                        setFeaturesDetail(data);
+                    }
+                })
+                .catch((error: Error) => {
+                    console.log(error);
+                    return error;
+                });
         }
-    }, [router, featureId]);
+    }, [router, featureKey, props.featureList, clientId]);
 
     const onCloseAction = () => {
     // get filteredFeatures and filteredClients if present in the url
@@ -65,8 +71,20 @@ function FeatureDetailPage({...props}: HomeProps) {
         });
     };
 
-    if (!props.isLoading && !getFeaturesList(props.clients).some((feat) => feat.id === featureId)) {
-        return <p>Das Feature wurde nicht gefunden</p>;
+    if (!props.isLoading) {
+        // check if the client id coming from router is present in the list
+        if (props.clients.some((client) => client.id === clientId)) {
+            client = props.clients.filter((client) => client.id === clientId)[0];
+        } else {
+            console.error("Client not found");
+        }
+
+        // Error handling in case feature o client are not present
+        if (!props.featureList.some((feat) => feat.key === featureKey)) {
+            return <p>Das Feature wurde nicht gefunden</p>;
+        } else if (!client) {
+            return <p>Der Mandant wurde nicht gefunden</p>;
+        }
     }
 
     return (
@@ -88,7 +106,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
                                 <IdModalHeader
                                     featuresDetailName={featuresDetail.name}
-                                    clientName={clientName}
+                                    client={client}
                                     position="absolute"
                                     color="inherit"
                                     onCloseAction={onCloseAction} />
@@ -96,17 +114,15 @@ function FeatureDetailPage({...props}: HomeProps) {
 
                             {/* Table content*/}
                             <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3}}>
-                                <FeatureDetail
-                                    clientId={clientId}
-                                    featureId={featureId}/>
+                                <FeatureDetail />
                             </Grid>
 
                             {/* Sidebar*/}
-                            { featuresDetail.configurations.length &&
-                            <IDModalSidebar
-                                featureKey={featuresDetail.technicalName}
-                                featuresDetailConfig={featuresDetail.configurations}
-                                item xs={4} />
+                            {featuresDetail.configurations.length > 0 &&
+                                <IDModalSidebar
+                                    featureKey={featureKey}
+                                    featuresDetailConfig={featuresDetail.configurations}
+                                    item xs={4}/>
                             }
                         </IDModalContent>
                     </Modal>

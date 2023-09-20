@@ -18,7 +18,7 @@ import MuiAppBar from "@mui/material/AppBar";
 
 // import custom Components
 import logo from "../assets/logo.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
 import {HomeProps} from "../types/componentProps.types";
@@ -47,6 +47,7 @@ function Home({...props}: HomeProps) {
                 </MuiAppBar>
                 <Sidebar
                     clients={props.clients}
+                    featureList={props.featureList}
                     filteredClients={props.filteredClients}
                     filteredFeatures={props.filteredFeatures}
                     setFilteredClients={props.setFilteredClients}

@@ -9,7 +9,6 @@ import IDComboSelect from "./IDComboSelect";
 /* import IDRadioGroup from "./IDRadioGroup"; */
 // import Interfaces to check data type in Typescript
 import {SidebarProps} from "../types/componentProps.types";
-import {getFeaturesList} from "../utils/utils";
 
 /**
  * Sidebar component. The two properties clients and setFilteredClients are just passed to IDComboSelect.
@@ -18,6 +17,7 @@ import {getFeaturesList} from "../utils/utils";
 function Sidebar(
     {
         clients,
+        featureList,
         filteredClients,
         filteredFeatures,
         setFilteredClients,
@@ -37,7 +37,7 @@ function Sidebar(
                 setFilteredValues={setFilteredClients}
                 showId={true}/>
 
-            <IDComboSelect values={getFeaturesList(clients)}
+            <IDComboSelect values={featureList}
                 title="Feature"
                 placeholder="z.B. AdDefend, CleverPush Anmelde-Widget"
                 filteredValues={filteredFeatures}

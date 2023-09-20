@@ -16,6 +16,7 @@ showSelectedFeatures.mockReturnValue(mockedFeatures);
 jest.mock("../api/DashboardAPI", () => ({
     getClientList: jest.fn(() => Promise.resolve(mockedClientListWithHasFeatures)),
     getFeaturesPerClient: jest.fn(() => Promise.resolve(mockedFeatures)),
+    getFeaturesListPromise: jest.fn(() => Promise.resolve(mockedFeatures)),
 }));
 
 jest.mock("react-intersection-observer");
@@ -38,12 +39,12 @@ test("filteredClients state is passed as prop if a filter is present in query pa
 
     await act( async () => {
         render(
-            <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "Wetterauer Zeitung"}})}>
+            <RouterContext.Provider value={createMockRouter({query: {"fltr-clients": "315"}})}>
                 <MyApp Component={MockChildComponent} pageProps={{}} router={createMockRouter({}) as Router} />
             </RouterContext.Provider>);
     });
-    // test that client list returns an array with 4 values
     await waitFor(() => {
+        // 315 is the id of client Wetterauer Zeitung
         expect(screen.getByText("Wetterauer Zeitung")).toBeInTheDocument();
     });
 });
@@ -51,17 +52,17 @@ test("filteredClients state is passed as prop if a filter is present in query pa
 /* UNIT TESTS */
 test("showFeaturesPerStatus returns the only Feature that is enabled", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.ACTIVE);
-    expect(features[0].technicalName).toBe("traffective");
+    expect(features[0].key).toBe("traffective");
 });
 
 test("showFeaturesPerStatus returns the two Features that are not enabled", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.INACTIVE);
-    expect(features[0].technicalName).toBe("inArticleReco");
+    expect(features[0].key).toBe("inArticleReco");
 });
 
 test("showFeaturesPerStatus returns all the features (no features removed)", () => {
     const features = showFeaturesPerStatus(mockedFeatures, FeatSelectedStatus.ALL);
-    expect(features[0].technicalName).toBe("traffective");
-    expect(features[1].technicalName).toBe("inArticleReco");
-    expect(features[2].technicalName).toBe("cleverpush");
+    expect(features[0].key).toBe("traffective");
+    expect(features[1].key).toBe("inArticleReco");
+    expect(features[2].key).toBe("cleverpush");
 });

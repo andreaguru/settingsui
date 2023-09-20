@@ -8,6 +8,7 @@ import * as reactObserver from "react-intersection-observer";
 import {InViewHookResponse} from "react-intersection-observer";
 
 jest.mock("react-intersection-observer");
+jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 const showSelectedFeatures = jest.fn();
 showSelectedFeatures.mockReturnValue(mockedFeatures);

@@ -11,16 +11,7 @@ const rows = [
     {id: 3, status: "disabled", category: "Test2", categoryId: 23456, configuration: "config3"},
 ];
 
-const rowsHeaderFooter = [
-    {id: 1, status: "success", configuration: "STANDARD"},
-];
-
 const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
-    "display": "inline-flex",
-    // style for header and footer
-    "width": theme.spacing(32),
-    // end style for header and footer
-    "maxWidth": "100%",
     [`& .${gridClasses.columnSeparator}`]: {
         "visibility": "visible",
     },
@@ -91,38 +82,10 @@ function IDDataGrid() {
         },
     ];
 
-    const columnsHeaderFooter: GridColDef[] = [
-        {
-            field: "status",
-            headerName: "Status",
-            headerAlign: "center",
-            align: "center",
-            maxWidth: 80,
-            renderCell: (params) => <CircleIcon color={params.value} fontSize="small" />,
-        },
-        {
-            field: "configuration",
-            headerName: "Konfiguration",
-            headerClassName: "configurationField",
-            minWidth: 160,
-            renderHeader: (params) => <div style={{fontWeight: "500"}}>
-                {params.colDef.headerName}
-                <Tooltip
-                    title="Alle Einstellungen eines Features können rechts unter Konfigurationen in Instanzen
-                    angelegt/geändert werden. Diese Instanzen können links auf den Ebenen Mandant,
-                    Kategorie oder Tag angewendet und aktiviert werden."
-                    placement="right">
-                    <IDHelpIcon />
-                </Tooltip>
-            </div>,
-            editable: true,
-        },
-    ];
-
     return (
         <IDDataGridWrapper
-            rows={rowsHeaderFooter}
-            columns={columnsHeaderFooter}
+            rows={rows}
+            columns={columns}
             hideFooter
             autoHeight
             getRowClassName={(params) =>

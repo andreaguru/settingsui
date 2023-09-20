@@ -13,6 +13,7 @@ const showSelectedFeatures = jest.fn();
 showSelectedFeatures.mockReturnValue(mockedFeatures);
 
 jest.mock("react-intersection-observer");
+jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 beforeEach( () => {
     // Define the return value of the mock
@@ -28,6 +29,7 @@ beforeEach( () => {
 test("client list is not present and loader is present if isLoading is true", () => {
     const {container} = render(<Home
         clients={mockedClientListWithHasFeatures}
+        featureList={mockedFeatures}
         filteredClients={[]}
         filteredFeatures={[]}
         featureStatus={[]}
@@ -46,6 +48,7 @@ test("client list is not present and loader is present if isLoading is true", ()
 test("client list is present and loader is not present if isLoading is false", () => {
     const {container} = render(<Home
         clients={mockedClientListWithHasFeatures}
+        featureList={mockedFeatures}
         filteredClients={[]}
         filteredFeatures={[]}
         featureStatus={[]}
