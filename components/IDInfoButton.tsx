@@ -156,7 +156,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                             <ListItemText
                                 primaryTypographyProps={{fontSize: theme.typography.pxToRem(14)}} >
                                 Feedback
-                                <OpenInNewIcon sx={{fontSize: "small", verticalAlign: "3px"}}/>
+                                <OpenInNewIcon fontSize="inherit" sx={{verticalAlign: "3px"}}/>
                             </ListItemText>
                         </MenuItem>
                     </MenuList>
