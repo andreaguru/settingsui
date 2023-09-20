@@ -8,7 +8,6 @@ import {styled} from "@mui/material/styles";
  */
 const IDModalContent = styled(Grid)(({theme}) => ({
     backgroundColor: theme.palette.grey[100],
-    maxWidth: "1280px",
     width: "95%",
     height: "95%",
     position: "absolute",

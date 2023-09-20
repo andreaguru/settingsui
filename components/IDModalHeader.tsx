@@ -15,6 +15,7 @@ const IDStyledModalHeader = styled(AppBar)(({theme}) => ({
     flexDirection: "row",
     gap: theme.spacing(5),
     alignItems: "center",
+    boxShadow: "0px 3px 6px #0000001A",
 }));
 
 /**
