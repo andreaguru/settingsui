@@ -134,10 +134,13 @@ test("component shows no features if showSelectedFeatures returns and empty arra
 });
 
 test("component shows features if showSelectedFeatures returns an array with values", () => {
+    const showSelectedUniversalFeatures = jest.fn();
+    showSelectedUniversalFeatures.mockReturnValueOnce(mockedFeatures);
+
     render(<ThemeProvider theme={edidTheme}>
         <ClientCard
             client={mockedClientListWithHasFeatures[0]}
-            showSelectedFeatures={showSelectedFeatures}/>);
+            showSelectedFeatures={showSelectedUniversalFeatures}/>);
     </ThemeProvider>);
 
     // mockedFeatures contains 3 Features, we expect to have them in the DOM
