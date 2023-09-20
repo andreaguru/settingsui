@@ -71,10 +71,21 @@ function TemplatePage({Component, pageProps}:AppProps) {
      * it shows the Features that have been selected by the user
      * (e.g. checks if "traffective" and "aktiviert" have been selected and shows the result)
      * @param {Array<Feature>} featuresPerClient
+     * @param {boolean} showUniversalFeatures
      * @return {Array<Feature>}
      */
-    function showSelectedFeatures(featuresPerClient:Array<Feature>) {
-        const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
+    function showSelectedFeatures(featuresPerClient: Array<Feature>, showUniversalFeatures?: boolean) {
+        const universalFeatures = ["header", "footer"];
+        let featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
+
+        // first of all, we check if the feature list belongs to Allgemein (universal) or Features
+        if (showUniversalFeatures) {
+            featuresFilteredPerStatus = featuresFilteredPerStatus
+                .filter((feat) => universalFeatures.includes(feat.key));
+        } else {
+            featuresFilteredPerStatus = featuresFilteredPerStatus
+                .filter((feat) => !universalFeatures.includes(feat.key));
+        }
 
         // if one or more features have been selected in the combobox...
         if (filteredFeatures.length > 0) {
@@ -83,7 +94,7 @@ function TemplatePage({Component, pageProps}:AppProps) {
                 1) they have been filtered through showFeaturesPerStatus
                 in order to show them according to the selected status (active, inactive or all)
                 2) are also present in filteredFeatures array. */
-                featuresFilteredPerStatus.filter((feat:Feature) =>
+                featuresFilteredPerStatus.filter((feat: Feature) =>
                     // for each feature we check if it is present in filteredFeatures array
                     filteredFeatures.some((filteredFeat) => filteredFeat.id === feat.id)
                 )

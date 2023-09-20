@@ -193,8 +193,8 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                 <Paper elevation={0} className="MuiPaper-content"
                     sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
                     <Typography fontSize={theme.typography.pxToRem(14)} sx={{marginBottom: theme.spacing(4)}}>
-                        <strong>Konfigurationen</strong> können auf&nbsp;
-                        <strong>Mandanten, Kategorie</strong> oder <strong>Tag-Ebene</strong> vorgenommen werden.
+                        <strong>Konfigurationen</strong> können auf
+                        <strong>&nbsp;Mandanten, Kategorie</strong> oder <strong>Tag-Ebene</strong> vorgenommen werden.
                     </Typography>
 
                     <Image alt="Farben und Icons" src={colorsDiagram} />
@@ -208,10 +208,10 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                 <Paper elevation={0} className="MuiPaper-content"
                     sx={{width: 509, maxWidth: "100%", p: theme.spacing(3), pt: 0}}>
                     <Typography fontSize={theme.typography.pxToRem(14)} sx={{marginBottom: theme.spacing(4)}}>
-                        Konfigurationen werden <strong>direkt</strong> auf&nbsp;
-                        <strong>Mandant, Kategorie</strong> oder <strong>Tag</strong> gesetzt.&nbsp;
-                        Die <strong>Priorität</strong> der Ausspielung geht&nbsp;
-                        <strong>von Tag</strong> über <strong>Kategorie</strong> zu <strong>Mandant</strong>.&nbsp;
+                        Konfigurationen werden <strong>direkt</strong> auf
+                        <strong>&nbsp;Mandant, Kategorie</strong> oder <strong>Tag</strong> gesetzt.
+                        Die <strong>Priorität</strong> der Ausspielung geht
+                        <strong>&nbsp;von Tag</strong> über <strong>Kategorie</strong> zu <strong>Mandant</strong>.
                         Dabei wird mit <strong>Überschreiben</strong> und <strong>Übernehmen</strong> gearbeitet.
                     </Typography>
 
@@ -226,11 +226,11 @@ function IDInfoButton({align}:IDInfoButtonProps) {
                     </IDAlert>
 
                     <Typography fontSize={theme.typography.pxToRem(14)} sx={{marginBottom: theme.spacing(3)}}>
-                        In der <strong>Übersicht der Mandanten</strong> sieht man einzig, <strong>wie</strong>&nbsp;
-                        das <strong>Feature</strong> allgemein <strong>konfiguriert</strong> ist.&nbsp;
-                        Möchte man herausfinden, <strong>welche Konfiguration</strong>&nbsp;
-                        auf einem <strong>Artikel</strong> speziell <strong>ausgespielt</strong> wird,&nbsp;
-                        so muss man sich die <strong>gesetzten Tags</strong>,&nbsp;
+                        In der <strong>Übersicht der Mandanten</strong> sieht man einzig, <strong>wie</strong>
+                        &nbsp;allgemein <strong>konfiguriert</strong> ist.
+                        Möchte man herausfinden, <strong>welche Konfiguration</strong>
+                        &nbsp;auf einem <strong>Artikel</strong> speziell <strong>ausgespielt</strong> wird,
+                        so muss man sich die <strong>gesetzten Tags</strong>,
                         die jeweilige <strong>Kategorie</strong> und den <strong>Mandanten</strong> ansehen.
                         <br/><br/>
                         <strong>Artikel:</strong> &quot;Manuel Neuer kauft eine neues Haus&quot;
