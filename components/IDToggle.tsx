@@ -1,4 +1,4 @@
-import {Fragment, useState} from "react";
+import {useState} from "react";
 import validator from "@rjsf/validator-ajv8";
 import {RJSFSchema} from "@rjsf/utils";
 import Form from "@rjsf/core";
@@ -12,23 +12,49 @@ import IconButton, {IconButtonProps} from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import {Divider, ListItem} from "@mui/material";
+import {Divider} from "@mui/material";
 import {IdToggleProps} from "../types/componentProps.types";
-import List from "@mui/material/List";
-import Box from "@mui/material/Box";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
 
 const schema: RJSFSchema = {
-    title: "Todo",
-    type: "object",
-    required: ["title"],
-    properties: {
-        title: {type: "string", title: "Title", default: "A new task"},
-        done: {type: "boolean", title: "Done?", default: false},
+    "title": "A registration form",
+    "description": "A simple form example.",
+    "type": "object",
+    "required": [
+        "firstName",
+        "lastName",
+    ],
+    "properties": {
+        "firstName": {
+            "type": "string",
+            "title": "First name",
+            "default": "Chuck",
+        },
+        "lastName": {
+            "type": "string",
+            "title": "Last name",
+        },
+        "age": {
+            "type": "integer",
+            "title": "Age",
+        },
+        "bio": {
+            "type": "string",
+            "title": "Bio",
+        },
+        "password": {
+            "type": "string",
+            "title": "Password",
+            "minLength": 3,
+        },
+        "telephone": {
+            "type": "string",
+            "title": "Telephone",
+            "minLength": 10,
+        },
     },
 };
 
@@ -98,10 +124,6 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
 
     return (
         <IDToggleWrapper data-testid="toggle" className={disabled ? "Mui-disabled" : ""}>
-            <Form
-                schema={schema}
-                validator={validator}
-                onSubmit={log("submitted")} />
             <CardHeader
                 title={name}
                 titleTypographyProps={{variant: "subtitle2"}}
@@ -126,64 +148,11 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
                 <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
-                        {/* normal features */}
-                        {featureKey !== "header" && featureKey !== "footer" &&
-                            <>
-                                <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={6} sx={{display: "flex", flexDirection: "column", gap: 2}}>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography variant="caption"
-                                            color="secondary.light">label</Typography>
-                                        <Typography variant="body2">value</Typography>
-                                    </Box>
-                                </Grid>
-                            </>
-                        }
-
-                        {/* header or footer layout */}
-                        {featureKey === "header" || featureKey === "footer" &&
-                        <List disablePadding>
-                            {settings.map((value, index) => (
-                                <Fragment key={index}>
-                                    {value.name &&
-                                        <Typography variant="subtitle2">{value.name}</Typography>
-                                    }
-                                    {value?.links?.map((link, index) => (
-                                        <ListItem key={index}>
-                                            <Typography variant="body2">{link.name}</Typography>
-                                            <Link variant="body2"
-                                                color="text.secondary"
-                                                href={link.url}
-                                                underline="hover">
-                                                {link.url}
-                                            </Link>
-                                        </ListItem>
-                                    ))}
-                                </Fragment>
-                            ))}
-                        </List>
-                        }
+                        <Form
+                            schema={schema}
+                            validator={validator}
+                            liveValidate
+                            onSubmit={log("submitted")} />
                     </Grid>
                 </CardContent>
             </Collapse>
