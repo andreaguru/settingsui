@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useEffect} from "react";
 import {styled, useTheme} from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -11,9 +12,14 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Chip from "@mui/material/Chip";
 import Badge, {BadgeProps} from "@mui/material/Badge";
 
+// import typescript Interfaces
+import {FeatureDetail, TableView} from "../types/componentProps.types";
+
 // import custom components
 import IDDataGrid from "./IDDataGrid";
 import IDAlert from "./IDAlert";
+import {getUsagesProFeature} from "../api/FeatureDetailAPI";
+import {Usage} from "../types/api.types";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -71,11 +77,22 @@ function a11yProps(index: number) {
 
 /**
  *
+ * @param {string} clientId
  * @constructor
  */
-function FeatureDetail() {
+function FeatureDetail({featuresDetailConfig}:FeatureDetail) {
     const [activeTab, setActiveTab] = React.useState(0);
+    const [usages, setUsages] = React.useState<Array<Usage>>([]);
     const theme = useTheme();
+
+    useEffect(() => {
+        const usagesPromise = getUsagesProFeature(featuresDetailConfig);
+        usagesPromise.then((data:Array<Usage>) => {
+            if (data && Object.keys(data).length) {
+                setUsages(data);
+            }
+        });
+    }, [featuresDetailConfig]);
 
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
         setActiveTab(newActiveTab);
@@ -124,7 +141,7 @@ function FeatureDetail() {
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
                         <IDChip label="success" size="small" />
                     </Box>
-                    <IDDataGrid />
+                    <IDDataGrid usages={usages} tableView={TableView.CLIENT} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={1}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
@@ -139,13 +156,13 @@ function FeatureDetail() {
                             </Typography>
                         </IDAlert>
                     </Box>
-                    <IDDataGrid />
+                    <IDDataGrid usages={usages} tableView={TableView.CATEGORY} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
                         <IDChip label="success" size="small" />
                     </Box>
-                    <IDDataGrid />
+                    <IDDataGrid usages={usages} tableView={TableView.TAG} />
                 </TabPanel>
             </Box>
         </Box>);

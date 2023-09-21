@@ -114,7 +114,7 @@ function FeatureDetailPage({...props}: HomeProps) {
 
                             {/* Table content*/}
                             <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3}}>
-                                <FeatureDetail />
+                                <FeatureDetail featuresDetailConfig={featuresDetail.configurations}/>
                             </Grid>
 
                             {/* Sidebar*/}

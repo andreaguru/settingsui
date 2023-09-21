@@ -40,12 +40,22 @@ export interface Settings {
     value?: string;
 }
 
+export interface Usage {
+    id: {
+        clientId: number;
+        categoryId: number;
+        tagId: number;
+        configurationId: number;
+    };
+    active: boolean;
+}
+
 export interface FeaturesConfig {
     id: number;
     name: string;
     clientId: number;
     settings: Array<Settings>;
-    usages: [];
+    usages: Array<Usage>;
 }
 
 export interface FeaturesDetail {

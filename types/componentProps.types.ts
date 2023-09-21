@@ -1,4 +1,4 @@
-import {Client, ClientOrFeature, Feature, FeaturesConfig} from "./api.types";
+import {Client, ClientOrFeature, Feature, FeaturesConfig, Usage} from "./api.types";
 import {ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
 import {GridProps} from "@mui/material/Grid";
@@ -75,6 +75,21 @@ export interface IdToggleProps {
     config?: FeaturesConfig;
     featureKey: string;
     disabled?: boolean,
+}
+
+export interface FeatureDetail {
+    featuresDetailConfig: FeaturesConfig[];
+}
+
+export interface IDDataGrid {
+    usages: Array<Usage>;
+    tableView: TableView;
+}
+
+export enum TableView {
+    CLIENT = "CLIENT",
+    CATEGORY = "CATEGORY",
+    TAG = "TAG",
 }
 
 export enum FeatSelectedStatus {
