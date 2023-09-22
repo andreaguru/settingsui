@@ -35,7 +35,7 @@ function IdModalSidebar(props:IDModalSidebar) {
     return (
         <IDModalSidebarWrapper {...modalSidebarProps}>
             <Container>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle1" sx={{marginTop: 1}}>
                     Konfigurationen
                     <Tooltip title="Alle Einstellungen eines Features werden hier
                     unter Konfigurationen in Instanzen angelegt/geändert. Diese Instanzen können
@@ -45,7 +45,7 @@ function IdModalSidebar(props:IDModalSidebar) {
                         <IDHelpIcon/>
                     </Tooltip>
                 </Typography>
-                <IDLinearProgress value={10} />
+                <IDLinearProgress value={10}/>
             </Container>
             <IDToggleList sx={{paddingBottom: 2}}>
                 {featuresDetailConfig.map((config, index) => (

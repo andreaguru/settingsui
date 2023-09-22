@@ -122,16 +122,16 @@ function FeatureDetail() {
             <Box sx={{backgroundColor: "white", flex: "1 1 100%"}}>
                 <TabPanel value={activeTab} index={0}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        <IDChip label="success" size="small" />
+                        <IDChip label="success" size="small"/>
                     </Box>
-                    <IDDataGrid />
+                    <IDDataGrid/>
                 </TabPanel>
                 <TabPanel value={activeTab} index={1}>
-                    <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        <IDChip label="success" size="small" />
-                        <IDChip label="error" size="small" />
+                    <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
+                        <IDChip label="success" size="small"/>
+                        <IDChip label="error" size="small"/>
                         <IDAlert
-                            icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />}
+                            icon={<InfoOutlinedIcon sx={{fontSize: "medium"}}/>}
                             severity="info"
                             sx={{marginLeft: "auto"}}>
                             <Typography variant="caption">
@@ -139,7 +139,7 @@ function FeatureDetail() {
                             </Typography>
                         </IDAlert>
                     </Box>
-                    <IDDataGrid />
+                    <IDDataGrid/>
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>

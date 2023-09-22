@@ -7,7 +7,7 @@ import IDHelpIcon from "./IDHelpIcon";
 
 const rows = [
     {id: 1, status: "success", category: "Snow", categoryId: 12345, configuration: "config"},
-    {id: 2, status: "warning", category: "Test", categoryId: 12476, configuration: "config2"},
+    {id: 2, status: "disabled", category: "Test", categoryId: 12476, configuration: "config2"},
     {id: 3, status: "disabled", category: "Test2", categoryId: 23456, configuration: "config3"},
 ];
 
@@ -52,14 +52,12 @@ function IDDataGrid() {
         {
             field: "category",
             headerName: "Kategorie",
-            editable: true,
             minWidth: 110,
         },
         {
             field: "categoryId",
             headerName: "Kategorie Id",
             headerAlign: "right",
-            editable: true,
             align: "right",
             minWidth: 130,
         },
@@ -78,7 +76,6 @@ function IDDataGrid() {
                     <IDHelpIcon />
                 </Tooltip>
             </div>,
-            editable: true,
         },
     ];
 
