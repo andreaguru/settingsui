@@ -112,7 +112,8 @@ function TemplatePage({Component, pageProps}:AppProps) {
         return clients.map<Client>((client: Client) => {
             return {
                 ...client,
-                hasFeatures: showSelectedFeatures(client.features).length > 0,
+                hasFeatures: showSelectedFeatures(client.features).length > 0 ||
+                    showSelectedFeatures(client.features, true).length > 0,
             } as Client;
         });
     }
