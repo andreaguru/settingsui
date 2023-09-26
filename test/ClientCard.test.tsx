@@ -2,7 +2,7 @@ import {render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import {RouterContext} from "next/dist/shared/lib/router-context";
 import mockRouter from "next-router-mock";
-import ClientCard, {getButtonColorByStatus, getIconColorByStatus} from "../components/ClientCard";
+import ClientCard, {getButtonColorByStatus} from "../components/ClientCard";
 import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
 import {edidTheme} from "../themes/edid";
 import {ThemeProvider} from "@mui/material/styles";
@@ -54,8 +54,8 @@ describe("Parameterized test for ClientCard", () => {
                     showSelectedFeatures={() => []}/>
             </ThemeProvider>);
 
-            expect(screen.getByText(clientValue.name)).toBeInTheDocument();
-            expect(screen.getByText(clientValue.id)).toBeInTheDocument();
+            expect(screen.getByText(clientValue.name, {exact: false})).toBeInTheDocument();
+            expect(screen.getByText(clientValue.id, {exact: false})).toBeInTheDocument();
         }
     );
 
@@ -73,10 +73,10 @@ describe("Parameterized test for ClientCard", () => {
             const autocomplete = screen.getByTestId(clientMocked.id);
             // traffective -> feature client is ENABLED
             const traffective = within(autocomplete)
-                .getByText(clientMocked.features[0].name).parentElement as HTMLElement;
+                .getAllByText(clientMocked.features[0].name, {exact: false})[0].parentElement as HTMLElement;
             // inArticleReco -> feature client is DISABLED
             const inArticleReco = within(autocomplete)
-                .getByText(clientMocked.features[1].name).parentElement as HTMLElement;
+                .getAllByText(clientMocked.features[1].name, {exact: false})[0].parentElement as HTMLElement;
 
             expect(traffective).toHaveStyle({
                 "color": edidTheme.palette.success.main,
@@ -109,7 +109,7 @@ describe("Parameterized test for ClientCard", () => {
             const autocomplete = screen.getByTestId(clientMocked.id);
             // get first mocked feature -> traffective
             const traffective = within(autocomplete)
-                .getByText(clientMocked.features[0].name).closest("a") as HTMLElement;
+                .getAllByText(clientMocked.features[0].name)[0].closest("a") as HTMLElement;
             expect(traffective).toHaveAttribute(
                 "href",
                 // eslint-disable-next-line max-len
@@ -134,10 +134,13 @@ test("component shows no features if showSelectedFeatures returns and empty arra
 });
 
 test("component shows features if showSelectedFeatures returns an array with values", () => {
+    const showSelectedUniversalFeatures = jest.fn();
+    showSelectedUniversalFeatures.mockReturnValueOnce(mockedFeatures);
+
     render(<ThemeProvider theme={edidTheme}>
         <ClientCard
             client={mockedClientListWithHasFeatures[0]}
-            showSelectedFeatures={showSelectedFeatures}/>);
+            showSelectedFeatures={showSelectedUniversalFeatures}/>);
     </ThemeProvider>);
 
     // mockedFeatures contains 3 Features, we expect to have them in the DOM
@@ -145,15 +148,6 @@ test("component shows features if showSelectedFeatures returns an array with val
 });
 
 // UNIT TESTS
-test("returns success if feature status is enabled", () => {
-    const colors = getIconColorByStatus("ENABLED");
-    expect(colors).toBe("success");
-});
-
-test("returns warning if status is enabled_and_disabled", () => {
-    const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("warning");
-});
 
 test("returns success color if feature status is enabled", () => {
     const color = getButtonColorByStatus("ENABLED", edidTheme).color;

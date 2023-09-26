@@ -1,7 +1,8 @@
-import {Client, ClientOrFeature, Feature, FeaturesConfig, Usage} from "./api.types";
-import {ReactNode} from "react";
+import {Client, ClientOrFeature, Feature, FeaturesConfig, Status, Usage} from "./api.types";
+import {MouseEvent, ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
 import {GridProps} from "@mui/material/Grid";
+import {DividerProps} from "@mui/material";
 
 /*
 Interfaces for the Components
@@ -16,7 +17,7 @@ export interface HomeProps {
     setFilteredFeatures: (arg: Array<ClientOrFeature>) => void
     featureStatus: FeatSelectedStatus | Array<string>
     setFeatureStatus: (name: FeatSelectedStatus) => void
-    showSelectedFeatures: (featuresPerClient:Array<Feature>) => Array<Feature>
+    showSelectedFeatures: (featuresPerClient: Array<Feature>, showUniversalFeatures?: boolean) => Array<Feature>
     isLoading: boolean
     children?: ReactNode; // 👈 children prop type
 }
@@ -24,7 +25,7 @@ export interface HomeProps {
 export interface MainContentProps {
     clientsList: Array<Client>
     filteredClientsList: Array<Client>
-    showSelectedFeatures: (featuresPerClient:Array<Feature>) => Array<Feature>
+    showSelectedFeatures: (featuresPerClient: Array<Feature>, showUniversalFeatures?: boolean) => Array<Feature>
     isLoading: boolean
 }
 
@@ -49,7 +50,7 @@ export type IDComboSelectProps = {
 
 export interface ClientCardProps {
     client: Client
-    showSelectedFeatures: (featuresPerClient:Array<Feature>) => Array<Feature>
+    showSelectedFeatures: (featuresPerClient: Array<Feature>, showUniversalFeatures?: boolean) => Array<Feature>
 }
 
 export interface IDInfoButtonProps {
@@ -68,22 +69,35 @@ export interface IDModalHeader extends AppBarProps {
 
 export interface IDModalSidebar extends GridProps {
     featuresDetailConfig: FeaturesConfig[];
+    setFeaturesDetailConfigSelected: (arg: Array<FeaturesConfig>) => void;
     featureKey: string;
 }
 
 export interface IdToggleProps {
     config?: FeaturesConfig;
     featureKey: string;
-    disabled?: boolean,
+    toggleConfig: (event: MouseEvent<HTMLDivElement>, name: string) => void;
+    disabled?: boolean;
+}
+
+export interface IDDividerProps extends DividerProps {
+    marginTop?: string,
 }
 
 export interface FeatureDetail {
+    featureStatus: Status;
     featuresDetailConfig: FeaturesConfig[];
+    featuresDetailConfigSelected: FeaturesConfig[];
 }
 
 export interface IDDataGrid {
     usages: Array<Usage>;
     tableView: TableView;
+    status: string;
+}
+
+export interface IDDataGridWrapperProps {
+    disableHeader: boolean;
 }
 
 export enum TableView {

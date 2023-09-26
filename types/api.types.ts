@@ -14,7 +14,7 @@ export enum ElementType {
     SEARCH_LINK = "SEARCH_LINK",
 }
 
-interface Status {
+export interface Status {
     client: StatusValue;
     category: StatusValue;
     tag: StatusValue

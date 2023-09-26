@@ -9,17 +9,21 @@ import ClientIcon from "@mui/icons-material/Apartment";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import TagIcon from "@mui/icons-material/LocalOffer";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Chip from "@mui/material/Chip";
+import Chip, {ChipProps} from "@mui/material/Chip";
 import Badge, {BadgeProps} from "@mui/material/Badge";
 
 // import typescript Interfaces
 import {FeatureDetail, TableView} from "../types/componentProps.types";
+
+// import utils
+import {getIconColorByStatus} from "../utils/utils";
 
 // import custom components
 import IDDataGrid from "./IDDataGrid";
 import IDAlert from "./IDAlert";
 import {getUsagesProFeature} from "../api/FeatureDetailAPI";
 import {Usage} from "../types/api.types";
+import {edidTheme} from "../themes/edid";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -27,9 +31,15 @@ interface TabPanelProps {
   value: number;
 }
 
-const IDChip = styled(Chip)(({theme}) => ({
-    color: theme.palette.success.main,
-    backgroundColor: theme.palette.success.light,
+interface IDChipProps extends ChipProps {
+    noUsage?: boolean;
+}
+
+const IDChip = styled(Chip, {
+    shouldForwardProp: (prop) => prop !== "noUsage",
+})<IDChipProps>(({theme, noUsage}) => ({
+    color: noUsage ? theme.palette.neutral.main : theme.palette.success.main,
+    backgroundColor: noUsage ? theme.palette.neutral.light : theme.palette.success.light,
 }));
 
 const IDBadge = styled(Badge)<BadgeProps>(({theme}) => ({
@@ -53,11 +63,10 @@ function TabPanel(props: TabPanelProps) {
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
+            style={{padding: edidTheme.spacing(3), height: "100%"}}
         >
             {value === index && (
-                <Box sx={{p: 3}}>
-                    <Typography component="div">{children}</Typography>
-                </Box>
+                children
             )}
         </div>
     );
@@ -80,23 +89,45 @@ function a11yProps(index: number) {
  * @param {string} clientId
  * @constructor
  */
-function FeatureDetail({featuresDetailConfig}:FeatureDetail) {
+function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfigSelected}:FeatureDetail) {
     const [activeTab, setActiveTab] = React.useState(0);
     const [usages, setUsages] = React.useState<Array<Usage>>([]);
     const theme = useTheme();
 
     useEffect(() => {
-        const usagesPromise = getUsagesProFeature(featuresDetailConfig);
+        // if a configuration has been selected, show it only, otherwise show all configs
+        const configToShow = featuresDetailConfigSelected.length ?
+            featuresDetailConfigSelected :
+            featuresDetailConfig;
+        const usagesPromise = getUsagesProFeature(configToShow);
         usagesPromise.then((data:Array<Usage>) => {
             if (data && Object.keys(data).length) {
                 setUsages(data);
             }
         });
-    }, [featuresDetailConfig]);
+    }, [featuresDetailConfig, featuresDetailConfigSelected]);
 
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
         setActiveTab(newActiveTab);
     };
+
+    /**
+     *
+     * @param {Array<Usage>} usages
+     * @param {TableView} tableView
+     * @return {Array<Usage>}
+     */
+    function getSelectedUsages(usages: Array<Usage>, tableView: TableView) {
+        if (tableView === "CLIENT") {
+            return usages.filter((usage) => usage.id.clientId !== 0);
+        } else if (tableView === "CATEGORY") {
+            return usages.filter((usage) => usage.id.categoryId !== 0);
+        } else if (tableView === "TAG") {
+            return usages.filter((usage) => usage.id.tagId !== 0);
+        }
+        return usages;
+    }
+
     return (
         <Box sx={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}}>
             <Tabs value={activeTab}
@@ -120,11 +151,11 @@ function FeatureDetail({featuresDetailConfig}:FeatureDetail) {
                     },
                 }}>
                 <Tab
-                    icon={<ClientIcon color="success" />}
+                    icon={<ClientIcon color={getIconColorByStatus(featureStatus.client)} />}
                     iconPosition="start"
                     label="Mandant" {...a11yProps(0)} />
                 <Tab
-                    icon={<CategoryIcon color="warning" />}
+                    icon={<CategoryIcon color={getIconColorByStatus(featureStatus.category)} />}
                     iconPosition="start"
                     sx={{minWidth: theme.spacing(19)}}
                     label={
@@ -132,20 +163,29 @@ function FeatureDetail({featuresDetailConfig}:FeatureDetail) {
                             Kategorie
                         </IDBadge>} {...a11yProps(1)} />
                 <Tab
-                    icon={<TagIcon color="success" />}
+                    icon={<TagIcon color={getIconColorByStatus(featureStatus.tag)} />}
                     iconPosition="start"
                     label="Tag" {...a11yProps(2)} />
             </Tabs>
             <Box sx={{backgroundColor: "white", flex: "1 1 100%"}}>
                 <TabPanel value={activeTab} index={0}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        <IDChip label="success" size="small" />
+                        <IDChip
+                            noUsage={getSelectedUsages(usages, TableView.CLIENT).length === 0}
+                            label={`aktiviert ${getSelectedUsages(usages, TableView.CLIENT).length || ""}`}
+                            size="small" />
                     </Box>
-                    <IDDataGrid usages={usages} tableView={TableView.CLIENT} />
+                    <IDDataGrid
+                        usages={getSelectedUsages(usages, TableView.CLIENT)}
+                        tableView={TableView.CLIENT}
+                        status={featureStatus.client} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={1}>
-                    <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        <IDChip label="success" size="small" />
+                    <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
+                        <IDChip
+                            noUsage={getSelectedUsages(usages, TableView.CATEGORY).length === 0}
+                            label={`aktiviert ${getSelectedUsages(usages, TableView.CATEGORY).length || ""}`}
+                            size="small" />
                         <IDChip label="error" size="small" />
                         <IDAlert
                             icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />}
@@ -156,13 +196,22 @@ function FeatureDetail({featuresDetailConfig}:FeatureDetail) {
                             </Typography>
                         </IDAlert>
                     </Box>
-                    <IDDataGrid usages={usages} tableView={TableView.CATEGORY} />
+                    <IDDataGrid
+                        usages={getSelectedUsages(usages, TableView.CATEGORY)}
+                        tableView={TableView.CATEGORY}
+                        status={featureStatus.category} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        <IDChip label="success" size="small" />
+                        <IDChip
+                            noUsage={getSelectedUsages(usages, TableView.TAG).length === 0}
+                            label={`aktiviert ${getSelectedUsages(usages, TableView.TAG).length || ""}`}
+                            size="small" />
                     </Box>
-                    <IDDataGrid usages={usages} tableView={TableView.TAG} />
+                    <IDDataGrid
+                        usages={getSelectedUsages(usages, TableView.TAG)}
+                        tableView={TableView.TAG}
+                        status={featureStatus.tag} />
                 </TabPanel>
             </Box>
         </Box>);

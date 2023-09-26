@@ -13,7 +13,7 @@ import {useEffect, useState} from "react";
 
 // import typescript Interfaces
 import {HomeProps} from "../../../types/componentProps.types";
-import {Client, FeaturesDetail} from "../../../types/api.types";
+import {Client, Feature, FeaturesConfig, FeaturesDetail, Status} from "../../../types/api.types";
 
 // import custom components
 import IDModalContent from "../../../components/IDModalContent";
@@ -37,6 +37,7 @@ function FeatureDetailPage({...props}: HomeProps) {
         name: "",
         key: "",
     });
+    const [featuresDetailConfigSelected, setFeaturesDetailConfigSelected] = useState<Array<FeaturesConfig>>([]);
 
     useEffect(() => {
         if (featureKey && props.featureList.length > 0) {
@@ -47,6 +48,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                 .then((data) => {
                     if (data && Object.keys(data).length) {
                         setFeaturesDetail(data);
+                        setFeaturesDetailConfigSelected(data.configurations);
                     }
                 })
                 .catch((error: Error) => {
@@ -87,6 +89,17 @@ function FeatureDetailPage({...props}: HomeProps) {
         }
     }
 
+    /**
+     *
+     * @param {string} featureKey
+     * @param {Client} client
+     * @return {string}
+     */
+    function getFeatureStatus(featureKey: string, client: Client): Status {
+        const selectedFeature: Feature = client.features.find((feature) => feature.key === featureKey) as Feature;
+        return selectedFeature.status;
+    }
+
     return (
         <ThemeProvider theme={edidTheme}>
             <CssBaseline />
@@ -114,7 +127,10 @@ function FeatureDetailPage({...props}: HomeProps) {
 
                             {/* Table content*/}
                             <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3}}>
-                                <FeatureDetail featuresDetailConfig={featuresDetail.configurations}/>
+                                <FeatureDetail
+                                    featureStatus={getFeatureStatus(featureKey, client as Client)}
+                                    featuresDetailConfig={featuresDetail.configurations}
+                                    featuresDetailConfigSelected={featuresDetailConfigSelected}/>
                             </Grid>
 
                             {/* Sidebar*/}
@@ -122,6 +138,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                                 <IDModalSidebar
                                     featureKey={featureKey}
                                     featuresDetailConfig={featuresDetail.configurations}
+                                    setFeaturesDetailConfigSelected={setFeaturesDetailConfigSelected}
                                     item xs={4}/>
                             }
                         </IDModalContent>

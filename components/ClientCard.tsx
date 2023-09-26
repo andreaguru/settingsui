@@ -5,33 +5,19 @@ import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import TagIcon from "@mui/icons-material/LocalOffer";
-import {useTheme} from "@mui/material/styles";
+import Divider from "@mui/material/Divider";
+import {styled, useTheme} from "@mui/material/styles";
 import {Theme} from "@mui/system";
 import {useInView} from "react-intersection-observer";
 import NextLink from "next/link";
 
 // import typescript Interfaces
 import {Feature} from "../types/api.types";
-import {ClientCardProps} from "../types/componentProps.types";
+import {ClientCardProps, IDDividerProps} from "../types/componentProps.types";
 import {useRouter} from "next/router";
 
-/**
- * getFeatureColorByStatus - return the right icon color according to category and tag status
- * @param {string} status
- * @return {string}
- */
-function getIconColorByStatus(status:string) {
-    switch (status) {
-    case "ENABLED":
-        return "success"; // #319E7D
-    case "DISABLED":
-        return "error"; // #F15653
-    case "ENABLED_AND_DISABLED":
-        return "warning"; // #FDAD0D
-    case "NONE":
-    default: return "disabled"; // #A5A5A5
-    }
-}
+// import utils
+import {getIconColorByStatus} from "../utils/utils";
 
 /**
  * getButtonColorByStatus - return the right color of text and background according to feature client status
@@ -46,9 +32,29 @@ function getButtonColorByStatus(status:string, theme:Theme) {
     case "DISABLED":
     case "NONE":
         return {bgColor: theme.palette.neutral.light, color: theme.palette.neutral.main};
-    default: return {bgColor: theme.palette.neutral.light, color: theme.palette.neutral.main};
+    default:
+        return {bgColor: theme.palette.neutral.light, color: theme.palette.neutral.main};
     }
 }
+
+const IDDivider = styled(Divider, {
+    shouldForwardProp: (prop) => prop !== "marginTop",
+})<IDDividerProps>(({theme, marginTop}) => ({
+    "fontSize": theme.typography.body2.fontSize,
+    "color": theme.palette.secondary.light,
+    "marginTop": marginTop || theme.spacing(2),
+    "&:before": {
+        "display": "none",
+    },
+    "&:after": {
+        "alignSelf": "normal",
+        "marginTop": "13px",
+        "width": "45%",
+    },
+    "& .MuiDivider-wrapper": {
+        "paddingLeft": 0,
+    },
+}));
 
 /**
  * CliendCard component. It accepts 3 parameters:
@@ -58,7 +64,8 @@ function getButtonColorByStatus(status:string, theme:Theme) {
  */
 function ClientCard({
     client,
-    showSelectedFeatures}:ClientCardProps) {
+    showSelectedFeatures,
+}: ClientCardProps) {
     const theme = useTheme();
 
     /* We use react-intersection-observer in order to perform a lazy-rendering of the Features
@@ -82,6 +89,46 @@ function ClientCard({
         setHover(false);
     };
 
+    const universalFeaturesMap = showSelectedFeatures(client.features, true);
+    const featuresMap = showSelectedFeatures(client.features);
+
+    const getFeatureContent = (feature: Feature, index: number) => {
+        // set background color of the button according to feature client status
+        const clientColor = getButtonColorByStatus(feature.status.client, theme).bgColor;
+
+        return <div data-testid="feature" key={index}>
+            {inView && <NextLink
+                passHref
+                href={{
+                    pathname: `/feature/${client.id}/${feature.key}`,
+                    /* pass the current query params to the next page
+                                            (filteredClients and filteredFeatures, if present) */
+                    query: router && router.query,
+                }}
+                style={{"textDecoration": "none"}}
+            >
+                <Fade in>
+                    <IconButton className="iconStatus"
+                        style={{
+                            "color": getButtonColorByStatus(feature.status.client, theme).color,
+                            "backgroundColor": hover ? alpha(clientColor, 0.7) : clientColor,
+                        }}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <Typography variant="subtitle2" lineHeight={1}>
+                            {feature.name}
+                        </Typography>
+                        <CategoryIcon fontSize="small"
+                            color={getIconColorByStatus(feature.status.category)}/>
+                        <TagIcon fontSize="small"
+                            color={getIconColorByStatus(feature.status.tag)}/>
+                    </IconButton>
+                </Fade>
+            </NextLink>}
+        </div>;
+    };
+
     return (
         <Card
             data-testid={client.id}
@@ -94,49 +141,27 @@ function ClientCard({
         >
             <CardContent>
                 <Typography variant="subtitle1"
-                    color="secondary.light"
                     sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
                     <Typography fontSize="18px" fontWeight="medium">
                         {client.name}
                     </Typography>
-                    <Typography>|</Typography>
-                    <Typography>{client.id}</Typography>
+                    <Typography color="secondary.light">| {client.id}</Typography>
                 </Typography>
+                <IDDivider textAlign="left">Allgemein</IDDivider>
                 <Box sx={{display: "flex", flexWrap: "wrap"}}>
-                    {showSelectedFeatures(client.features).map((feature:Feature, index:number) => {
-                        // set background color of the button according to feature client status
-                        const clientColor = getButtonColorByStatus(feature.status.client, theme).bgColor;
-
-                        return <div data-testid="feature" key={index}>
-                            { /* show a featureButton only if it is inside the viewport */
-                                inView && <NextLink
-                                    passHref
-                                    href={{
-                                        pathname: `/feature/${client.id}/${feature.key}`,
-                                        /* pass the current query params to the next page
-                                        (filteredClients and filteredFeatures, if present) */
-                                        query: router && router.query,
-                                    }}
-                                    style={{"textDecoration": "none"}}
-                                >
-                                    <Fade in>
-                                        <IconButton className="iconStatus"
-                                            style={{
-                                                "color": getButtonColorByStatus(feature.status.client, theme).color,
-                                                "backgroundColor": hover ? alpha(clientColor, 0.7) : clientColor,
-                                            }}
-                                            onMouseEnter={handleMouseEnter}
-                                            onMouseLeave={handleMouseLeave}
-                                        >
-                                            <Typography variant="subtitle2" lineHeight={1}>{feature.name}</Typography>
-                                            <CategoryIcon fontSize="small"
-                                                color={getIconColorByStatus(feature.status.category)}/>
-                                            <TagIcon fontSize="small" color={getIconColorByStatus(feature.status.tag)}/>
-                                        </IconButton>
-                                    </Fade>
-                                </NextLink>}
-                        </div>;
-                    })}
+                    {
+                        universalFeaturesMap && universalFeaturesMap.map((feature: Feature, index: number) =>
+                            getFeatureContent(feature, index)
+                        )
+                    }
+                </Box>
+                <IDDivider textAlign="left" marginTop={theme.spacing(3)}>Features</IDDivider>
+                <Box sx={{display: "flex", flexWrap: "wrap"}}>
+                    {
+                        featuresMap && featuresMap.map((feature: Feature, index: number) =>
+                            getFeatureContent(feature, index)
+                        )
+                    }
                 </Box>
             </CardContent>
         </Card>

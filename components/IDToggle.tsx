@@ -38,10 +38,14 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const IDToggleWrapper = styled(Card)(({theme}) => ({
     "flexBasis": "100%",
+    "cursor": "pointer",
     "&.Mui-disabled": {
         opacity: .6,
         backgroundColor: theme.palette.grey[200],
         pointerEvents: "none",
+    },
+    "&.Mui-selected": {
+        backgroundColor: theme.palette.primary.main,
     },
     ".MuiList-root": {
         "h6": {
@@ -72,7 +76,7 @@ const IDCardActions = styled(CardActions)(({theme}) => ({
  *
  * @constructor
  */
-function IDToggle({disabled, featureKey, config}: IdToggleProps) {
+function IDToggle({disabled, featureKey, config, toggleConfig}: IdToggleProps) {
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded((prev) => !prev);
@@ -86,7 +90,9 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
     };
 
     return (
-        <IDToggleWrapper data-testid="toggle" className={disabled ? "Mui-disabled" : ""}>
+        <IDToggleWrapper data-testid="toggle"
+            className={disabled ? "Mui-disabled" : ""}
+            onClick={(event) => toggleConfig(event, name)}>
             <CardHeader
                 title={name}
                 titleTypographyProps={{variant: "subtitle2"}}

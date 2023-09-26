@@ -4,13 +4,25 @@ import {styled, useTheme} from "@mui/material/styles";
 import CircleIcon from "@mui/icons-material/Circle";
 import {alpha, Tooltip, Typography} from "@mui/material";
 import IDHelpIcon from "./IDHelpIcon";
+import configurationNotFound from "../assets/konfiguration_nicht_gefunden.svg";
 
 // import typescript Interfaces
 import {IDDataGrid, TableView} from "../types/componentProps.types";
-import {Usage} from "../types/api.types";
 import Box from "@mui/material/Box";
+import Image from "next/legacy/image";
 
 const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
+    "&.MuiDataGrid-root": {
+        "display": "inline-flex",
+        // style for header and footer
+        "width": "100%",
+        "height": `calc(100% - ${theme.spacing(3)})`,
+        // end style for header and footer
+        "maxWidth": "100%",
+    },
+    "& .MuiDataGrid-overlayWrapper": {
+        "top": "20%",
+    },
     [`& .${gridClasses.columnSeparator}`]: {
         "visibility": "visible",
     },
@@ -36,14 +48,16 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
  * IDDataGrid Component
  * @constructor
  */
-function IDDataGrid({usages, tableView}:IDDataGrid) {
+function IDDataGrid({usages, tableView, status}:IDDataGrid) {
     const theme = useTheme();
 
     const columns: GridColDef[] = [
         {
             field: "active",
             headerName: "Status",
+            headerClassName: `${status === "NONE" ? "disabled" : ""}`,
             headerAlign: "center",
+            sortable: status !== "NONE",
             align: "center",
             width: 80,
             renderCell: (params) => <CircleIcon color={params.value ? "success" : "disabled"} fontSize="small" />,
@@ -51,24 +65,28 @@ function IDDataGrid({usages, tableView}:IDDataGrid) {
         {
             field: "category",
             headerName: "Kategorie",
+            sortable: status !== "NONE",
             width: 110,
         },
         {
             field: "categoryId",
             headerName: "Kategorie Id",
             headerAlign: "right",
+            sortable: status !== "NONE",
             align: "right",
             width: 130,
         },
         {
             field: "tag",
             headerName: "Tag",
+            sortable: status !== "NONE",
             width: 110,
         },
         {
             field: "tagId",
             headerName: "Tag Id",
             headerAlign: "right",
+            sortable: status !== "NONE",
             align: "right",
             width: 130,
         },
@@ -76,6 +94,7 @@ function IDDataGrid({usages, tableView}:IDDataGrid) {
             field: "configurationName",
             headerName: "Konfiguration",
             headerClassName: "configurationField",
+            sortable: status !== "NONE",
             width: 160,
             renderHeader: (params) => <div style={{fontWeight: "500"}}>
                 {params.colDef.headerName}
@@ -97,25 +116,9 @@ function IDDataGrid({usages, tableView}:IDDataGrid) {
         tagId: tableView === TableView.TAG,
     };
 
-    /**
-     *
-     * @param {Array<Usage>} usages
-     * @return {Array<Usage>}
-     */
-    function getSelectedUsages(usages: Array<Usage>) {
-        if (tableView === "CLIENT") {
-            return usages.filter((usage) => usage.id.clientId !== 0);
-        } else if (tableView === "CATEGORY") {
-            return usages.filter((usage) => usage.id.categoryId !== 0);
-        } else if (tableView === "TAG") {
-            return usages.filter((usage) => usage.id.tagId !== 0);
-        }
-        return usages;
-    }
-
     return (
         <IDDataGridWrapper
-            rows={getSelectedUsages(usages)}
+            rows={usages}
             getRowId={(row) => `${row.id.configurationId}-${row.id.clientId}-${row.id.categoryId}-${row.id.tagId}`}
             columns={columns}
             columnVisibilityModel={columnVisibilityModel}
@@ -134,16 +137,21 @@ function IDDataGrid({usages, tableView}:IDDataGrid) {
                         height="100%"
                         padding={2}
                     >
-                        <IDHelpIcon />
-                        <Typography variant="body1">No rows available</Typography>
+                        <Image alt="" layout="fixed" src={configurationNotFound} width={225} height={54}/>
+                        <Typography variant="body2" color="text.secondary" marginTop={1}>
+                            Die Konfiguration wird auf dieser Ebene nicht verwendet.
+                        </Typography>
                     </Box>
                 ),
             }}
             sx={{
-                mt: theme.spacing(3),
-                color: "secondary.main",
-                minWidth: "100px",
-                maxWidth: "fit-content",
+                "mt": theme.spacing(3),
+                "color": "secondary.main",
+                "minWidth": "100px",
+                "maxWidth": "fit-content",
+                "& .MuiDataGrid-columnHeader": {
+                    "color": status === "NONE" ? "secondary.light" : "",
+                },
             }}
         />
     );

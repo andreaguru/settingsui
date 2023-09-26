@@ -11,6 +11,7 @@ jest.mock("../api/DashboardAPI");
 
 jest.mock("../api/FeatureDetailAPI", () => ({
     getFeatureDetailForClient: jest.fn(() => Promise.resolve()),
+    getUsagesProFeature: jest.fn(() => Promise.resolve()),
 }));
 
 const setFilteredValues = jest.fn();
