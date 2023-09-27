@@ -39,6 +39,7 @@
     "webpack-strip-code": "^1.0.3"
   },
   "devDependencies": {
+    "@rjsf/mui": "^5.13.0",
     "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.2.21",

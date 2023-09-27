@@ -1,7 +1,7 @@
 import {useState} from "react";
 import validator from "@rjsf/validator-ajv8";
-import {RJSFSchema} from "@rjsf/utils";
-import Form from "@rjsf/core";
+import {schemaArray, schemaObject, uiSchema} from "../utils/RJSFSchema";
+import Form from "@rjsf/mui";
 import {styled} from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -12,51 +12,14 @@ import IconButton, {IconButtonProps} from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
-import {Divider} from "@mui/material";
+import {Divider, FormGroup} from "@mui/material";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import {IdToggleProps} from "../types/componentProps.types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
-
-const schema: RJSFSchema = {
-    "title": "A registration form",
-    "description": "A simple form example.",
-    "type": "object",
-    "required": [
-        "firstName",
-        "lastName",
-    ],
-    "properties": {
-        "firstName": {
-            "type": "string",
-            "title": "First name",
-            "default": "Chuck",
-        },
-        "lastName": {
-            "type": "string",
-            "title": "Last name",
-        },
-        "age": {
-            "type": "integer",
-            "title": "Age",
-        },
-        "bio": {
-            "type": "string",
-            "title": "Bio",
-        },
-        "password": {
-            "type": "string",
-            "title": "Password",
-            "minLength": 3,
-        },
-        "telephone": {
-            "type": "string",
-            "title": "Telephone",
-            "minLength": 10,
-        },
-    },
-};
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
     // we need to extract the expand property from props as it cannot be passed directly to IconButton component.
@@ -120,8 +83,6 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
         settings: [],
     };
 
-    const log = (type: string) => console.log.bind(console, type);
-
     return (
         <IDToggleWrapper data-testid="toggle" className={disabled ? "Mui-disabled" : ""}>
             <CardHeader
@@ -148,11 +109,79 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
                 <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
+                        {config?.name === "dfb_gws" &&
                         <Form
-                            schema={schema}
+                            schema={schemaArray}
+                            uiSchema={uiSchema}
                             validator={validator}
-                            liveValidate
-                            onSubmit={log("submitted")} />
+                            onSubmit={(data) => console.log(data)} />
+                        }
+
+                        {config?.name === "daily" &&
+                        <Form
+                            schema={schemaObject}
+                            uiSchema={uiSchema}
+                            validator={validator}
+                            onSubmit={(data) => console.log(data)} />
+                        }
+
+                        {config?.name === "Einfach Tasty" &&
+                          <form
+                              title="Header"
+                              onSubmit={(event) => {
+                                  event.preventDefault();
+                                  console.log(event.target);
+                              }}>
+                              <Typography>Header</Typography>
+                              <FormGroup>
+                                  <TextField
+                                      style={{width: "200px", margin: "5px"}}
+                                      type="text"
+                                      label="Logo"
+                                      variant="outlined"
+                                  />
+                                  <FormGroup sx={{paddingLeft: 3}}>
+                                      <TextField
+                                          style={{width: "200px", margin: "5px"}}
+                                          type="text"
+                                          label="Url"
+                                          variant="outlined"
+                                      />
+                                      <TextField
+                                          style={{width: "200px", margin: "5px"}}
+                                          type="text"
+                                          label="Name"
+                                          variant="outlined"
+                                      />
+                                  </FormGroup>
+                                  <FormGroup sx={{paddingLeft: 3}}>
+                                      <TextField
+                                          style={{width: "200px", margin: "5px"}}
+                                          type="text"
+                                          label="Url"
+                                          variant="outlined"
+                                      />
+                                      <TextField
+                                          style={{width: "200px", margin: "5px"}}
+                                          type="text"
+                                          label="Name"
+                                          variant="outlined"
+                                      />
+                                  </FormGroup>
+                              </FormGroup>
+                              <br />
+                              <TextField
+                                  style={{width: "200px", margin: "5px"}}
+                                  type="text"
+                                  label="Featured"
+                                  variant="outlined"
+                              />
+                              <br />
+                              <Button type="submit" variant="contained" color="primary">
+                              submit
+                              </Button>
+                          </form>
+                        }
                     </Grid>
                 </CardContent>
             </Collapse>
