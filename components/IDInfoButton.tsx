@@ -227,7 +227,7 @@ function IDInfoButton({align}:IDInfoButtonProps) {
 
                     <Typography fontSize={theme.typography.pxToRem(14)} sx={{marginBottom: theme.spacing(3)}}>
                         In der <strong>Übersicht der Mandanten</strong> sieht man einzig, <strong>wie</strong>
-                        &nbsp;allgemein <strong>konfiguriert</strong> ist.
+                        &nbsp;Einstellung allgemein <strong>konfiguriert</strong> ist.
                         Möchte man herausfinden, <strong>welche Konfiguration</strong>
                         &nbsp;auf einem <strong>Artikel</strong> speziell <strong>ausgespielt</strong> wird,
                         so muss man sich die <strong>gesetzten Tags</strong>,

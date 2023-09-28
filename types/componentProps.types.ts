@@ -106,6 +106,10 @@ export enum TableView {
     TAG = "TAG",
 }
 
+export interface IDDividerProps extends DividerProps {
+    marginTop?: string,
+}
+
 export enum FeatSelectedStatus {
     ACTIVE = "ACTIVE",
     INACTIVE = "INACTIVE",

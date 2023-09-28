@@ -147,22 +147,30 @@ function ClientCard({
                     </Typography>
                     <Typography color="secondary.light">| {client.id}</Typography>
                 </Typography>
-                <IDDivider textAlign="left">Allgemein</IDDivider>
-                <Box sx={{display: "flex", flexWrap: "wrap"}}>
-                    {
-                        universalFeaturesMap && universalFeaturesMap.map((feature: Feature, index: number) =>
-                            getFeatureContent(feature, index)
-                        )
-                    }
-                </Box>
-                <IDDivider textAlign="left" marginTop={theme.spacing(3)}>Features</IDDivider>
-                <Box sx={{display: "flex", flexWrap: "wrap"}}>
-                    {
-                        featuresMap && featuresMap.map((feature: Feature, index: number) =>
-                            getFeatureContent(feature, index)
-                        )
-                    }
-                </Box>
+                { universalFeaturesMap && universalFeaturesMap.length > 0 &&
+                    <>
+                        <IDDivider textAlign="left">Allgemein</IDDivider>
+                        <Box sx={{display: "flex", flexWrap: "wrap"}}>
+                            {
+                                universalFeaturesMap.map((feature: Feature, index: number) =>
+                                    getFeatureContent(feature, index)
+                                )
+                            }
+                        </Box>
+                    </>
+                }
+                { featuresMap && featuresMap.length > 0 &&
+                    <>
+                        <IDDivider textAlign="left" marginTop={theme.spacing(3)}>Features</IDDivider>
+                        <Box sx={{display: "flex", flexWrap: "wrap"}}>
+                            {
+                                featuresMap.map((feature: Feature, index: number) =>
+                                    getFeatureContent(feature, index)
+                                )
+                            }
+                        </Box>
+                    </>
+                }
             </CardContent>
         </Card>
     );
