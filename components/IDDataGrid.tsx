@@ -48,7 +48,7 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
  * IDDataGrid Component
  * @constructor
  */
-function IDDataGrid({usages, tableView, status}:IDDataGrid) {
+function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGrid) {
     const theme = useTheme();
 
     const columns: GridColDef[] = [
@@ -67,6 +67,7 @@ function IDDataGrid({usages, tableView, status}:IDDataGrid) {
             headerName: "Kategorie",
             sortable: status !== "NONE",
             width: 110,
+            valueGetter: (params) => getCategoryName(params.row.id.categoryId),
         },
         {
             field: "categoryId",
@@ -75,6 +76,7 @@ function IDDataGrid({usages, tableView, status}:IDDataGrid) {
             sortable: status !== "NONE",
             align: "right",
             width: 130,
+            valueGetter: (params) => params.row.id.categoryId,
         },
         {
             field: "tag",

@@ -21,8 +21,8 @@ import {getIconColorByStatus} from "../utils/utils";
 // import custom components
 import IDDataGrid from "./IDDataGrid";
 import IDAlert from "./IDAlert";
-import {getUsagesProFeature} from "../api/FeatureDetailAPI";
-import {Usage} from "../types/api.types";
+import {getCategoryList, getUsagesProFeature} from "../api/FeatureDetailAPI";
+import {CategoryMap, CmsCategory, Usage} from "../types/api.types";
 import {edidTheme} from "../themes/edid";
 
 interface TabPanelProps {
@@ -86,13 +86,26 @@ function a11yProps(index: number) {
 
 /**
  *
- * @param {string} clientId
+ * @param {FeatureDetail} {featureStatus, featuresDetailConfig, featuresDetailConfigSelected}
  * @constructor
  */
-function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfigSelected}:FeatureDetail) {
+function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfigSelected}: FeatureDetail) {
     const [activeTab, setActiveTab] = React.useState(0);
     const [usages, setUsages] = React.useState<Array<Usage>>([]);
+    const [categoryList, setCategoryList] = React.useState<Array<CategoryMap>>([]);
     const theme = useTheme();
+
+    useEffect(() => {
+        if (usages.length > 0) {
+            const categoryPromise = getCategoryList(featuresDetailConfig[0].clientId);
+            categoryPromise.then((data: Array<CategoryMap>) => {
+                if (data && Object.keys(data).length) {
+                    setCategoryList(data);
+                }
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [usages]);
 
     useEffect(() => {
         // if a configuration has been selected, show it only, otherwise show all configs
@@ -110,6 +123,16 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
         setActiveTab(newActiveTab);
     };
+
+    /**
+     *
+     * @param {number} categoryId
+     * @return {string}
+     */
+    function getCategoryName(categoryId: number) {
+        const categoryObj = categoryList.find((cat) => cat.id === categoryId) as CmsCategory;
+        return categoryObj.name;
+    }
 
     /**
      *
@@ -178,7 +201,8 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     <IDDataGrid
                         usages={getSelectedUsages(usages, TableView.CLIENT)}
                         tableView={TableView.CLIENT}
-                        status={featureStatus.client} />
+                        status={featureStatus.client}
+                        getCategoryName={getCategoryName} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={1}>
                     <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
@@ -199,7 +223,8 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     <IDDataGrid
                         usages={getSelectedUsages(usages, TableView.CATEGORY)}
                         tableView={TableView.CATEGORY}
-                        status={featureStatus.category} />
+                        status={featureStatus.category}
+                        getCategoryName={getCategoryName} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
@@ -211,7 +236,8 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     <IDDataGrid
                         usages={getSelectedUsages(usages, TableView.TAG)}
                         tableView={TableView.TAG}
-                        status={featureStatus.tag} />
+                        status={featureStatus.tag}
+                        getCategoryName={getCategoryName} />
                 </TabPanel>
             </Box>
         </Box>);

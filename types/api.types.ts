@@ -75,3 +75,16 @@ export type SettingsLink = {
     modifierClassExtension?: string | null,
     elementType?: ElementType,
 }
+
+export interface CmsCategory {
+    id: number;
+    name:string;
+    path: string;
+    children?: Array<CmsCategory>;
+}
+
+export interface CategoryMap {
+    id: number;
+    name:string;
+}
+

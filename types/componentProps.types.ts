@@ -94,6 +94,7 @@ export interface IDDataGrid {
     usages: Array<Usage>;
     tableView: TableView;
     status: string;
+    getCategoryName: (categoryId: number) => string;
 }
 
 export interface IDDataGridWrapperProps {

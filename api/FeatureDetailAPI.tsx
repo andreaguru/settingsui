@@ -1,9 +1,10 @@
 import {logger} from "../logger";
-import {FeaturesConfig, FeaturesDetail, Usage} from "../types/api.types";
+import {CmsCategory, FeaturesConfig, FeaturesDetail, Usage} from "../types/api.types";
 
 // get the endpoints from the environment variables
 const featureDetailEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_FEATURES as string;
 const featureUsagesEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_USAGES as string;
+const cmsEndpoint = process.env.NEXT_PUBLIC_CMS_API_CLIENTS as string;
 
 /**
  * Get Feature List for a specific client.
@@ -34,7 +35,7 @@ export async function getFeatureDetailForClient(featureId: number, clientId: num
 /**
  * @param {Array<FeaturesConfig>} featuresDetailConfig
  */
-export async function getUsagesProFeature(featuresDetailConfig:Array<FeaturesConfig>) {
+export async function getUsagesProFeature(featuresDetailConfig: Array<FeaturesConfig>) {
     try {
         const response = await fetch(featureUsagesEndpoint);
         const featureUsagesPromise = await response.json();
@@ -53,6 +54,43 @@ export async function getUsagesProFeature(featuresDetailConfig:Array<FeaturesCon
                 ...usage,
             };
         });
+    } catch (error) {
+        logger.error(error);
+        return [];
+    }
+}
+
+/**
+ * @param {number} clientId
+ */
+export async function getCategoryList(clientId: number) {
+    try {
+        const response = await fetch(`${cmsEndpoint}/${clientId}/categories`);
+        const categoryListPromise = await response.json();
+        const categoryList = categoryListPromise.category;
+        const categoryMap = [];
+
+        categoryMap.push({
+            id: categoryList.id,
+            name: categoryList.name,
+        });
+
+        categoryList.children.map(function(category: CmsCategory) {
+            categoryMap.push({
+                id: category.id,
+                name: category.name,
+            });
+            if (category.children) {
+                category.children.map(function(category: CmsCategory) {
+                    categoryMap.push({
+                        id: category.id,
+                        name: category.name,
+                    });
+                });
+            }
+        });
+
+        return categoryMap;
     } catch (error) {
         logger.error(error);
         return [];

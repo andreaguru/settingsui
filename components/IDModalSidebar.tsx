@@ -57,7 +57,7 @@ function IdModalSidebar(props:IDModalSidebar) {
     }
 
     return (
-        <IDModalSidebarWrapper {...modalSidebarProps}>
+        <IDModalSidebarWrapper {...modalSidebarProps} data-testid="modalSidebar">
             <Container>
                 <Typography variant="subtitle1" sx={{marginTop: 1}}>
                     Konfigurationen
