@@ -7,7 +7,7 @@ import IDToggleList from "./IDToggleList";
 import IDToggle from "./IDToggle";
 import IDHelpIcon from "./IDHelpIcon";
 import {IDModalSidebar} from "../types/componentProps.types";
-import {MouseEvent} from "react";
+import {MouseEvent, useState} from "react";
 import {FeaturesConfig} from "../types/api.types";
 
 /**
@@ -35,6 +35,8 @@ function IdModalSidebar(props:IDModalSidebar) {
         featureKey,
         ...modalSidebarProps} = props;
 
+    const [selected, setSelected] = useState("");
+
     /**
      *
      * @param {MouseEvent<HTMLElement>} event
@@ -45,15 +47,27 @@ function IdModalSidebar(props:IDModalSidebar) {
         // if toggle button is clicked, do nothing
         if (selectedEl?.parentElement?.tagName !== "BUTTON") {
             let featuresDetailConfigSelected: Array<FeaturesConfig>;
-            event.currentTarget.classList.toggle("Mui-selected");
-            if (event.currentTarget.classList.contains("Mui-selected")) {
+            // if the component is already selected, clean all filters
+            if (name === selected) {
+                setSelected("");
+                featuresDetailConfigSelected = [];
+            // otherwise filter the configurations according to the selected element
+            } else {
+                setSelected(name);
                 featuresDetailConfigSelected = featuresDetailConfig
                     .filter((conf: FeaturesConfig) => conf.name === name);
-            } else {
-                featuresDetailConfigSelected = [];
             }
             setFeaturesDetailConfigSelected(featuresDetailConfigSelected);
         }
+    }
+
+    /**
+     *
+     * @param {string} name
+     * @return {boolean}
+     */
+    function isSelectedCard(name: string) {
+        return selected === name;
     }
 
     return (
@@ -78,6 +92,7 @@ function IdModalSidebar(props:IDModalSidebar) {
                         featureKey={featureKey}
                         config={config}
                         disabled={!config.usages.length}
+                        selected={isSelectedCard(config.name)}
                         toggleConfig={toggleConfig}/>
                 ))}
             </IDToggleList>

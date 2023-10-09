@@ -78,6 +78,7 @@ export interface IdToggleProps {
     featureKey: string;
     toggleConfig: (event: MouseEvent<HTMLDivElement>, name: string) => void;
     disabled?: boolean;
+    selected?: boolean;
 }
 
 export interface IDDividerProps extends DividerProps {

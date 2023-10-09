@@ -76,7 +76,7 @@ const IDCardActions = styled(CardActions)(({theme}) => ({
  *
  * @constructor
  */
-function IDToggle({disabled, featureKey, config, toggleConfig}: IdToggleProps) {
+function IDToggle({disabled, selected, featureKey, config, toggleConfig}: IdToggleProps) {
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded((prev) => !prev);
@@ -91,7 +91,7 @@ function IDToggle({disabled, featureKey, config, toggleConfig}: IdToggleProps) {
 
     return (
         <IDToggleWrapper data-testid="toggle"
-            className={disabled ? "Mui-disabled" : ""}
+            className={`${disabled ? "Mui-disabled" : ""} ${selected ? "Mui-selected" : ""}`}
             onClick={(event) => toggleConfig(event, name)}>
             <CardHeader
                 title={name}
