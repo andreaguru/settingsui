@@ -24,6 +24,7 @@ import IDAlert from "./IDAlert";
 import {getCategoryList, getUsagesProFeature} from "../api/FeatureDetailAPI";
 import {CategoryMap, CmsCategory, Usage} from "../types/api.types";
 import {edidTheme} from "../themes/edid";
+import {EmotionJSX} from "@emotion/react/types/jsx-namespace";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -31,15 +32,9 @@ interface TabPanelProps {
   value: number;
 }
 
-interface IDChipProps extends ChipProps {
-    noUsage?: boolean;
-}
-
-const IDChip = styled(Chip, {
-    shouldForwardProp: (prop) => prop !== "noUsage",
-})<IDChipProps>(({theme, noUsage}) => ({
-    color: noUsage ? theme.palette.neutral.main : theme.palette.success.main,
-    backgroundColor: noUsage ? theme.palette.neutral.light : theme.palette.success.light,
+const IDChip = styled(Chip)<ChipProps>(({theme, color}) => ({
+    color: color && color !== "default" ? theme.palette[color].main : theme.palette.neutral.main,
+    backgroundColor: color && color !== "default" ? theme.palette[color].light : theme.palette.neutral.light,
 }));
 
 const IDBadge = styled(Badge)<BadgeProps>(({theme}) => ({
@@ -93,6 +88,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
     const [activeTab, setActiveTab] = React.useState(0);
     const [usages, setUsages] = React.useState<Array<Usage>>([]);
     const [categoryList, setCategoryList] = React.useState<Array<CategoryMap>>([]);
+    const [isConfigSelected, setIsConfigSelected] = React.useState<boolean>(false);
     const theme = useTheme();
 
     useEffect(() => {
@@ -116,6 +112,11 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
         usagesPromise.then((data:Array<Usage>) => {
             if (data && Object.keys(data).length) {
                 setUsages(data);
+                if (!featuresDetailConfigSelected.length) {
+                    setIsConfigSelected(false);
+                } else {
+                    setIsConfigSelected(true);
+                }
             }
         });
     }, [featuresDetailConfig, featuresDetailConfigSelected]);
@@ -151,6 +152,54 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
         return usages;
     }
 
+    /**
+     *
+     * @param {number} activeLength
+     * @param {number} inactiveLength
+     * @return {EmotionJSX.Element[]}
+     */
+    function renderUsageStatus(activeLength: number, inactiveLength: number): EmotionJSX.Element[] {
+        return [
+            <IDChip
+                key="1"
+                label={`aktiviert ${activeLength}`}
+                color="success"
+                disabled={activeLength === 0}
+                size="small" />,
+            <IDChip
+                key="2"
+                label={`deaktiviert ${inactiveLength}`}
+                color="error"
+                disabled={inactiveLength === 0}
+                size="small" />,
+        ];
+    }
+
+    /**
+     *
+     * @param {Array<Usage>} usages
+     * @param {TableView} tableView
+     * @return {EmotionJSX.Element[]}
+     */
+    function getUsageLabel(usages: Array<Usage>, tableView: TableView) {
+        if (tableView === "CLIENT") {
+            const activeClients = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
+            const inactiveClients = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
+            return renderUsageStatus(activeClients.length, inactiveClients.length);
+        } else if (tableView === "CATEGORY") {
+            const activeCategories = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
+            const inactiveCategories = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
+            return renderUsageStatus(activeCategories.length, inactiveCategories.length);
+        } else if (tableView === "TAG") {
+            const activeTags = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
+            const inactiveTags = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
+            return renderUsageStatus(activeTags.length, inactiveTags.length);
+        } else {
+            // per default render aktiviert and deaktiviert with value 0
+            return renderUsageStatus(0, 0);
+        }
+    }
+
     return (
         <Box sx={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}}>
             <Tabs value={activeTab}
@@ -182,9 +231,13 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     iconPosition="start"
                     sx={{minWidth: theme.spacing(19)}}
                     label={
-                        <IDBadge badgeContent={4} color="primary">
+                        isConfigSelected ?
+                            <IDBadge badgeContent={getSelectedUsages(usages, TableView.CATEGORY).length}
+                                color="primary">
                             Kategorie
-                        </IDBadge>} {...a11yProps(1)} />
+                            </IDBadge> : "Kategorie"
+                    }
+                    {...a11yProps(1)} />
                 <Tab
                     icon={<TagIcon color={getIconColorByStatus(featureStatus.tag)} />}
                     iconPosition="start"
@@ -193,10 +246,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
             <Box sx={{backgroundColor: "white", flex: "1 1 100%"}}>
                 <TabPanel value={activeTab} index={0}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        <IDChip
-                            noUsage={getSelectedUsages(usages, TableView.CLIENT).length === 0}
-                            label={`aktiviert ${getSelectedUsages(usages, TableView.CLIENT).length || ""}`}
-                            size="small" />
+                        {getUsageLabel(usages, TableView.CLIENT)}
                     </Box>
                     <IDDataGrid
                         usages={getSelectedUsages(usages, TableView.CLIENT)}
@@ -206,11 +256,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 </TabPanel>
                 <TabPanel value={activeTab} index={1}>
                     <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
-                        <IDChip
-                            noUsage={getSelectedUsages(usages, TableView.CATEGORY).length === 0}
-                            label={`aktiviert ${getSelectedUsages(usages, TableView.CATEGORY).length || ""}`}
-                            size="small" />
-                        <IDChip label="error" size="small" />
+                        {getUsageLabel(usages, TableView.CATEGORY)}
                         <IDAlert
                             icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />}
                             severity="info"
@@ -228,10 +274,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        <IDChip
-                            noUsage={getSelectedUsages(usages, TableView.TAG).length === 0}
-                            label={`aktiviert ${getSelectedUsages(usages, TableView.TAG).length || ""}`}
-                            size="small" />
+                        {getUsageLabel(usages, TableView.TAG)}
                     </Box>
                     <IDDataGrid
                         usages={getSelectedUsages(usages, TableView.TAG)}

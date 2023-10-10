@@ -44,8 +44,18 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
         backgroundColor: theme.palette.grey[200],
         pointerEvents: "none",
     },
-    "&.Mui-selected": {
-        backgroundColor: theme.palette.primary.main,
+    ".MuiBox-root": {
+        "&:hover": {
+            backgroundColor: theme.palette.primary.light,
+            boxShadow: "rgba(0, 0, 0, 0.1) 0px 3px 6px 0px",
+        },
+        "&.Mui-selected": {
+            "backgroundColor": theme.palette.primary.main,
+            "color": "white",
+            ".MuiButtonBase-root": {
+                color: "white",
+            },
+        },
     },
     ".MuiList-root": {
         "h6": {
@@ -91,30 +101,34 @@ function IDToggle({disabled, selected, featureKey, config, toggleConfig}: IdTogg
 
     return (
         <IDToggleWrapper data-testid="toggle"
-            className={`${disabled ? "Mui-disabled" : ""} ${selected ? "Mui-selected" : ""}`}
+            className={`${disabled ? "Mui-disabled" : ""}`}
             onClick={(event) => toggleConfig(event, name)}>
-            <CardHeader
-                title={name}
-                titleTypographyProps={{variant: "subtitle2"}}
-                sx={{pb: 0}}
-            />
-            <IDCardActions>
-                <Typography variant="caption">Erstellt 10.02.2023</Typography>
-                <Typography variant="caption">Zuletz geändert 13.02.2023</Typography>
-                <ExpandMore
+            <Box className={`${selected ? "Mui-selected" : ""}`}>
+                <CardHeader
+                    title={name}
+                    titleTypographyProps={{variant: "subtitle2"}}
+                    sx={{pb: 0}}
+                />
+                <IDCardActions>
+                    <Typography variant="caption">Erstellt 10.02.2023</Typography>
+                    <Typography variant="caption">Zuletz geändert 13.02.2023</Typography>
+                    <ExpandMore
                     // a ternary operator syntax is needed since a warning is triggered
                     // when trying to pass a boolean value to a custom property
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                    disabled={disabled}
-                >
-                    <ArrowForwardIos fontSize="small" sx={{marginLeft: "auto"}} />
-                </ExpandMore>
-            </IDCardActions>
+                        expand={expanded}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                        disabled={disabled}
+                    >
+                        <ArrowForwardIos fontSize="small" sx={{marginLeft: "auto"}} />
+                    </ExpandMore>
+                </IDCardActions>
+            </Box>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 2}}} data-testid="collapsedContent">
+                <CardContent
+                    sx={{"pt": 0, "px": 2, "bgcolor": "white", "&:last-child": {pb: 2}}}
+                    data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2, display: "flex", rowGap: 2}}>
                         {/* normal features */}

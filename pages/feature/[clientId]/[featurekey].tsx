@@ -48,7 +48,6 @@ function FeatureDetailPage({...props}: HomeProps) {
                 .then((data) => {
                     if (data && Object.keys(data).length) {
                         setFeaturesDetail(data);
-                        setFeaturesDetailConfigSelected(data.configurations);
                     }
                 })
                 .catch((error: Error) => {

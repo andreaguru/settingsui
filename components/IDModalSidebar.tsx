@@ -35,7 +35,7 @@ function IdModalSidebar(props:IDModalSidebar) {
         featureKey,
         ...modalSidebarProps} = props;
 
-    const [selected, setSelected] = useState("");
+    const [selectedUsages, setSelectedUsages] = useState("");
 
     /**
      *
@@ -48,12 +48,12 @@ function IdModalSidebar(props:IDModalSidebar) {
         if (selectedEl?.parentElement?.tagName !== "BUTTON") {
             let featuresDetailConfigSelected: Array<FeaturesConfig>;
             // if the component is already selected, clean all filters
-            if (name === selected) {
-                setSelected("");
+            if (name === selectedUsages) {
+                setSelectedUsages("");
                 featuresDetailConfigSelected = [];
             // otherwise filter the configurations according to the selected element
             } else {
-                setSelected(name);
+                setSelectedUsages(name);
                 featuresDetailConfigSelected = featuresDetailConfig
                     .filter((conf: FeaturesConfig) => conf.name === name);
             }
@@ -67,7 +67,7 @@ function IdModalSidebar(props:IDModalSidebar) {
      * @return {boolean}
      */
     function isSelectedCard(name: string) {
-        return selected === name;
+        return selectedUsages === name;
     }
 
     return (
