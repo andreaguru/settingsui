@@ -24,6 +24,9 @@
     "@mui/icons-material": "^5.14.6",
     "@mui/material": "^5.14.6",
     "@mui/x-data-grid": "^6.11.2",
+    "@rjsf/core": "^5.13.0",
+    "@rjsf/utils": "^5.13.0",
+    "@rjsf/validator-ajv8": "^5.13.0",
     "@types/jest": "^29.5.4",
     "dotenv": "^16.3.1",
     "next": "^13.4.19",
@@ -36,6 +39,7 @@
     "webpack-strip-code": "^1.0.3"
   },
   "devDependencies": {
+    "@rjsf/mui": "^5.13.0",
     "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.2.21",
