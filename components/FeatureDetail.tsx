@@ -226,7 +226,10 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     },
                 }}>
                 <Tab
-                    icon={<ClientIcon color={getIconColorByStatus(featureStatus.client)} />}
+                    icon={<ClientIcon
+                        color={getSelectedUsages(usages, TableView.CLIENT).length ?
+                            getIconColorByStatus(featureStatus.client):
+                            "disabled"} />}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -236,7 +239,10 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                             </IDBadge> : "Mandant"
                     } {...a11yProps(0)} />
                 <Tab
-                    icon={<CategoryIcon color={getIconColorByStatus(featureStatus.category)} />}
+                    icon={<CategoryIcon
+                        color={getSelectedUsages(usages, TableView.CATEGORY).length ?
+                            getIconColorByStatus(featureStatus.category) :
+                            "disabled"} />}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -247,7 +253,10 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     }
                     {...a11yProps(1)} />
                 <Tab
-                    icon={<TagIcon color={getIconColorByStatus(featureStatus.tag)} />}
+                    icon={<TagIcon
+                        color={getSelectedUsages(usages, TableView.TAG).length ?
+                            getIconColorByStatus(featureStatus.tag) :
+                            "disabled"} />}
                     iconPosition="start"
                     label={
                         isConfigSelected ?

@@ -20,6 +20,9 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
         // end style for header and footer
         "maxWidth": "100%",
     },
+    "&.noUsage": {
+        color: theme.palette.secondary.light,
+    },
     "& .MuiDataGrid-overlayWrapper": {
         "top": "20%",
     },
@@ -122,6 +125,7 @@ function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGrid) {
         <IDDataGridWrapper
             rows={usages}
             getRowId={(row) => `${row.id.configurationId}-${row.id.clientId}-${row.id.categoryId}-${row.id.tagId}`}
+            className={!usages.length ? "noUsage" : ""}
             columns={columns}
             columnVisibilityModel={columnVisibilityModel}
             hideFooter
