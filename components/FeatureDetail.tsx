@@ -221,15 +221,23 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     "& .Mui-selected": {
                         bgcolor: "white", // Customize the background color of the selected tab
                     },
+                    ".MuiTab-root": {
+                        paddingRight: theme.spacing(3),
+                    },
                 }}>
                 <Tab
                     icon={<ClientIcon color={getIconColorByStatus(featureStatus.client)} />}
                     iconPosition="start"
-                    label="Mandant" {...a11yProps(0)} />
+                    label={
+                        isConfigSelected ?
+                            <IDBadge badgeContent={getSelectedUsages(usages, TableView.CLIENT).length}
+                                color="primary">
+                            Mandant
+                            </IDBadge> : "Mandant"
+                    } {...a11yProps(0)} />
                 <Tab
                     icon={<CategoryIcon color={getIconColorByStatus(featureStatus.category)} />}
                     iconPosition="start"
-                    sx={{minWidth: theme.spacing(19)}}
                     label={
                         isConfigSelected ?
                             <IDBadge badgeContent={getSelectedUsages(usages, TableView.CATEGORY).length}
@@ -241,7 +249,13 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 <Tab
                     icon={<TagIcon color={getIconColorByStatus(featureStatus.tag)} />}
                     iconPosition="start"
-                    label="Tag" {...a11yProps(2)} />
+                    label={
+                        isConfigSelected ?
+                            <IDBadge badgeContent={getSelectedUsages(usages, TableView.TAG).length}
+                                color="primary">
+                            Tag
+                            </IDBadge> : "Tag"
+                    } {...a11yProps(2)} />
             </Tabs>
             <Box sx={{backgroundColor: "white", flex: "1 1 100%"}}>
                 <TabPanel value={activeTab} index={0}>
