@@ -60,7 +60,7 @@ function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGrid) {
             sortable: status !== "NONE",
             align: "center",
             width: 80,
-            renderCell: (params) => <CircleIcon color={params.value ? "success" : "disabled"} fontSize="small" />,
+            renderCell: (params) => <CircleIcon color={params.value ? "success" : "error"} fontSize="small" />,
         },
         {
             field: "category",

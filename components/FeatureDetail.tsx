@@ -80,6 +80,71 @@ function a11yProps(index: number) {
 }
 
 /**
+     *
+     * @param {number} activeLength
+     * @param {number} inactiveLength
+     * @return {EmotionJSX.Element[]}
+     */
+function renderUsageStatus(activeLength: number, inactiveLength: number): EmotionJSX.Element[] {
+    return [
+        <IDChip
+            key="1"
+            label={`aktiviert ${activeLength}`}
+            color="success"
+            disabled={activeLength === 0}
+            size="small" />,
+        <IDChip
+            key="2"
+            label={`deaktiviert ${inactiveLength}`}
+            color="error"
+            disabled={inactiveLength === 0}
+            size="small" />,
+    ];
+}
+
+/**
+     *
+     * @param {Array<Usage>} usages
+     * @param {TableView} tableView
+     * @return {EmotionJSX.Element[]}
+     */
+function getUsageLabel(usages: Array<Usage>, tableView: TableView) {
+    if (tableView === "CLIENT") {
+        const activeClients = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
+        const inactiveClients = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
+        return renderUsageStatus(activeClients.length, inactiveClients.length);
+    } else if (tableView === "CATEGORY") {
+        const activeCategories = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
+        const inactiveCategories = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
+        return renderUsageStatus(activeCategories.length, inactiveCategories.length);
+    } else if (tableView === "TAG") {
+        const activeTags = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
+        const inactiveTags = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
+        return renderUsageStatus(activeTags.length, inactiveTags.length);
+    } else {
+        // per default render aktiviert and deaktiviert with value 0
+        return renderUsageStatus(0, 0);
+    }
+}
+
+/**
+     *
+     * @param {Array<Usage>} usages
+     * @param {TableView} tableView
+     * @return {Array<Usage>}
+     */
+function getSelectedUsages(usages: Array<Usage>, tableView: TableView) {
+    if (tableView === "CLIENT") {
+        return usages.filter((usage) => usage.id.clientId !== 0);
+    } else if (tableView === "CATEGORY") {
+        return usages.filter((usage) => usage.id.categoryId !== 0);
+    } else if (tableView === "TAG") {
+        return usages.filter((usage) => usage.id.tagId !== 0);
+    }
+    return usages;
+}
+
+/**
  *
  * @param {FeatureDetail} {featureStatus, featuresDetailConfig, featuresDetailConfigSelected}
  * @constructor
@@ -133,71 +198,6 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
     function getCategoryName(categoryId: number) {
         const categoryObj = categoryList.find((cat) => cat.id === categoryId) as CmsCategory;
         return categoryObj.name;
-    }
-
-    /**
-     *
-     * @param {Array<Usage>} usages
-     * @param {TableView} tableView
-     * @return {Array<Usage>}
-     */
-    function getSelectedUsages(usages: Array<Usage>, tableView: TableView) {
-        if (tableView === "CLIENT") {
-            return usages.filter((usage) => usage.id.clientId !== 0);
-        } else if (tableView === "CATEGORY") {
-            return usages.filter((usage) => usage.id.categoryId !== 0);
-        } else if (tableView === "TAG") {
-            return usages.filter((usage) => usage.id.tagId !== 0);
-        }
-        return usages;
-    }
-
-    /**
-     *
-     * @param {number} activeLength
-     * @param {number} inactiveLength
-     * @return {EmotionJSX.Element[]}
-     */
-    function renderUsageStatus(activeLength: number, inactiveLength: number): EmotionJSX.Element[] {
-        return [
-            <IDChip
-                key="1"
-                label={`aktiviert ${activeLength}`}
-                color="success"
-                disabled={activeLength === 0}
-                size="small" />,
-            <IDChip
-                key="2"
-                label={`deaktiviert ${inactiveLength}`}
-                color="error"
-                disabled={inactiveLength === 0}
-                size="small" />,
-        ];
-    }
-
-    /**
-     *
-     * @param {Array<Usage>} usages
-     * @param {TableView} tableView
-     * @return {EmotionJSX.Element[]}
-     */
-    function getUsageLabel(usages: Array<Usage>, tableView: TableView) {
-        if (tableView === "CLIENT") {
-            const activeClients = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
-            const inactiveClients = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
-            return renderUsageStatus(activeClients.length, inactiveClients.length);
-        } else if (tableView === "CATEGORY") {
-            const activeCategories = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
-            const inactiveCategories = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
-            return renderUsageStatus(activeCategories.length, inactiveCategories.length);
-        } else if (tableView === "TAG") {
-            const activeTags = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
-            const inactiveTags = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
-            return renderUsageStatus(activeTags.length, inactiveTags.length);
-        } else {
-            // per default render aktiviert and deaktiviert with value 0
-            return renderUsageStatus(0, 0);
-        }
     }
 
     return (
@@ -287,3 +287,10 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
 }
 
 export default FeatureDetail;
+
+/* start-test-block */
+export {
+    getUsageLabel,
+    getSelectedUsages,
+};
+/* end-test-block */
