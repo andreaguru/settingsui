@@ -1,67 +1,25 @@
 import {RJSFSchema, UiSchema} from "@rjsf/utils";
 
 export const schemaArray: RJSFSchema = {
-    "title": "Header",
-    "description": "Header schema",
     "type": "object",
+    "required": [
+        "gtmContainerId",
+        "customVendorId",
+    ],
     "properties": {
-        "logo": {
-            "type": "object",
-            "title": "Logo",
-            "properties": {
-                "name": {type: "string", title: "Name"},
-                "links": {
-                    "type": "array",
-                    "title": "Links",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "url": {"type": "string", "title": "url"},
-                            "name": {"type": "string", "title": "name"},
-                        },
-                    },
-                },
-            },
+        "gtmContainerId": {
+            "type": "string",
+            "title": "Container ID",
         },
-        "featured": {
-            "type": "object",
-            "title": "Featured",
-            "properties": {
-                "name": {type: "string", title: "Name"},
-                "links": {
-                    "type": "array",
-                    "title": "Links",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "elementType": {"type": "string", "title": "Element Type"},
-                            "url": {"type": "string", "title": "url"},
-                            "name": {"type": "string", "title": "name"},
-                            "modifierClassExtension": {"type": "string", "title": "Modifier Class Extension"},
-                        },
-                    },
-                },
-            },
+        "forceConsent": {
+            "type": "boolean",
+            "title": "Nach Zustimmung über CMP laden",
+            "default": true,
         },
-        "actions": {
-            "type": "object",
-            "title": "Actions",
-            "properties": {
-                "name": {type: "string", title: "Name"},
-                "links": {
-                    "type": "array",
-                    "title": "Links",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "elementType": {"type": "string", "title": "Element Type"},
-                            "url": {"type": "string", "title": "url"},
-                            "name": {"type": "string", "title": "name"},
-                            "modifierClassExtension": {"type": "string", "title": "Modifier Class Extension"},
-                        },
-                    },
-                },
-            },
+        "customVendorId": {
+            "type": "string",
+            "title": "Custom Vendor ID",
+            "default": "850",
         },
     },
 };
