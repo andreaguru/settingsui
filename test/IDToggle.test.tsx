@@ -9,7 +9,7 @@ jest.mock("../api/DashboardAPI");
 test("Toggle has class disabled when disabled property is passed", () => {
     render(
         <ThemeProvider theme={edidTheme}>
-            <IDToggle featureKey="footer" disabled />
+            <IDToggle featureKey="footer" jsonSchema={{}} disabled/>
         </ThemeProvider>
     );
     // first check if the component has class disabled
@@ -24,7 +24,7 @@ test("Toggle has class disabled when disabled property is passed", () => {
 test("Toggle is expanded at first click / Toggle collapses at second click", async () => {
     render(
         <ThemeProvider theme={edidTheme}>
-            <IDToggle featureKey="footer" />
+            <IDToggle featureKey="footer" jsonSchema={{}}/>
         </ThemeProvider>
     );
     await act(async () => {
@@ -45,7 +45,7 @@ test("Toggle is expanded at first click / Toggle collapses at second click", asy
 test("Toggle is collapsed at second click", () => {
     render(
         <ThemeProvider theme={edidTheme}>
-            <IDToggle featureKey="footer" />
+            <IDToggle featureKey="footer" jsonSchema={{}}/>
         </ThemeProvider>
     );
     fireEvent.doubleClick(screen.getByRole("button"));

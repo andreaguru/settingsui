@@ -3,6 +3,7 @@ import {ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
 import {GridProps} from "@mui/material/Grid";
 import {DividerProps} from "@mui/material";
+import {RJSFSchema} from "@rjsf/utils";
 
 /*
 Interfaces for the Components
@@ -69,17 +70,19 @@ export interface IDModalHeader extends AppBarProps {
 
 export interface IDModalSidebar extends GridProps {
     featuresDetailConfig: FeaturesConfig[];
+    jsonSchema: RJSFSchema;
     featureKey: string;
 }
 
 export interface IdToggleProps {
     config?: FeaturesConfig;
     featureKey: string;
-    disabled?: boolean,
+    disabled?: boolean;
+    jsonSchema: RJSFSchema;
 }
 
 export interface IDDividerProps extends DividerProps {
-    marginTop?: string,
+    marginTop?: string;
 }
 
 export enum FeatSelectedStatus {

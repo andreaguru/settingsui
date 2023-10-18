@@ -1,6 +1,5 @@
 import {Fragment, useState} from "react";
 import validator from "@rjsf/validator-ajv8";
-import {schemaArray} from "../utils/RJSFSchema";
 import Form from "@rjsf/mui";
 import {styled} from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -11,20 +10,14 @@ import Collapse from "@mui/material/Collapse";
 import IconButton, {IconButtonProps} from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
-import Interest from "@mui/icons-material/Interests";
-import AutoAwesome from "@mui/icons-material/AutoAwesome";
-import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import {Divider, ListItem} from "@mui/material";
-import {IdToggleProps} from "../types/componentProps.types";
-import List from "@mui/material/List";
+import {Divider} from "@mui/material";
 
 // import typescript Interfaces
-import {ElementType, SettingsLink} from "../types/api.types";
+import {IdToggleProps} from "../types/componentProps.types";
 
 interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
+    expand: boolean;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
@@ -61,10 +54,6 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
         wordWrap: "break-word",
         lineHeight: 1,
     },
-    ".MuiGrid-item": {
-        flexBasis: "50%",
-        paddingTop: 0,
-    },
 }));
 
 const IDCardActions = styled(CardActions)(({theme}) => ({
@@ -80,7 +69,7 @@ const IDCardActions = styled(CardActions)(({theme}) => ({
  *
  * @constructor
  */
-function IDToggle({disabled, featureKey, config}: IdToggleProps) {
+function IDToggle({disabled, config, jsonSchema}: IdToggleProps) {
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded((prev) => !prev);
@@ -119,67 +108,15 @@ function IDToggle({disabled, featureKey, config}: IdToggleProps) {
                 <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 1}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
-                        {/* normal features */}
-                        {featureKey !== "header" && featureKey !== "footer" &&
                         <Form
-                            schema={schemaArray}
+                            className="testForm"
+                            schema={jsonSchema}
                             uiSchema={{}}
-                            formData={{"gtmContainerId": "test id"}}
+                            formData={settings}
                             validator={validator} readonly>
                             {/* Fragment allows us to not show the submit button */}
-                            <Fragment />
+                            <Fragment/>
                         </Form>
-                        }
-                        {/* header or footer layout */}
-                        {(featureKey === "header" || featureKey === "footer") &&
-                        <List disablePadding>
-                            {settings.map((setting, index) => (
-                                <Fragment key={index}>
-                                    {setting.name &&
-                                        <Typography variant="subtitle2">{setting.name}</Typography>
-                                    }
-                                    {setting.links && setting.links.map((link:SettingsLink, index:number) => (
-                                        <ListItem key={index}>
-                                            <Typography variant="body2" sx={{display: "flex", alignItems: "center"}}>
-                                                {link.elementType === ElementType.SEARCH_LINK ?
-                                                    <Interest
-                                                        sx={{
-                                                            marginRight: .3,
-                                                            marginTop: -.2,
-                                                        }}
-                                                        fontSize="inherit" /> :
-                                                    ""}
-                                                {link.name}
-                                                {link.elementType === ElementType.TEXT_LINK &&
-                                                link.modifierClassExtension !== null ?
-                                                    <Tooltip
-                                                        title={`Hervorgehobener Link: ${link.modifierClassExtension}`}
-                                                        placement="top">
-                                                        <AutoAwesome
-                                                            sx={{"color": "text.secondary",
-                                                                "marginLeft": .3,
-                                                                "marginTop": -.2,
-                                                                "cursor": "pointer",
-                                                                "&:hover": {
-                                                                    color: "text.primary",
-                                                                },
-                                                            }}
-                                                            fontSize="inherit"/>
-                                                    </Tooltip> :
-                                                    ""}
-                                            </Typography>
-                                            <Link variant="body2"
-                                                color="text.secondary"
-                                                href={link.url}
-                                                underline="hover">
-                                                {link.url}
-                                            </Link>
-                                        </ListItem>
-                                    ))}
-                                </Fragment>
-                            ))}
-                        </List>
-                        }
                     </Grid>
                 </CardContent>
             </Collapse>
