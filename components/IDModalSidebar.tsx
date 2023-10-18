@@ -6,6 +6,8 @@ import IDLinearProgress from "./IDLinearProgress";
 import IDToggleList from "./IDToggleList";
 import IDToggle from "./IDToggle";
 import IDHelpIcon from "./IDHelpIcon";
+
+// import typescript Interfaces
 import {IDModalSidebar} from "../types/componentProps.types";
 
 /**
@@ -30,7 +32,9 @@ function IdModalSidebar(props:IDModalSidebar) {
     const {
         featuresDetailConfig,
         featureKey,
-        ...modalSidebarProps} = props;
+        jsonSchema,
+        ...modalSidebarProps
+    } = props;
 
     return (
         <IDModalSidebarWrapper {...modalSidebarProps}>
@@ -49,7 +53,12 @@ function IdModalSidebar(props:IDModalSidebar) {
             </Container>
             <IDToggleList sx={{paddingBottom: 2}}>
                 {featuresDetailConfig.map((config, index) => (
-                    <IDToggle key={index} featureKey={featureKey} config={config} disabled={!config.usages.length} />
+                    <IDToggle
+                        key={index}
+                        featureKey={featureKey}
+                        config={config}
+                        jsonSchema={jsonSchema}
+                        disabled={!config.usages.length}/>
                 ))}
             </IDToggleList>
         </IDModalSidebarWrapper>
