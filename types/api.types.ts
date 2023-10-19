@@ -50,6 +50,10 @@ export interface Usage {
     active: boolean;
 }
 
+export interface UsageWithConfigName extends Usage {
+    configurationName: string;
+}
+
 export interface FeaturesConfig {
     id: number;
     name: string;

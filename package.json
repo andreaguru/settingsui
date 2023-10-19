@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "server": "cd json-db && json-server db.json --port 3004 --middlewares file.js",
-    "dev": "concurrently \"npm run server\" \"cross-env ENV_FILE=envs/.env.development next dev\"",
+    "dev": "cross-env ENV_FILE=envs/.env.development next dev\"",
+    "dev_staging": "cross-env ENV_FILE=envs/.env.staging next dev\"",
     "build:development": "cross-env ENV_FILE=envs/.env.development next build",
     "start:development": "cross-env ENV_FILE=envs/.env.development next start",
     "build:staging": "ENV_FILE=envs/.env.staging next build",

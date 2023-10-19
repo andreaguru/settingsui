@@ -9,33 +9,26 @@ import ClientIcon from "@mui/icons-material/Apartment";
 import CategoryIcon from "@mui/icons-material/AccountTree";
 import TagIcon from "@mui/icons-material/LocalOffer";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Chip, {ChipProps} from "@mui/material/Chip";
 import Badge, {BadgeProps} from "@mui/material/Badge";
 
 // import typescript Interfaces
 import {FeatureDetail, TableView} from "../types/componentProps.types";
+import {CategoryMap, CmsCategory, FeaturesConfig, Usage} from "../types/api.types";
 
 // import utils
-import {getIconColorByStatus} from "../utils/utils";
+import {getIconColorByStatus, showUsageLabel} from "../utils/utils";
 
 // import custom components
 import IDDataGrid from "./IDDataGrid";
 import IDAlert from "./IDAlert";
-import {getCategoryList, getUsagesProFeature} from "../api/FeatureDetailAPI";
-import {CategoryMap, CmsCategory, Usage} from "../types/api.types";
+import {getCategoryList, getUsagesPerFeature} from "../api/FeatureDetailAPI";
 import {edidTheme} from "../themes/edid";
-import {EmotionJSX} from "@emotion/react/types/jsx-namespace";
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
-
-const IDChip = styled(Chip)<ChipProps>(({theme, color}) => ({
-    color: color && color !== "default" ? theme.palette[color].main : theme.palette.neutral.main,
-    backgroundColor: color && color !== "default" ? theme.palette[color].light : theme.palette.neutral.light,
-}));
 
 const IDBadge = styled(Badge)<BadgeProps>(({theme}) => ({
     "& .MuiBadge-badge": {
@@ -68,66 +61,6 @@ function TabPanel(props: TabPanelProps) {
 }
 
 /**
- *
- * @param {number} index
- * @return {object}
- */
-function a11yProps(index: number) {
-    return {
-        "id": `simple-tab-${index}`,
-        "aria-controls": `simple-tabpanel-${index}`,
-    };
-}
-
-/**
-     *
-     * @param {number} activeLength
-     * @param {number} inactiveLength
-     * @return {EmotionJSX.Element[]}
-     */
-function renderUsageStatus(activeLength: number, inactiveLength: number): EmotionJSX.Element[] {
-    return [
-        <IDChip
-            key="1"
-            label={`aktiviert ${activeLength}`}
-            color="success"
-            disabled={activeLength === 0}
-            size="small" />,
-        <IDChip
-            key="2"
-            label={`deaktiviert ${inactiveLength}`}
-            color="error"
-            disabled={inactiveLength === 0}
-            size="small" />,
-    ];
-}
-
-/**
-     *
-     * @param {Array<Usage>} usages
-     * @param {TableView} tableView
-     * @return {EmotionJSX.Element[]}
-     */
-function getUsageLabel(usages: Array<Usage>, tableView: TableView) {
-    if (tableView === "CLIENT") {
-        const activeClients = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
-        const inactiveClients = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
-        return renderUsageStatus(activeClients.length, inactiveClients.length);
-    } else if (tableView === "CATEGORY") {
-        const activeCategories = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
-        const inactiveCategories = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
-        return renderUsageStatus(activeCategories.length, inactiveCategories.length);
-    } else if (tableView === "TAG") {
-        const activeTags = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
-        const inactiveTags = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
-        return renderUsageStatus(activeTags.length, inactiveTags.length);
-    } else {
-        // per default render aktiviert and deaktiviert with value 0
-        return renderUsageStatus(0, 0);
-    }
-}
-
-/**
      *
      * @param {Array<Usage>} usages
      * @param {TableView} tableView
@@ -145,6 +78,37 @@ function getSelectedUsages(usages: Array<Usage>, tableView: TableView) {
 }
 
 /**
+ * setStateCategoryList
+ * @param {Array<Usage>} usages
+ * @param {Array<FeaturesConfig>} featuresDetailConfig
+ * @param {React.Dispatch<React.SetStateAction<CategoryMap[]>>} setCategoryList
+ */
+function setStateCategoryList(
+    usages: Array<Usage>,
+    featuresDetailConfig: Array<FeaturesConfig>,
+    setCategoryList: React.Dispatch<React.SetStateAction<CategoryMap[]>>) {
+    if (usages.length > 0) {
+        const categoryPromise = getCategoryList(featuresDetailConfig[0].clientId);
+        categoryPromise.then((data: Array<CategoryMap>) => {
+            if (data && Object.keys(data).length) {
+                setCategoryList(data);
+            }
+        });
+    }
+}
+
+/**
+ * setStateIsConfigSelected
+ * @param {Array<FeaturesConfig>} featuresDetailConfigSelected
+ * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsConfigSelected
+ */
+function setStateIsConfigSelected(
+    featuresDetailConfigSelected: Array<FeaturesConfig>,
+    setIsConfigSelected: React.Dispatch<React.SetStateAction<boolean>>) {
+    setIsConfigSelected(featuresDetailConfigSelected.length > 0);
+}
+
+/**
  *
  * @param {FeatureDetail} {featureStatus, featuresDetailConfig, featuresDetailConfigSelected}
  * @constructor
@@ -157,33 +121,26 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
     const theme = useTheme();
 
     useEffect(() => {
-        if (usages.length > 0) {
-            const categoryPromise = getCategoryList(featuresDetailConfig[0].clientId);
-            categoryPromise.then((data: Array<CategoryMap>) => {
-                if (data && Object.keys(data).length) {
-                    setCategoryList(data);
-                }
-            });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [usages]);
-
-    useEffect(() => {
         // if a configuration has been selected, show it only, otherwise show all configs
         const configToShow = featuresDetailConfigSelected.length ?
             featuresDetailConfigSelected :
             featuresDetailConfig;
-        const usagesPromise = getUsagesProFeature(configToShow);
+        const usagesPromise = getUsagesPerFeature(configToShow);
+
         usagesPromise.then((data:Array<Usage>) => {
             if (data && Object.keys(data).length) {
                 setUsages(data);
-                if (!featuresDetailConfigSelected.length) {
-                    setIsConfigSelected(false);
-                } else {
-                    setIsConfigSelected(true);
-                }
+
+                /* if usages are present, set categoryList state,
+                so that it can be used in IDDataGrid Component to show category names */
+                setStateCategoryList(usages, featuresDetailConfig, setCategoryList);
+
+                /* if a configuration has been selected, show the relative Badge component with the number of usages
+                that are displayed, otherwise show only the text label */
+                setStateIsConfigSelected(featuresDetailConfigSelected, setIsConfigSelected);
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [featuresDetailConfig, featuresDetailConfigSelected]);
 
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
@@ -191,7 +148,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
     };
 
     /**
-     *
+     * getCategoryName
      * @param {number} categoryId
      * @return {string}
      */
@@ -226,50 +183,55 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     },
                 }}>
                 <Tab
+                    id="simple-tab-index-0"
+                    aria-controls="simple-tabpanel-0"
                     icon={<ClientIcon
                         color={getSelectedUsages(usages, TableView.CLIENT).length ?
-                            getIconColorByStatus(featureStatus.client):
-                            "disabled"} />}
+                            getIconColorByStatus(featureStatus.client) :
+                            "disabled"}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
                             <IDBadge badgeContent={getSelectedUsages(usages, TableView.CLIENT).length}
                                 color="primary">
-                            Mandant
+                                Mandant
                             </IDBadge> : "Mandant"
-                    } {...a11yProps(0)} />
+                    }/>
                 <Tab
+                    id="simple-tab-index-1"
+                    aria-controls="simple-tabpanel-1"
                     icon={<CategoryIcon
                         color={getSelectedUsages(usages, TableView.CATEGORY).length ?
                             getIconColorByStatus(featureStatus.category) :
-                            "disabled"} />}
+                            "disabled"}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
                             <IDBadge badgeContent={getSelectedUsages(usages, TableView.CATEGORY).length}
                                 color="primary">
-                            Kategorie
+                                Kategorie
                             </IDBadge> : "Kategorie"
-                    }
-                    {...a11yProps(1)} />
+                    }/>
                 <Tab
+                    id="simple-tab-index-2"
+                    aria-controls="simple-tabpanel-2"
                     icon={<TagIcon
                         color={getSelectedUsages(usages, TableView.TAG).length ?
                             getIconColorByStatus(featureStatus.tag) :
-                            "disabled"} />}
+                            "disabled"}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
                             <IDBadge badgeContent={getSelectedUsages(usages, TableView.TAG).length}
                                 color="primary">
-                            Tag
+                                Tag
                             </IDBadge> : "Tag"
-                    } {...a11yProps(2)} />
+                    }/>
             </Tabs>
             <Box sx={{backgroundColor: "white", flex: "1 1 100%"}}>
                 <TabPanel value={activeTab} index={0}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        {getUsageLabel(usages, TableView.CLIENT)}
+                        {showUsageLabel(usages, TableView.CLIENT)}
                     </Box>
                     <IDDataGrid
                         usages={getSelectedUsages(usages, TableView.CLIENT)}
@@ -279,7 +241,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 </TabPanel>
                 <TabPanel value={activeTab} index={1}>
                     <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
-                        {getUsageLabel(usages, TableView.CATEGORY)}
+                        {showUsageLabel(usages, TableView.CATEGORY)}
                         <IDAlert
                             icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />}
                             severity="info"
@@ -297,7 +259,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
                     <Box sx={{display: "flex", gap: theme.spacing(2)}}>
-                        {getUsageLabel(usages, TableView.TAG)}
+                        {showUsageLabel(usages, TableView.TAG)}
                     </Box>
                     <IDDataGrid
                         usages={getSelectedUsages(usages, TableView.TAG)}
@@ -313,7 +275,8 @@ export default FeatureDetail;
 
 /* start-test-block */
 export {
-    getUsageLabel,
     getSelectedUsages,
+    setStateCategoryList,
+    setStateIsConfigSelected,
 };
 /* end-test-block */

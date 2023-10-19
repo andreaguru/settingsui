@@ -35,7 +35,7 @@ function IdModalSidebar(props:IDModalSidebar) {
         featureKey,
         ...modalSidebarProps} = props;
 
-    const [selectedUsages, setSelectedUsages] = useState("");
+    const [selectedUsages, setSelectedUsages] = useState<string>("");
 
     /**
      *
@@ -45,18 +45,20 @@ function IdModalSidebar(props:IDModalSidebar) {
     function toggleConfig(event: MouseEvent<HTMLElement>, name: string) {
         const selectedEl = event.target as Element;
         // if toggle button is clicked, do nothing
-        if (selectedEl?.parentElement?.tagName !== "BUTTON") {
+        if (!selectedEl?.closest(".toggleButton")) {
             let featuresDetailConfigSelected: Array<FeaturesConfig>;
             // if the component is already selected, clean all filters
             if (name === selectedUsages) {
                 setSelectedUsages("");
                 featuresDetailConfigSelected = [];
-            // otherwise filter the configurations according to the selected element
+                // otherwise filter the configurations according to the selected element
             } else {
                 setSelectedUsages(name);
                 featuresDetailConfigSelected = featuresDetailConfig
                     .filter((conf: FeaturesConfig) => conf.name === name);
             }
+            /* featuresDetailConfigSelected state will be either n empty array or
+            an array that contains the selected configuration */
             setFeaturesDetailConfigSelected(featuresDetailConfigSelected);
         }
     }

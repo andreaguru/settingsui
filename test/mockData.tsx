@@ -617,4 +617,15 @@ export const mockedFeatureDetailForClient = {
     ],
 };
 
+export const mockedCategoryList = [
+    {
+        id: 1234,
+        name: "Category 1",
+    },
+    {
+        id: 5678,
+        name: "Category 2",
+    },
+];
+
 

@@ -1,20 +1,14 @@
 import "@testing-library/jest-dom";
-import {getSelectedUsages, getUsageLabel} from "../components/FeatureDetail";
-import {mockedFeatureDetailForClient} from "./mockData";
+import {getSelectedUsages, setStateCategoryList, setStateIsConfigSelected} from "../components/FeatureDetail";
+import {mockedCategoryList, mockedFeatureDetailForClient} from "./mockData";
 import {TableView} from "../types/componentProps.types";
+import React from "react";
+
+jest.mock("../api/FeatureDetailAPI", () => ({
+    getCategoryList: jest.fn(() => Promise.resolve(mockedCategoryList)),
+}));
 
 // UNIT TESTS
-
-test("returns two Chip Components with 0 usages (both active and inactive)", () => {
-    const labels = getUsageLabel(mockedFeatureDetailForClient.configurations[0].usages, TableView.CLIENT);
-    expect(labels[0].props.label).toContain("aktiviert 0");
-    expect(labels[1].props.label).toContain("deaktiviert 0");
-});
-test("returns two Chip Components with 2 usages, only active", () => {
-    const labels = getUsageLabel(mockedFeatureDetailForClient.configurations[0].usages, TableView.CATEGORY);
-    expect(labels[0].props.label).toContain("aktiviert 2");
-    expect(labels[1].props.label).toContain("deaktiviert 0");
-});
 
 test("returns the correct number of usages according to the mocked data", () => {
     const usagesForClient = getSelectedUsages(mockedFeatureDetailForClient.configurations[0].usages,
@@ -26,4 +20,38 @@ test("returns the correct number of usages according to the mocked data", () => 
     expect(usagesForClient.length).toBe(0);
     expect(usagesForCategory.length).toBe(2);
     expect(usagesForTag.length).toBe(0);
+});
+
+test("setCategoryList state should be called with a mocked category list as param", async () => {
+    const setCategoryList = jest.fn();
+    jest
+        .spyOn(React, "useState")
+        .mockImplementation(() => [mockedCategoryList, setCategoryList]);
+    await setStateCategoryList(
+        mockedFeatureDetailForClient.configurations[0].usages,
+        mockedFeatureDetailForClient.configurations,
+        setCategoryList);
+    expect(setCategoryList).toHaveBeenCalledWith(mockedCategoryList);
+});
+
+test("setIsConfigSelected state should be called with true as param", () => {
+    const setIsConfigSelected = jest.fn();
+    jest
+        .spyOn(React, "useState")
+        .mockImplementation(() => [true, setIsConfigSelected]);
+    setStateIsConfigSelected(
+        mockedFeatureDetailForClient.configurations,
+        setIsConfigSelected);
+    expect(setIsConfigSelected).toHaveBeenCalledWith(true);
+});
+
+test("setIsConfigSelected state should be called with false as param", () => {
+    const setIsConfigSelected = jest.fn();
+    jest
+        .spyOn(React, "useState")
+        .mockImplementation(() => [true, setIsConfigSelected]);
+    setStateIsConfigSelected(
+        [],
+        setIsConfigSelected);
+    expect(setIsConfigSelected).toHaveBeenCalledWith(false);
 });
