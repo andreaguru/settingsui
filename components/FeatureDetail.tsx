@@ -61,7 +61,7 @@ function TabPanel(props: TabPanelProps) {
 }
 
 /**
-     *
+     * getSelectedUsages
      * @param {Array<Usage>} usages
      * @param {TableView} tableView
      * @return {Array<Usage>}
