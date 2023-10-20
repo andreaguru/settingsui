@@ -4,7 +4,7 @@ import {styled, useTheme} from "@mui/material/styles";
 import CircleIcon from "@mui/icons-material/Circle";
 import {alpha, Tooltip, Typography} from "@mui/material";
 import IDHelpIcon from "./IDHelpIcon";
-import configurationNotFound from "../assets/konfiguration_nicht_gefunden.svg";
+import configurationNotFound from "../assets/konfiguration_nicht_gefunden.min.svg";
 
 // import typescript Interfaces
 import {IDDataGrid, TableView} from "../types/componentProps.types";
@@ -143,7 +143,12 @@ function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGrid) {
                         height="100%"
                         padding={2}
                     >
-                        <Image alt="" layout="fixed" src={configurationNotFound} width={225} height={54}/>
+                        <Image alt=""
+                            layout="fixed"
+                            src={configurationNotFound}
+                            width={225}
+                            height={54}
+                            objectFit="contain" />
                         <Typography variant="body2" color="text.secondary" marginTop={1}>
                             Die Konfiguration wird auf dieser Ebene nicht verwendet.
                         </Typography>
