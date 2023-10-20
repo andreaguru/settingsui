@@ -170,41 +170,5 @@ export const edidTheme = createTheme({
                 }),
             },
         },
-        // Style the Outlined Text Input fields (see IDToggle.tsx)
-        MuiOutlinedInput: {
-            styleOverrides: {
-                input: ({theme}) => ({
-                    "&.Mui-disabled": {
-                        all: "unset",
-                        color: theme.palette.secondary.main,
-                        fontSize: theme.typography.body2.fontSize,
-                        width: "100%",
-                    },
-                }),
-                notchedOutline: {
-                    display: "none",
-                },
-            },
-        },
-        MuiInputLabel: {
-            styleOverrides: {
-                root: ({theme}) => ({
-                    "&.Mui-disabled": {
-                        all: "unset",
-                        color: theme.palette.secondary.light,
-                        fontSize: theme.typography.caption.fontSize,
-                    },
-                }),
-            },
-        },
-        MuiFormControlLabel: {
-            styleOverrides: {
-                label: ({theme}) => ({
-                    "&.Mui-disabled": {
-                        fontSize: theme.typography.caption.fontSize,
-                    },
-                }),
-            },
-        },
     },
 });

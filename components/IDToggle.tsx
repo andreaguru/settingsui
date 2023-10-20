@@ -1,6 +1,5 @@
 import {Fragment, useState} from "react";
 import validator from "@rjsf/validator-ajv8";
-import Form from "@rjsf/mui";
 import {styled} from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -12,6 +11,8 @@ import Typography from "@mui/material/Typography";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
 import {Divider} from "@mui/material";
+import IDForm from "./IDForm";
+import {uiSchema} from "../utils/RJSFSchema";
 
 // import typescript Interfaces
 import {IdToggleProps} from "../types/componentProps.types";
@@ -108,15 +109,14 @@ function IDToggle({disabled, config, jsonSchema}: IdToggleProps) {
                 <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 1}}} data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
-                        <Form
-                            className="testForm"
+                        <IDForm
                             schema={jsonSchema}
-                            uiSchema={{}}
+                            uiSchema={uiSchema}
                             formData={settings}
                             validator={validator} readonly>
                             {/* Fragment allows us to not show the submit button */}
                             <Fragment/>
-                        </Form>
+                        </IDForm>
                     </Grid>
                 </CardContent>
             </Collapse>
