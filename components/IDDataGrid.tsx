@@ -4,7 +4,7 @@ import {styled, useTheme} from "@mui/material/styles";
 import CircleIcon from "@mui/icons-material/Circle";
 import {alpha, Tooltip, Typography} from "@mui/material";
 import IDHelpIcon from "./IDHelpIcon";
-import configurationNotFound from "../assets/konfiguration_nicht_gefunden.min.svg";
+import configurationNotFound from "../assets/conf_not_found.min.svg";
 
 // import typescript Interfaces
 import {IDDataGrid, TableView} from "../types/componentProps.types";
