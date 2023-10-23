@@ -1,5 +1,5 @@
-import {Client, ClientOrFeature, Feature, FeaturesConfig} from "./api.types";
-import {ReactNode} from "react";
+import {Client, ClientOrFeature, Feature, FeaturesConfig, Status, Usage} from "./api.types";
+import {MouseEvent, ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
 import {GridProps} from "@mui/material/Grid";
 import {DividerProps} from "@mui/material";
@@ -69,13 +69,43 @@ export interface IDModalHeader extends AppBarProps {
 
 export interface IDModalSidebar extends GridProps {
     featuresDetailConfig: FeaturesConfig[];
+    setFeaturesDetailConfigSelected: (arg: Array<FeaturesConfig>) => void;
     featureKey: string;
 }
 
 export interface IdToggleProps {
     config?: FeaturesConfig;
     featureKey: string;
-    disabled?: boolean,
+    toggleConfig: (event: MouseEvent<HTMLDivElement>, name: string) => void;
+    disabled?: boolean;
+    selected?: boolean;
+}
+
+export interface IDDividerProps extends DividerProps {
+    marginTop?: string,
+}
+
+export interface FeatureDetail {
+    featureStatus: Status;
+    featuresDetailConfig: FeaturesConfig[];
+    featuresDetailConfigSelected: FeaturesConfig[];
+}
+
+export interface IDDataGrid {
+    usages: Array<Usage>;
+    tableView: TableView;
+    status: string;
+    getCategoryName: (categoryId: number) => string;
+}
+
+export interface IDDataGridWrapperProps {
+    disableHeader: boolean;
+}
+
+export enum TableView {
+    CLIENT = "CLIENT",
+    CATEGORY = "CATEGORY",
+    TAG = "TAG",
 }
 
 export interface IDDividerProps extends DividerProps {

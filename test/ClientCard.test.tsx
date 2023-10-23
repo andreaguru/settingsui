@@ -2,7 +2,7 @@ import {render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import {RouterContext} from "next/dist/shared/lib/router-context";
 import mockRouter from "next-router-mock";
-import ClientCard, {getButtonColorByStatus, getIconColorByStatus} from "../components/ClientCard";
+import ClientCard, {getButtonColorByStatus} from "../components/ClientCard";
 import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
 import {edidTheme} from "../themes/edid";
 import {ThemeProvider} from "@mui/material/styles";
@@ -148,15 +148,6 @@ test("component shows features if showSelectedFeatures returns an array with val
 });
 
 // UNIT TESTS
-test("returns success if feature status is enabled", () => {
-    const colors = getIconColorByStatus("ENABLED");
-    expect(colors).toBe("success");
-});
-
-test("returns warning if status is enabled_and_disabled", () => {
-    const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("warning");
-});
 
 test("returns success color if feature status is enabled", () => {
     const color = getButtonColorByStatus("ENABLED", edidTheme).color;

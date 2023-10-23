@@ -483,3 +483,149 @@ export const mockedFilteredFeatures:Array<Feature> = [
         },
     },
 ];
+
+export const mockedFeatureDetailForClient = {
+    "id": 6,
+    "name": "CleverPush",
+    "key": "cleverPush",
+    "shortName": "cleverPush",
+    "description": "Test Clever Push Feature",
+    "configurations": [
+        {
+            "id": 11,
+            "name": "dfb_gws",
+            "clientId": 268,
+            "settings": [
+                {
+                    "name": "campaign id",
+                    "value": "Gztrefghzuk",
+                },
+                {
+                    "name": "darsellung",
+                    "value": "Im Artikel",
+                },
+                {
+                    "name": "Widget Höhe desktop",
+                    "value": "302 px",
+                },
+                {
+                    "name": "Widget Höhe mobile",
+                    "value": "335 px",
+                },
+                {
+                    "name": "loaderId",
+                    "value": "72gdthfjlöe",
+                },
+            ],
+            "usages": [
+                {
+                    "id": {
+                        "clientId": 0,
+                        "categoryId": 123,
+                        "tagId": 0,
+                        "configurationId": 11,
+                    },
+                    "active": true,
+                },
+                {
+                    "id": {
+                        "clientId": 0,
+                        "categoryId": 456,
+                        "tagId": 0,
+                        "configurationId": 11,
+                    },
+                    "active": true,
+                },
+            ],
+        },
+        {
+            "id": 12,
+            "name": "daily",
+            "clientId": 268,
+            "settings": [
+                {
+                    "name": "campaign id",
+                    "value": "Gztrefghzuk",
+                },
+                {
+                    "name": "darsellung",
+                    "value": "Im Artikel",
+                },
+                {
+                    "name": "Widget Höhe desktop",
+                    "value": "302 px",
+                },
+                {
+                    "name": "Widget Höhe mobile",
+                    "value": "335 px",
+                },
+                {
+                    "name": "loaderId",
+                    "value": "72gdthfjlöe",
+                },
+            ],
+            "usages": [
+                {
+                    "id": {
+                        "clientId": 268,
+                        "categoryId": 0,
+                        "tagId": 0,
+                        "configurationId": 12,
+                    },
+                    "active": true,
+                },
+            ],
+        },
+        {
+            "id": 13,
+            "name": "Einfach Tasty",
+            "clientId": 268,
+            "settings": [
+                {
+                    "name": "campaign id",
+                    "value": "Gztrefghzuk",
+                },
+                {
+                    "name": "darsellung",
+                    "value": "Im Artikel",
+                },
+                {
+                    "name": "Widget Höhe desktop",
+                    "value": "302 px",
+                },
+                {
+                    "name": "Widget Höhe mobile",
+                    "value": "335 px",
+                },
+                {
+                    "name": "loaderId",
+                    "value": "72gdthfjlöe",
+                },
+            ],
+            "usages": [
+                {
+                    "id": {
+                        "clientId": 0,
+                        "categoryId": 789,
+                        "tagId": 0,
+                        "configurationId": 13,
+                    },
+                    "active": false,
+                },
+            ],
+        },
+    ],
+};
+
+export const mockedCategoryList = [
+    {
+        id: 1234,
+        name: "Category 1",
+    },
+    {
+        id: 5678,
+        name: "Category 2",
+    },
+];
+
+

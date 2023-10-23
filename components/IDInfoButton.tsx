@@ -53,7 +53,7 @@ enum ShowView {
  *
  * @constructor
  */
-function IDInfoButton({align}:IDInfoButtonProps) {
+function IDInfoButton({align}: IDInfoButtonProps) {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const [view, setView] = useState<ShowView>(ShowView.MENU);
     const theme = useTheme();

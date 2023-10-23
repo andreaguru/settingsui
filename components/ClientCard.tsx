@@ -16,23 +16,8 @@ import {Feature} from "../types/api.types";
 import {ClientCardProps, IDDividerProps} from "../types/componentProps.types";
 import {useRouter} from "next/router";
 
-/**
- * getFeatureColorByStatus - return the right icon color according to category and tag status
- * @param {string} status
- * @return {string}
- */
-function getIconColorByStatus(status:string) {
-    switch (status) {
-    case "ENABLED":
-        return "success"; // #319E7D
-    case "DISABLED":
-        return "error"; // #F15653
-    case "ENABLED_AND_DISABLED":
-        return "warning"; // #FDAD0D
-    case "NONE":
-    default: return "disabled"; // #A5A5A5
-    }
-}
+// import utils
+import {getIconColorByStatus} from "../utils/utils";
 
 /**
  * getButtonColorByStatus - return the right color of text and background according to feature client status
