@@ -112,6 +112,10 @@ export interface IDDividerProps extends DividerProps {
     marginTop?: string,
 }
 
+export interface IDLinearProgressProps {
+    featuresDetailConfig: Array<FeaturesConfig>
+}
+
 export enum FeatSelectedStatus {
     ACTIVE = "ACTIVE",
     INACTIVE = "INACTIVE",

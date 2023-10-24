@@ -1,7 +1,9 @@
-import LinearProgress, {linearProgressClasses, LinearProgressProps} from "@mui/material/LinearProgress";
+import LinearProgress, {linearProgressClasses} from "@mui/material/LinearProgress";
 import Box, {BoxProps} from "@mui/material/Box";
 import {Typography} from "@mui/material";
 import {styled} from "@mui/material/styles";
+import {IDLinearProgressProps} from "../types/componentProps.types";
+import {FeaturesConfig} from "../types/api.types";
 
 const IDStyleLinearProgress = styled(LinearProgress)(({theme}) => ({
     [`&.${linearProgressClasses.colorPrimary}`]: {
@@ -27,18 +29,29 @@ const IDBoxLegend = styled((props: IDBoxLegendProps) => {
 }));
 
 /**
+ * getActiveConfigPercent
+ * get what percent of features are active
+ * @param {Array<FeaturesConfig>} featuresDetailConfig
+ * @return {number}
+ */
+function getActiveConfigPercent(featuresDetailConfig: Array<FeaturesConfig>): number {
+    const activeConfigs = featuresDetailConfig.filter((obj) => obj.usages.length).length;
+    return (activeConfigs / featuresDetailConfig.length) * 100;
+}
+
+/**
  * function IDLinearProgress
  * @param {LinearProgressProps} props
  * @constructor
  */
-function IDLinearProgress(props: LinearProgressProps & { value: number }) {
+function IDLinearProgress({featuresDetailConfig}: IDLinearProgressProps) {
     return (
         <Box sx={{display: "flex", flexWrap: "wrap"}}>
             <Box sx={{width: "100%"}}>
                 <Typography variant="caption" component="p" color="text.secondary" textAlign="right" marginBottom={1}>
-                    {props.value} Konfigurationen angelegt
+                    {featuresDetailConfig.length} Konfigurationen angelegt
                 </Typography>
-                <IDStyleLinearProgress variant="determinate" {...props} />
+                <IDStyleLinearProgress variant="determinate" value={getActiveConfigPercent(featuresDetailConfig)} />
             </Box>
             <Box sx={{display: "flex", alignItems: "center", gap: "5px", marginTop: 1}}>
                 <IDBoxLegend active />
