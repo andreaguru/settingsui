@@ -87,14 +87,12 @@ function setStateCategoryList(
     usages: Array<Usage>,
     featuresDetailConfig: Array<FeaturesConfig>,
     setCategoryList: React.Dispatch<React.SetStateAction<CategoryMap[]>>) {
-    if (usages.length > 0) {
-        const categoryPromise = getCategoryList(featuresDetailConfig[0].clientId);
-        categoryPromise.then((data: Array<CategoryMap>) => {
-            if (data && Object.keys(data).length) {
-                setCategoryList(data);
-            }
-        });
-    }
+    const categoryPromise = getCategoryList(featuresDetailConfig[0].clientId);
+    categoryPromise.then((data: Array<CategoryMap>) => {
+        if (data && Object.keys(data).length) {
+            setCategoryList(data);
+        }
+    });
 }
 
 /**
@@ -131,10 +129,6 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
             if (data && Object.keys(data).length) {
                 setUsages(data);
 
-                /* if usages are present, set categoryList state,
-                so that it can be used in IDDataGrid Component to show category names */
-                setStateCategoryList(usages, featuresDetailConfig, setCategoryList);
-
                 /* if a configuration has been selected, show the relative Badge component with the number of usages
                 that are displayed, otherwise show only the text label */
                 setStateIsConfigSelected(featuresDetailConfigSelected, setIsConfigSelected);
@@ -142,6 +136,15 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [featuresDetailConfig, featuresDetailConfigSelected]);
+
+    useEffect(() => {
+        /* if usages are present, set categoryList state,
+                so that it can be used in IDDataGrid Component to show category names */
+        if (usages.length) {
+            setStateCategoryList(usages, featuresDetailConfig, setCategoryList);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [usages]);
 
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
         setActiveTab(newActiveTab);
