@@ -3,7 +3,7 @@ import MyApp, {showFeaturesPerStatus} from "../pages/_app";
 import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";
 import {FeatSelectedStatus} from "../types/componentProps.types";
 import {render, screen, waitFor} from "@testing-library/react";
-import {RouterContext} from "next/dist/shared/lib/router-context";
+import {RouterContext} from "next/dist/shared/lib/router-context.shared-runtime";
 import {createMockRouter} from "./test-utils/createMockRouter";
 import {Router} from "next/router";
 import * as reactObserver from "react-intersection-observer";

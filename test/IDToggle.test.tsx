@@ -6,10 +6,12 @@ import {edidTheme} from "../themes/edid";
 
 jest.mock("../api/DashboardAPI");
 
+const toggleConfig = jest.fn();
+
 test("Toggle has class disabled when disabled property is passed", () => {
     render(
         <ThemeProvider theme={edidTheme}>
-            <IDToggle featureKey="footer" jsonSchema={{}} disabled/>
+            <IDToggle featureKey="footer" jsonSchema={{}} disabled toggleConfig={toggleConfig} />
         </ThemeProvider>
     );
     // first check if the component has class disabled
@@ -24,7 +26,7 @@ test("Toggle has class disabled when disabled property is passed", () => {
 test("Toggle is expanded at first click / Toggle collapses at second click", async () => {
     render(
         <ThemeProvider theme={edidTheme}>
-            <IDToggle featureKey="footer" jsonSchema={{}}/>
+            <IDToggle featureKey="footer" jsonSchema={{}} toggleConfig={toggleConfig} />
         </ThemeProvider>
     );
     await act(async () => {
@@ -45,7 +47,7 @@ test("Toggle is expanded at first click / Toggle collapses at second click", asy
 test("Toggle is collapsed at second click", () => {
     render(
         <ThemeProvider theme={edidTheme}>
-            <IDToggle featureKey="footer" jsonSchema={{}}/>
+            <IDToggle featureKey="footer" jsonSchema={{}} toggleConfig={toggleConfig} />
         </ThemeProvider>
     );
     fireEvent.doubleClick(screen.getByRole("button"));

@@ -13,21 +13,18 @@ import Grid from "@mui/material/Grid";
 import {Divider} from "@mui/material";
 import IDForm from "./IDForm";
 import {uiSchema} from "../utils/RJSFSchema";
+import Box from "@mui/material/Box";
 
 // import typescript Interfaces
 import {IdToggleProps} from "../types/componentProps.types";
 
 interface ExpandMoreProps extends IconButtonProps {
-    expand: boolean;
+  expand: boolean;
 }
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
-    // we need to extract the expand property from props as it cannot be passed directly to IconButton component.
-    // That's why we also need to disable eslint, in order to not get an "unused variable" error
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {expand, ...other} = props;
-    return <IconButton {...other} />;
-})(({theme, expand}) => ({
+const ExpandMore = styled(IconButton, {
+    shouldForwardProp: (prop) => prop !== "expand",
+})<ExpandMoreProps>(({theme, expand}) => ({
     transform: !expand ? "rotate(90deg)" : "rotate(270deg)",
     transition: theme.transitions.create("transform", {
         duration: theme.transitions.duration.shortest,
@@ -36,10 +33,24 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const IDToggleWrapper = styled(Card)(({theme}) => ({
     "flexBasis": "100%",
+    "cursor": "pointer",
     "&.Mui-disabled": {
         opacity: .6,
         backgroundColor: theme.palette.grey[200],
         pointerEvents: "none",
+    },
+    ".MuiBox-root": {
+        "&:hover": {
+            backgroundColor: theme.palette.primary.light,
+            boxShadow: "rgba(0, 0, 0, 0.1) 0px 3px 6px 0px",
+        },
+        "&.Mui-selected": {
+            "backgroundColor": theme.palette.primary.main,
+            "color": "white",
+            ".MuiButtonBase-root": {
+                color: "white",
+            },
+        },
     },
     ".MuiList-root": {
         "h6": {
@@ -70,7 +81,7 @@ const IDCardActions = styled(CardActions)(({theme}) => ({
  *
  * @constructor
  */
-function IDToggle({disabled, config, jsonSchema}: IdToggleProps) {
+function IDToggle({disabled, selected, config, toggleConfig, jsonSchema}: IdToggleProps) {
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded((prev) => !prev);
@@ -84,29 +95,37 @@ function IDToggle({disabled, config, jsonSchema}: IdToggleProps) {
     };
 
     return (
-        <IDToggleWrapper data-testid="toggle" className={disabled ? "Mui-disabled" : ""}>
-            <CardHeader
-                title={name}
-                titleTypographyProps={{variant: "subtitle2"}}
-                sx={{pb: 0}}
-            />
-            <IDCardActions>
-                <Typography variant="caption">Erstellt 10.02.2023</Typography>
-                <Typography variant="caption">Zuletz geändert 13.02.2023</Typography>
-                <ExpandMore
+        <IDToggleWrapper data-testid="toggle"
+            className={`${disabled ? "Mui-disabled" : ""}`}
+            onClick={(event) => toggleConfig(event, name)}>
+            <Box className={`${selected ? "Mui-selected" : ""}`}>
+                <CardHeader
+                    title={name}
+                    titleTypographyProps={{variant: "subtitle2"}}
+                    sx={{pb: 0}}
+                />
+                <IDCardActions>
+                    {/* TODO: we need real data to show here (creation and update date of the config) */}
+                    <Typography variant="caption">Erstellt 10.02.2023</Typography>
+                    <Typography variant="caption">Zuletz geändert 13.02.2023</Typography>
+                    <ExpandMore
                     // a ternary operator syntax is needed since a warning is triggered
                     // when trying to pass a boolean value to a custom property
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                    disabled={disabled}
-                >
-                    <ArrowForwardIos fontSize="small" sx={{marginLeft: "auto"}} />
-                </ExpandMore>
-            </IDCardActions>
+                        expand={expanded}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                        className="toggleButton"
+                        disabled={disabled}
+                    >
+                        <ArrowForwardIos fontSize="small" sx={{marginLeft: "auto"}} />
+                    </ExpandMore>
+                </IDCardActions>
+            </Box>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent sx={{"pt": 0, "px": 2, "&:last-child": {pb: 1}}} data-testid="collapsedContent">
+                <CardContent
+                    sx={{"pt": 0, "px": 2, "bgcolor": "white", "&:last-child": {pb: 2}}}
+                    data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
                         <IDForm

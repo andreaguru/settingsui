@@ -45,7 +45,7 @@ function showFeaturesPerStatus(featuresPerClient:Array<Feature>, featureStatus:F
  *
  * @constructor
  */
-function TemplatePage({Component, pageProps}:AppProps) {
+function TemplatePage({Component, pageProps}: AppProps) {
     const [clients, setClients] = useState<Array<Client>>([]);
     const [featureList, setFeatureList] = useState<Array<Feature>>([]);
     const router = useRouter();

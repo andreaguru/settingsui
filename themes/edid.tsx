@@ -23,7 +23,7 @@ export const edidTheme = createTheme({
     palette: {
         primary: {
             main: "#1976d2",
-            dark: "red",
+            light: lighten("#1976d2", 0.88),
         },
         secondary: {
             main: "#212121",
@@ -38,6 +38,7 @@ export const edidTheme = createTheme({
         },
         error: {
             main: "#f15653",
+            light: lighten("#f15653", 0.88),
         },
         neutral: {
             main: "#616161",

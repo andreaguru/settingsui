@@ -2,16 +2,30 @@ import * as React from "react";
 import {DataGrid, gridClasses, GridColDef} from "@mui/x-data-grid";
 import {styled, useTheme} from "@mui/material/styles";
 import CircleIcon from "@mui/icons-material/Circle";
-import {alpha, Tooltip} from "@mui/material";
+import {alpha, Tooltip, Typography} from "@mui/material";
 import IDHelpIcon from "./IDHelpIcon";
+import configurationNotFound from "../assets/conf_not_found.min.svg";
 
-const rows = [
-    {id: 1, status: "success", category: "Snow", categoryId: 12345, configuration: "config"},
-    {id: 2, status: "disabled", category: "Test", categoryId: 12476, configuration: "config2"},
-    {id: 3, status: "disabled", category: "Test2", categoryId: 23456, configuration: "config3"},
-];
+// import typescript Interfaces
+import {IDDataGrid, TableView} from "../types/componentProps.types";
+import Box from "@mui/material/Box";
+import Image from "next/legacy/image";
 
 const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
+    "&.MuiDataGrid-root": {
+        "display": "inline-flex",
+        // style for header and footer
+        "width": "100%",
+        "height": `calc(100% - ${theme.spacing(3)})`,
+        // end style for header and footer
+        "maxWidth": "100%",
+    },
+    "&.noUsage": {
+        color: theme.palette.secondary.light,
+    },
+    "& .MuiDataGrid-overlayWrapper": {
+        "top": "20%",
+    },
     [`& .${gridClasses.columnSeparator}`]: {
         "visibility": "visible",
     },
@@ -37,35 +51,56 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
  * IDDataGrid Component
  * @constructor
  */
-function IDDataGrid() {
+function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGrid) {
     const theme = useTheme();
 
     const columns: GridColDef[] = [
         {
-            field: "status",
+            field: "active",
             headerName: "Status",
+            headerClassName: `${status === "NONE" ? "disabled" : ""}`,
             headerAlign: "center",
+            sortable: status !== "NONE",
             align: "center",
-            maxWidth: 80,
-            renderCell: (params) => <CircleIcon color={params.value} fontSize="small" />,
+            width: 80,
+            renderCell: (params) => <CircleIcon color={params.value ? "success" : "error"} fontSize="small" />,
         },
         {
             field: "category",
             headerName: "Kategorie",
-            minWidth: 110,
+            sortable: status !== "NONE",
+            width: 110,
+            valueGetter: (params) => getCategoryName(params.row.id.categoryId),
         },
         {
             field: "categoryId",
             headerName: "Kategorie Id",
             headerAlign: "right",
+            sortable: status !== "NONE",
             align: "right",
-            minWidth: 130,
+            width: 130,
+            valueGetter: (params) => params.row.id.categoryId,
         },
         {
-            field: "configuration",
+            field: "tag",
+            headerName: "Tag",
+            sortable: status !== "NONE",
+            width: 110,
+        },
+        {
+            field: "tagId",
+            headerName: "Tag Id",
+            headerAlign: "right",
+            sortable: status !== "NONE",
+            align: "right",
+            width: 130,
+        },
+        {
+            field: "configurationName",
             headerName: "Konfiguration",
             headerClassName: "configurationField",
-            minWidth: 160,
+            sortable: status !== "NONE",
+            width: 160,
             renderHeader: (params) => <div style={{fontWeight: "500"}}>
                 {params.colDef.headerName}
                 <Tooltip
@@ -79,18 +114,55 @@ function IDDataGrid() {
         },
     ];
 
+    const columnVisibilityModel = {
+        category: tableView === TableView.CATEGORY,
+        categoryId: tableView === TableView.CATEGORY,
+        tag: tableView === TableView.TAG,
+        tagId: tableView === TableView.TAG,
+    };
+
     return (
         <IDDataGridWrapper
-            rows={rows}
+            rows={usages}
+            getRowId={(row) => `${row.id.configurationId}-${row.id.clientId}-${row.id.categoryId}-${row.id.tagId}`}
+            className={!usages.length ? "noUsage" : ""}
             columns={columns}
+            columnVisibilityModel={columnVisibilityModel}
             hideFooter
             autoHeight
             getRowClassName={(params) =>
                 params.indexRelativeToCurrentPage % 2 !== 0 ? "odd" : ""
             }
+            slots={{
+                noRowsOverlay: () => (
+                    <Box
+                        display="flex"
+                        flexDirection="column"
+                        alignItems="center"
+                        justifyContent="center"
+                        height="100%"
+                        padding={2}
+                    >
+                        <Image alt=""
+                            layout="fixed"
+                            src={configurationNotFound}
+                            width={225}
+                            height={54}
+                            objectFit="contain" />
+                        <Typography variant="body2" color="text.secondary" marginTop={1}>
+                            Die Konfiguration wird auf dieser Ebene nicht verwendet.
+                        </Typography>
+                    </Box>
+                ),
+            }}
             sx={{
-                mt: theme.spacing(3),
-                color: "secondary.main",
+                "mt": theme.spacing(3),
+                "color": "secondary.main",
+                "minWidth": "100px",
+                "maxWidth": "fit-content",
+                "& .MuiDataGrid-columnHeader": {
+                    "color": status === "NONE" ? "secondary.light" : "",
+                },
             }}
         />
     );

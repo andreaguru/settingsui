@@ -16,7 +16,7 @@ export enum ElementType {
     SEARCH_LINK = "SEARCH_LINK",
 }
 
-interface Status {
+export interface Status {
     client: StatusValue;
     category: StatusValue;
     tag: StatusValue
@@ -42,12 +42,26 @@ export interface Settings {
     value?: string;
 }
 
+export interface Usage {
+    id: {
+        clientId: number;
+        categoryId: number;
+        tagId: number;
+        configurationId: number;
+    };
+    active: boolean;
+}
+
+export interface UsageWithConfigName extends Usage {
+    configurationName: string;
+}
+
 export interface FeaturesConfig {
     id: number;
     name: string;
     clientId: number;
     settings: Array<Settings>;
-    usages: [];
+    usages: Array<Usage>;
 }
 
 export interface FeaturesDetail {
@@ -68,3 +82,16 @@ export type SettingsLink = {
     modifierClassExtension?: string | null,
     elementType?: ElementType,
 }
+
+export interface CmsCategory {
+    id: number;
+    name:string;
+    path: string;
+    children?: Array<CmsCategory>;
+}
+
+export interface CategoryMap {
+    id: number;
+    name:string;
+}
+

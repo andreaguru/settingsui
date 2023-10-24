@@ -6,8 +6,10 @@ import IDLinearProgress from "./IDLinearProgress";
 import IDToggleList from "./IDToggleList";
 import IDToggle from "./IDToggle";
 import IDHelpIcon from "./IDHelpIcon";
+import {MouseEvent, useState} from "react";
 
 // import typescript Interfaces
+import {FeaturesConfig} from "../types/api.types";
 import {IDModalSidebar} from "../types/componentProps.types";
 
 /**
@@ -31,13 +33,51 @@ const IDModalSidebarWrapper = styled(Grid)(({theme}) => ({
 function IdModalSidebar(props:IDModalSidebar) {
     const {
         featuresDetailConfig,
+        setFeaturesDetailConfigSelected,
         featureKey,
         jsonSchema,
         ...modalSidebarProps
     } = props;
 
+    const [selectedUsages, setSelectedUsages] = useState<string>("");
+
+    /**
+     *
+     * @param {MouseEvent<HTMLElement>} event
+     * @param {string} name
+     */
+    function toggleConfig(event: MouseEvent<HTMLElement>, name: string) {
+        const selectedEl = event.target as Element;
+        // if toggle button is clicked, do nothing
+        if (!selectedEl?.closest(".toggleButton")) {
+            let featuresDetailConfigSelected: Array<FeaturesConfig>;
+            // if the component is already selected, clean all filters
+            if (name === selectedUsages) {
+                setSelectedUsages("");
+                featuresDetailConfigSelected = [];
+                // otherwise filter the configurations according to the selected element
+            } else {
+                setSelectedUsages(name);
+                featuresDetailConfigSelected = featuresDetailConfig
+                    .filter((conf: FeaturesConfig) => conf.name === name);
+            }
+            /* featuresDetailConfigSelected state will be either n empty array or
+            an array that contains the selected configuration */
+            setFeaturesDetailConfigSelected(featuresDetailConfigSelected);
+        }
+    }
+
+    /**
+     *
+     * @param {string} name
+     * @return {boolean}
+     */
+    function isSelectedCard(name: string) {
+        return selectedUsages === name;
+    }
+
     return (
-        <IDModalSidebarWrapper {...modalSidebarProps}>
+        <IDModalSidebarWrapper {...modalSidebarProps} data-testid="modalSidebar">
             <Container>
                 <Typography variant="subtitle1" sx={{marginTop: 1}}>
                     Konfigurationen
@@ -58,7 +98,9 @@ function IdModalSidebar(props:IDModalSidebar) {
                         featureKey={featureKey}
                         config={config}
                         jsonSchema={jsonSchema}
-                        disabled={!config.usages.length}/>
+                        disabled={!config.usages.length}
+                        selected={isSelectedCard(config.name)}
+                        toggleConfig={toggleConfig}/>
                 ))}
             </IDToggleList>
         </IDModalSidebarWrapper>
