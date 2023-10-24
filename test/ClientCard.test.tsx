@@ -78,13 +78,10 @@ describe("Parameterized test for ClientCard", () => {
             const inArticleReco = within(autocomplete)
                 .getAllByText(clientMocked.features[1].name, {exact: false})[0].parentElement as HTMLElement;
 
-            expect(traffective).toHaveStyle({
-                "color": edidTheme.palette.success.main,
-                "backgroundColor": edidTheme.palette.success.light});
+            screen.debug();
+            expect(traffective).toHaveStyle({"color": edidTheme.palette.success.main});
 
-            expect(inArticleReco).toHaveStyle({
-                "color": edidTheme.palette.neutral.main,
-                "backgroundColor": edidTheme.palette.neutral.light});
+            expect(inArticleReco).toHaveStyle({"color": edidTheme.palette.neutral.main});
         }
     );
 

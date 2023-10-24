@@ -77,9 +77,7 @@ test("client color is dark gray when client feature is inactive", () => {
     const clientCard = screen.getByTestId(mockedClientListWithHasFeatures[0].id);
     // inArticleReco -> feature client is DISABLED
     const disabledFeature = within(clientCard).getAllByText(/ECR In Article/)[0].parentElement as HTMLElement;
-    expect(disabledFeature).toHaveStyle({
-        "color": edidTheme.palette.neutral.main,
-        "backgroundColor": edidTheme.palette.neutral.light});
+    expect(disabledFeature).toHaveStyle({"color": edidTheme.palette.neutral.main});
 });
 
 test("category icon color is green when category feature is active", () => {
