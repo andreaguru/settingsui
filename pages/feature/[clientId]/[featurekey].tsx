@@ -118,7 +118,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             {/* Header*/}
                             <Grid item xs={12} sx={{position: "absolute", width: "100%", top: 0}}>
                                 <IdModalHeader
-                                    featuresDetailName={featuresDetail.name}
+                                    featuresDetail={featuresDetail}
                                     client={client}
                                     position="absolute"
                                     color="inherit"

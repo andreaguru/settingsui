@@ -149,8 +149,8 @@ function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGrid) {
                             width={225}
                             height={54}
                             objectFit="contain" />
-                        <Typography variant="body2" color="text.secondary" marginTop={1}>
-                            Die Konfiguration wird auf dieser Ebene nicht verwendet.
+                        <Typography variant="body2" color="text.secondary" marginTop={3}>
+                            Hier gibts wohl nichts zu sehen...
                         </Typography>
                     </Box>
                 ),

@@ -36,7 +36,7 @@ function IDLinearProgress(props: LinearProgressProps & { value: number }) {
         <Box sx={{display: "flex", flexWrap: "wrap"}}>
             <Box sx={{width: "100%"}}>
                 <Typography variant="caption" component="p" color="text.secondary" textAlign="right" marginBottom={1}>
-                    10 Konfigurationen angelegt
+                    {props.value} Konfigurationen angelegt
                 </Typography>
                 <IDStyleLinearProgress variant="determinate" {...props} />
             </Box>

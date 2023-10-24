@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {alpha, Card, CardContent, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -79,16 +79,6 @@ function ClientCard({
 
     const router = useRouter();
 
-    const [hover, setHover] = useState(false);
-
-    const handleMouseEnter = () => {
-        setHover(true);
-    };
-
-    const handleMouseLeave = () => {
-        setHover(false);
-    };
-
     const universalFeaturesMap = showSelectedFeatures(client.features, true);
     const featuresMap = showSelectedFeatures(client.features);
 
@@ -109,12 +99,13 @@ function ClientCard({
             >
                 <Fade in>
                     <IconButton className="iconStatus"
-                        style={{
+                        sx={{
                             "color": getButtonColorByStatus(feature.status.client, theme).color,
-                            "backgroundColor": hover ? alpha(clientColor, 0.7) : clientColor,
+                            "&:hover": {
+                                "backgroundColor": alpha(clientColor, 0.7),
+                            },
+                            "backgroundColor": clientColor,
                         }}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
                     >
                         <Typography variant="subtitle2" lineHeight={1}>
                             {feature.name}
