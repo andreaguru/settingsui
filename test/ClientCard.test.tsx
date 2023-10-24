@@ -1,6 +1,6 @@
 import {render, screen, within} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import {RouterContext} from "next/dist/shared/lib/router-context";
+import {RouterContext} from "next/dist/shared/lib/router-context.shared-runtime";
 import mockRouter from "next-router-mock";
 import ClientCard, {getButtonColorByStatus} from "../components/ClientCard";
 import {mockedClientListWithHasFeatures, mockedFeatures} from "./mockData";

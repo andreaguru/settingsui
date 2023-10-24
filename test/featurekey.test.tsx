@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import {mockedClientListWithHasFeatures, mockedFeatureDetailForClient, mockedFeatures} from "./mockData";
 import * as reactObserver from "react-intersection-observer";
 import {InViewHookResponse} from "react-intersection-observer";
-import {RouterContext} from "next/dist/shared/lib/router-context";
+import {RouterContext} from "next/dist/shared/lib/router-context.shared-runtime";
 import {createMockRouter} from "./test-utils/createMockRouter";
 import FeatureDetailPage from "../pages/feature/[clientId]/[featurekey]";
 

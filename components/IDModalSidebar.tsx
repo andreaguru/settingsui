@@ -85,7 +85,7 @@ function IdModalSidebar(props:IDModalSidebar) {
                         <IDHelpIcon/>
                     </Tooltip>
                 </Typography>
-                <IDLinearProgress value={10}/>
+                <IDLinearProgress value={featuresDetailConfig.length}/>
             </Container>
             <IDToggleList sx={{paddingBottom: 2}}>
                 {featuresDetailConfig.map((config, index) => (

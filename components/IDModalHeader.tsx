@@ -28,7 +28,7 @@ function IdModalHeader(props:IDModalHeader) {
     const {
         onCloseAction,
         client,
-        featuresDetailName,
+        featuresDetail,
         ...appBarProps
     } = props;
 
@@ -42,10 +42,9 @@ function IdModalHeader(props:IDModalHeader) {
                 <Typography>{client?.id}</Typography>
             </Typography>
             <Typography fontSize="18px" fontWeight="medium">
-                {featuresDetailName}
+                {featuresDetail.name}
                 <Tooltip
-                    title="Das CleverPush Anmelde-Widget zeigt ein Formular,
-                    um sich für Newsletter oder Messenger anzumelden."
+                    title={featuresDetail.description}
                     placement="right">
                     <IDHelpIcon />
                 </Tooltip>

@@ -258,8 +258,17 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                         getCategoryName={getCategoryName} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
-                    <Box sx={{display: "flex", gap: theme.spacing(2)}}>
+                    <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
                         {showUsageLabel(usages, TableView.TAG)}
+                        <IDAlert
+                            icon={<InfoOutlinedIcon sx={{fontSize: "medium"}} />}
+                            severity="info"
+                            sx={{marginLeft: "auto"}}>
+                            <Typography variant="caption">
+                                nicht konfigurierte Tags erhalten automatisch
+                                die Konfiguration des Mandanten/der Kategorie
+                            </Typography>
+                        </IDAlert>
                     </Box>
                     <IDDataGrid
                         usages={getSelectedUsages(usages, TableView.TAG)}

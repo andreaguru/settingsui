@@ -1,4 +1,4 @@
-import {Client, ClientOrFeature, Feature, FeaturesConfig, Status, Usage} from "./api.types";
+import {Client, ClientOrFeature, Feature, FeaturesConfig, FeaturesDetail, Status, Usage} from "./api.types";
 import {MouseEvent, ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
 import {GridProps} from "@mui/material/Grid";
@@ -62,7 +62,7 @@ export interface IDRadioGroupProps {
 }
 
 export interface IDModalHeader extends AppBarProps {
-    featuresDetailName: string;
+    featuresDetail: FeaturesDetail;
     client?: Client;
     onCloseAction: () => void
 }
