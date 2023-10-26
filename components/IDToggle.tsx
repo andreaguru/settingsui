@@ -130,7 +130,7 @@ function IDToggle({disabled, selected, config, toggleConfig, jsonSchema}: IdTogg
             </Box>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent
-                    sx={{"pt": 0, "px": 2, "bgcolor": "white", "&:last-child": {pb: 2}}}
+                    sx={{"pt": 0, "px": 2, "bgcolor": "white", "&:last-child": {pb: 1}}}
                     data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
