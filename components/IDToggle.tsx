@@ -66,11 +66,8 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
         wordWrap: "break-word",
         lineHeight: 1,
     },
-    ".formArrayItem": {
-        ".MuiGrid-item": {
-            paddingTop: theme.spacing(.5),
-            paddingLeft: theme.spacing(4),
-        },
+    ".MuiSelect-iconOutlined": {
+        display: "none",
     },
 }));
 
@@ -134,14 +131,14 @@ function IDToggle({disabled, selected, config, toggleConfig, jsonSchema}: IdTogg
                     data-testid="collapsedContent">
                     <Divider />
                     <Grid container sx={{pt: 2}}>
-                        <IDForm
+                        {jsonSchema && <IDForm
                             schema={jsonSchema}
                             uiSchema={uiSchema}
                             formData={settings}
                             validator={validator} readonly>
                             {/* Fragment allows us to not show the submit button */}
                             <Fragment/>
-                        </IDForm>
+                        </IDForm>}
                     </Grid>
                 </CardContent>
             </Collapse>

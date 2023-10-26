@@ -1,12 +1,12 @@
 import {UiSchema} from "@rjsf/utils";
 
 export const uiSchema: UiSchema = {
+    "ui:globalOptions": {
+        "addable": false,
+        "orderable": false,
+        "removable": false,
+    },
     "links": {
-        "ui:options": {
-            "addable": false,
-            "orderable": false,
-            "removable": false,
-        },
         "items": {
             "classNames": "formArrayItem",
             "ui:options": {
@@ -15,12 +15,13 @@ export const uiSchema: UiSchema = {
         },
     },
     "actionLinks": {
-        "ui:options": {
-            "addable": false,
-            "orderable": false,
-            "removable": false,
-        },
         "items": {
+            "ui:order": [
+                "elementType",
+                "url",
+                "linkName",
+                "modifierClassExtension",
+            ],
             "classNames": "formArrayItem",
             "ui:options": {
                 "label": false,
@@ -28,16 +29,17 @@ export const uiSchema: UiSchema = {
         },
     },
     "featuredLinks": {
-        "ui:options": {
-            "addable": false,
-            "orderable": false,
-            "removable": false,
-        },
         "items": {
             "classNames": "formArrayItem",
             "ui:options": {
                 "label": false,
             },
+            "ui:order": [
+                "elementType",
+                "url",
+                "linkName",
+                "modifierClassExtension",
+            ],
         },
     },
 };

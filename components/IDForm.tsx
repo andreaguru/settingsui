@@ -4,7 +4,11 @@ import {FormProps} from "@rjsf/core";
 
 const IDForm = styled(Form)<FormProps>(({theme}) => ({
     "width": "100%",
-    "marginTop": "-32px",
+    "marginTop": `-${theme.spacing(1)}`,
+    ".MuiGrid-item": {
+        paddingTop: theme.spacing(.5),
+        paddingLeft: theme.spacing(2),
+    },
     ".MuiOutlinedInput-input": {
         "&.Mui-disabled": {
             all: "unset",
