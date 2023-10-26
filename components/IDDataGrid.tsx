@@ -94,6 +94,7 @@ function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGrid) {
             sortable: status !== "NONE",
             align: "right",
             width: 130,
+            valueGetter: (params) => params.row.id.tagId,
         },
         {
             field: "configurationName",

@@ -66,6 +66,12 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
         wordWrap: "break-word",
         lineHeight: 1,
     },
+    ".formArrayItem": {
+        ".MuiGrid-item": {
+            paddingTop: theme.spacing(.5),
+            paddingLeft: theme.spacing(4),
+        },
+    },
 }));
 
 const IDCardActions = styled(CardActions)(({theme}) => ({

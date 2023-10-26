@@ -1,7 +1,19 @@
 import {UiSchema} from "@rjsf/utils";
-import {edidTheme} from "../themes/edid";
 
 export const uiSchema: UiSchema = {
+    "links": {
+        "ui:options": {
+            "addable": false,
+            "orderable": false,
+            "removable": false,
+        },
+        "items": {
+            "classNames": "formArrayItem",
+            "ui:options": {
+                "label": false,
+            },
+        },
+    },
     "actionLinks": {
         "ui:options": {
             "addable": false,
@@ -9,11 +21,9 @@ export const uiSchema: UiSchema = {
             "removable": false,
         },
         "items": {
+            "classNames": "formArrayItem",
             "ui:options": {
                 "label": false,
-            },
-            "ui:style": {
-                "paddingLeft": edidTheme.spacing(2),
             },
         },
     },
@@ -24,11 +34,9 @@ export const uiSchema: UiSchema = {
             "removable": false,
         },
         "items": {
+            "classNames": "formArrayItem",
             "ui:options": {
                 "label": false,
-            },
-            "ui:style": {
-                "paddingLeft": edidTheme.spacing(2),
             },
         },
     },

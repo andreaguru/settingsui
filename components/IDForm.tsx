@@ -4,6 +4,7 @@ import {FormProps} from "@rjsf/core";
 
 const IDForm = styled(Form)<FormProps>(({theme}) => ({
     "width": "100%",
+    "marginTop": "-32px",
     ".MuiOutlinedInput-input": {
         "&.Mui-disabled": {
             all: "unset",
