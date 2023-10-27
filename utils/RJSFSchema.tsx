@@ -18,8 +18,8 @@ export const uiSchema: UiSchema = {
         "items": {
             "ui:order": [
                 "elementType",
-                "url",
                 "linkName",
+                "url",
                 "modifierClassExtension",
             ],
             "classNames": "formArrayItem",
@@ -36,8 +36,8 @@ export const uiSchema: UiSchema = {
             },
             "ui:order": [
                 "elementType",
-                "url",
                 "linkName",
+                "url",
                 "modifierClassExtension",
             ],
         },
