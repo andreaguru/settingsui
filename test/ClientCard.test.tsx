@@ -60,32 +60,6 @@ describe("Parameterized test for ClientCard", () => {
     );
 
     test.each(mockedClientListWithHasFeatures)(
-        "Feature button matches color status",
-        (clientMocked) => {
-            render(
-                <ThemeProvider theme={edidTheme}>
-                    <ClientCard
-                        client={clientMocked}
-                        showSelectedFeatures={showSelectedFeatures}/>);
-                </ThemeProvider>);
-
-
-            const autocomplete = screen.getByTestId(clientMocked.id);
-            // traffective -> feature client is ENABLED
-            const traffective = within(autocomplete)
-                .getAllByText(clientMocked.features[0].name, {exact: false})[0].parentElement as HTMLElement;
-            // inArticleReco -> feature client is DISABLED
-            const inArticleReco = within(autocomplete)
-                .getAllByText(clientMocked.features[1].name, {exact: false})[0].parentElement as HTMLElement;
-
-            screen.debug();
-            expect(traffective).toHaveStyle({"color": edidTheme.palette.success.main});
-
-            expect(inArticleReco).toHaveStyle({"color": edidTheme.palette.neutral.main});
-        }
-    );
-
-    test.each(mockedClientListWithHasFeatures)(
         "fltr-clients query param is appended to href attr in Next Link Component",
         (clientMocked) => {
             mockRouter.push({

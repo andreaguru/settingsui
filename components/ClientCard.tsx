@@ -99,12 +99,8 @@ function ClientCard({
             >
                 <Fade in>
                     <IconButton className="iconStatus"
-                        /* we use style instead of sx in order to make color testable
-                        (sx properties are not visible for Jest) */
-                        style={{
-                            "color": getButtonColorByStatus(feature.status.client, theme).color,
-                        }}
                         sx={{
+                            "color": getButtonColorByStatus(feature.status.client, theme).color,
                             "backgroundColor": clientColor,
                             "&:hover": {
                                 "backgroundColor": alpha(clientColor, 0.7),

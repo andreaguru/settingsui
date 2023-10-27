@@ -60,7 +60,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                             <li {...props}>
                                 <Checkbox
                                     data-testid={option.id}
-                                    style={{marginRight: 8}}
+                                    sx={{marginRight: 8}}
                                     checked={selected}
                                     size="small"/>
                                 <Typography variant="subtitle1"
