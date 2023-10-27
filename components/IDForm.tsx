@@ -20,7 +20,7 @@ const IDForm = styled(Form)<FormProps>(({theme}) => ({
         "&.Mui-disabled": {
             all: "unset",
             color: theme.palette.secondary.light,
-            fontSize: theme.typography.caption.fontSize,
+            fontSize: `${theme.typography.caption.fontSize} !important`,
         },
     },
     ".MuiFormControlLabel-label": {
