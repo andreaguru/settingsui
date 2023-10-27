@@ -188,7 +188,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     icon={<ClientIcon
                         color={getSelectedUsages(usages, TableView.CLIENT).length ?
                             getIconColorByStatus(featureStatus.client) :
-                            "disabled"}/>}
+                            "id_lightGray"}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -200,10 +200,8 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 <Tab
                     id="simple-tab-index-1"
                     aria-controls="simple-tabpanel-1"
-                    icon={<CategoryIcon
-                        color={getSelectedUsages(usages, TableView.CATEGORY).length ?
-                            getIconColorByStatus(featureStatus.category) :
-                            "disabled"}/>}
+                    icon={<CategoryIcon color={getSelectedUsages(usages, TableView.CATEGORY).length ?
+                        getIconColorByStatus(featureStatus.category) : "id_lightGray"}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -218,7 +216,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     icon={<TagIcon
                         color={getSelectedUsages(usages, TableView.TAG).length ?
                             getIconColorByStatus(featureStatus.tag) :
-                            "disabled"}/>}
+                            "id_lightGray"}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?

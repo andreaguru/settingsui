@@ -79,12 +79,12 @@ describe("Parameterized test for ClientCard", () => {
                 .getAllByText(clientMocked.features[1].name, {exact: false})[0].parentElement as HTMLElement;
 
             expect(traffective).toHaveStyle({
-                "color": edidTheme.palette.success.main,
-                "backgroundColor": edidTheme.palette.success.light});
+                "color": edidTheme.palette.id_green.main,
+                "backgroundColor": edidTheme.palette.id_green.light});
 
             expect(inArticleReco).toHaveStyle({
-                "color": edidTheme.palette.neutral.main,
-                "backgroundColor": edidTheme.palette.neutral.light});
+                "color": edidTheme.palette.id_mediumGray.main,
+                "backgroundColor": edidTheme.palette.id_mediumGray.light});
         }
     );
 
@@ -149,12 +149,12 @@ test("component shows features if showSelectedFeatures returns an array with val
 
 // UNIT TESTS
 
-test("returns success color if feature status is enabled", () => {
+test("returns id_green color if feature status is enabled", () => {
     const color = getButtonColorByStatus("ENABLED", edidTheme).color;
-    expect(color).toBe(edidTheme.palette.success.main);
+    expect(color).toBe(edidTheme.palette.id_green.main);
 });
 
-test("returns success background color if feature status is enabled", () => {
+test("returns id_green background color if feature status is enabled", () => {
     const color = getButtonColorByStatus("ENABLED", edidTheme).bgColor;
-    expect(color).toBe(edidTheme.palette.success.light);
+    expect(color).toBe(edidTheme.palette.id_green.light);
 });

@@ -13,14 +13,14 @@ import Chip from "@mui/material/Chip";
 export function getIconColorByStatus(status: string) {
     switch (status) {
     case "ENABLED":
-        return "success"; // #319E7D
+        return "id_green"; // #319E7D
     case "DISABLED":
-        return "error"; // #F15653
+        return "id_red"; // #F15653
     case "ENABLED_AND_DISABLED":
-        return "warning"; // #FDAD0D
+        return "id_orange"; // #FDAD0D
     case "NONE":
     default:
-        return "disabled"; // #A5A5A5
+        return "id_lightGray"; // #A5A5A5
     }
 }
 
@@ -50,8 +50,8 @@ export function showUsageLabel(usages: Array<Usage>, tableView: TableView) {
                 disabled={activeLength === 0}
                 size="small"
                 sx={{
-                    color: "success.main",
-                    bgcolor: "success.light",
+                    color: "id_green.main",
+                    bgcolor: "id_green.light",
                 }} />,
             <Chip
                 key="2"
@@ -59,8 +59,8 @@ export function showUsageLabel(usages: Array<Usage>, tableView: TableView) {
                 disabled={inactiveLength === 0}
                 size="small"
                 sx={{
-                    color: "error.main",
-                    bgcolor: "error.light",
+                    color: "id_red.main",
+                    bgcolor: "id_red.light",
                 }}/>,
         ];
     }
