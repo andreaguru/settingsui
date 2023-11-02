@@ -6,14 +6,6 @@ export const uiSchema: UiSchema = {
         "orderable": false,
         "removable": false,
     },
-    "links": {
-        "items": {
-            "classNames": "formArrayItem",
-            "ui:options": {
-                "label": false,
-            },
-        },
-    },
     "actionLinks": {
         "items": {
             "ui:order": [
@@ -22,18 +14,10 @@ export const uiSchema: UiSchema = {
                 "url",
                 "modifierClassExtension",
             ],
-            "classNames": "formArrayItem",
-            "ui:options": {
-                "label": false,
-            },
         },
     },
     "featuredLinks": {
         "items": {
-            "classNames": "formArrayItem",
-            "ui:options": {
-                "label": false,
-            },
             "ui:order": [
                 "elementType",
                 "linkName",
