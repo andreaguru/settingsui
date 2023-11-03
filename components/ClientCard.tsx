@@ -28,12 +28,12 @@ import {getIconColorByStatus} from "../utils/utils";
 function getButtonColorByStatus(status:string, theme:Theme) {
     switch (status) {
     case "ENABLED":
-        return {bgColor: theme.palette.success.light, color: theme.palette.success.main};
+        return {bgColor: theme.palette.id_green.light, color: theme.palette.id_green.main};
     case "DISABLED":
     case "NONE":
-        return {bgColor: theme.palette.neutral.light, color: theme.palette.neutral.main};
+        return {bgColor: theme.palette.id_mediumGray.light, color: theme.palette.id_mediumGray.main};
     default:
-        return {bgColor: theme.palette.neutral.light, color: theme.palette.neutral.main};
+        return {bgColor: theme.palette.id_mediumGray.light, color: theme.palette.id_mediumGray.main};
     }
 }
 

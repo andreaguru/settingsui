@@ -60,6 +60,35 @@ describe("Parameterized test for ClientCard", () => {
     );
 
     test.each(mockedClientListWithHasFeatures)(
+        "Feature button matches color status",
+        (clientMocked) => {
+            render(
+                <ThemeProvider theme={edidTheme}>
+                    <ClientCard
+                        client={clientMocked}
+                        showSelectedFeatures={showSelectedFeatures}/>);
+                </ThemeProvider>);
+
+
+            const autocomplete = screen.getByTestId(clientMocked.id);
+            // traffective -> feature client is ENABLED
+            const traffective = within(autocomplete)
+                .getAllByText(clientMocked.features[0].name, {exact: false})[0].parentElement as HTMLElement;
+            // inArticleReco -> feature client is DISABLED
+            const inArticleReco = within(autocomplete)
+                .getAllByText(clientMocked.features[1].name, {exact: false})[0].parentElement as HTMLElement;
+
+            expect(traffective).toHaveStyle({
+                "color": edidTheme.palette.id_green.main,
+                "backgroundColor": edidTheme.palette.id_green.light});
+
+            expect(inArticleReco).toHaveStyle({
+                "color": edidTheme.palette.id_mediumGray.main,
+                "backgroundColor": edidTheme.palette.id_mediumGray.light});
+        }
+    );
+
+    test.each(mockedClientListWithHasFeatures)(
         "fltr-clients query param is appended to href attr in Next Link Component",
         (clientMocked) => {
             mockRouter.push({
@@ -120,12 +149,12 @@ test("component shows features if showSelectedFeatures returns an array with val
 
 // UNIT TESTS
 
-test("returns success color if feature status is enabled", () => {
+test("returns id_green color if feature status is enabled", () => {
     const color = getButtonColorByStatus("ENABLED", edidTheme).color;
-    expect(color).toBe(edidTheme.palette.success.main);
+    expect(color).toBe(edidTheme.palette.id_green.main);
 });
 
-test("returns success background color if feature status is enabled", () => {
+test("returns id_green background color if feature status is enabled", () => {
     const color = getButtonColorByStatus("ENABLED", edidTheme).bgColor;
-    expect(color).toBe(edidTheme.palette.success.light);
+    expect(color).toBe(edidTheme.palette.id_green.light);
 });

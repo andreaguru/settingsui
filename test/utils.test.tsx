@@ -4,14 +4,14 @@ import {mockedFeatureDetailForClient} from "./mockData";
 import {TableView} from "../types/componentProps.types";
 
 // UNIT TESTS
-test("returns success if feature status is enabled", () => {
+test("returns id_green if feature status is enabled", () => {
     const colors = getIconColorByStatus("ENABLED");
-    expect(colors).toBe("success");
+    expect(colors).toBe("id_green");
 });
 
-test("returns warning if status is enabled_and_disabled", () => {
+test("returns id_orange if status is enabled_and_disabled", () => {
     const colors = getIconColorByStatus("ENABLED_AND_DISABLED");
-    expect(colors).toBe("warning");
+    expect(colors).toBe("id_orange");
 });
 
 

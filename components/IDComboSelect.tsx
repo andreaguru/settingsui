@@ -64,7 +64,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                                     checked={selected}
                                     size="small"/>
                                 <Typography variant="subtitle1"
-                                    color={theme.palette.neutral.main}
+                                    color={theme.palette.id_mediumGray.main}
                                     sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
 
                                     {"key" in option &&
