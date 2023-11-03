@@ -87,6 +87,13 @@ export interface CmsCategory {
     children?: Array<CmsCategory>;
 }
 
+export interface CmsTag {
+    id: number;
+    name:string;
+    type: string;
+    clientId: number;
+}
+
 export interface CategoryMap {
     id: number;
     name:string;

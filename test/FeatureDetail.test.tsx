@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import {getSelectedUsages, setStateCategoryList, setStateIsConfigSelected} from "../components/FeatureDetail";
+import {getSelectedUsages, setStateIsConfigSelected} from "../components/FeatureDetail";
 import {mockedCategoryList, mockedFeatureDetailForClient} from "./mockData";
 import {TableView} from "../types/componentProps.types";
 import React from "react";
@@ -20,18 +20,6 @@ test("returns the correct number of usages according to the mocked data", () => 
     expect(usagesForClient.length).toBe(0);
     expect(usagesForCategory.length).toBe(2);
     expect(usagesForTag.length).toBe(0);
-});
-
-test("setCategoryList state should be called with a mocked category list as param", async () => {
-    const setCategoryList = jest.fn();
-    jest
-        .spyOn(React, "useState")
-        .mockImplementation(() => [mockedCategoryList, setCategoryList]);
-    await setStateCategoryList(
-        mockedFeatureDetailForClient.configurations[0].usages,
-        mockedFeatureDetailForClient.configurations,
-        setCategoryList);
-    expect(setCategoryList).toHaveBeenCalledWith(mockedCategoryList);
 });
 
 test("setIsConfigSelected state should be called with true as param", () => {

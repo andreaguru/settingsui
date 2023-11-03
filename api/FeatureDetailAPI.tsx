@@ -1,5 +1,13 @@
 import {logger} from "../logger";
-import {CategoryMap, CmsCategory, FeaturesConfig, FeaturesDetail, Usage, UsageWithConfigName} from "../types/api.types";
+import {
+    CategoryMap,
+    CmsCategory,
+    CmsTag,
+    FeaturesConfig,
+    FeaturesDetail,
+    Usage,
+    UsageWithConfigName,
+} from "../types/api.types";
 
 // get the endpoints from the environment variables
 const featureDetailEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_FEATURES as string;
@@ -96,6 +104,23 @@ export async function getCategoryList(clientId: number) {
         });
 
         return categoryMap;
+    } catch (error) {
+        // TODO: we will improve the error handling in scope of Ticket https://jira.ippen.io/browse/WEST-1410
+        logger.error(error);
+        return [];
+    }
+}
+
+/**
+ * getTagList
+ * @param {number} clientId
+ * @return {Promise<Array<CategoryMap>>}
+ */
+export async function getTagList(clientId: number) {
+    try {
+        const response = await fetch(`${cmsEndpoint}/${clientId}/tags`);
+        const tagListPromise: Array<CmsTag> = await response.json();
+        return tagListPromise;
     } catch (error) {
         // TODO: we will improve the error handling in scope of Ticket https://jira.ippen.io/browse/WEST-1410
         logger.error(error);

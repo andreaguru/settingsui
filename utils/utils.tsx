@@ -6,7 +6,7 @@ import {Usage} from "../types/api.types";
 import Chip from "@mui/material/Chip";
 
 /**
- * getFeatureColorByStatus - return the right icon color according to client, category or tag status
+ * getIconColorByStatus - return the right icon color according to client, category or tag status
  * @param {string} status
  * @return {string}
  */
@@ -21,6 +21,52 @@ export function getIconColorByStatus(status: string) {
     case "NONE":
     default:
         return "disabled"; // #A5A5A5
+    }
+}
+
+/**
+ * getUsageStatusColor
+ * @param {TableView} tableView
+ * @param {Array<Usage>} usages
+ * @return {string}
+ */
+export function getUsageStatusColor(tableView: TableView, usages: Array<Usage>) {
+    if (tableView === "CLIENT") {
+        const activeClients = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
+        const inactiveClients = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
+        if (activeClients.length && inactiveClients.length) {
+            return "warning";
+        } else if (activeClients.length && !inactiveClients.length) {
+            return "success";
+        } else if (!activeClients.length && inactiveClients.length) {
+            return "error";
+        }
+        return "disabled";
+    } else if (tableView === "CATEGORY") {
+        const activeCategories = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
+        const inactiveCategories = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
+        if (activeCategories.length && inactiveCategories.length) {
+            return "warning";
+        } else if (activeCategories.length && !inactiveCategories.length) {
+            return "success";
+        } else if (!activeCategories.length && inactiveCategories.length) {
+            return "error";
+        }
+        return "disabled";
+    } else if (tableView === "TAG") {
+        const activeTags = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
+        const inactiveTags = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
+        if (activeTags.length && inactiveTags.length) {
+            return "warning";
+        } else if (activeTags.length && !inactiveTags.length) {
+            return "success";
+        } else if (!activeTags.length && inactiveTags.length) {
+            return "error";
+        }
+        return "disabled";
+    } else {
+        // by default show aktiviert and deaktiviert with value 0
+        return "disabled";
     }
 }
 

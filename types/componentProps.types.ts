@@ -95,7 +95,7 @@ export interface IDDataGrid {
     usages: Array<Usage>;
     tableView: TableView;
     status: string;
-    getCategoryName: (categoryId: number) => string;
+    getCategoryOrTagName: (elementId: number, elementType: TableView) => string;
 }
 
 export interface IDDataGridWrapperProps {
