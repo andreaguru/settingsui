@@ -3,49 +3,88 @@ import {lighten} from "@mui/system/colorManipulator";
 import {alpha} from "@mui/material";
 
 /* We need to enhance the Theme and Palette Interfaces in order to add new custom values
-(in our case variables, disabled).
 The Interfaces are declared in node_modules/@mui/material/styles/createTheme.d.ts and
 node_modules/@mui/material/styles/createPalette.d.ts */
 declare module "@mui/material/styles" {
-  interface Palette {
-    disabled: Palette["primary"];
-    neutral: Palette["primary"];
-  }
-  // allow configuration using `createTheme`
-  interface PaletteOptions {
-    disabled?: PaletteOptions["primary"];
-    neutral?: PaletteOptions["primary"];
-  }
+    interface Palette {
+        id_green: Palette["primary"];
+        id_orange: Palette["primary"];
+        id_red: Palette["primary"];
+        id_lightGray: Palette["primary"];
+        id_mediumGray: Palette["primary"];
+    }
+    // allow configuration using `createTheme`
+    interface PaletteOptions {
+        id_green: PaletteOptions["primary"];
+        id_orange: PaletteOptions["primary"];
+        id_red: PaletteOptions["primary"];
+        id_lightGray?: PaletteOptions["primary"];
+        id_mediumGray?: PaletteOptions["primary"];
+    }
 }
+// import CategoryIcon from "@mui/icons-material/AccountTree";
+// import TagIcon from "@mui/icons-material/LocalOffer";
+
+declare module "@mui/material/SvgIcon" {
+    interface SvgIconPropsColorOverrides {
+        id_green: true;
+        id_orange: true;
+        id_red: true;
+        id_lightGray: true;
+        id_mediumGray: true;
+    }
+}
+
+const IDBlue = "#1976d2";
+const IDGreen = "#319e7d";
+const IDOrange = "#fdad0d";
+const IDRed = "#f15653";
+const IDDarkGray = "#212121";
+const IDMediumGray = "#616161";
+const IDLightGray = "#a5a5a5";
 
 // create MUI Theme and assign custom style rules for each MUI component
 export const edidTheme = createTheme({
     palette: {
+        // Default MUI colors (just use primary + secondary)
         primary: {
-            main: "#1976d2",
-            light: lighten("#1976d2", 0.88),
+            main: IDBlue,
+            light: lighten(IDBlue, 0.88),
         },
         secondary: {
-            main: "#212121",
-            light: alpha("#212121", 0.6),
+            main: IDDarkGray,
+            light: alpha(IDDarkGray, 0.6),
         },
         success: {
-            main: "#319e7d",
-            light: lighten("#319e7d", 0.88),
+            main: IDGreen,
+            light: lighten(IDGreen, 0.88),
         },
         warning: {
-            main: "#fdad0d",
+            main: IDOrange,
         },
         error: {
-            main: "#f15653",
-            light: lighten("#f15653", 0.88),
+            main: IDRed,
+            light: lighten(IDRed, 0.88),
         },
-        neutral: {
-            main: "#616161",
-            light: lighten("#616161", 0.86),
+
+        // ID color palette
+        id_green: {
+            main: IDGreen,
+            light: lighten(IDGreen, 0.88),
         },
-        disabled: {
-            main: "#a5a5a5",
+        id_orange: {
+            main: IDOrange,
+        },
+        id_red: {
+            main: IDRed,
+            light: lighten(IDRed, 0.88),
+        },
+        id_mediumGray: {
+            main: IDMediumGray,
+            light: lighten(IDMediumGray, 0.86),
+        },
+        id_lightGray: {
+            main: IDLightGray,
         },
     },
     typography: (theme) => ({

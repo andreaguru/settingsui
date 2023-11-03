@@ -35,7 +35,7 @@ function IdModalHeader(props:IDModalHeader) {
     return (
         <IDStyledModalHeader {...appBarProps}>
             <Typography variant="subtitle1"
-                color={theme.palette.neutral.main}
+                color={theme.palette.id_mediumGray.main}
                 sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
                 <Typography fontWeight="medium" fontSize="20px">{client?.name}</Typography>
                 <Typography>|</Typography>

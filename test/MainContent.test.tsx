@@ -78,8 +78,8 @@ test("client color is dark gray when client feature is inactive", () => {
     // inArticleReco -> feature client is DISABLED
     const disabledFeature = within(clientCard).getAllByText(/ECR In Article/)[0].parentElement as HTMLElement;
     expect(disabledFeature).toHaveStyle({
-        "color": edidTheme.palette.neutral.main,
-        "backgroundColor": edidTheme.palette.neutral.light});
+        "color": edidTheme.palette.id_mediumGray.main,
+        "backgroundColor": edidTheme.palette.id_mediumGray.light});
 });
 
 test("category icon color is green when category feature is active", () => {
@@ -102,9 +102,9 @@ test("category icon color is green when category feature is active", () => {
     const tagIcon = within(traffective).getByTestId("LocalOfferIcon");
 
     // Test if feature category has grey color
-    expect(categoryIcon).toHaveStyle({"color": edidTheme.palette.disabled.main});
+    expect(categoryIcon).toHaveStyle({"color": edidTheme.palette.id_lightGray.main});
     // Test if feature tag has green color
-    expect(tagIcon).toHaveStyle({"color": edidTheme.palette.success.main});
+    expect(tagIcon).toHaveStyle({"color": edidTheme.palette.id_green.main});
 });
 
 // UNIT TESTS
