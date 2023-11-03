@@ -5,6 +5,34 @@ import {TableView} from "../types/componentProps.types";
 import {Usage} from "../types/api.types";
 import Chip from "@mui/material/Chip";
 
+interface ActiveInactiveProps {
+    activeUsages: Usage[];
+    inactiveUsages: Usage[];
+}
+
+/**
+ * getActiveAndInactiveUsage
+ * get active ad inactive usages according to the Tab that has been selected (CLIENT, CATEGORY or TAG)
+ * @param {TableView} tableView
+ * @param {Array<Usage>} usages
+ * @return {ActiveInactiveProps}
+ */
+function getActiveAndInactiveUsage(tableView: TableView, usages: Array<Usage>): ActiveInactiveProps {
+    let activeUsages;
+    let inactiveUsages;
+    if (tableView === "CLIENT") {
+        activeUsages = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
+        inactiveUsages = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
+    } else if (tableView === "CATEGORY") {
+        activeUsages = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
+        inactiveUsages = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
+    } else if (tableView === "TAG") {
+        activeUsages = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
+        inactiveUsages = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
+    }
+    return {activeUsages, inactiveUsages} as ActiveInactiveProps;
+}
+
 /**
  * getIconColorByStatus - return the right icon color according to client, category or tag status
  * @param {string} status
@@ -31,43 +59,17 @@ export function getIconColorByStatus(status: string) {
  * @return {string}
  */
 export function getUsageStatusColor(tableView: TableView, usages: Array<Usage>) {
-    if (tableView === "CLIENT") {
-        const activeClients = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
-        const inactiveClients = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
-        if (activeClients.length && inactiveClients.length) {
-            return "warning";
-        } else if (activeClients.length && !inactiveClients.length) {
-            return "success";
-        } else if (!activeClients.length && inactiveClients.length) {
-            return "error";
-        }
-        return "disabled";
-    } else if (tableView === "CATEGORY") {
-        const activeCategories = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
-        const inactiveCategories = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
-        if (activeCategories.length && inactiveCategories.length) {
-            return "warning";
-        } else if (activeCategories.length && !inactiveCategories.length) {
-            return "success";
-        } else if (!activeCategories.length && inactiveCategories.length) {
-            return "error";
-        }
-        return "disabled";
-    } else if (tableView === "TAG") {
-        const activeTags = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
-        const inactiveTags = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
-        if (activeTags.length && inactiveTags.length) {
-            return "warning";
-        } else if (activeTags.length && !inactiveTags.length) {
-            return "success";
-        } else if (!activeTags.length && inactiveTags.length) {
-            return "error";
-        }
-        return "disabled";
-    } else {
-        // by default show aktiviert and deaktiviert with value 0
-        return "disabled";
+    const {activeUsages, inactiveUsages} = getActiveAndInactiveUsage(tableView, usages);
+
+    if (activeUsages.length && inactiveUsages.length) {
+        return "id_orange";
+    } else if (activeUsages.length && !inactiveUsages.length) {
+        return "id_green";
+    } else if (!activeUsages.length && inactiveUsages.length) {
+        return "id_red";
     }
+    // by default show aktiviert and deaktiviert with value 0
+    return "id_lightGray";
 }
 
 /**
@@ -111,20 +113,6 @@ export function showUsageLabel(usages: Array<Usage>, tableView: TableView) {
         ];
     }
 
-    if (tableView === "CLIENT") {
-        const activeClients = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
-        const inactiveClients = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
-        return renderUsageStatus(activeClients.length, inactiveClients.length);
-    } else if (tableView === "CATEGORY") {
-        const activeCategories = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
-        const inactiveCategories = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
-        return renderUsageStatus(activeCategories.length, inactiveCategories.length);
-    } else if (tableView === "TAG") {
-        const activeTags = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
-        const inactiveTags = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
-        return renderUsageStatus(activeTags.length, inactiveTags.length);
-    } else {
-        // by default show aktiviert and deaktiviert with value 0
-        return renderUsageStatus(0, 0);
-    }
+    const {activeUsages, inactiveUsages} = getActiveAndInactiveUsage(tableView, usages);
+    return renderUsageStatus(activeUsages.length, inactiveUsages.length);
 }

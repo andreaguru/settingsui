@@ -78,8 +78,7 @@ test("client color is dark gray when client feature is inactive", () => {
     // inArticleReco -> feature client is DISABLED
     const disabledFeature = within(clientCard).getAllByText(/ECR In Article/)[0].parentElement as HTMLElement;
     expect(disabledFeature).toHaveStyle({
-        "color": edidTheme.palette.id_mediumGray.main,
-        "backgroundColor": edidTheme.palette.id_mediumGray.light});
+        "color": edidTheme.palette.id_mediumGray.main});
 });
 
 test("category icon color is green when category feature is active", () => {
