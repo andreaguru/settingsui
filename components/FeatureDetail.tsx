@@ -13,15 +13,15 @@ import Badge, {BadgeProps} from "@mui/material/Badge";
 
 // import typescript Interfaces
 import {FeatureDetail, TableView} from "../types/componentProps.types";
-import {CategoryMap, CmsCategory, FeaturesConfig, Usage} from "../types/api.types";
+import {CategoryMap, CmsCategory, CmsTag, FeaturesConfig, Usage} from "../types/api.types";
 
 // import utils
-import {getIconColorByStatus, showUsageLabel} from "../utils/utils";
+import {getUsageStatusColor, showUsageLabel} from "../utils/utils";
 
 // import custom components
 import IDDataGrid from "./IDDataGrid";
 import IDAlert from "./IDAlert";
-import {getCategoryList, getUsagesPerFeature} from "../api/FeatureDetailAPI";
+import {getCategoryList, getTagList, getUsagesPerFeature} from "../api/FeatureDetailAPI";
 import {edidTheme} from "../themes/edid";
 
 interface TabPanelProps {
@@ -78,24 +78,6 @@ function getSelectedUsages(usages: Array<Usage>, tableView: TableView) {
 }
 
 /**
- * setStateCategoryList
- * @param {Array<Usage>} usages
- * @param {Array<FeaturesConfig>} featuresDetailConfig
- * @param {React.Dispatch<React.SetStateAction<CategoryMap[]>>} setCategoryList
- */
-function setStateCategoryList(
-    usages: Array<Usage>,
-    featuresDetailConfig: Array<FeaturesConfig>,
-    setCategoryList: React.Dispatch<React.SetStateAction<CategoryMap[]>>) {
-    const categoryPromise = getCategoryList(featuresDetailConfig[0].clientId);
-    categoryPromise.then((data: Array<CategoryMap>) => {
-        if (data && Object.keys(data).length) {
-            setCategoryList(data);
-        }
-    });
-}
-
-/**
  * setStateIsConfigSelected
  * @param {Array<FeaturesConfig>} featuresDetailConfigSelected
  * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsConfigSelected
@@ -115,8 +97,40 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
     const [activeTab, setActiveTab] = React.useState(0);
     const [usages, setUsages] = React.useState<Array<Usage>>([]);
     const [categoryList, setCategoryList] = React.useState<Array<CategoryMap>>([]);
+    const [tagList, setTagList] = React.useState<Array<CategoryMap>>([]);
     const [isConfigSelected, setIsConfigSelected] = React.useState<boolean>(false);
     const theme = useTheme();
+
+    /**
+     * setStateCategoryOrTagList
+     * @param {Array<Usage>} usages
+     * @param {Array<FeaturesConfig>} featuresDetailConfig
+     * @param {string} elementType
+     */
+    function setStateCategoryOrTagList(
+        usages: Array<Usage>,
+        featuresDetailConfig: Array<FeaturesConfig>,
+        elementType: TableView) {
+        let promise: Promise<CategoryMap[]|CmsTag[]>;
+
+        if (elementType === TableView.CATEGORY) {
+            promise = getCategoryList(featuresDetailConfig[0].clientId);
+        } else if (elementType === TableView.TAG) {
+            promise = getTagList(featuresDetailConfig[0].clientId);
+        } else {
+            promise = Promise.reject(new Error("Kein Name"));
+        }
+
+        promise.then((data: Array<CategoryMap>) => {
+            if (data && Object.keys(data).length) {
+                if (elementType === TableView.CATEGORY) {
+                    setCategoryList(data);
+                } else if (elementType === TableView.TAG) {
+                    setTagList(data);
+                }
+            }
+        });
+    }
 
     useEffect(() => {
         // if a configuration has been selected, show it only, otherwise show all configs
@@ -141,7 +155,13 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
         /* if usages are present, set categoryList state,
                 so that it can be used in IDDataGrid Component to show category names */
         if (usages.length) {
-            setStateCategoryList(usages, featuresDetailConfig, setCategoryList);
+            setStateCategoryOrTagList(usages, featuresDetailConfig, TableView.CATEGORY);
+        }
+
+        /* if usages are present, set tagList state,
+                so that it can be used in IDDataGrid Component to show tag names */
+        if (usages.length) {
+            setStateCategoryOrTagList(usages, featuresDetailConfig, TableView.TAG);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [usages]);
@@ -151,13 +171,15 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
     };
 
     /**
-     * getCategoryName
-     * @param {number} categoryId
+     * getCategoryOrTagName
+     * @param {number} usageId
+     * @param {TableView} usageType
      * @return {string}
      */
-    function getCategoryName(categoryId: number) {
-        const categoryObj = categoryList.find((cat) => cat.id === categoryId) as CmsCategory;
-        return categoryObj ? categoryObj.name : "";
+    function getCategoryOrTagName(usageId: number, usageType: string) {
+        const usageList = usageType === TableView.CATEGORY ? categoryList : tagList;
+        const usageObj = usageList.find((usage) => usage.id === usageId) as (CmsCategory|CmsTag);
+        return usageObj.name;
     }
 
     return (
@@ -189,9 +211,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     id="simple-tab-index-0"
                     aria-controls="simple-tabpanel-0"
                     icon={<ClientIcon
-                        color={getSelectedUsages(usages, TableView.CLIENT).length ?
-                            getIconColorByStatus(featureStatus.client) :
-                            "disabled"}/>}
+                        color={getUsageStatusColor(TableView.CLIENT, usages)}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -204,9 +224,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     id="simple-tab-index-1"
                     aria-controls="simple-tabpanel-1"
                     icon={<CategoryIcon
-                        color={getSelectedUsages(usages, TableView.CATEGORY).length ?
-                            getIconColorByStatus(featureStatus.category) :
-                            "disabled"}/>}
+                        color={getUsageStatusColor(TableView.CATEGORY, usages)}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -219,9 +237,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     id="simple-tab-index-2"
                     aria-controls="simple-tabpanel-2"
                     icon={<TagIcon
-                        color={getSelectedUsages(usages, TableView.TAG).length ?
-                            getIconColorByStatus(featureStatus.tag) :
-                            "disabled"}/>}
+                        color={getUsageStatusColor(TableView.TAG, usages)}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -240,7 +256,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                         usages={getSelectedUsages(usages, TableView.CLIENT)}
                         tableView={TableView.CLIENT}
                         status={featureStatus.client}
-                        getCategoryName={getCategoryName} />
+                        getCategoryOrTagName={getCategoryOrTagName} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={1}>
                     <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
@@ -258,7 +274,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                         usages={getSelectedUsages(usages, TableView.CATEGORY)}
                         tableView={TableView.CATEGORY}
                         status={featureStatus.category}
-                        getCategoryName={getCategoryName} />
+                        getCategoryOrTagName={getCategoryOrTagName} />
                 </TabPanel>
                 <TabPanel value={activeTab} index={2}>
                     <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
@@ -277,7 +293,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                         usages={getSelectedUsages(usages, TableView.TAG)}
                         tableView={TableView.TAG}
                         status={featureStatus.tag}
-                        getCategoryName={getCategoryName} />
+                        getCategoryOrTagName={getCategoryOrTagName} />
                 </TabPanel>
             </Box>
         </Box>);
@@ -288,7 +304,6 @@ export default FeatureDetail;
 /* start-test-block */
 export {
     getSelectedUsages,
-    setStateCategoryList,
     setStateIsConfigSelected,
 };
 /* end-test-block */
