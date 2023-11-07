@@ -155,7 +155,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
      * @param {number} categoryId
      * @return {string}
      */
-    function getCategoryName(categoryId: number) {
+    function getCategoryName(categoryId?: number) {
         const categoryObj = categoryList.find((cat) => cat.id === categoryId) as CmsCategory;
         return categoryObj ? categoryObj.name : "";
     }

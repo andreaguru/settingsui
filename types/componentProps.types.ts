@@ -68,7 +68,7 @@ export interface IDModalHeader extends AppBarProps {
     onCloseAction: () => void
 }
 
-export interface IDModalSidebar extends GridProps {
+export interface IDModalSidebarProps extends GridProps {
     featuresDetailConfig: FeaturesConfig[];
     jsonSchema: RJSFSchema;
     setFeaturesDetailConfigSelected: (arg: Array<FeaturesConfig>) => void;
@@ -94,15 +94,11 @@ export interface FeatureDetail {
     featuresDetailConfigSelected: FeaturesConfig[];
 }
 
-export interface IDDataGrid {
+export interface IDDataGridProps {
     usages: Array<Usage>;
     tableView: TableView;
     status: string;
     getCategoryName: (categoryId: number) => string;
-}
-
-export interface IDDataGridWrapperProps {
-    disableHeader: boolean;
 }
 
 export enum TableView {

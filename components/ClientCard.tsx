@@ -84,7 +84,7 @@ function ClientCard({
 
     const getFeatureContent = (feature: Feature, index: number) => {
         // set background color of the button according to feature client status
-        const clientColor = getButtonColorByStatus(feature.status.client, theme).bgColor;
+        const clientStatusColor = getButtonColorByStatus(feature.status.client, theme).bgColor;
 
         return <div data-testid="feature" key={index}>
             {inView && <NextLink
@@ -101,9 +101,9 @@ function ClientCard({
                     <IconButton className="iconStatus"
                         sx={{
                             "color": getButtonColorByStatus(feature.status.client, theme).color,
-                            "backgroundColor": clientColor,
+                            "backgroundColor": clientStatusColor,
                             "&:hover": {
-                                "backgroundColor": alpha(clientColor, 0.7),
+                                "backgroundColor": alpha(clientStatusColor, 0.7),
                             },
                         }}
                     >

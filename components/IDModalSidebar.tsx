@@ -10,7 +10,7 @@ import {MouseEvent, useState} from "react";
 
 // import typescript Interfaces
 import {FeaturesConfig} from "../types/api.types";
-import {IDModalSidebar} from "../types/componentProps.types";
+import {IDModalSidebarProps} from "../types/componentProps.types";
 
 /**
  * IDModalSidebar component. It accepts the same parameters as MUI Grid
@@ -27,10 +27,10 @@ const IDModalSidebarWrapper = styled(Grid)(({theme}) => ({
 
 /**
  * The Ippen Digital Modal Sidebar component.
- * @param {IDModalSidebar} props
+ * @param {IDModalSidebarProps} props
  * @constructor
  */
-function IdModalSidebar(props:IDModalSidebar) {
+function IdModalSidebar(props: IDModalSidebarProps) {
     const {
         featuresDetailConfig,
         setFeaturesDetailConfigSelected,
