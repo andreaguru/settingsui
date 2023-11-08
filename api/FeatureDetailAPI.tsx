@@ -1,4 +1,6 @@
 import {logger} from "../logger";
+
+// import typescript Interfaces
 import {CategoryMap, CmsCategory, FeaturesConfig, FeaturesDetail, Usage, UsageWithConfigName} from "../types/api.types";
 
 // get the endpoints from the environment variables

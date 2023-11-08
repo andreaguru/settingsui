@@ -34,6 +34,7 @@ function FeatureDetailPage({...props}: HomeProps) {
         configurations: [],
         description: "",
         id: 0,
+        jsonSchema: {},
         name: "",
         key: "",
     });
@@ -137,6 +138,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                                 <IDModalSidebar
                                     featureKey={featureKey}
                                     featuresDetailConfig={featuresDetail.configurations}
+                                    jsonSchema={featuresDetail.jsonSchema}
                                     setFeaturesDetailConfigSelected={setFeaturesDetailConfigSelected}
                                     item xs={4}/>
                             }

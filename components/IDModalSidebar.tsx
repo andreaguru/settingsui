@@ -6,9 +6,11 @@ import IDLinearProgress from "./IDLinearProgress";
 import IDToggleList from "./IDToggleList";
 import IDToggle from "./IDToggle";
 import IDHelpIcon from "./IDHelpIcon";
-import {IDModalSidebar} from "../types/componentProps.types";
 import {MouseEvent, useState} from "react";
+
+// import typescript Interfaces
 import {FeaturesConfig} from "../types/api.types";
+import {IDModalSidebarProps} from "../types/componentProps.types";
 
 /**
  * IDModalSidebar component. It accepts the same parameters as MUI Grid
@@ -25,15 +27,17 @@ const IDModalSidebarWrapper = styled(Grid)(({theme}) => ({
 
 /**
  * The Ippen Digital Modal Sidebar component.
- * @param {IDModalSidebar} props
+ * @param {IDModalSidebarProps} props
  * @constructor
  */
-function IdModalSidebar(props:IDModalSidebar) {
+function IdModalSidebar(props: IDModalSidebarProps) {
     const {
         featuresDetailConfig,
         setFeaturesDetailConfigSelected,
         featureKey,
-        ...modalSidebarProps} = props;
+        jsonSchema,
+        ...modalSidebarProps
+    } = props;
 
     const [selectedUsages, setSelectedUsages] = useState<string>("");
 
@@ -93,6 +97,7 @@ function IdModalSidebar(props:IDModalSidebar) {
                         key={index}
                         featureKey={featureKey}
                         config={config}
+                        jsonSchema={jsonSchema}
                         disabled={!config.usages.length}
                         selected={isSelectedCard(config.name)}
                         toggleConfig={toggleConfig}/>

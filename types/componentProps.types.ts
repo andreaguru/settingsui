@@ -3,6 +3,7 @@ import {MouseEvent, ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
 import {GridProps} from "@mui/material/Grid";
 import {DividerProps} from "@mui/material";
+import {RJSFSchema} from "@rjsf/utils";
 
 /*
 Interfaces for the Components
@@ -67,8 +68,9 @@ export interface IDModalHeader extends AppBarProps {
     onCloseAction: () => void
 }
 
-export interface IDModalSidebar extends GridProps {
+export interface IDModalSidebarProps extends GridProps {
     featuresDetailConfig: FeaturesConfig[];
+    jsonSchema: RJSFSchema;
     setFeaturesDetailConfigSelected: (arg: Array<FeaturesConfig>) => void;
     featureKey: string;
 }
@@ -79,6 +81,7 @@ export interface IdToggleProps {
     toggleConfig: (event: MouseEvent<HTMLDivElement>, name: string) => void;
     disabled?: boolean;
     selected?: boolean;
+    jsonSchema: RJSFSchema;
 }
 
 export interface IDDividerProps extends DividerProps {
@@ -91,15 +94,11 @@ export interface FeatureDetail {
     featuresDetailConfigSelected: FeaturesConfig[];
 }
 
-export interface IDDataGrid {
+export interface IDDataGridProps {
     usages: Array<Usage>;
     tableView: TableView;
     status: string;
     getCategoryName: (categoryId: number) => string;
-}
-
-export interface IDDataGridWrapperProps {
-    disableHeader: boolean;
 }
 
 export enum TableView {
@@ -109,7 +108,7 @@ export enum TableView {
 }
 
 export interface IDDividerProps extends DividerProps {
-    marginTop?: string,
+    marginTop?: string;
 }
 
 export interface IDLinearProgressProps {

@@ -1,6 +1,8 @@
 import {logger} from "../logger";
-import {Client, Feature} from "../types/api.types";
 import {BlackListClients} from "./BlackListClients";
+
+// import Typescript Interfaces
+import {Client, Feature} from "../types/api.types";
 
 // get the endpoints from the environment variables
 const cmsEndpoint = process.env.NEXT_PUBLIC_CMS_API_CLIENTS as string;
