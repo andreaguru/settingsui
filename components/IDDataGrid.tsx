@@ -7,7 +7,7 @@ import IDHelpIcon from "./IDHelpIcon";
 import configurationNotFound from "../assets/conf_not_found.min.svg";
 
 // import typescript Interfaces
-import {IDDataGrid, TableView} from "../types/componentProps.types";
+import {IDDataGridProps, TableView} from "../types/componentProps.types";
 import Box from "@mui/material/Box";
 import Image from "next/legacy/image";
 
@@ -51,7 +51,7 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
  * IDDataGrid Component
  * @constructor
  */
-function IDDataGrid({usages, tableView, status, getCategoryOrTagName}: IDDataGrid) {
+function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: IDDataGridProps) {
     const theme = useTheme();
 
     const columns: GridColDef[] = [
@@ -70,7 +70,7 @@ function IDDataGrid({usages, tableView, status, getCategoryOrTagName}: IDDataGri
             headerName: "Kategorie",
             sortable: status !== "NONE",
             width: 110,
-            valueGetter: (params) => getCategoryOrTagName(params.row.id.categoryId, TableView.CATEGORY),
+            valueGetter: (params) => getCategoryName(params.row.id.categoryId),
         },
         {
             field: "categoryId",
@@ -86,7 +86,7 @@ function IDDataGrid({usages, tableView, status, getCategoryOrTagName}: IDDataGri
             headerName: "Tag",
             sortable: status !== "NONE",
             width: 110,
-            valueGetter: (params) => getCategoryOrTagName(params.row.id.tagId, TableView.TAG),
+            valueGetter: (params) => getTagName(params.row.id.tagId),
         },
         {
             field: "tagId",

@@ -1,5 +1,5 @@
 // import utils
-import {getIconColorByStatus, getUsageStatusColor, showUsageLabel} from "../utils/utils";
+import {getIconColorByStatus, getSelectedUsages, getUsageStatusColor, showUsageLabel} from "../utils/utils";
 import {mockedFeatureDetailForClient} from "./mockData";
 import {TableView} from "../types/componentProps.types";
 
@@ -14,6 +14,17 @@ test("returns id_orange if status is enabled_and_disabled", () => {
     expect(colors).toBe("id_orange");
 });
 
+test("returns the correct number of usages according to the mocked data", () => {
+    const usagesForClient = getSelectedUsages(mockedFeatureDetailForClient.configurations[0].usages,
+        TableView.CLIENT);
+    const usagesForCategory = getSelectedUsages(mockedFeatureDetailForClient.configurations[0].usages,
+        TableView.CATEGORY);
+    const usagesForTag = getSelectedUsages(mockedFeatureDetailForClient.configurations[0].usages,
+        TableView.TAG);
+    expect(usagesForClient.length).toBe(0);
+    expect(usagesForCategory.length).toBe(2);
+    expect(usagesForTag.length).toBe(0);
+});
 
 test("returns two Chip Components with 0 usages (both active and inactive)", () => {
     const labels = showUsageLabel(mockedFeatureDetailForClient.configurations[0].usages, TableView.CLIENT);

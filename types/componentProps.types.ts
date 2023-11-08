@@ -1,4 +1,13 @@
-import {Client, ClientOrFeature, Feature, FeaturesConfig, FeaturesDetail, Status, Usage} from "./api.types";
+import {
+    Client,
+    ClientOrFeature,
+    Feature,
+    FeaturesConfig,
+    FeaturesDetail,
+    Status,
+    StatusValue,
+    Usage,
+} from "./api.types";
 import {MouseEvent, ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
 import {GridProps} from "@mui/material/Grid";
@@ -91,15 +100,22 @@ export interface FeatureDetail {
     featuresDetailConfigSelected: FeaturesConfig[];
 }
 
-export interface IDDataGrid {
+export interface IDDataGridProps {
     usages: Array<Usage>;
     tableView: TableView;
     status: string;
-    getCategoryOrTagName: (elementId: number, elementType: TableView) => string;
+    getCategoryName: (usageId: number) => string|undefined;
+    getTagName: (usageId: number) => string|undefined;
 }
 
-export interface IDDataGridWrapperProps {
-    disableHeader: boolean;
+export interface IDTabPanelProps {
+    activeTab: number;
+    usages: Array<Usage>;
+    tableView: TableView;
+    featureStatus: StatusValue;
+    featuresDetailConfig: Array<FeaturesConfig>;
+    alertMessage?: string;
+    index: number;
 }
 
 export enum TableView {

@@ -73,6 +73,23 @@ export function getUsageStatusColor(tableView: TableView, usages: Array<Usage>) 
 }
 
 /**
+     * getSelectedUsages
+     * @param {Array<Usage>} usages
+     * @param {TableView} tableView
+     * @return {Array<Usage>}
+     */
+export function getSelectedUsages(usages: Array<Usage>, tableView: TableView) {
+    if (tableView === "CLIENT") {
+        return usages.filter((usage) => usage.id.clientId !== 0);
+    } else if (tableView === "CATEGORY") {
+        return usages.filter((usage) => usage.id.categoryId !== 0);
+    } else if (tableView === "TAG") {
+        return usages.filter((usage) => usage.id.tagId !== 0);
+    }
+    return usages;
+}
+
+/**
  * showUsageLabel
  * show the labels with the current status of the usages for a
  * specific configuration (how many active and not active usages are present). See Layout:
