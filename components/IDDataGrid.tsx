@@ -70,7 +70,7 @@ function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: ID
             headerName: "Kategorie",
             sortable: status !== "NONE",
             width: 110,
-            valueGetter: (params) => getCategoryName(params.row.id.categoryId),
+            valueGetter: (params) => getCategoryName(params.row?.id?.categoryId),
         },
         {
             field: "categoryId",
@@ -79,14 +79,14 @@ function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: ID
             sortable: status !== "NONE",
             align: "right",
             width: 130,
-            valueGetter: (params) => params.row.id.categoryId,
+            valueGetter: (params) => params.row?.id?.categoryId,
         },
         {
             field: "tag",
             headerName: "Tag",
             sortable: status !== "NONE",
             width: 110,
-            valueGetter: (params) => getTagName(params.row.id.tagId),
+            valueGetter: (params) => getTagName(params.row?.id?.tagId),
         },
         {
             field: "tagId",
@@ -95,6 +95,7 @@ function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: ID
             sortable: status !== "NONE",
             align: "right",
             width: 130,
+            valueGetter: (params) => params.row?.id?.tagId,
         },
         {
             field: "configurationName",

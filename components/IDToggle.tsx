@@ -1,4 +1,5 @@
-import {useState} from "react";
+import {Fragment, useState} from "react";
+import validator from "@rjsf/validator-ajv8";
 import {styled} from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -10,8 +11,12 @@ import Typography from "@mui/material/Typography";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
 import {Divider} from "@mui/material";
-import {IdToggleProps} from "../types/componentProps.types";
+import IDForm from "./IDForm";
+import {uiSchema} from "../utils/RJSFSchema";
 import Box from "@mui/material/Box";
+
+// import typescript Interfaces
+import {IdToggleProps} from "../types/componentProps.types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -61,6 +66,9 @@ const IDToggleWrapper = styled(Card)(({theme}) => ({
         wordWrap: "break-word",
         lineHeight: 1,
     },
+    ".MuiSelect-iconOutlined": {
+        display: "none",
+    },
 }));
 
 const IDCardActions = styled(CardActions)(({theme}) => ({
@@ -76,15 +84,17 @@ const IDCardActions = styled(CardActions)(({theme}) => ({
  *
  * @constructor
  */
-function IDToggle({disabled, selected, config, toggleConfig}: IdToggleProps) {
+function IDToggle({disabled, selected, config, toggleConfig, jsonSchema}: IdToggleProps) {
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded((prev) => !prev);
     };
     const {
         name,
+        settings,
     } = config ?? {
         name: "",
+        settings: [],
     };
 
     return (
@@ -117,11 +127,18 @@ function IDToggle({disabled, selected, config, toggleConfig}: IdToggleProps) {
             </Box>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent
-                    sx={{"pt": 0, "px": 2, "bgcolor": "white", "&:last-child": {pb: 2}}}
+                    sx={{"pt": 0, "px": 2, "bgcolor": "white", "&:last-child": {pb: 1}}}
                     data-testid="collapsedContent">
                     <Divider />
-                    <Grid container sx={{pt: 2, display: "flex", rowGap: 2}}>
-                        {/* This content will be updated with Branch west-1484-json-schema */}
+                    <Grid container sx={{pt: 2}}>
+                        {jsonSchema && <IDForm
+                            schema={jsonSchema}
+                            uiSchema={uiSchema}
+                            formData={settings}
+                            validator={validator} readonly>
+                            {/* Fragment allows us to not show the submit button */}
+                            <Fragment/>
+                        </IDForm>}
                     </Grid>
                 </CardContent>
             </Collapse>

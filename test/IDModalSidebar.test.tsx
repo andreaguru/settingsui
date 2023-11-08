@@ -11,6 +11,7 @@ test("Configuration Box is rendered and toggle button is present", () => {
     render(<ThemeProvider theme={edidTheme}><IDModalSidebar
         featuresDetailConfig={mockedFeatureDetailForClient.configurations}
         featureKey="cleverpush"
+        jsonSchema={{}}
         setFeaturesDetailConfigSelected={setFeaturesDetailConfigSelected} /></ThemeProvider>);
 
     const configurationBox = screen.getAllByTestId("toggle")[0];

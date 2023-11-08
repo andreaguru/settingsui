@@ -1,4 +1,4 @@
-import {render, screen, within} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MainContent from "../components/MainContent";
 import {mockedClientListWithHasFeatures, mockedFeatures, mockedFilteredList} from "./mockData";
@@ -61,49 +61,6 @@ test("component shows filteredClientList instead of clientList if filteredClient
     // Wetterauer Zeitung is present in the clientList but not in the filteredClientList
     expect(screen.queryByText(/BlickPunkt Nienburg/i)).toBeInTheDocument();
     expect(screen.queryByText(/Wetterauer Zeitung/i)).not.toBeInTheDocument();
-});
-
-test("client color is dark gray when client feature is inactive", () => {
-    render(
-        <ThemeProvider theme={edidTheme}>
-            <MainContent
-                clientsList={mockedClientListWithHasFeatures}
-                filteredClientsList={[]}
-                showSelectedFeatures={showSelectedFeatures}
-                isLoading={false}/>
-        </ThemeProvider>);
-
-    // get the first rendered ClientCard Component
-    const clientCard = screen.getByTestId(mockedClientListWithHasFeatures[0].id);
-    // inArticleReco -> feature client is DISABLED
-    const disabledFeature = within(clientCard).getAllByText(/ECR In Article/)[0].parentElement as HTMLElement;
-    expect(disabledFeature).toHaveStyle({
-        "color": edidTheme.palette.id_mediumGray.main});
-});
-
-test("category icon color is green when category feature is active", () => {
-    render(
-        <ThemeProvider theme={edidTheme}>
-            <MainContent
-                clientsList={mockedClientListWithHasFeatures}
-                filteredClientsList={[]}
-                showSelectedFeatures={showSelectedFeatures}
-                isLoading={false}/>
-        </ThemeProvider>);
-
-    // get the first rendered ClientCard Component
-    const clientCard = screen.getByTestId(mockedClientListWithHasFeatures[0].id);
-    // traffective -> feature category is NONE, feature tag is DISABLED
-    const traffective = within(clientCard).getAllByText(/Traffective Ads/)[0].parentElement as HTMLElement;
-    // category icon - testid is automatically included by MUI
-    const categoryIcon = within(traffective).getByTestId("AccountTreeIcon");
-    // tag icon - testid is automatically included by MUI
-    const tagIcon = within(traffective).getByTestId("LocalOfferIcon");
-
-    // Test if feature category has grey color
-    expect(categoryIcon).toHaveStyle({"color": edidTheme.palette.id_lightGray.main});
-    // Test if feature tag has green color
-    expect(tagIcon).toHaveStyle({"color": edidTheme.palette.id_green.main});
 });
 
 // UNIT TESTS

@@ -2,6 +2,8 @@
 Interfaces for the APIs Data
 */
 
+import {RJSFSchema} from "@rjsf/utils";
+
 export enum StatusValue {
     ENABLED = "ENABLED",
     DISABLED = "DISABLED",
@@ -67,6 +69,7 @@ export interface FeaturesDetail {
     name: string;
     key: string;
     shortName: string;
+    jsonSchema: RJSFSchema;
     description: string;
     configurations: Array<FeaturesConfig>;
 }
