@@ -100,7 +100,7 @@ function IDTabPanel({
                 id={`simple-tabpanel-${index}`}
                 aria-labelledby={`simple-tab-${index}`}
                 style={{padding: edidTheme.spacing(3), height: "100%"}}>
-                <Box sx={{display: "flex", gap: theme.spacing(2)}}>
+                <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
                     {showUsageLabel(usages, tableView)}
                     <IDAlert
                         icon={<InfoOutlinedIcon sx={{fontSize: "medium"}}/>}
