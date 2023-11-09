@@ -1,18 +1,18 @@
-import {getSelectedUsages, showUsageLabel} from "../utils/utils";
+import {getSelectedUsages, showUsageLabel} from "../../utils/utils";
 import * as React from "react";
 import {useEffect} from "react";
 import Box from "@mui/material/Box";
 
 // import custom components
 import IDDataGrid from "./IDDataGrid";
-import {edidTheme} from "../themes/edid";
-import {getCategoryList, getTagList} from "../api/FeatureDetailAPI";
+import {edidTheme} from "../../themes/edid";
+import {getCategoryList, getTagList} from "../../api/FeatureDetailAPI";
 
 // import typescript Interfaces
-import {IDTabPanelProps} from "../types/componentProps.types";
-import {CategoryMap, CmsTag, FeaturesConfig, Usage} from "../types/api.types";
+import {IDTabPanelProps} from "../../types/componentProps.types";
+import {CategoryMap, CmsTag, FeaturesConfig, Usage} from "../../types/api.types";
 import {useTheme} from "@mui/material/styles";
-import IDAlert from "./IDAlert";
+import IDAlert from "../IDAlert";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Typography from "@mui/material/Typography";
 
@@ -102,6 +102,7 @@ function IDTabPanel({
                 style={{padding: edidTheme.spacing(3), height: "100%"}}>
                 <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
                     {showUsageLabel(usages, tableView)}
+                    {alertMessage &&
                     <IDAlert
                         icon={<InfoOutlinedIcon sx={{fontSize: "medium"}}/>}
                         severity="info"
@@ -110,6 +111,7 @@ function IDTabPanel({
                             {alertMessage}
                         </Typography>
                     </IDAlert>
+                    }
                 </Box>
                 <IDDataGrid
                     usages={getSelectedUsages(usages, tableView)}

@@ -2,15 +2,15 @@ import Grid from "@mui/material/Grid";
 import {styled} from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import {Tooltip, Typography} from "@mui/material";
-import IDLinearProgress from "./IDLinearProgress";
+import IDLinearProgress from "../IDLinearProgress";
 import IDToggleList from "./IDToggleList";
 import IDToggle from "./IDToggle";
-import IDHelpIcon from "./IDHelpIcon";
+import IDHelpIcon from "../IDHelpIcon";
 import {MouseEvent, useState} from "react";
 
 // import typescript Interfaces
-import {FeaturesConfig} from "../types/api.types";
-import {IDModalSidebarProps} from "../types/componentProps.types";
+import {FeaturesConfig} from "../../types/api.types";
+import {IDModalSidebarProps} from "../../types/componentProps.types";
 
 /**
  * IDModalSidebar component. It accepts the same parameters as MUI Grid

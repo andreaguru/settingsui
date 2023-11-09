@@ -10,14 +10,14 @@ import TagIcon from "@mui/icons-material/LocalOffer";
 import Badge, {BadgeProps} from "@mui/material/Badge";
 
 // import typescript Interfaces
-import {FeatureDetail, TableView} from "../types/componentProps.types";
-import {FeaturesConfig, Usage} from "../types/api.types";
+import {FeatureDetail, TableView} from "../../types/componentProps.types";
+import {FeaturesConfig, Usage} from "../../types/api.types";
 
 // import utils
-import {getSelectedUsages, getUsageStatusColor} from "../utils/utils";
+import {getSelectedUsages, getUsageStatusColor} from "../../utils/utils";
 
 // import custom components
-import {getUsagesPerFeature} from "../api/FeatureDetailAPI";
+import {getUsagesPerFeature} from "../../api/FeatureDetailAPI";
 import IDTabPanel from "./IDTabPanel";
 
 const IDBadge = styled(Badge)<BadgeProps>(({theme}) => ({

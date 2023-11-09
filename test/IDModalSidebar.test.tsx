@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import {mockedFeatureDetailForClient} from "./mockData";
 import {ThemeProvider} from "@mui/system";
 import {edidTheme} from "../themes/edid";
-import IDModalSidebar from "../components/IDModalSidebar";
+import IDModalSidebar from "../components/detailPage/IDModalSidebar";
 
 const setFeaturesDetailConfigSelected = jest.fn();
 

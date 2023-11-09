@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import {setStateIsConfigSelected} from "../components/FeatureDetail";
+import {setStateIsConfigSelected} from "../components/detailPage/FeatureDetail";
 import {mockedCategoryList, mockedFeatureDetailForClient} from "./mockData";
 import React from "react";
 
