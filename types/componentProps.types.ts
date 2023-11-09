@@ -114,6 +114,7 @@ export interface IDDataGridProps {
 export interface IDTabPanelProps {
     activeTab: number;
     usages: Array<Usage>;
+    filteredUsages: Array<Usage>;
     tableView: TableView;
     featureStatus: StatusValue;
     featuresDetailConfig: Array<FeaturesConfig>;

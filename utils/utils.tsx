@@ -5,34 +5,6 @@ import {TableView} from "../types/componentProps.types";
 import {Usage} from "../types/api.types";
 import Chip from "@mui/material/Chip";
 
-interface ActiveInactiveProps {
-    activeUsages: Usage[];
-    inactiveUsages: Usage[];
-}
-
-/**
- * getActiveAndInactiveUsage
- * get active ad inactive usages according to the Tab that has been selected (CLIENT, CATEGORY or TAG)
- * @param {TableView} tableView
- * @param {Array<Usage>} usages
- * @return {ActiveInactiveProps}
- */
-function getActiveAndInactiveUsage(tableView: TableView, usages: Array<Usage>): ActiveInactiveProps {
-    let activeUsages;
-    let inactiveUsages;
-    if (tableView === "CLIENT") {
-        activeUsages = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
-        inactiveUsages = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
-    } else if (tableView === "CATEGORY") {
-        activeUsages = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
-        inactiveUsages = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
-    } else if (tableView === "TAG") {
-        activeUsages = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
-        inactiveUsages = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
-    }
-    return {activeUsages, inactiveUsages} as ActiveInactiveProps;
-}
-
 /**
  * getIconColorByStatus - return the right icon color according to client, category or tag status
  * @param {string} status
@@ -54,12 +26,12 @@ export function getIconColorByStatus(status: string) {
 
 /**
  * getUsageStatusColor
- * @param {TableView} tableView
  * @param {Array<Usage>} usages
  * @return {string}
  */
-export function getUsageStatusColor(tableView: TableView, usages: Array<Usage>) {
-    const {activeUsages, inactiveUsages} = getActiveAndInactiveUsage(tableView, usages);
+export function getUsageStatusColor(usages: Array<Usage>) {
+    const activeUsages = usages.filter((usage) => usage.active);
+    const inactiveUsages = usages.filter((usage) => !usage.active);
 
     if (activeUsages.length && inactiveUsages.length) {
         return "id_orange";
@@ -95,10 +67,9 @@ export function getSelectedUsages(usages: Array<Usage>, tableView: TableView) {
  * specific configuration (how many active and not active usages are present). See Layout:
  * https://xd.adobe.com/view/e54d650f-8015-409d-bb4f-ee719174d24f-b01e/screen/539745da-91b3-4099-b696-7a3efb4c0ebe/
  * @param {Array<Usage>} usages
- * @param {TableView} tableView
  * @return {EmotionJSX.Element[]}
  */
-export function showUsageLabel(usages: Array<Usage>, tableView: TableView) {
+export function showUsageLabel(usages: Array<Usage>) {
     /**
      * renderUsageStatus
      * In this function we render the two components (active and inactive) wit the infos that they have to show
@@ -130,6 +101,7 @@ export function showUsageLabel(usages: Array<Usage>, tableView: TableView) {
         ];
     }
 
-    const {activeUsages, inactiveUsages} = getActiveAndInactiveUsage(tableView, usages);
+    const activeUsages = usages.filter((usage) => usage.active);
+    const inactiveUsages = usages.filter((usage) => !usage.active);
     return renderUsageStatus(activeUsages.length, inactiveUsages.length);
 }

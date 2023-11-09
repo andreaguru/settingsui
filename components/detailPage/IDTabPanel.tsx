@@ -24,6 +24,7 @@ import Typography from "@mui/material/Typography";
 function IDTabPanel({
     activeTab,
     usages,
+    filteredUsages,
     tableView,
     featureStatus,
     featuresDetailConfig,
@@ -101,7 +102,7 @@ function IDTabPanel({
                 aria-labelledby={`simple-tab-${index}`}
                 style={{padding: edidTheme.spacing(3), height: "100%"}}>
                 <Box sx={{display: "flex", alignItems: "center", gap: theme.spacing(2)}}>
-                    {showUsageLabel(usages, tableView)}
+                    {showUsageLabel(filteredUsages)}
                     {alertMessage &&
                     <IDAlert
                         icon={<InfoOutlinedIcon sx={{fontSize: "medium"}}/>}

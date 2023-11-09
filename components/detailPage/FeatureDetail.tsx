@@ -19,6 +19,7 @@ import {getSelectedUsages, getUsageStatusColor} from "../../utils/utils";
 // import custom components
 import {getUsagesPerFeature} from "../../api/FeatureDetailAPI";
 import IDTabPanel from "./IDTabPanel";
+import useUpdateEffect from "../../utils/customHooks";
 
 const IDBadge = styled(Badge)<BadgeProps>(({theme}) => ({
     "& .MuiBadge-badge": {
@@ -46,6 +47,9 @@ function setStateIsConfigSelected(
 function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfigSelected}: FeatureDetail) {
     const [activeTab, setActiveTab] = React.useState(0);
     const [usages, setUsages] = React.useState<Array<Usage>>([]);
+    const [clientUsages, setClientUsages] = React.useState<Array<Usage>>([]);
+    const [categoryUsages, setCategoryUsages] = React.useState<Array<Usage>>([]);
+    const [tagUsages, setTagUsages] = React.useState<Array<Usage>>([]);
     const [isConfigSelected, setIsConfigSelected] = React.useState<boolean>(false);
     const theme = useTheme();
 
@@ -67,6 +71,13 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [featuresDetailConfig, featuresDetailConfigSelected]);
+
+    useUpdateEffect(() => {
+        setClientUsages(usages.filter((u) => u.id.clientId > 0));
+        setCategoryUsages(usages.filter((u) => u.id.categoryId > 0));
+        setTagUsages(usages.filter((u) => u.id.tagId > 0));
+    }, [usages]);
+
 
     const handleChange = (event: React.SyntheticEvent, newActiveTab: number) => {
         setActiveTab(newActiveTab);
@@ -101,7 +112,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     id="simple-tab-index-0"
                     aria-controls="simple-tabpanel-0"
                     icon={<ClientIcon
-                        color={getUsageStatusColor(TableView.CLIENT, usages)}/>}
+                        color={getUsageStatusColor(clientUsages)}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -114,7 +125,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     id="simple-tab-index-1"
                     aria-controls="simple-tabpanel-1"
                     icon={<CategoryIcon
-                        color={getUsageStatusColor(TableView.CATEGORY, usages)}/>}
+                        color={getUsageStatusColor(categoryUsages)}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -127,7 +138,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                     id="simple-tab-index-2"
                     aria-controls="simple-tabpanel-2"
                     icon={<TagIcon
-                        color={getUsageStatusColor(TableView.TAG, usages)}/>}
+                        color={getUsageStatusColor(tagUsages)}/>}
                     iconPosition="start"
                     label={
                         isConfigSelected ?
@@ -141,6 +152,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 <IDTabPanel
                     activeTab={activeTab}
                     usages={usages}
+                    filteredUsages={clientUsages}
                     tableView={TableView.CLIENT}
                     featureStatus={featureStatus.client}
                     featuresDetailConfig={featuresDetailConfig}
@@ -148,6 +160,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 <IDTabPanel
                     activeTab={activeTab}
                     usages={usages}
+                    filteredUsages={categoryUsages}
                     tableView={TableView.CATEGORY}
                     featureStatus={featureStatus.category}
                     featuresDetailConfig={featuresDetailConfig}
@@ -157,6 +170,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                 <IDTabPanel
                     activeTab={activeTab}
                     usages={usages}
+                    filteredUsages={tagUsages}
                     tableView={TableView.TAG}
                     featureStatus={featureStatus.tag}
                     featuresDetailConfig={featuresDetailConfig}

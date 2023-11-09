@@ -132,6 +132,7 @@ function IDToggle({disabled, selected, config, toggleConfig, jsonSchema}: IdTogg
                     <Divider />
                     <Grid container sx={{pt: 2}}>
                         {jsonSchema && <IDForm
+                            name={`form-${name}`}
                             schema={jsonSchema}
                             uiSchema={uiSchema}
                             formData={settings}
