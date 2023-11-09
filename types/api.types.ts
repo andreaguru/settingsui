@@ -16,6 +16,14 @@ export enum ElementType {
     SEARCH_LINK = "SEARCH_LINK",
 }
 
+enum CmsType {
+    PLACE_LOCATION = "PLACE_LOCATION",
+    EVENT = "EVENT",
+    ORGANISATION = "ORGANISATION",
+    PERSON = "PERSON",
+    CATCHWORD = "CATCHWORD",
+}
+
 export interface Status {
     client: StatusValue;
     category: StatusValue;
@@ -93,7 +101,7 @@ export interface CmsCategory {
 export interface CmsTag {
     id: number;
     name:string;
-    type: string;
+    type: CmsType;
     clientId: number;
 }
 
