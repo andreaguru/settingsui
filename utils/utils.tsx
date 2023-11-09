@@ -6,7 +6,7 @@ import {Usage} from "../types/api.types";
 import Chip from "@mui/material/Chip";
 
 /**
- * getFeatureColorByStatus - return the right icon color according to client, category or tag status
+ * getIconColorByStatus - return the right icon color according to client, category or tag status
  * @param {string} status
  * @return {string}
  */
@@ -25,15 +25,51 @@ export function getIconColorByStatus(status: string) {
 }
 
 /**
+ * getUsageStatusColor
+ * @param {Array<Usage>} usages
+ * @return {string}
+ */
+export function getUsageStatusColor(usages: Array<Usage>) {
+    const activeUsages = usages.filter((usage) => usage.active);
+    const inactiveUsages = usages.filter((usage) => !usage.active);
+
+    if (activeUsages.length && inactiveUsages.length) {
+        return "id_orange";
+    } else if (activeUsages.length && !inactiveUsages.length) {
+        return "id_green";
+    } else if (!activeUsages.length && inactiveUsages.length) {
+        return "id_red";
+    }
+    // by default show aktiviert and deaktiviert with value 0
+    return "id_lightGray";
+}
+
+/**
+     * getSelectedUsages
+     * @param {Array<Usage>} usages
+     * @param {TableView} tableView
+     * @return {Array<Usage>}
+     */
+export function getSelectedUsages(usages: Array<Usage>, tableView: TableView) {
+    if (tableView === "CLIENT") {
+        return usages.filter((usage) => usage.id.clientId !== 0);
+    } else if (tableView === "CATEGORY") {
+        return usages.filter((usage) => usage.id.categoryId !== 0);
+    } else if (tableView === "TAG") {
+        return usages.filter((usage) => usage.id.tagId !== 0);
+    }
+    return usages;
+}
+
+/**
  * showUsageLabel
  * show the labels with the current status of the usages for a
  * specific configuration (how many active and not active usages are present). See Layout:
  * https://xd.adobe.com/view/e54d650f-8015-409d-bb4f-ee719174d24f-b01e/screen/539745da-91b3-4099-b696-7a3efb4c0ebe/
  * @param {Array<Usage>} usages
- * @param {TableView} tableView
  * @return {EmotionJSX.Element[]}
  */
-export function showUsageLabel(usages: Array<Usage>, tableView: TableView) {
+export function showUsageLabel(usages: Array<Usage>) {
     /**
      * renderUsageStatus
      * In this function we render the two components (active and inactive) wit the infos that they have to show
@@ -65,20 +101,7 @@ export function showUsageLabel(usages: Array<Usage>, tableView: TableView) {
         ];
     }
 
-    if (tableView === "CLIENT") {
-        const activeClients = usages.filter((usage) => usage.id.clientId !== 0 && usage.active);
-        const inactiveClients = usages.filter((usage) => usage.id.clientId !== 0 && !usage.active);
-        return renderUsageStatus(activeClients.length, inactiveClients.length);
-    } else if (tableView === "CATEGORY") {
-        const activeCategories = usages.filter((usage) => usage.id.categoryId !== 0 && usage.active);
-        const inactiveCategories = usages.filter((usage) => usage.id.categoryId !== 0 && !usage.active);
-        return renderUsageStatus(activeCategories.length, inactiveCategories.length);
-    } else if (tableView === "TAG") {
-        const activeTags = usages.filter((usage) => usage.id.tagId !== 0 && usage.active);
-        const inactiveTags = usages.filter((usage) => usage.id.tagId !== 0 && !usage.active);
-        return renderUsageStatus(activeTags.length, inactiveTags.length);
-    } else {
-        // by default show aktiviert and deaktiviert with value 0
-        return renderUsageStatus(0, 0);
-    }
+    const activeUsages = usages.filter((usage) => usage.active);
+    const inactiveUsages = usages.filter((usage) => !usage.active);
+    return renderUsageStatus(activeUsages.length, inactiveUsages.length);
 }

@@ -3,11 +3,11 @@ import {DataGrid, gridClasses, GridColDef} from "@mui/x-data-grid";
 import {styled, useTheme} from "@mui/material/styles";
 import CircleIcon from "@mui/icons-material/Circle";
 import {alpha, Tooltip, Typography} from "@mui/material";
-import IDHelpIcon from "./IDHelpIcon";
-import configurationNotFound from "../assets/conf_not_found.min.svg";
+import IDHelpIcon from "../IDHelpIcon";
+import configurationNotFound from "../../assets/conf_not_found.min.svg";
 
 // import typescript Interfaces
-import {IDDataGridProps, TableView} from "../types/componentProps.types";
+import {IDDataGridProps, TableView} from "../../types/componentProps.types";
 import Box from "@mui/material/Box";
 import Image from "next/legacy/image";
 
@@ -51,7 +51,7 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
  * IDDataGrid Component
  * @constructor
  */
-function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGridProps) {
+function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: IDDataGridProps) {
     const theme = useTheme();
 
     const columns: GridColDef[] = [
@@ -86,6 +86,7 @@ function IDDataGrid({usages, tableView, status, getCategoryName}: IDDataGridProp
             headerName: "Tag",
             sortable: status !== "NONE",
             width: 110,
+            valueGetter: (params) => getTagName(params.row?.id?.tagId),
         },
         {
             field: "tagId",

@@ -3,7 +3,7 @@ import {edidTheme} from "../../../themes/edid";
 
 import {useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
-import FeatureDetail from "../../../components/FeatureDetail";
+import FeatureDetail from "../../../components/detailPage/FeatureDetail";
 import Home from "../../index";
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
@@ -16,9 +16,9 @@ import {HomeProps} from "../../../types/componentProps.types";
 import {Client, Feature, FeaturesConfig, FeaturesDetail, Status} from "../../../types/api.types";
 
 // import custom components
-import IDModalContent from "../../../components/IDModalContent";
-import IdModalHeader from "../../../components/IDModalHeader";
-import IDModalSidebar from "../../../components/IDModalSidebar";
+import IDModalContent from "../../../components/detailPage/IDModalContent";
+import IdModalHeader from "../../../components/detailPage/IDModalHeader";
+import IDModalSidebar from "../../../components/detailPage/IDModalSidebar";
 
 /**
  *

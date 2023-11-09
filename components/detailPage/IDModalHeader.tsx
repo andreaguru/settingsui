@@ -4,8 +4,8 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {Tooltip} from "@mui/material";
-import {IDModalHeader} from "../types/componentProps.types";
-import IDHelpIcon from "./IDHelpIcon";
+import {IDModalHeader} from "../../types/componentProps.types";
+import IDHelpIcon from "../IDHelpIcon";
 
 const IDStyledModalHeader = styled(AppBar)(({theme}) => ({
     height: theme.spacing(9),

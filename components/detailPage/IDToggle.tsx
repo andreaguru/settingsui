@@ -12,11 +12,11 @@ import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
 import {Divider} from "@mui/material";
 import IDForm from "./IDForm";
-import {uiSchema} from "../utils/RJSFSchema";
+import {uiSchema} from "../../utils/RJSFSchema";
 import Box from "@mui/material/Box";
 
 // import typescript Interfaces
-import {IdToggleProps} from "../types/componentProps.types";
+import {IdToggleProps} from "../../types/componentProps.types";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -132,6 +132,7 @@ function IDToggle({disabled, selected, config, toggleConfig, jsonSchema}: IdTogg
                     <Divider />
                     <Grid container sx={{pt: 2}}>
                         {jsonSchema && <IDForm
+                            name={`form-${name}`}
                             schema={jsonSchema}
                             uiSchema={uiSchema}
                             formData={settings}

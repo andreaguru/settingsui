@@ -1,6 +1,6 @@
 import {act, fireEvent, render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import IDToggle from "../components/IDToggle";
+import IDToggle from "../components/detailPage/IDToggle";
 import {ThemeProvider} from "@mui/system";
 import {edidTheme} from "../themes/edid";
 

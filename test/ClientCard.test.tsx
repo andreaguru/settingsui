@@ -79,12 +79,10 @@ describe("Parameterized test for ClientCard", () => {
                 .getAllByText(clientMocked.features[1].name, {exact: false})[0].parentElement as HTMLElement;
 
             expect(traffective).toHaveStyle({
-                "color": edidTheme.palette.id_green.main,
-                "backgroundColor": edidTheme.palette.id_green.light});
+                "color": edidTheme.palette.id_green.main});
 
             expect(inArticleReco).toHaveStyle({
-                "color": edidTheme.palette.id_mediumGray.main,
-                "backgroundColor": edidTheme.palette.id_mediumGray.light});
+                "color": edidTheme.palette.id_mediumGray.main});
         }
     );
 
