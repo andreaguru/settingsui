@@ -155,9 +155,12 @@ function ClientCard({
                         <IDDivider textAlign="left" marginTop={theme.spacing(3)}>Features</IDDivider>
                         <Box sx={{display: "flex", flexWrap: "wrap"}}>
                             {
-                                featuresMap.map((feature: Feature, index: number) =>
-                                    getFeatureContent(feature, index)
-                                )
+                                /* First we sort the array alphabetically, then we go through the map */
+                                featuresMap
+                                    .sort((a, b) => a.name.localeCompare(b.name))
+                                    .map((feature: Feature, index: number) =>
+                                        getFeatureContent(feature, index)
+                                    )
                             }
                         </Box>
                     </>
