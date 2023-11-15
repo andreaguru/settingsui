@@ -34,8 +34,9 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
             )}
             {values.length > 0 && (
                 <>
-                    <Typography component="label">{title}</Typography>
+                    <Typography component="label" htmlFor={title}>{title}</Typography>
                     <Autocomplete
+                        id={title}
                         multiple
                         options={values}
                         value={filteredValues}
@@ -59,6 +60,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                         renderOption={(props, option: ClientOrFeature, {selected}) => (
                             <li {...props}>
                                 <Checkbox
+                                    id={`id-${option.id}`}
                                     data-testid={option.id}
                                     sx={{marginRight: 8}}
                                     checked={selected}
