@@ -43,6 +43,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                         onChange={handleChange}
                         data-testid="combobox"
                         disableCloseOnSelect={true}
+                        noOptionsText="Kein Ergebnis"
                         ChipProps={{
                             sx: {
                                 color: "secondary.main",

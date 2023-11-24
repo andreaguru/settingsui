@@ -148,7 +148,7 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
                             </IDBadge> : "Tag"
                     }/>
             </Tabs>
-            <Box sx={{backgroundColor: "white", flex: "1 1 100%"}}>
+            <Box sx={{backgroundColor: "white", flex: "1 1 100%", height: "90%"}}>
                 <IDTabPanel
                     activeTab={activeTab}
                     usages={usages}

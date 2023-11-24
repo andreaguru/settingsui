@@ -82,11 +82,11 @@ function ClientCard({
     const universalFeaturesMap = showSelectedFeatures(client.features, true);
     const featuresMap = showSelectedFeatures(client.features);
 
-    const getFeatureContent = (feature: Feature, index: number) => {
+    const getFeatureContent = (feature: Feature) => {
         // set background color of the button according to feature client status
         const clientStatusColor = getButtonColorByStatus(feature.status.client, theme).bgColor;
 
-        return <div data-testid="feature" key={index}>
+        return <div data-testid="feature" key={feature.id}>
             {inView && <NextLink
                 passHref
                 href={{
@@ -143,8 +143,8 @@ function ClientCard({
                         <IDDivider textAlign="left">Allgemein</IDDivider>
                         <Box sx={{display: "flex", flexWrap: "wrap"}}>
                             {
-                                universalFeaturesMap.map((feature: Feature, index: number) =>
-                                    getFeatureContent(feature, index)
+                                universalFeaturesMap.map((feature: Feature) =>
+                                    getFeatureContent(feature)
                                 )
                             }
                         </Box>
@@ -158,9 +158,9 @@ function ClientCard({
                                 /* First we sort the array alphabetically, then we go through the map */
                                 featuresMap
                                     .sort((a, b) => a.name.localeCompare(b.name))
-                                    .map((feature: Feature, index: number) =>
-                                        getFeatureContent(feature, index)
-                                    )
+                                    .map((feature: Feature) => {
+                                        return getFeatureContent(feature);
+                                    })
                             }
                         </Box>
                     </>

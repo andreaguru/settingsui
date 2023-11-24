@@ -14,27 +14,27 @@ import Image from "next/legacy/image";
 const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
     "&.MuiDataGrid-root": {
         "display": "inline-flex",
-        // style for header and footer
         "width": "100%",
-        "height": `calc(100% - ${theme.spacing(3)})`,
-        // end style for header and footer
+        "maxHeight": `calc(100% - ${theme.spacing(10)})`,
+        "minHeight": theme.spacing(30),
         "maxWidth": "100%",
+        "overflow-x": "hidden",
+    },
+    ".MuiDataGrid-cell": {
+        "border": "none",
     },
     "&.noUsage": {
         color: theme.palette.secondary.light,
     },
-    "& .MuiDataGrid-overlayWrapper": {
-        "top": "20%",
-    },
     [`& .${gridClasses.columnSeparator}`]: {
         "visibility": "visible",
     },
-    "& .configurationField": {
+    ".configurationField": {
         [`& .${gridClasses.columnSeparator}`]: {
             "display": "none",
         },
     },
-    "& .MuiDataGrid-columnHeaderDraggableContainer": {
+    ".MuiDataGrid-columnHeaderDraggableContainer": {
         "display": "block",
     },
     [`& .${gridClasses.row}`]: {
@@ -69,7 +69,7 @@ function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: ID
             field: "category",
             headerName: "Kategorie",
             sortable: status !== "NONE",
-            width: 110,
+            flex: 0.6,
             valueGetter: (params) => getCategoryName(params.row?.id?.categoryId),
         },
         {
@@ -78,14 +78,14 @@ function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: ID
             headerAlign: "right",
             sortable: status !== "NONE",
             align: "right",
-            width: 130,
+            width: 120,
             valueGetter: (params) => params.row?.id?.categoryId,
         },
         {
             field: "tag",
             headerName: "Tag",
             sortable: status !== "NONE",
-            width: 110,
+            flex: 0.6,
             valueGetter: (params) => getTagName(params.row?.id?.tagId),
         },
         {
@@ -103,6 +103,7 @@ function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: ID
             headerClassName: "configurationField",
             sortable: status !== "NONE",
             width: 160,
+            flex: 1,
             renderHeader: (params) => <div style={{fontWeight: "500"}}>
                 {params.colDef.headerName}
                 <Tooltip
@@ -131,7 +132,6 @@ function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: ID
             columns={columns}
             columnVisibilityModel={columnVisibilityModel}
             hideFooter
-            autoHeight
             getRowClassName={(params) =>
                 params.indexRelativeToCurrentPage % 2 !== 0 ? "odd" : ""
             }
@@ -160,8 +160,6 @@ function IDDataGrid({usages, tableView, status, getCategoryName, getTagName}: ID
             sx={{
                 "mt": theme.spacing(3),
                 "color": "secondary.main",
-                "minWidth": "100px",
-                "maxWidth": "fit-content",
                 "& .MuiDataGrid-columnHeader": {
                     "color": status === "NONE" ? "secondary.light" : "",
                 },
