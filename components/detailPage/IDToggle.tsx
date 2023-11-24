@@ -110,7 +110,7 @@ function IDToggle({disabled, selected, config, toggleConfig, jsonSchema}: IdTogg
                 <IDCardActions>
                     {/* TODO: we disable temporary created and modified date, as we have no data to show */}
                     <Typography variant="caption">Erstellt TT.MM.JJJJ</Typography>
-                    <Typography variant="caption">Zuletz geändert TT.MM.JJJJ</Typography>
+                    <Typography variant="caption">Zuletzt geändert TT.MM.JJJJ</Typography>
                     <ExpandMore
                     // a ternary operator syntax is needed since a warning is triggered
                     // when trying to pass a boolean value to a custom property
