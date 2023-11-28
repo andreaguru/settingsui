@@ -18,7 +18,6 @@ const IDDataGridWrapper = styled(DataGrid)(({theme}) => ({
         "maxHeight": `calc(100% - ${theme.spacing(10)})`,
         "minHeight": theme.spacing(30),
         "maxWidth": "100%",
-        "overflow-x": "hidden",
     },
     ".MuiDataGrid-cell": {
         "border": "none",
