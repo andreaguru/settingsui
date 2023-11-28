@@ -126,7 +126,7 @@ function FeatureDetailPage({...props}: HomeProps) {
                             </Grid>
 
                             {/* Table content*/}
-                            <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3}}>
+                            <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3, height: "100%"}}>
                                 <FeatureDetail
                                     featureStatus={getFeatureStatus(featureKey, client as Client)}
                                     featuresDetailConfig={featuresDetail.configurations}
