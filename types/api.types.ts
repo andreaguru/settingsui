@@ -64,15 +64,12 @@ export interface UsageWithConfigName extends Usage {
     configurationName: string;
 }
 
-export interface FeaturesConfigAPI {
+export interface FeaturesConfig {
     id: number;
     name: string;
     clientId: number;
     settings: Array<Settings>;
-}
-
-export interface FeaturesConfig extends FeaturesConfigAPI {
-    usages: Array<Usage>;
+    usages?: Array<Usage>;
 }
 
 export interface FeaturesDetail {

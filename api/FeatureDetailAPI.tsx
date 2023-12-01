@@ -5,7 +5,6 @@ import {
     CmsCategory,
     CmsTag,
     FeaturesConfig,
-    FeaturesConfigAPI,
     FeaturesDetail,
     Usage,
     UsageWithConfigName,
@@ -31,12 +30,12 @@ export async function getFeatureDetailForClient(featureId: number, clientId: num
 
         const configurationsURL = `${configurationsEndpoint}/client/${clientId}/feature/${featureId}`;
         const configResponse = await fetch(configurationsURL);
-        const configurationsAPI: Array<FeaturesConfigAPI> = await configResponse.json();
+        const configurationsAPI: Array<FeaturesConfig> = await configResponse.json();
 
         const usagePromise = await fetch(`${featureUsagesEndpoint}/client/${clientId}/feature/${featureId}`);
         const usages: Array<Usage> = await usagePromise.json();
 
-        const configurations = configurationsAPI.map((config: FeaturesConfigAPI): FeaturesConfig => {
+        const configurations = configurationsAPI.map((config: FeaturesConfig): FeaturesConfig => {
             return {
                 usages: usages.filter((usage) => usage.id.configurationId === config.id),
                 ...config,
