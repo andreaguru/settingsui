@@ -1,9 +1,11 @@
 import {logger} from "../logger";
 import {
     CategoryMap,
+    CmsCategories,
     CmsCategory,
     CmsTag,
     FeaturesConfig,
+    FeaturesConfigAPI,
     FeaturesDetail,
     Usage,
     UsageWithConfigName,
@@ -11,6 +13,7 @@ import {
 
 // get the endpoints from the environment variables
 const featureDetailEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_FEATURES as string;
+const configurationsEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_CONFIGURATIONS as string;
 const featureUsagesEndpoint = process.env.NEXT_PUBLIC_SETTINGS_API_USAGES as string;
 const cmsEndpoint = process.env.NEXT_PUBLIC_CMS_API_CLIENTS as string;
 
@@ -24,14 +27,26 @@ export async function getFeatureDetailForClient(featureId: number, clientId: num
     try {
         const featureDetailURL = `${featureDetailEndpoint}/${featureId}`;
         const response = await fetch(featureDetailURL);
-        const featuresPromise = await response.json();
+        const featureDetail:FeaturesDetail = await response.json();
 
-        // update the configuration list in order to show only configs that are set for a specific client
-        const configurations = featuresPromise.configurations
-            .filter((config: FeaturesConfig) => config.clientId === clientId);
+        const configurationsURL = `${configurationsEndpoint}/client/${clientId}/feature/${featureId}`;
+        const configResponse = await fetch(configurationsURL);
+        const configurationsAPI: Array<FeaturesConfigAPI> = await configResponse.json();
+
+        const usagePromise = await fetch(`${featureUsagesEndpoint}/client/${clientId}/feature/${featureId}`);
+        const usages: Array<Usage> = await usagePromise.json();
+
+        const configurations = configurationsAPI.map((config: FeaturesConfigAPI): FeaturesConfig => {
+            return {
+                usages: usages.filter((usage) => usage.id.configurationId === config.id),
+                ...config,
+            };
+        });
+
+        // update the configuration list in order to show also the configs
         return {
-            ...featuresPromise,
-            configurations,
+            ...featureDetail,
+            configurations: configurations,
         };
     } catch (error) {
         // TODO: we will improve the error handling in scope of Ticket https://jira.ippen.io/browse/WEST-1410
@@ -42,25 +57,30 @@ export async function getFeatureDetailForClient(featureId: number, clientId: num
 
 /**
  * getUsagesPerFeature
- * @param {Array<FeaturesConfig>} featuresDetailConfig
+ * @param {number} clientId
+ * @param {number} featureId
+ * @param {Array<FeaturesConfig>} featuresDetailConfigSelected
  * @return {Promise<Array<UsageWithConfigName>>}
  */
-export async function getUsagesPerFeature(featuresDetailConfig: Array<FeaturesConfig>) {
+export async function getUsagesPerFeature(clientId: number,
+    featureId: number,
+    featuresDetailConfigSelected: Array<FeaturesConfig>) {
     try {
-        const response = await fetch(featureUsagesEndpoint);
-        const featureUsagesPromise = await response.json();
+        const response = await fetch(`${featureUsagesEndpoint}/client/${clientId}/feature/${featureId}`);
+        let usages: Array<Usage> = await response.json();
+        if (featuresDetailConfigSelected.length) {
+            // create an array of configurations Ids
+            const configurationIds: Array<number> = featuresDetailConfigSelected.map((a) => a.id);
 
-        // create an array of configurations Ids
-        const configurationIds: Array<number> = featuresDetailConfig.map((a) => a.id);
-
-        // filter the result in order to show only clients that have a name and that are not in the black list
-        const usageArrayTemp: Array<Usage> = featureUsagesPromise.filter((usage: Usage) => {
-            return configurationIds.includes(usage.id.configurationId);
-        });
-
-        return usageArrayTemp.map((usage): UsageWithConfigName => {
+            // filter the usages in order to show only the ones related to the selected configs
+            usages = usages.filter((usage: Usage) => {
+                return configurationIds.includes(usage.id.configurationId);
+            });
+        }
+        return usages.map((usage): UsageWithConfigName => {
             return {
-                configurationName: featuresDetailConfig.filter((data) => data.id === usage.id.configurationId)[0].name,
+                configurationName: featuresDetailConfigSelected
+                    .filter((data) => data.id === usage.id.configurationId)[0].name,
                 ...usage,
             };
         });
@@ -79,7 +99,7 @@ export async function getUsagesPerFeature(featuresDetailConfig: Array<FeaturesCo
 export async function getCategoryList(clientId: number) {
     try {
         const response = await fetch(`${cmsEndpoint}/${clientId}/categories`);
-        const categoryListPromise = await response.json();
+        const categoryListPromise: CmsCategories = await response.json();
         const categoryList: CmsCategory = categoryListPromise.category;
         const categoryMap: Array<CategoryMap> = [];
 

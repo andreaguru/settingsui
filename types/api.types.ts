@@ -64,11 +64,14 @@ export interface UsageWithConfigName extends Usage {
     configurationName: string;
 }
 
-export interface FeaturesConfig {
+export interface FeaturesConfigAPI {
     id: number;
     name: string;
     clientId: number;
     settings: Array<Settings>;
+}
+
+export interface FeaturesConfig extends FeaturesConfigAPI {
     usages: Array<Usage>;
 }
 
@@ -89,6 +92,11 @@ export type SettingsLink = {
     url: string,
     modifierClassExtension?: string | null,
     elementType?: ElementType,
+}
+
+export interface CmsCategories {
+    clientId: number;
+    category: CmsCategory;
 }
 
 export interface CmsCategory {

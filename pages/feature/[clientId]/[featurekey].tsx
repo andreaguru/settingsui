@@ -18,7 +18,7 @@ import {Client, Feature, FeaturesConfig, FeaturesDetail, Status} from "../../../
 // import custom components
 import IDModalContent from "../../../components/detailPage/IDModalContent";
 import IdModalHeader from "../../../components/detailPage/IDModalHeader";
-import IDModalSidebar from "../../../components/detailPage/IDModalSidebar";
+import IdModalSidebar from "../../../components/detailPage/IDModalSidebar";
 
 /**
  *
@@ -38,7 +38,8 @@ function FeatureDetailPage({...props}: HomeProps) {
         name: "",
         key: "",
     });
-    const [featuresDetailConfigSelected, setFeaturesDetailConfigSelected] = useState<Array<FeaturesConfig>>([]);
+    const [featuresDetailConfigSelected,
+        setFeaturesDetailConfigSelected] = useState<Array<FeaturesConfig>>([]);
 
     useEffect(() => {
         if (featureKey && props.featureList.length > 0) {
@@ -128,6 +129,8 @@ function FeatureDetailPage({...props}: HomeProps) {
                             {/* Table content*/}
                             <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3, height: "100%"}}>
                                 <FeatureDetail
+                                    clientId={clientId}
+                                    featureId={featuresDetail.id}
                                     featureStatus={getFeatureStatus(featureKey, client as Client)}
                                     featuresDetailConfig={featuresDetail.configurations}
                                     featuresDetailConfigSelected={featuresDetailConfigSelected}/>
@@ -135,7 +138,7 @@ function FeatureDetailPage({...props}: HomeProps) {
 
                             {/* Sidebar*/}
                             {featuresDetail.configurations.length > 0 &&
-                                <IDModalSidebar
+                                <IdModalSidebar
                                     featureKey={featureKey}
                                     featuresDetailConfig={featuresDetail.configurations}
                                     jsonSchema={featuresDetail.jsonSchema}
