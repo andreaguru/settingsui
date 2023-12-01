@@ -78,7 +78,7 @@ export interface IDModalHeader extends AppBarProps {
 }
 
 export interface IDModalSidebarProps extends GridProps {
-    featuresDetailConfig: FeaturesConfig[];
+    featuresDetailConfig: Array<FeaturesConfig>;
     jsonSchema: RJSFSchema;
     setFeaturesDetailConfigSelected: (arg: Array<FeaturesConfig>) => void;
     featureKey: string;
@@ -98,9 +98,11 @@ export interface IDDividerProps extends DividerProps {
 }
 
 export interface FeatureDetail {
+    clientId: number;
+    featureId: number;
     featureStatus: Status;
-    featuresDetailConfig: FeaturesConfig[];
-    featuresDetailConfigSelected: FeaturesConfig[];
+    featuresDetailConfig: Array<FeaturesConfig>;
+    featuresDetailConfigSelected: Array<FeaturesConfig>;
 }
 
 export interface IDDataGridProps {

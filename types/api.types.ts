@@ -69,7 +69,7 @@ export interface FeaturesConfig {
     name: string;
     clientId: number;
     settings: Array<Settings>;
-    usages: Array<Usage>;
+    usages?: Array<Usage>;
 }
 
 export interface FeaturesDetail {
@@ -89,6 +89,11 @@ export type SettingsLink = {
     url: string,
     modifierClassExtension?: string | null,
     elementType?: ElementType,
+}
+
+export interface CmsCategories {
+    clientId: number;
+    category: CmsCategory;
 }
 
 export interface CmsCategory {

@@ -35,7 +35,7 @@ const IDBoxLegend = styled((props: IDBoxLegendProps) => {
  * @return {number}
  */
 function getActiveConfigPercent(featuresDetailConfig: Array<FeaturesConfig>): number {
-    const activeConfigs = featuresDetailConfig.filter((obj) => obj.usages.length).length;
+    const activeConfigs = featuresDetailConfig.filter((obj) => obj.usages?.length).length;
     return (activeConfigs / featuresDetailConfig.length) * 100;
 }
 

@@ -98,7 +98,7 @@ function IdModalSidebar(props: IDModalSidebarProps) {
                         featureKey={featureKey}
                         config={config}
                         jsonSchema={jsonSchema}
-                        disabled={!config.usages.length}
+                        disabled={!config.usages?.length}
                         selected={isSelectedCard(config.name)}
                         toggleConfig={toggleConfig}/>
                 ))}

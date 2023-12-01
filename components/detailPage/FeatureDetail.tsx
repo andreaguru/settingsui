@@ -44,7 +44,11 @@ function setStateIsConfigSelected(
  * @param {FeatureDetail} {featureStatus, featuresDetailConfig, featuresDetailConfigSelected}
  * @constructor
  */
-function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfigSelected}: FeatureDetail) {
+function FeatureDetail({clientId,
+    featureId,
+    featureStatus,
+    featuresDetailConfig,
+    featuresDetailConfigSelected}: FeatureDetail) {
     const [activeTab, setActiveTab] = React.useState(0);
     const [usages, setUsages] = React.useState<Array<Usage>>([]);
     const [clientUsages, setClientUsages] = React.useState<Array<Usage>>([]);
@@ -58,14 +62,14 @@ function FeatureDetail({featureStatus, featuresDetailConfig, featuresDetailConfi
         const configToShow = featuresDetailConfigSelected.length ?
             featuresDetailConfigSelected :
             featuresDetailConfig;
-        const usagesPromise = getUsagesPerFeature(configToShow);
+        const usagesPromise = getUsagesPerFeature(clientId, featureId, configToShow);
 
-        usagesPromise.then((data:Array<Usage>) => {
+        usagesPromise.then((data: Array<Usage>) => {
             if (data && Object.keys(data).length) {
                 setUsages(data);
 
                 /* if a configuration has been selected, show the relative Badge component with the number of usages
-                that are displayed, otherwise show only the text label */
+                    that are displayed, otherwise show only the text label */
                 setStateIsConfigSelected(featuresDetailConfigSelected, setIsConfigSelected);
             }
         });
