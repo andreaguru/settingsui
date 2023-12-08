@@ -11,4 +11,6 @@ export const BlackListClients = [
     300,
     323,
     99,
+    249,
+    248,
 ];
