@@ -79,7 +79,7 @@ function ClientCard({
 
     const router = useRouter();
 
-    const universalFeaturesMap = showSelectedFeatures(client.features, true);
+    const universalFeaturesMap = showSelectedFeatures(client.features);
     const featuresMap = showSelectedFeatures(client.features);
 
     const getFeatureContent = (feature: Feature) => {

@@ -71,10 +71,9 @@ function TemplatePage({Component, pageProps}: AppProps) {
      * it shows the Features that have been selected by the user
      * (e.g. checks if "traffective" and "aktiviert" have been selected and shows the result)
      * @param {Array<Feature>} featuresPerClient
-     * @param {boolean} showUniversalFeatures
      * @return {Array<Feature>}
      */
-    function showSelectedFeatures(featuresPerClient: Array<Feature>, showUniversalFeatures?: boolean) {
+    function showSelectedFeatures(featuresPerClient: Array<Feature>) {
         const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
 
         // if one or more features have been selected in the combobox...
@@ -103,7 +102,7 @@ function TemplatePage({Component, pageProps}: AppProps) {
             return {
                 ...client,
                 hasFeatures: showSelectedFeatures(client.features).length > 0 ||
-                    showSelectedFeatures(client.features, true).length > 0,
+                    showSelectedFeatures(client.features).length > 0,
             } as Client;
         });
     }
