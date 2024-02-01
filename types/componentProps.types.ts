@@ -1,18 +1,7 @@
-import {
-    Client,
-    ClientOrFeature,
-    Feature,
-    FeaturesConfig,
-    FeaturesDetail,
-    Status,
-    StatusValue,
-    Usage,
-} from "./api.types";
-import {MouseEvent, ReactNode} from "react";
+import {Client, ClientOrFeature, Feature, FeaturesDetail,} from "./api.types";
+import {ReactNode} from "react";
 import {AppBarProps} from "@mui/material/AppBar";
-import {GridProps} from "@mui/material/Grid";
 import {DividerProps} from "@mui/material";
-import {RJSFSchema} from "@rjsf/utils";
 
 /*
 Interfaces for the Components
@@ -77,65 +66,12 @@ export interface IDModalHeader extends AppBarProps {
     onCloseAction: () => void
 }
 
-export interface IDModalSidebarProps extends GridProps {
-    featuresDetailConfig: Array<FeaturesConfig>;
-    jsonSchema: RJSFSchema;
-    setFeaturesDetailConfigSelected: (arg: Array<FeaturesConfig>) => void;
-    featureKey: string;
-}
-
-export interface IdToggleProps {
-    config?: FeaturesConfig;
-    featureKey: string;
-    toggleConfig: (event: MouseEvent<HTMLDivElement>, name: string) => void;
-    disabled?: boolean;
-    selected?: boolean;
-    jsonSchema: RJSFSchema;
-}
-
 export interface IDDividerProps extends DividerProps {
     marginTop?: string,
 }
 
-export interface FeatureDetail {
-    clientId: number;
-    featureId: number;
-    featureStatus: Status;
-    featuresDetailConfig: Array<FeaturesConfig>;
-    featuresDetailConfigSelected: Array<FeaturesConfig>;
-}
-
-export interface IDDataGridProps {
-    usages: Array<Usage>;
-    tableView: TableView;
-    status: string;
-    getCategoryName: (usageId: number) => string|undefined;
-    getTagName: (usageId: number) => string|undefined;
-}
-
-export interface IDTabPanelProps {
-    activeTab: number;
-    usages: Array<Usage>;
-    filteredUsages: Array<Usage>;
-    tableView: TableView;
-    featureStatus: StatusValue;
-    featuresDetailConfig: Array<FeaturesConfig>;
-    alertMessage?: string;
-    index: number;
-}
-
-export enum TableView {
-    CLIENT = "CLIENT",
-    CATEGORY = "CATEGORY",
-    TAG = "TAG",
-}
-
 export interface IDDividerProps extends DividerProps {
     marginTop?: string;
-}
-
-export interface IDLinearProgressProps {
-    featuresDetailConfig: Array<FeaturesConfig>
 }
 
 export enum FeatSelectedStatus {

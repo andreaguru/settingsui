@@ -75,17 +75,7 @@ function TemplatePage({Component, pageProps}: AppProps) {
      * @return {Array<Feature>}
      */
     function showSelectedFeatures(featuresPerClient: Array<Feature>, showUniversalFeatures?: boolean) {
-        const universalFeatures = ["header", "footer"];
-        let featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
-
-        // first of all, we check if the feature list belongs to Allgemein (universal) or Features
-        if (showUniversalFeatures) {
-            featuresFilteredPerStatus = featuresFilteredPerStatus
-                .filter((feat) => universalFeatures.includes(feat.key));
-        } else {
-            featuresFilteredPerStatus = featuresFilteredPerStatus
-                .filter((feat) => !universalFeatures.includes(feat.key));
-        }
+        const featuresFilteredPerStatus = showFeaturesPerStatus(featuresPerClient, featureStatus);
 
         // if one or more features have been selected in the combobox...
         if (filteredFeatures.length > 0) {
@@ -198,12 +188,6 @@ function TemplatePage({Component, pageProps}: AppProps) {
 
     // The code inside this useEffect is called everytime there is a change in featureStatus or filteredFeatures state
     useEffect(() => {
-        /* here we set the status of property hasFeatures for each client.
-        hasFeatures is a boolean that tell us if a client has features to show according to the current set filters.
-        If there are no features, we set hasFeatures to false.
-        This property is currently used in MainContent and IDComboSelect.
-        Every time there is a change in featureStatus or filteredFeatures state we update also hasFeatures value */
-
         // if clients state is not empty...
         if (clients.length) {
             /* set hasFeatures status for client list */

@@ -3,9 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import {Tooltip} from "@mui/material";
 import {IDModalHeader} from "../../types/componentProps.types";
-import IDHelpIcon from "../IDHelpIcon";
 
 const IDStyledModalHeader = styled(AppBar)(({theme}) => ({
     height: theme.spacing(9),
@@ -43,11 +41,6 @@ function IdModalHeader(props:IDModalHeader) {
             </Typography>
             <Typography fontSize="18px" fontWeight="medium">
                 {featuresDetail.name}
-                <Tooltip
-                    title={featuresDetail.description}
-                    placement="right">
-                    <IDHelpIcon />
-                </Tooltip>
             </Typography>
             <IconButton className="modalClose" onClick={onCloseAction}>
                 <CloseIcon />

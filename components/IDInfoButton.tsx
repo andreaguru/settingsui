@@ -149,7 +149,7 @@ function IDInfoButton({align}: IDInfoButtonProps) {
                         </MenuItem>
                         {/* temporary link to feedback page will be removed/edited for future versions */}
                         <MenuItem sx={{px: theme.spacing(3)}}
-                            component={Link} href="https://confluence.ippen.io/x/ooM8Iw" target="_blank">
+                            component={Link} href="https://test.de" target="_blank">
                             <ListItemIcon>
                                 <FeedbackIcon />
                             </ListItemIcon>

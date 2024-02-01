@@ -12,7 +12,7 @@ import {IDComboSelectProps} from "../types/componentProps.types";
 import {useTheme} from "@mui/material/styles";
 
 /**
- * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 5 properties:
+ * The ComboSelect component. Based on MUI Autocomplete, it accepts 5 properties:
  * values: the list of options that have to be shown
  * title: the label of the combo box
  * placeholder: the title at the top of the Component

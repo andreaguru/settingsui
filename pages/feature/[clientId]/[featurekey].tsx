@@ -3,22 +3,18 @@ import {edidTheme} from "../../../themes/edid";
 
 import {useRouter} from "next/router";
 import Modal from "@mui/material/Modal";
-import FeatureDetail from "../../../components/detailPage/FeatureDetail";
 import Home from "../../index";
 import Skeleton from "@mui/material/Skeleton";
-import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
 import {getFeatureDetailForClient} from "../../../api/FeatureDetailAPI";
 import {useEffect, useState} from "react";
 
 // import typescript Interfaces
 import {HomeProps} from "../../../types/componentProps.types";
-import {Client, Feature, FeaturesConfig, FeaturesDetail, Status} from "../../../types/api.types";
-
-// import custom components
+import {Client, FeaturesDetail} from "../../../types/api.types";
 import IDModalContent from "../../../components/detailPage/IDModalContent";
+import Grid from "@mui/material/Grid";
 import IdModalHeader from "../../../components/detailPage/IDModalHeader";
-import IdModalSidebar from "../../../components/detailPage/IDModalSidebar";
 
 /**
  *
@@ -34,17 +30,13 @@ function FeatureDetailPage({...props}: HomeProps) {
         configurations: [],
         description: "",
         id: 0,
-        jsonSchema: {},
         name: "",
         key: "",
     });
-    const [featuresDetailConfigSelected,
-        setFeaturesDetailConfigSelected] = useState<Array<FeaturesConfig>>([]);
-
     useEffect(() => {
         if (featureKey && props.featureList.length > 0) {
             const featureId = props.featureList.filter((feature) => feature.key === featureKey)[0].id;
-            const featurePromise: Promise<FeaturesDetail> = getFeatureDetailForClient(featureId, clientId);
+            const featurePromise: Promise<FeaturesDetail> = getFeatureDetailForClient(featureId);
 
             featurePromise
                 .then((data) => {
@@ -90,17 +82,6 @@ function FeatureDetailPage({...props}: HomeProps) {
         }
     }
 
-    /**
-     *
-     * @param {string} featureKey
-     * @param {Client} client
-     * @return {string}
-     */
-    function getFeatureStatus(featureKey: string, client: Client): Status {
-        const selectedFeature: Feature = client.features.find((feature) => feature.key === featureKey) as Feature;
-        return selectedFeature.status;
-    }
-
     return (
         <ThemeProvider theme={edidTheme}>
             <CssBaseline />
@@ -125,26 +106,6 @@ function FeatureDetailPage({...props}: HomeProps) {
                                     color="inherit"
                                     onCloseAction={onCloseAction} />
                             </Grid>
-
-                            {/* Table content*/}
-                            <Grid item xs={featuresDetail.configurations.length ? 8 : 12} sx={{p: 3, height: "100%"}}>
-                                <FeatureDetail
-                                    clientId={clientId}
-                                    featureId={featuresDetail.id}
-                                    featureStatus={getFeatureStatus(featureKey, client as Client)}
-                                    featuresDetailConfig={featuresDetail.configurations}
-                                    featuresDetailConfigSelected={featuresDetailConfigSelected}/>
-                            </Grid>
-
-                            {/* Sidebar*/}
-                            {featuresDetail.configurations.length > 0 &&
-                                <IdModalSidebar
-                                    featureKey={featureKey}
-                                    featuresDetailConfig={featuresDetail.configurations}
-                                    jsonSchema={featuresDetail.jsonSchema}
-                                    setFeaturesDetailConfigSelected={setFeaturesDetailConfigSelected}
-                                    item xs={4}/>
-                            }
                         </IDModalContent>
                     </Modal>
                 </Home>
