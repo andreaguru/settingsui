@@ -1,0 +1,224 @@
+{
+  "clients": [
+    {
+        "id": 12,
+        "name": "BlickPunkt Nienburg"
+    },
+    {
+        "id": 20,
+        "name": "webnachrichten.de"
+    },
+    {
+        "id": 32,
+        "name": "meine-anzeigenzeitung.de"
+    },
+    {
+        "id": 40,
+        "name": "Wetterauer Zeitung"
+    }
+    ],
+  "features": [
+    {
+      "id": 1,
+      "name": "First Feature",
+      "key": "firstfeature"
+    },
+    {
+      "id": 2,
+      "name": "Second Feature",
+      "key": "secondfeature"
+    },
+    {
+      "id": 3,
+      "name": "Third Feature",
+      "key": "thirdfeature"
+    },
+    {
+      "id": 4,
+      "name": "Fourth Feature",
+      "key": "fourthfeature"
+    }
+  ],
+  "overview": [
+    {
+      "id": 12,
+      "feature": [
+        {
+          "id": 1,
+          "name": "First Feature",
+          "key": "firstfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "NONE",
+            "tag": "NONE"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Second Feature",
+          "key": "secondfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "NONE",
+            "tag": "NONE"
+          }
+        },
+        {
+          "id": 3,
+          "name": "Third Feature",
+          "key": "thirdfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "ENABLED",
+            "tag": "ENABLED"
+          }
+        },
+        {
+          "id": 4,
+          "name": "Fourth Feature",
+          "key": "fourthfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "DISABLED",
+            "tag": "NONE"
+          }
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "feature": [
+        {
+          "id": 1,
+          "name": "First Feature",
+          "key": "firstfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "NONE",
+            "tag": "NONE"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Second Feature",
+          "key": "secondfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "NONE",
+            "tag": "NONE"
+          }
+        },
+        {
+          "id": 3,
+          "name": "Third Feature",
+          "key": "thirdfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "ENABLED",
+            "tag": "ENABLED"
+          }
+        },
+        {
+          "id": 4,
+          "name": "Fourth Feature",
+          "key": "fourthfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "DISABLED",
+            "tag": "NONE"
+          }
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "feature": [
+        {
+          "id": 1,
+          "name": "First Feature",
+          "key": "firstfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "NONE",
+            "tag": "NONE"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Second Feature",
+          "key": "secondfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "NONE",
+            "tag": "NONE"
+          }
+        },
+        {
+          "id": 3,
+          "name": "Third Feature",
+          "key": "thirdfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "ENABLED",
+            "tag": "ENABLED"
+          }
+        },
+        {
+          "id": 4,
+          "name": "Fourth Feature",
+          "key": "fourthfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "DISABLED",
+            "tag": "NONE"
+          }
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "feature": [
+        {
+          "id": 1,
+          "name": "First Feature",
+          "key": "firstfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "NONE",
+            "tag": "NONE"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Second Feature",
+          "key": "secondfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "NONE",
+            "tag": "NONE"
+          }
+        },
+        {
+          "id": 3,
+          "name": "Third Feature",
+          "key": "thirdfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "ENABLED",
+            "tag": "ENABLED"
+          }
+        },
+        {
+          "id": 4,
+          "name": "Fourth Feature",
+          "key": "fourthfeature",
+          "status": {
+            "client": "ENABLED",
+            "category": "DISABLED",
+            "tag": "NONE"
+          }
+        }
+      ]
+    }
+  ]
+}
