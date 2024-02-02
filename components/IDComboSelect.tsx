@@ -39,7 +39,6 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                         id={title}
                         multiple
                         options={values}
-                        open={true}
                         value={filteredValues}
                         onChange={handleChange}
                         data-testid="combobox"
