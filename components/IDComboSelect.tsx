@@ -39,6 +39,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                         id={title}
                         multiple
                         options={values}
+                        open={true}
                         value={filteredValues}
                         onChange={handleChange}
                         data-testid="combobox"
@@ -59,7 +60,7 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                         }
                         ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
                         renderOption={(props, option: ClientOrFeature, {selected}) => (
-                            <li {...props}>
+                            <li {...props} style={{paddingLeft: theme.spacing(.5)}}>
                                 <Checkbox
                                     id={`id-${option.id}`}
                                     data-testid={option.id}
