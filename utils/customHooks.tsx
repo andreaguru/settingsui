@@ -1,35 +1,18 @@
-import {DependencyList, EffectCallback, useEffect, useRef} from "react";
-
-/**
- * useIsFirstRender
- * @return {boolean}
- */
-function useIsFirstRender(): boolean {
-    const isFirst = useRef(true);
-
-    if (isFirst.current) {
-        isFirst.current = false;
-
-        return true;
-    }
-
-    return isFirst.current;
-}
+import { DependencyList, EffectCallback, useEffect, useRef } from "react";
 
 /**
  * useUpdateEffect
  * @param {EffectCallback} effect
  * @param {DependencyList} deps
  */
-function useUpdateEffect(effect: EffectCallback, deps?: DependencyList) {
-    const isFirst = useIsFirstRender();
+export function useUpdateEffect(effect: EffectCallback, deps?: DependencyList) {
+    const isMountedRef = useRef(false);
 
     useEffect(() => {
-        if (!isFirst) {
-            return effect();
+        if (!isMountedRef.current) {
+            isMountedRef.current = true;
+            return;
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        return effect();
     }, deps);
 }
-
-export default useUpdateEffect;

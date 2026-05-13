@@ -4,15 +4,23 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
-import {SyntheticEvent} from "react";
+import { SyntheticEvent } from "react";
 
 // import typescript Interfaces
-import {ClientOrFeature} from "../types/api.types";
-import {IDComboSelectProps} from "../types/componentProps.types";
-import {useTheme} from "@mui/material/styles";
+import { IDComboSelectProps } from "types/componentProps.types";
+import { styled, useTheme } from "@mui/material/styles";
+import { Client, Feature } from "types/api.types";
+
+const ComboSelectLabel = styled(Typography)(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    gap: theme.spacing(1),
+    ...theme.typography.subtitle2,
+    color: theme.palette.secondary.main,
+}));
 
 /**
- * The ComboSelect component. Based on MUI Autocomplete, it accepts 5 properties:
+ * The Ippen Digital ComboSelect component. Based on MUI Autocomplete, it accepts 5 properties:
  * values: the list of options that have to be shown
  * title: the label of the combo box
  * placeholder: the title at the top of the Component
@@ -21,20 +29,27 @@ import {useTheme} from "@mui/material/styles";
  *
  * @constructor
  */
-function IDComboSelect({values, title, placeholder, filteredValues, setFilteredValues, showId}: IDComboSelectProps) {
-    const handleChange = (event: SyntheticEvent, value: Array<ClientOrFeature>) => {
+function IDComboSelect<T extends Client | Feature>({
+    filteredValues,
+    placeholder,
+    setFilteredValues,
+    showId,
+    title,
+    values,
+}: IDComboSelectProps<T>) {
+    const handleChange = (event: SyntheticEvent, value: T[]) => {
         setFilteredValues(value);
     };
     const theme = useTheme();
 
     return (
         <FormControl>
-            {values.length == 0 && (
-                <Skeleton variant="rounded" height={56} />
-            )}
+            {values.length === 0 && <Skeleton variant="rounded" height={56} />}
             {values.length > 0 && (
                 <>
-                    <Typography component="label" htmlFor={title}>{title}</Typography>
+                    <Typography component="label" htmlFor={title}>
+                        {title}
+                    </Typography>
                     <Autocomplete
                         id={title}
                         multiple
@@ -42,67 +57,60 @@ function IDComboSelect({values, title, placeholder, filteredValues, setFilteredV
                         value={filteredValues}
                         onChange={handleChange}
                         data-testid="combobox"
-                        disableCloseOnSelect={true}
+                        disableCloseOnSelect
                         noOptionsText="Kein Ergebnis"
-                        ChipProps={{
-                            sx: {
-                                color: "secondary.main",
-                            },
-                        }}
                         isOptionEqualToValue={
-                            (option: ClientOrFeature, value: ClientOrFeature) => option.name === value.name
+                            (option, value) => option.name === value.name
                         }
                         getOptionLabel={
-                            (option: ClientOrFeature) => "key" in option ?
+                            option => "key" in option ?
                                 option.name :
                                 `${option.name} | ${option.id}`
                         }
-                        ListboxProps={{style: {maxHeight: "calc(100vh - 320px)"}}}
-                        renderOption={(props, option: ClientOrFeature, {selected}) => (
-                            <li {...props} style={{paddingLeft: theme.spacing(.5)}}>
-                                <Checkbox
-                                    id={`id-${option.id}`}
-                                    data-testid={option.id}
-                                    sx={{marginRight: 1}}
-                                    checked={selected}
-                                    size="small"/>
-                                <Typography variant="subtitle1"
-                                    color={theme.palette.id_mediumGray.main}
-                                    sx={{display: "flex", alignItems: "center", gap: theme.spacing(1)}}>
-
-                                    {"key" in option &&
+                        slotProps={{
+                            listbox: { sx: { maxHeight: "calc(100vh - 320px)" } },
+                        }}
+                        renderOption={(props, option, { selected }) => {
+                            const { key, ...rest } = props;
+                            return (
+                                <li key={key} {...rest} style={{ paddingLeft: theme.spacing(0.5) }}>
+                                    <Checkbox
+                                        id={`id-${option.id}`}
+                                        data-testid={option.id}
+                                        checked={selected}
+                                        size="small"
+                                    />
+                                    <ComboSelectLabel>
                                         <Typography
                                             variant="subtitle2"
                                             component="span"
-                                            color="secondary.main"
-                                            fontWeight="700">
+                                            sx={{
+                                                color: "secondary.main",
+                                                fontWeight: "700",
+                                            }}
+                                        >
                                             {option.name}
                                         </Typography>
-                                    }
-                                    {!("key" in option) &&
-                                        <Typography
-                                            variant="subtitle2"
-                                            component="span"
-                                            color="secondary.main"
-                                            fontWeight="700">
-                                            {option.name}
+                                        {!("key" in option) && (
                                             <Typography
                                                 variant="inherit"
                                                 component="span"
-                                                fontWeight="normal"
-                                                color="secondary.light"
+                                                sx={{
+                                                    fontWeight: "normal",
+                                                    color: "secondary.light",
+                                                }}
                                             >
                                                 {showId ? ` | ${option.id}` : ""}
                                             </Typography>
-                                        </Typography>
-                                    }
-                                </Typography>
-                            </li>
+                                        )}
+                                    </ComboSelectLabel>
+                                </li>
+                            );
+                        }}
+                        renderInput={params => (
+                            <TextField {...params} placeholder={placeholder} variant="standard" />
                         )}
-                        getOptionDisabled={(option) => "hasFeatures" in option ? !option.hasFeatures : false}
-                        renderInput={(params) => (
-                            <TextField {...params} placeholder={placeholder} variant="standard"/>
-                        )}/>
+                    />
                 </>
             )}
         </FormControl>

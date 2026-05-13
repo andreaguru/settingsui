@@ -1,11 +1,11 @@
-import {NextRouter} from "next/router";
+import { NextRouter } from "next/router";
 
 /**
  * createMockRouter
  * @param {Partial<NextRouter>} router
  * @return {Object}
  */
-export function createMockRouter(router: Partial<NextRouter>): NextRouter {
+function createMockRouter(router: Partial<NextRouter>): NextRouter {
     return {
         basePath: "",
         pathname: "/",
@@ -33,3 +33,5 @@ export function createMockRouter(router: Partial<NextRouter>): NextRouter {
         ...router,
     };
 }
+
+export default createMockRouter;

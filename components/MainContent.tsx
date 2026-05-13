@@ -1,65 +1,72 @@
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
-import {useTheme} from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import { useTheme } from "@mui/material/styles";
 
 // import typescript Interfaces
-import {Client} from "../types/api.types";
-import {MainContentProps} from "../types/componentProps.types";
+import { Client } from "types/api.types";
+import { use } from "react";
+import { AppContext } from "context/AppContext";
+import { useRouter } from "next/router";
 import ClientCard from "./ClientCard";
 
 // import custom components
-import IDInfoButton from "./IDInfoButton";
+import IDInfoButton from "./shared/IDInfoButton";
 
 /**
- * MainContent component. It accepts 6 parameters:
- * clientsList: the complete list of the clients
- * filteredClientsList: the filtered list of the clients. This value is set through setFilteredClients, in index.js
- * @constructor
+ * MainContent function is responsible for rendering the main content section of the application.
+ * It displays a list of clients based on the current filter status.
  */
-function MainContent({
-    clientsList,
-    filteredClientsList,
-    showSelectedFeatures,
-    isLoading}: MainContentProps) {
+function MainContent() {
     const theme = useTheme();
+    const { clients, clientsLoading, filteredClients } = use(AppContext);
+    const router = useRouter();
+    const isIndexPage = router.pathname === "/";
+
     /* filter the clients that have to be shown, according to current filter status */
     /**
      * shownClients
      * @return {Array<Client>}
      */
-    function shownClients():Array<Client> {
-        const clients = filteredClientsList.length ? filteredClientsList : clientsList;
-        return clients.filter((client) => client.hasFeatures === true);
-    }
+    const shownClients: Client[] = filteredClients.length ? filteredClients : clients;
 
+    // We want to show the main content only if we are on the home page
+    if (!isIndexPage) return null;
+
+    // To be refactored later
     return (
-        <>
-            <Box sx={{paddingBottom: "20px"}}>
-                <Typography variant="h6" component="h6">Mandanten</Typography>
-                <Typography variant="body1" component="p">{shownClients().length} von {clientsList.length}</Typography>
+        <Grid size={{ xs: 12 }}>
+            <Box sx={{ pb: theme.spacing(3) }}>
+                <Typography variant="h6" component="h6">
+                    Mandanten
+                </Typography>
+                <Typography variant="body1" component="p">
+                    {shownClients.length} von {clients.length}
+                </Typography>
             </Box>
-            <IDInfoButton align="right"/>
-            {/* if loading is in progress, show the placeholder elements.
-            Placeholders height is the same as ClientCard */
-                isLoading &&
-                <>
-                    <Skeleton variant="rounded" height={theme.spacing(22)} />
-                    <Skeleton variant="rounded" height={theme.spacing(22)} />
-                    <Skeleton variant="rounded" height={theme.spacing(22)} />
-                    <Skeleton variant="rounded" height={theme.spacing(22)} />
-                </>
-            }
-            {/* if loading process is done, show the client list */
-                !isLoading && shownClients().map((client: Client, index: number) => (client.features &&
-                <ClientCard
-                    key={index}
-                    client={client}
-                    showSelectedFeatures={showSelectedFeatures}/>
-                ))}
-        </>
+            <IDInfoButton align="right" />
+            {
+                /* if loading is in progress, show the placeholder elements.
+                Placeholders height is the same as ClientCard */
+                clientsLoading ?
+                    (
+                        <>
+                            <Skeleton
+                                variant="rounded"
+                                height={theme.spacing(theme.custom.clientCardHeight)} />
+                            <Skeleton
+                                variant="rounded"
+                                height={theme.spacing(theme.custom.clientCardHeight)} />
+                        </>
+                    ) :
+                    (
+                        shownClients.map((client: Client) => (
+                            <ClientCard key={client.id} client={client} />
+                        ))
+                    )}
+        </Grid>
     );
 }
 
 export default MainContent;
-

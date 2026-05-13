@@ -1,0 +1,71 @@
+---
+stages:
+  - prepare
+  - build
+  - test
+  - docker
+  - stg # for multi-branch-deployment
+
+include:
+  - project: "cicd-blueprints/pipeline-modules/ci/nodejs"
+    file: "main.gitlab-ci.yml"
+    ref: 13.0.0
+  - project: "cicd-blueprints/pipelines/multi-branch-deployment"
+    file: "main.gitlab-ci.yml"
+    ref: 2.1.2
+
+variables:
+  DEPLOY_BRANCH_ON_PUSH: "false" # set this to "true" if you want to deploy your current feature branch after pushing
+  GITLAB_REGISTRY: "true"
+  SETTINGS_IMAGE_TAG: $CI_COMMIT_BRANCH
+  DEPLOYMENT_REPO: git@gitlab.id-repository.de:west/deployments.git
+  DEPLOYMENT: settings-ui
+  REPO: docker.id-repository.de
+  IMAGE_NAME: west/settings-ui
+  NODE_VERSION: 22
+  CYPRESS_VERSION: node16.5.0-chrome94-ff93
+  NPM_INSTALL: "true"
+  CSS_LINT: "false"
+  ES_LINT: "true"
+  BUILD: "false"
+  AUDIT: "false"
+  UNIT_TEST: "true"
+  INTEGRATION_TEST: "false"
+
+docker:staging:
+  extends: .build-and-push-docker # from nodejs template
+  variables:
+    BUILD_ARGS: --build-arg ENVIRONMENT=staging
+  before_script:
+    - export TAG_ARG=$(date +%s)
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+    - if: $CI_COMMIT_TAG
+      when: never
+
+docker:branch:
+  extends: .build-and-push-docker # from nodejs template
+  variables:
+    BUILD_ARGS: --build-arg ENVIRONMENT=staging
+  before_script:
+    - |
+      if [ "$DEPLOY_BRANCH_ON_PUSH" = "true" ]; then
+        export TAG_ARG=$(date +%s) # will be picked up by Flux2 image update automation
+      else
+        export TAG_ARG=$CI_COMMIT_BRANCH # will be ignored by FLux2 image update automation
+      fi
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - if: '$CI_COMMIT_BRANCH != "master" && $CI_COMMIT_TAG == null'
+    - if: $CI_COMMIT_TAG
+      when: never
+
+docker:production:
+  extends: .build-and-push-docker # from nodejs template
+  variables:
+    BUILD_ARGS: --build-arg ENVIRONMENT=production
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - if: '$CI_COMMIT_TAG =~ /^?(v)?\d+\.\d+\.\d+(-|\.)?(RC\d|RELEASE)?$/'
